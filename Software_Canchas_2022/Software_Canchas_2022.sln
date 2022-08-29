@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32421.90
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Software_Canchas_2022", "Software_Canchas_2022.csproj", "{1B3E5149-1AD9-4ABF-AD75-1A042D00383A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BE", "..\BE\BE.csproj", "{1AB15C69-A1FF-48F3-A2AA-6D5E519B17A1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1B3E5149-1AD9-4ABF-AD75-1A042D00383A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B3E5149-1AD9-4ABF-AD75-1A042D00383A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B3E5149-1AD9-4ABF-AD75-1A042D00383A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B3E5149-1AD9-4ABF-AD75-1A042D00383A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AB15C69-A1FF-48F3-A2AA-6D5E519B17A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AB15C69-A1FF-48F3-A2AA-6D5E519B17A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AB15C69-A1FF-48F3-A2AA-6D5E519B17A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AB15C69-A1FF-48F3-A2AA-6D5E519B17A1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {74A324F8-3BF9-41CA-BA05-DD3CE2B38CCC}
+	EndGlobalSection
+EndGlobal
