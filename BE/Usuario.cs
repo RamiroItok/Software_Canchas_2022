@@ -17,13 +17,9 @@ namespace BE
         public int Dni { get; set; }
         public string Sexo { get; set; }
         public string Mail { get; set; }
-        public DateTime Fecha_Nac { get; set; }
-        public string Calle { get; set; }
-        public int Numero{ get; set; }
-        public string Localidad { get; set; }
         public int Telefono { get; set; }
         public string Tipo{ get; set; }
-        public string Estado { get; set; }
+        public int Estado { get; set; }
         public int DVH { get; set; }
 
     }

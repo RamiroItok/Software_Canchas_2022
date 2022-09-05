@@ -10,6 +10,6 @@ namespace BE.Observer
     {
         int Id_Idioma { get; set; }
         string Nombre { get; set; }
-        int Default { get; set; }
+        bool Default { get; set; }
     }
 }

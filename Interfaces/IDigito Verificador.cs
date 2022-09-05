@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Software_Canchas_2022
+namespace Interfaces
 {
-    public class Class1
+    public interface IDigito_Verificador
     {
+        bool VerificarDV();
+        bool RecalcularDV();
     }
 }

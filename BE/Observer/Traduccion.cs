@@ -8,8 +8,8 @@ namespace BE.Observer
 {
     public class Traduccion : ITraduccion
     {
-        public int Id { get; set; }
-        public IEtiqueta Etiqueta { get; set; }
+        public int Id_Traduccion { get; set; }
+        public IEtiqueta Id_Etiqueta { get; set; }
         public string Texto { get; set; }
     }
 }

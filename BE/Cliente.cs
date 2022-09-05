@@ -4,12 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BE.Observer
+namespace BE
 {
-    public class Idioma : IIdioma
+    public class Cliente
     {
-        public int Id_Idioma { get; set; }
+        public int Id_Cliente { get; set; }
         public string Nombre { get; set; }
-        public bool Default { get; set; }
+        public string Apellido { get; set; }
+        public int Telefono { get; set; }
+        
     }
 }

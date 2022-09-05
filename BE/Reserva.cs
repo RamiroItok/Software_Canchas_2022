@@ -13,7 +13,6 @@ namespace BE
         public int Id_Cliente { get; set; }
         public DateTime Fecha { get; set; }
         public DateTime Hora { get; set; }
-        public string Cumpleaños { get; set; }
         public string Forma_Pago { get; set; }
         public float Seña { get; set; }
         public float Subtotal { get; set; }

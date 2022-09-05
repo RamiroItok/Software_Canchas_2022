@@ -11,6 +11,5 @@ namespace BE
         public int Id_Cancha { get; set; }
         public string Tipo { get; set; }
         public string Material { get; set; }
-        public string Techada { get; set; }
     }
 }
