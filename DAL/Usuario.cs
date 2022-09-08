@@ -26,16 +26,16 @@ namespace DAL
         private const string ALTA_USUARIO = @"INSERT INTO Usuarios (Nombre, Apellido, Nombre_Usuario, Contraseña, Puesto, Dni, Sexo,  Mail, Telefono, Tipo, Estado, DVH) 
                                             OUTPUT inserted.Id_Usuario VALUES (@parNombre, @parApellido, @parNombre_Usuario, @parContraseña, @parPuesto, @parDni, @parSexo, @parMail,
                                             @parTelefono, @parTipo, @parEstado, @parDVH)";
-        private const string BAJA_USUARIO = "DELETE FROM Usuarios WHERE Id_Usuario = {0}";
-        private const string MODIFICAR_USUARIO = @"UPDATE Usuarios SET Nombre = @parNombre, Apellido = @parApellido, Nombre_Usuario = @parNombre_Usuario, Contraseña = @parContraseña, Puesto = @parPuesto,
-                                                Dni = @parDni, Sexo = @parSexo, Mail = @parMail, Telefono = @parTelefono, Tipo = @parTipo, Estado = @parEstado WHERE Id_Usuario = @parId_Usuario";
+        private const string BAJA_USUARIO = "DELETE FROM Usuarios WHERE Id_Usuario = @parId_Usuario";
+        private const string MODIFICAR_USUARIO = @"UPDATE Usuarios SET Nombre = @parNombre, Apellido = @parApellido, Nombre_Usuario = @parNombre_Usuario, Puesto = @parPuesto,
+                                                Dni = @parDni, Sexo = @parSexo, Mail = @parMail, Telefono = @parTelefono, Tipo = @parTipo OUTPUT inserted.Id_Usuario WHERE Id_Usuario = @parId_Usuario";
         private const string LOGIN = "SELECT TOP 1 * FROM Usuarios WHERE Nombre_Usuario = '{0}'";
         private const string BLOQUEAR = "UPDATE Usuarios SET Estado = Estado + 1 WHERE Nombre_Usuario = @parNombre_Usuario";
         private const string DESBLOQUEAR = "UPDATE Usuarios SET Estado = 0 WHERE Nombre_Usuario = @parNombre_Usuario";
         private const string LISTAR_BLOQUEADOS = "SELECT * FROM Usuarios WHERE Estado = 3";
         private const string CAMBIAR_CONTRASEÑA = "UPDATE Usuarios SET Contraseña = @parContraseña  WHERE Nombre_Usuario = @parNombre_USuario";
 
-        public List<UsuarioDTO> ListarUsuario()
+        public List<UsuarioDTO> ListarUsuarioDTO()
         {
             try
             {
@@ -48,6 +48,26 @@ namespace DAL
                     usuariosDTO = _fill.FillListUsuarioDTO(ds);
 
                 return usuariosDTO;
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error en la base de datos.");
+            }
+        }
+
+        public List<BE.Usuario> ListarUsuario()
+        {
+            try
+            {
+                SelectCommandText = String.Format(LISTAR_USUARIO);
+                DataSet ds = ExecuteNonReader();
+
+                List<BE.Usuario> usuario = new List<BE.Usuario>();
+
+                if (ds.Tables[0].Rows.Count > 0)
+                    usuario = _fill.FillListUsuario(ds);
+
+                return usuario;
             }
             catch (Exception)
             {
@@ -85,7 +105,7 @@ namespace DAL
             }
         }
 
-        public int Baja_Usuario(BE.Usuario usuario)
+        public void Baja_Usuario(BE.Usuario usuario)
         {
             try
             {
@@ -93,9 +113,9 @@ namespace DAL
 
                 ExecuteParameters.Parameters.Clear();
 
-                ExecuteParameters.Parameters.AddWithValue("@parId_Usuario,", usuario);
+                ExecuteParameters.Parameters.AddWithValue("@parId_Usuario", usuario.Id_Usuario);
 
-                return ExecuteNonEscalar();
+                ExecuteNonQuery();
             }
             catch
             {
@@ -111,19 +131,16 @@ namespace DAL
 
                 ExecuteParameters.Parameters.Clear();
 
-                ExecuteParameters.Parameters.AddWithValue("@parId_Usuario,", usuario.Id_Usuario);
-                ExecuteParameters.Parameters.AddWithValue("@parNombre,", usuario.Nombre);
+                ExecuteParameters.Parameters.AddWithValue("@parId_Usuario", usuario.Id_Usuario);
+                ExecuteParameters.Parameters.AddWithValue("@parNombre", usuario.Nombre);
                 ExecuteParameters.Parameters.AddWithValue("@parApellido", usuario.Apellido);
                 ExecuteParameters.Parameters.AddWithValue("@parNombre_Usuario", usuario.Nombre_Usuario);
-                ExecuteParameters.Parameters.AddWithValue("@parContraseña", usuario.Contraseña);
                 ExecuteParameters.Parameters.AddWithValue("@parPuesto", usuario.Puesto);
                 ExecuteParameters.Parameters.AddWithValue("@parDni", usuario.Dni);
                 ExecuteParameters.Parameters.AddWithValue("@parSexo", usuario.Sexo);
                 ExecuteParameters.Parameters.AddWithValue("@parMail", usuario.Mail);
                 ExecuteParameters.Parameters.AddWithValue("@parTelefono", usuario.Telefono);
                 ExecuteParameters.Parameters.AddWithValue("@parTipo", usuario.Tipo);
-                ExecuteParameters.Parameters.AddWithValue("@parEstado", 0);
-                ExecuteParameters.Parameters.AddWithValue("@parDVH", usuario.DVH);
 
                 return ExecuteNonEscalar();
             }

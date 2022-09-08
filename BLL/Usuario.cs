@@ -57,10 +57,9 @@ namespace BLL
                 usuario.Nombre = _encriptacion.Encriptar_AES(usuario.Nombre);
                 usuario.Apellido = _encriptacion.Encriptar_AES(usuario.Apellido);
                 usuario.Nombre_Usuario = _encriptacion.Encriptar_AES(usuario.Nombre_Usuario);
-                usuario.Contraseña = _encriptacion.Encriptar_MD5(usuario.Contraseña);
                 usuario.Puesto = usuario.Puesto;
                 usuario.Dni = usuario.Dni;
-                usuario.Sexo =usuario.Sexo;
+                usuario.Sexo = usuario.Sexo;
                 usuario.Mail = usuario.Mail;
                 usuario.Telefono = usuario.Telefono;
                 usuario.Tipo = usuario.Tipo;
@@ -73,11 +72,12 @@ namespace BLL
             }
         }
 
-        public int BajaUsuario(BE.Usuario usuario)
+        public void BajaUsuario(BE.Usuario usuario)
         {
             try
             {
-                return _UsuarioDAL.Baja_Usuario(usuario);
+                usuario.Id_Usuario = usuario.Id_Usuario;
+                _UsuarioDAL.Baja_Usuario(usuario);
             }
             catch (Exception ex)
             {
@@ -183,11 +183,11 @@ namespace BLL
             return Traductor.TraducirMensaje(_IdiomaDAL, msgTag);
         }
 
-        public List<BE.DTOs.UsuarioDTO> ListarUsuario()
+        public List<BE.DTOs.UsuarioDTO> ListarUsuarioDTO()
         {
             try
             {
-                List<BE.DTOs.UsuarioDTO> usuario = _UsuarioDAL.ListarUsuario();
+                List<BE.DTOs.UsuarioDTO> usuario = _UsuarioDAL.ListarUsuarioDTO();
                 return usuario;
 
             }
@@ -197,11 +197,11 @@ namespace BLL
             }
         }
 
-        public List<UsuarioDTO> ObtenerUsuarioDesencriptado()
+        public List<UsuarioDTO> ObtenerUsuarioDTODesencriptado()
         {
             try
             {
-                List<UsuarioDTO> usuarios = _UsuarioDAL.ListarUsuario();
+                List<UsuarioDTO> usuarios = _UsuarioDAL.ListarUsuarioDTO();
                 List<UsuarioDTO> usuariosDesencriptado = new List<UsuarioDTO>();
 
                 foreach (UsuarioDTO user in usuarios)
@@ -217,6 +217,46 @@ namespace BLL
             catch (Exception) { throw new Exception("Hubo un error al querer obtener los usuarios."); }
         }
 
+        public List<BE.Usuario> ObtenerUsuarioDesencriptado()
+        {
+            try
+            {
+                List<BE.Usuario> usuarios = _UsuarioDAL.ListarUsuario();
+                List<BE.Usuario> usuariosDesencriptado = new List<BE.Usuario>();
+
+                foreach (BE.Usuario user in usuarios)
+                {
+                    user.Nombre = _encriptacion.Decrypt_AES(user.Nombre);
+                    user.Apellido = _encriptacion.Decrypt_AES(user.Apellido);
+                    user.Nombre_Usuario = _encriptacion.Decrypt_AES(user.Nombre_Usuario);
+                    user.Contraseña = user.Contraseña;
+                    user.Puesto = user.Puesto;
+                    user.Dni = user.Dni;
+                    user.Sexo  = user.Sexo;
+                    user.Mail = user.Mail;
+                    user.Telefono  = user.Telefono;
+                    user.Tipo = user.Tipo;
+                    usuariosDesencriptado.Add(user);
+                }
+
+                return usuariosDesencriptado;
+            }
+            catch (Exception) { throw new Exception("Hubo un error al querer obtener los usuarios."); }
+        }
+
+        public List<BE.Usuario> ListarUsuario()
+        {
+            try
+            {
+                List<BE.Usuario> usuario = _UsuarioDAL.ListarUsuario();
+                return usuario;
+
+            }
+            catch
+            {
+                throw new Exception("Error al Listar Usuarios");
+            }
+        }
         public List<BE.DTOs.UsuarioDTO> ListarBloqueados()
         {
             try

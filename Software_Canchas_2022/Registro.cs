@@ -43,7 +43,7 @@ namespace Software_Canchas_2022
         {
             try
             {
-                if (_iUsuario.ObtenerUsuarioDesencriptado().Where(x => x.Nombre_Usuario == txtNombre_Usuario.Text.ToLower()).Any())
+                if (_iUsuario.ObtenerUsuarioDTODesencriptado().Where(x => x.Nombre_Usuario == txtNombre_Usuario.Text.ToLower()).Any())
                     throw new Exception("Ese nombre de usuario está siendo utilizado");
 
                 Usuario usuario = new Usuario()

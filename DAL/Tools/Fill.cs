@@ -65,6 +65,11 @@ namespace DAL.Tools
             return usuario;
         }
 
+        public List<BE.Usuario> FillListUsuario(DataSet ds)
+        {
+            return (from DataRow dr in ds.Tables[0].Rows select (new Fill()).FillObjectUsuario(dr)).ToList();
+        }
+
         public UsuarioDTO FillObjectUsuarioDTO(DataRow dr)
         {
             UsuarioDTO usuario = new UsuarioDTO();

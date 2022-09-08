@@ -9,10 +9,12 @@ namespace Interfaces
 {
     public interface IUsuario
     {
-        List<UsuarioDTO> ListarUsuario();
-        List<UsuarioDTO> ObtenerUsuarioDesencriptado();
+        List<UsuarioDTO> ListarUsuarioDTO();
+        List<BE.Usuario> ListarUsuario();
+        List<UsuarioDTO> ObtenerUsuarioDTODesencriptado();
+        List<BE.Usuario> ObtenerUsuarioDesencriptado();
         int AltaUsuario(BE.Usuario usuario);
-        int BajaUsuario(BE.Usuario usuario);
+        void BajaUsuario(BE.Usuario usuario);
         int ModificarUsuario(BE.Usuario usuario);
         void Login(string nombre_usuario, string contraseña);
         void Logout();

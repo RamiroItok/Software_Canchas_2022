@@ -61,8 +61,10 @@
             this.dataGridUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridUsuarios.Location = new System.Drawing.Point(275, 25);
             this.dataGridUsuarios.Name = "dataGridUsuarios";
-            this.dataGridUsuarios.Size = new System.Drawing.Size(950, 583);
+            this.dataGridUsuarios.ReadOnly = true;
+            this.dataGridUsuarios.Size = new System.Drawing.Size(1073, 583);
             this.dataGridUsuarios.TabIndex = 0;
+            this.dataGridUsuarios.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridUsuarios_CellClick);
             // 
             // label1
             // 
@@ -173,7 +175,6 @@
             this.txtContraseña.Location = new System.Drawing.Point(12, 171);
             this.txtContraseña.Name = "txtContraseña";
             this.txtContraseña.PasswordChar = '*';
-            this.txtContraseña.ReadOnly = true;
             this.txtContraseña.Size = new System.Drawing.Size(213, 20);
             this.txtContraseña.TabIndex = 4;
             // 
@@ -214,7 +215,7 @@
             // 
             // cmbSexo
             // 
-            this.cmbSexo.Enabled = false;
+            this.cmbSexo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSexo.FormattingEnabled = true;
             this.cmbSexo.Items.AddRange(new object[] {
             "Masculino",
@@ -227,7 +228,7 @@
             // 
             // cmbTipo
             // 
-            this.cmbTipo.Enabled = false;
+            this.cmbTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTipo.FormattingEnabled = true;
             this.cmbTipo.Items.AddRange(new object[] {
             "Celular",
@@ -265,6 +266,7 @@
             this.button1.TabIndex = 13;
             this.button1.Text = "Baja";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // button2
             // 
@@ -274,12 +276,13 @@
             this.button2.TabIndex = 14;
             this.button2.Text = "Modificar";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
             // Gestion_Usuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1237, 629);
+            this.ClientSize = new System.Drawing.Size(1360, 666);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnCancelar);
