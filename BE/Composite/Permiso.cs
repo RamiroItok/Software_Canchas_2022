@@ -9,9 +9,9 @@ namespace BE.Composite
     public enum Permiso
     {
         EsFamilia,
-        AltaProducto,
-        ModificarProducto,
-        BajaProducto,
+        AltaUsuario,
+        ModificarUsuario,
+        BajaUsuario,
         DetalleProducto,
         GenerarPedidoStock,
         GenerarPedidoStockFijados,

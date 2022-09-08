@@ -8,7 +8,7 @@ namespace BE.Observer
 {
     public interface ITraduccion
     {
-        IEtiqueta Id_Etiqueta { get; set; }
+        IEtiqueta Etiqueta { get; set; }
         string Texto { get; set; }
     }
 }

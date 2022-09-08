@@ -76,6 +76,56 @@ namespace Software_Canchas_2022
             UpdateLanguage(Sesion.GetInstance().Idioma);
         }
 
+        private void CargarPermisosMenu()
+        {
+            PermisoTool.HabilitarMenu(_usuarioDTO, reservaToolStripMenuItem);
+            PermisoTool.HabilitarMenu(_usuarioDTO, listadoToolStripMenuItem);
+            PermisoTool.HabilitarMenu(_usuarioDTO, gestionUsuariosToolStripMenuItem);
+            PermisoTool.HabilitarMenu(_usuarioDTO, gestionCanchasToolStripMenuItem);
+            PermisoTool.HabilitarMenu(_usuarioDTO, gestionClientesToolStripMenuItem);
+            PermisoTool.HabilitarMenu(_usuarioDTO, informesToolStripMenuItem);
+            PermisoTool.HabilitarMenu(_usuarioDTO, altaIdiomaToolStripMenuItem1);
+            PermisoTool.HabilitarMenu(_usuarioDTO, recalcularDigitosVerificadoresToolStripMenuItem);
+            PermisoTool.HabilitarMenu(_usuarioDTO, bitácoraToolStripMenuItem);
+            PermisoTool.HabilitarMenu(_usuarioDTO, backUpToolStripMenuItem);
+            PermisoTool.HabilitarMenu(_usuarioDTO, restoreToolStripMenuItem);
+            PermisoTool.HabilitarMenu(_usuarioDTO, gestiónFamiliaToolStripMenuItem);
+            PermisoTool.HabilitarMenu(_usuarioDTO, asignarPermisosToolStripMenuItem);
+            PermisoTool.HabilitarMenu(_usuarioDTO, consultarPermisosToolStripMenuItem);
+            PermisoTool.HabilitarMenu(_usuarioDTO, bloqueadosToolStripMenuItem);
+            PermisoTool.HabilitarMenu(_usuarioDTO, cambiarContraseñaToolStripMenuItem);
+            PermisoTool.HabilitarMenu(_usuarioDTO, salirToolStripMenuItem);
+
+            OcultarMenu();
+        }
+
+        private void OcultarMenu()
+        {
+            // Menú Administrar negocio
+            PermisoTool.OcultarMenuRaiz(canchaToolStripMenuItem);
+
+            // Administración de ABM Usuarios/Cancha/Usuarios
+            PermisoTool.OcultarMenuRaiz(gestiónToolStripMenuItem);
+            PermisoTool.OcultarMenu(gestionUsuariosToolStripMenuItem);
+            PermisoTool.OcultarMenu(gestionCanchasToolStripMenuItem);
+            PermisoTool.OcultarMenu(gestionClientesToolStripMenuItem);
+
+            // Menú informes
+            PermisoTool.OcultarMenu(informesToolStripMenuItem);
+
+            // Menú Idioma
+            PermisoTool.OcultarMenuRaiz(informesToolStripMenuItem);
+
+            // Menú Seguridad
+            PermisoTool.OcultarMenuRaiz(seguridadToolStripMenuItem);
+            PermisoTool.OcultarMenu(recalcularDigitosVerificadoresToolStripMenuItem);
+            PermisoTool.OcultarMenu(bitácoraToolStripMenuItem);
+            PermisoTool.OcultarMenu(backUpToolStripMenuItem);
+            PermisoTool.OcultarMenu(restoreToolStripMenuItem);
+            PermisoTool.OcultarMenu(rolesToolStripMenuItem);
+            PermisoTool.OcultarMenu(seguridadUsuariosToolStripMenuItem);
+        }
+
         public void UpdateLanguage(IIdioma idioma)
         {
             Traducir(idioma);
@@ -101,9 +151,44 @@ namespace Software_Canchas_2022
                 _idiomas.Add(idioma);
 
                 ToolStripMenuItem idiomaMenu = Traductor.AgregarIdiomaMenu(idioma);
-                //this.menuIdioma.DropDownItems.Add(idiomaMenu);
+                this.idiomaToolStripMenuItem.DropDownItems.Add(idiomaMenu);
 
-                //idiomaMenu.Click += T_Click;
+                idiomaMenu.Click += T_Click;
+            }
+        }
+
+        private void T_Click(object sender, EventArgs e)
+        {
+            Sesion.CambiarIdioma(((IIdioma)((ToolStripMenuItem)sender).Tag));
+        }
+
+        private void MostrarControles()
+        {
+            lblBienvenido.Visible = true;
+        }
+
+        private void OcultarControles()
+        {
+            lblBienvenido.Visible = false;
+        }
+
+        private void AgregarIdiomaMenu()
+        {
+            IList<IIdioma> idiomas = _iTraductor.ObtenerIdiomas();
+            List<int> idiomasId = (from idio in idiomas select idio.Id).Except(_idiomas.Select(x => x.Id)).ToList();
+
+            if (idiomasId.Count > 0 && idiomasId != null)
+            {
+                foreach (int idiomaId in idiomasId)
+                {
+                    IIdioma idioma = _iTraductor.ObtenerIdiomas().Where(x => x.Id == idiomaId).FirstOrDefault();
+                    _idiomas.Add(idioma);
+
+                    ToolStripMenuItem idiomaMenu = Traductor.AgregarIdiomaMenu(idioma);
+                    this.idiomaToolStripMenuItem.DropDownItems.Add(idiomaMenu);
+
+                    idiomaMenu.Click += T_Click;
+                }
             }
         }
 
@@ -113,6 +198,44 @@ namespace Software_Canchas_2022
             gestion_Usuario.MdiParent = this;
             gestion_Usuario.StartPosition = FormStartPosition.CenterScreen;
             gestion_Usuario.Show();
+        }
+
+        private void Menu_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            try
+            {
+                _iUsuario.Logout();
+                Abrir_FormLLogin();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void Abrir_FormLLogin()
+        {
+            Login login = new Login(_iPermiso, _iTraductor, _iCancha, _iUsuario);
+            login.Show();
+        }
+
+        private void Menu_MdiChildActivate(object sender, EventArgs e)
+        {
+            Form formEvento = (Form)sender;
+            CargarPermisosMenu();
+
+            if (formEvento.ActiveMdiChild == null)
+            {
+                MostrarControles();
+                mdiChildActivo = false;
+                UpdateLanguage(Sesion.GetInstance().Idioma);
+                AgregarIdiomaMenu();
+            }
+            else
+            {
+                OcultarControles();
+                mdiChildActivo = true;
+            }
         }
     }
 }

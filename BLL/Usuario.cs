@@ -108,6 +108,7 @@ namespace BLL
                             Nombre_Usuario = _encriptacion.Decrypt_AES(usuario.Nombre_Usuario),
                             Nombre = _encriptacion.Decrypt_AES(usuario.Nombre),
                             Apellido = _encriptacion.Decrypt_AES(usuario.Apellido),
+                            Telefono = usuario.Telefono,
                         };
                         _permisoDAL.GetComponenteUsuario(usuarioSingleton);
 
@@ -206,6 +207,8 @@ namespace BLL
                 foreach (UsuarioDTO user in usuarios)
                 {
                     user.Nombre_Usuario = _encriptacion.Decrypt_AES(user.Nombre_Usuario);
+                    user.Nombre = _encriptacion.Decrypt_AES(user.Nombre);
+                    user.Apellido = _encriptacion.Decrypt_AES(user.Apellido);
                     usuariosDesencriptado.Add(user);
                 }
 

@@ -17,8 +17,8 @@ namespace BE.DTOs
         {
             return new TraduccionesDTO
             {
-                Id = traduccion.Id_Traduccion,
-                Etiqueta = traduccion.Id_Etiqueta.Nombre,
+                Id = traduccion.Id,
+                Etiqueta = traduccion.Etiqueta.Nombre,
                 Traduccion = traduccion.Texto
             };
         }

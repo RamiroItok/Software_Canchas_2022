@@ -82,6 +82,9 @@ namespace DAL.Tools
                 if (dr.Table.Columns.Contains("Apellido") && !Convert.IsDBNull(dr["Apellido"]))
                     usuario.Apellido = Convert.ToString(dr["Apellido"]);
 
+                if (dr.Table.Columns.Contains("Telefono") && !Convert.IsDBNull(dr["Telefono"]))
+                    usuario.Telefono = Convert.ToInt32(dr["Telefono"]);
+
             }
             catch (Exception ex)
             {
@@ -167,8 +170,8 @@ namespace DAL.Tools
 
             try
             {
-                if (dr.Table.Columns.Contains("Id_Idioma") && !Convert.IsDBNull(dr["Id_Idioma"]))
-                    idioma.Id_Idioma = Convert.ToInt32(dr["Id_Idioma"]);
+                if (dr.Table.Columns.Contains("Id") && !Convert.IsDBNull(dr["Id"]))
+                    idioma.Id = Convert.ToInt32(dr["Id"]);
 
                 if (dr.Table.Columns.Contains("Nombre") && !Convert.IsDBNull(dr["Nombre"]))
                     idioma.Nombre = Convert.ToString(dr["Nombre"]);
@@ -202,15 +205,15 @@ namespace DAL.Tools
                     DataRow dr = item as DataRow;
 
                     ITraduccion traduccion = new Traduccion();
-                    traduccion.Texto = Convert.ToString(dr["traduccion"]);
+                    traduccion.Texto = Convert.ToString(dr["Traduccion"]);
                     Etiqueta etiqueta = new Etiqueta()
                     {
-                        Id_Etiqueta = Convert.ToInt32(dr["Id_Etiqueta"]),
-                        Nombre = Convert.ToString(dr["Nombre"])
+                        Id = Convert.ToInt32(dr["Id"]),
+                        Nombre = Convert.ToString(dr["Nombre_Etiqueta"])
                     };
-                    traduccion.Id_Etiqueta = etiqueta;
+                    traduccion.Etiqueta = etiqueta;
 
-                    _traducciones.Add(traduccion.Id_Etiqueta.Nombre, traduccion);
+                    _traducciones.Add(traduccion.Etiqueta.Nombre, traduccion);
                 }
             }
             catch (Exception ex)
@@ -228,11 +231,11 @@ namespace DAL.Tools
 
             try
             {
-                if (dr.Table.Columns.Contains("Id_Traduccion") && !Convert.IsDBNull(dr["Id_Traduccion"]))
-                    traduccion.Id_Traduccion = (Convert.ToInt32(dr["Id_Traduccion"]));
+                if (dr.Table.Columns.Contains("Id") && !Convert.IsDBNull(dr["Id"]))
+                    traduccion.Id = (Convert.ToInt32(dr["Id"]));
 
-                if (dr.Table.Columns.Contains("Id_Etiqueta") && !Convert.IsDBNull(dr["Id_Etiqueta"]))
-                    traduccion.Id_Etiqueta = _idiomaDAL.GetEtiqueta(Convert.ToInt32(dr["Id_Etiqueta"]));
+                if (dr.Table.Columns.Contains("EtiquetaId") && !Convert.IsDBNull(dr["EtiquetaId"]))
+                    traduccion.Etiqueta = _idiomaDAL.GetEtiqueta(Convert.ToInt32(dr["EtiquetaId"]));
 
                 if (dr.Table.Columns.Contains("Traduccion") && !Convert.IsDBNull(dr["Traduccion"]))
                     traduccion.Texto = (Convert.ToString(dr["Traduccion"]));
@@ -259,8 +262,8 @@ namespace DAL.Tools
 
             try
             {
-                if (dr.Table.Columns.Contains("Id_Etiqueta") && !Convert.IsDBNull(dr["Id_Etiqueta"]))
-                    etiqueta.Id_Etiqueta = Convert.ToInt32(dr["Id_Etiqueta"]);
+                if (dr.Table.Columns.Contains("Id") && !Convert.IsDBNull(dr["Id"]))
+                    etiqueta.Id = Convert.ToInt32(dr["Id"]);
 
 
                 if (dr.Table.Columns.Contains("Nombre") && !Convert.IsDBNull(dr["Nombre"]))

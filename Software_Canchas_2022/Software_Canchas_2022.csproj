@@ -74,6 +74,12 @@
     <Compile Include="Registro.Designer.cs">
       <DependentUpon>Registro.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reserva Cancha.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reserva Cancha.Designer.cs">
+      <DependentUpon>Reserva Cancha.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -90,6 +96,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Registro.resx">
       <DependentUpon>Registro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reserva Cancha.resx">
+      <DependentUpon>Reserva Cancha.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -8,7 +8,7 @@ namespace BE.Observer
 {
     public class Idioma : IIdioma
     {
-        public int Id_Idioma { get; set; }
+        public int Id { get; set; }
         public string Nombre { get; set; }
         public bool Default { get; set; }
     }

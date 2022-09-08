@@ -8,7 +8,7 @@ namespace BE.Observer
 {
     public interface IEtiqueta
     {
-        int Id_Etiqueta { get; set; }
+        int Id { get; set; }
         string Nombre { get; set; }
     }
 }

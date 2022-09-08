@@ -54,8 +54,10 @@ namespace Software_Canchas_2022
                 _iUsuario.Login(txtUser.Text.ToLower(), txtPass.Text);
 
                 Limpiar();
-                //this.Hide();
+                this.Hide();
                 MessageBox.Show("Se ingresó correctamente");
+                Menu formMenu = new Menu(_iPermiso, _iTraductor, _iCancha, _iUsuario);
+                formMenu.Show();
             }
             catch (Exception ex)
             {

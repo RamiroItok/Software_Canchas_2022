@@ -20,6 +20,7 @@ namespace BE.DTOs
         public string Nombre_Usuario { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
+        public int Telefono { get; set; }
         public IIdioma Idioma { get; set; }
         public List<Componente> Permisos
         {
@@ -27,6 +28,30 @@ namespace BE.DTOs
             {
                 return _permisos;
             }
+        }
+
+        public static UsuarioDTO FillObject(Usuario usuario)
+        {
+            UsuarioDTO usuarioDTO = new UsuarioDTO()
+            {
+                Id_Usuario = usuario.Id_Usuario,
+                Nombre = usuario.Nombre,
+                Apellido = usuario.Apellido,
+                Nombre_Usuario = usuario.Nombre_Usuario,
+                Telefono = usuario.Telefono,
+            };
+
+            return usuarioDTO;
+        }
+
+        public static List<UsuarioDTO> FillListDTO(List<Usuario> usuarios)
+        {
+            List<UsuarioDTO> usuarioDTO = new List<UsuarioDTO>();
+            foreach (Usuario usuario in usuarios)
+            {
+                usuarioDTO.Add(FillObject(usuario));
+            }
+            return usuarioDTO;
         }
     }
 }
