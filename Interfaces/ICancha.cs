@@ -10,7 +10,7 @@ namespace Interfaces
     {
         int AltaCancha(BE.Cancha cancha);
         int ModificarCancha(BE.Cancha cancha);
-        int BajaCancha(int idCancha);
+        void BajaCancha(BE.Cancha Cancha);
         List<BE.Cancha> ObtenerCanchas();
     }
 }

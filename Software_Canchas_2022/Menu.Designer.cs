@@ -113,7 +113,7 @@
             // gestionUsuariosToolStripMenuItem
             // 
             this.gestionUsuariosToolStripMenuItem.Name = "gestionUsuariosToolStripMenuItem";
-            this.gestionUsuariosToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.gestionUsuariosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.gestionUsuariosToolStripMenuItem.Tag = "menu_Gestion_Usuarios";
             this.gestionUsuariosToolStripMenuItem.Text = "Usuarios";
             this.gestionUsuariosToolStripMenuItem.Click += new System.EventHandler(this.usuariosToolStripMenuItem_Click);
@@ -121,15 +121,16 @@
             // gestionCanchasToolStripMenuItem
             // 
             this.gestionCanchasToolStripMenuItem.Name = "gestionCanchasToolStripMenuItem";
-            this.gestionCanchasToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.gestionCanchasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.gestionCanchasToolStripMenuItem.Tag = "menu_Gestion_Canchas";
             this.gestionCanchasToolStripMenuItem.Text = "Canchas";
+            this.gestionCanchasToolStripMenuItem.Click += new System.EventHandler(this.gestionCanchasToolStripMenuItem_Click);
             // 
             // gestionClientesToolStripMenuItem
             // 
             this.gestionClientesToolStripMenuItem.Name = "gestionClientesToolStripMenuItem";
-            this.gestionClientesToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
-            this.gestionClientesToolStripMenuItem.Tag = "menu_Gestion_Cliente";
+            this.gestionClientesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.gestionClientesToolStripMenuItem.Tag = "menu_Gestion_Clientes";
             this.gestionClientesToolStripMenuItem.Text = "Clientes";
             // 
             // informesToolStripMenuItem
@@ -298,10 +299,11 @@
             // lblBienvenido
             // 
             this.lblBienvenido.AutoSize = true;
-            this.lblBienvenido.Location = new System.Drawing.Point(1047, 9);
+            this.lblBienvenido.Location = new System.Drawing.Point(1172, 9);
             this.lblBienvenido.Name = "lblBienvenido";
             this.lblBienvenido.Size = new System.Drawing.Size(35, 13);
             this.lblBienvenido.TabIndex = 1;
+            this.lblBienvenido.Tag = "lbl_Bienvenido";
             this.lblBienvenido.Text = "label1";
             // 
             // Menu

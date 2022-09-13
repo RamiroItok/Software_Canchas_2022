@@ -73,6 +73,7 @@ namespace Software_Canchas_2022
         {
             Sesion.SuscribirObservador(this);
             MostrarIdiomasDisponibles();
+            MostrarControles();
             UpdateLanguage(Sesion.GetInstance().Idioma);
         }
 
@@ -80,6 +81,7 @@ namespace Software_Canchas_2022
         {
             PermisoTool.HabilitarMenu(_usuarioDTO, reservaToolStripMenuItem);
             PermisoTool.HabilitarMenu(_usuarioDTO, listadoToolStripMenuItem);
+            PermisoTool.HabilitarMenu(_usuarioDTO, gestiónToolStripMenuItem);
             PermisoTool.HabilitarMenu(_usuarioDTO, gestionUsuariosToolStripMenuItem);
             PermisoTool.HabilitarMenu(_usuarioDTO, gestionCanchasToolStripMenuItem);
             PermisoTool.HabilitarMenu(_usuarioDTO, gestionClientesToolStripMenuItem);
@@ -96,34 +98,6 @@ namespace Software_Canchas_2022
             PermisoTool.HabilitarMenu(_usuarioDTO, cambiarContraseñaToolStripMenuItem);
             PermisoTool.HabilitarMenu(_usuarioDTO, salirToolStripMenuItem);
 
-            OcultarMenu();
-        }
-
-        private void OcultarMenu()
-        {
-            // Menú Administrar negocio
-            PermisoTool.OcultarMenuRaiz(canchaToolStripMenuItem);
-
-            // Administración de ABM Usuarios/Cancha/Usuarios
-            PermisoTool.OcultarMenuRaiz(gestiónToolStripMenuItem);
-            PermisoTool.OcultarMenu(gestionUsuariosToolStripMenuItem);
-            PermisoTool.OcultarMenu(gestionCanchasToolStripMenuItem);
-            PermisoTool.OcultarMenu(gestionClientesToolStripMenuItem);
-
-            // Menú informes
-            PermisoTool.OcultarMenu(informesToolStripMenuItem);
-
-            // Menú Idioma
-            PermisoTool.OcultarMenuRaiz(informesToolStripMenuItem);
-
-            // Menú Seguridad
-            PermisoTool.OcultarMenuRaiz(seguridadToolStripMenuItem);
-            PermisoTool.OcultarMenu(recalcularDigitosVerificadoresToolStripMenuItem);
-            PermisoTool.OcultarMenu(bitácoraToolStripMenuItem);
-            PermisoTool.OcultarMenu(backUpToolStripMenuItem);
-            PermisoTool.OcultarMenu(restoreToolStripMenuItem);
-            PermisoTool.OcultarMenu(rolesToolStripMenuItem);
-            PermisoTool.OcultarMenu(seguridadUsuariosToolStripMenuItem);
         }
 
         public void UpdateLanguage(IIdioma idioma)
@@ -165,6 +139,7 @@ namespace Software_Canchas_2022
         private void MostrarControles()
         {
             lblBienvenido.Visible = true;
+            lblBienvenido.Text = lblBienvenido.Text + _usuarioDTO.Nombre;
         }
 
         private void OcultarControles()
@@ -190,14 +165,6 @@ namespace Software_Canchas_2022
                     idiomaMenu.Click += T_Click;
                 }
             }
-        }
-
-        private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Gestion_Usuarios gestion_Usuario = new Gestion_Usuarios(_iUsuario, _iTraductor);
-            gestion_Usuario.MdiParent = this;
-            gestion_Usuario.StartPosition = FormStartPosition.CenterScreen;
-            gestion_Usuario.Show();
         }
 
         private void Menu_FormClosed(object sender, FormClosedEventArgs e)
@@ -236,6 +203,21 @@ namespace Software_Canchas_2022
                 OcultarControles();
                 mdiChildActivo = true;
             }
+        }
+
+        private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Gestion_Usuarios gestion_Usuario = new Gestion_Usuarios(_iUsuario, _iTraductor);
+            gestion_Usuario.MdiParent = this;
+            gestion_Usuario.StartPosition = FormStartPosition.CenterScreen;
+            gestion_Usuario.Show();
+        }
+        private void gestionCanchasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Gestion_Canchas gestion_Canchas = new Gestion_Canchas(_iCancha, _iTraductor);
+            gestion_Canchas.MdiParent = this;
+            gestion_Canchas.StartPosition = FormStartPosition.CenterScreen;
+            gestion_Canchas.Show();
         }
     }
 }

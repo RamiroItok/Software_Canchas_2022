@@ -161,7 +161,7 @@ namespace Software_Canchas_2022
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            try
+             try
             {
                 if (dataGridUsuarios.CurrentRow == null) throw new Exception(TraducirMensaje("msg_UsuarioNoSeleccionado"));
 

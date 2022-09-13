@@ -48,11 +48,11 @@ namespace BLL
             }
         }
 
-        public int BajaCancha(int cancha)
+        public void BajaCancha(BE.Cancha cancha)
         {
             try
             {
-                return _CanchaDAL.BajaCancha(cancha);
+                _CanchaDAL.BajaCancha(cancha);
             }
             catch (Exception ex)
             {
@@ -79,7 +79,7 @@ namespace BLL
                 throw new Exception(TraducirMensaje("msg_CanchaId_Cancha"));
 
             if (string.IsNullOrWhiteSpace(cancha.Tipo) || string.IsNullOrWhiteSpace(cancha.Material))
-                throw new Exception("Falta completar un campo");
+                throw new Exception(TraducirMensaje("msg_CampoVacio"));
         }
 
         private string TraducirMensaje(string msgTag)

@@ -76,7 +76,6 @@ namespace BLL
         {
             try
             {
-                usuario.Id_Usuario = usuario.Id_Usuario;
                 _UsuarioDAL.Baja_Usuario(usuario);
             }
             catch (Exception ex)
@@ -111,7 +110,7 @@ namespace BLL
                             Telefono = usuario.Telefono,
                         };
                         _permisoDAL.GetComponenteUsuario(usuarioSingleton);
-
+                        _UsuarioDAL.Desbloquear(usuario.Nombre_Usuario);
                         Sesion.CreateInstance(usuarioSingleton, _IdiomaDAL.ObtenerIdiomaDefault());
                     }
                     else

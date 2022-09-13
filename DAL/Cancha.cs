@@ -22,8 +22,8 @@ namespace DAL
 
         #region Querys
         private const string ALTA_CANCHA = "INSERT INTO Cancha (Tipo, Material) OUTPUT inserted.Id_Cancha Values (@parTipo, @parMaterial)";
-        private const string MODIFICAR_CANCHA = "UPDATE Cancha SET Tipo = @parTipo, Material = @parMaterial WHERE Id_Cancha = @parId_Cancha";
-        private const string BAJA_CANCHA = "DELETE FROM Cancha WHERE Id_Cancha = {0}";
+        private const string MODIFICAR_CANCHA = "UPDATE Cancha SET Tipo = @parTipo, Material = @parMaterial OUTPUT inserted.Id_Cancha WHERE Id_Cancha = @parId_Cancha";
+        private const string BAJA_CANCHA = "DELETE FROM Cancha WHERE Id_Cancha = @parId_Cancha";
         private const string OBTENER_CANCHAS = "SELECT * FROM Cancha";
         #endregion
 
@@ -68,7 +68,7 @@ namespace DAL
             }
         }
 
-        public int BajaCancha(int id_cancha)
+        public void BajaCancha(BE.Cancha cancha)
         {
             try
             {   
@@ -76,10 +76,9 @@ namespace DAL
 
                 ExecuteParameters.Parameters.Clear();
 
-                ExecuteParameters.Parameters.AddWithValue("@parId_Cancha", id_cancha);
+                ExecuteParameters.Parameters.AddWithValue("@parId_Cancha", cancha.Id_Cancha);
 
-
-                return ExecuteNonEscalar();
+                ExecuteNonQuery();
             }
             catch
             {

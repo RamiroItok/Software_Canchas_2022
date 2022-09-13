@@ -56,6 +56,8 @@ namespace Servicios
                 item.Enabled = tienePermiso;
                 item.Visible = tienePermiso;
             }
+
+
         }
 
         public static void OcultarMenu(ToolStripMenuItem menu)

@@ -54,6 +54,12 @@
     <Compile Include="Gestion Usuarios.Designer.cs">
       <DependentUpon>Gestion Usuarios.cs</DependentUpon>
     </Compile>
+    <Compile Include="Gestion_Canchas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gestion_Canchas.Designer.cs">
+      <DependentUpon>Gestion_Canchas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,6 +93,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Gestion Usuarios.resx">
       <DependentUpon>Gestion Usuarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gestion_Canchas.resx">
+      <DependentUpon>Gestion_Canchas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
