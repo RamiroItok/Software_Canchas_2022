@@ -95,7 +95,7 @@
             this.btnAlta.Name = "btnAlta";
             this.btnAlta.Size = new System.Drawing.Size(99, 43);
             this.btnAlta.TabIndex = 4;
-            this.btnAlta.Tag = "btn_Alta_Cancha";
+            this.btnAlta.Tag = "btn_Alta";
             this.btnAlta.Text = "Alta";
             this.btnAlta.UseVisualStyleBackColor = true;
             this.btnAlta.Click += new System.EventHandler(this.btnAlta_Click);

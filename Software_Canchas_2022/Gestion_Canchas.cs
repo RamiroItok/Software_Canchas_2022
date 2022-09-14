@@ -27,21 +27,6 @@ namespace Software_Canchas_2022
             InitializeComponent();
         }
 
-        public void UpdateLanguage(IIdioma idioma)
-        {
-            Traducir(idioma);
-        }
-
-        private void Traducir(IIdioma idioma)
-        {
-            Traductor.Traducir(_iTraductor, idioma, this.Controls);
-        }
-
-        private string TraducirMensaje(string msgTag)
-        {
-            return Traductor.TraducirMensaje(_iTraductor, msgTag);
-        }
-
         private void Gestion_Canchas_Load(object sender, EventArgs e)
         {
             CargarCanchas();
@@ -49,24 +34,9 @@ namespace Software_Canchas_2022
             UpdateLanguage(Sesion.GetInstance().Idioma);
         }
 
-        private void CargarCanchas()
-        {
-            dataGridCanchas.DataSource = _iCancha.ObtenerCanchas();
-            dataGridCanchas.ClearSelection();
-            dataGridCanchas.TabStop = false;
-            dataGridCanchas.ReadOnly = true;
-        }
-
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             Limpiar();
-        }
-
-        private void Limpiar()
-        {
-            cmbMaterial.SelectedItem = null;
-            cmbTipo.SelectedItem = null;
-            lbl_Id_Cancha.Text = "";
         }
 
         private void dataGridCanchas_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -142,6 +112,36 @@ namespace Software_Canchas_2022
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void CargarCanchas()
+        {
+            dataGridCanchas.DataSource = _iCancha.ObtenerCanchas();
+            dataGridCanchas.ClearSelection();
+            dataGridCanchas.TabStop = false;
+            dataGridCanchas.ReadOnly = true;
+        }
+
+        public void UpdateLanguage(IIdioma idioma)
+        {
+            Traducir(idioma);
+        }
+
+        private void Traducir(IIdioma idioma)
+        {
+            Traductor.Traducir(_iTraductor, idioma, this.Controls);
+        }
+
+        private string TraducirMensaje(string msgTag)
+        {
+            return Traductor.TraducirMensaje(_iTraductor, msgTag);
+        }
+
+        private void Limpiar()
+        {
+            cmbMaterial.SelectedItem = null;
+            cmbTipo.SelectedItem = null;
+            lbl_Id_Cancha.Text = "";
         }
     }
 }

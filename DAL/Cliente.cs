@@ -19,8 +19,8 @@ namespace DAL
         }
 
         private const string ALTA_CLIENTE = "INSERT INTO Cliente (Nombre, Apellido, Telefono) OUTPUT inserted.Id_Cliente VALUES (@parNombre, @parApellido, @parTelefono)";
-        private const string MODIFICAR_CLIENTE = "UPDATE Cliente SET Nombre = @parNombre, Apellido = @parApellido, Telefono = @parTelefono WHERE Id_Cliente = @parId_Cliente";
-        private const string BAJA_CLIENTE = "DELETE FROM Cliente WHERE Id_Cliente = {0}";
+        private const string MODIFICAR_CLIENTE = "UPDATE Cliente SET Nombre = @parNombre, Apellido = @parApellido, Telefono = @parTelefono OUTPUT inserted.Id_Cliente WHERE Id_Cliente = @parId_Cliente";
+        private const string BAJA_CLIENTE = "DELETE FROM Cliente WHERE Id_Cliente = @parId_Cliente";
         private const string OBTENER_CLIENTES = "SELECT * FROM Cliente";
 
         public int AltaCliente(BE.Cliente cliente)
@@ -62,7 +62,7 @@ namespace DAL
             }
         }
 
-        public int BajaCliente(int id_cliente)
+        public void BajaCliente(BE.Cliente cliente)
         {
             try
             {
@@ -70,9 +70,9 @@ namespace DAL
 
                 ExecuteParameters.Parameters.Clear();
 
-                ExecuteParameters.Parameters.AddWithValue("@parId_Cliente", id_cliente);
+                ExecuteParameters.Parameters.AddWithValue("@parId_Cliente", cliente.Id_Cliente);
 
-                return ExecuteNonEscalar();
+                ExecuteNonQuery();
             }
             catch
             {
@@ -84,19 +84,19 @@ namespace DAL
         {
             try
             {
-                ExecuteCommandText = String.Format(OBTENER_CLIENTES);
+                SelectCommandText = String.Format(OBTENER_CLIENTES);
                 DataSet ds = ExecuteNonReader();
 
-                List<BE.Cliente> cliente = new List<BE.Cliente>();
+                List<BE.Cliente> clientes = new List<BE.Cliente>();
 
                 if (ds.Tables[0].Rows.Count > 0)
-                    cliente = _fill.FillListCliente(ds);
+                    clientes = _fill.FillListCliente(ds);
 
-                return cliente;
+                return clientes;
             }
             catch (Exception)
             {
-                throw new Exception("Error en la base de datos. ");
+                throw new Exception("Error en la base de datos.");
             }
         }
     }

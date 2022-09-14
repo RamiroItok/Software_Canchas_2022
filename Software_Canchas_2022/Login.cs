@@ -38,13 +38,14 @@ namespace Software_Canchas_2022
             _iUsuario = usuario;
         }*/
 
-        public Login(IPermiso permiso, ITraductor traductor, ICancha cancha, IUsuario usuario)
+        public Login(IPermiso permiso, ITraductor traductor, ICancha cancha, ICliente cliente, IUsuario usuario)
         {
             InitializeComponent();
             _iPermiso = permiso;
             _iTraductor = traductor;
             _iCancha = cancha;
             _iUsuario = usuario;
+            _iCliente = cliente;
         }
 
         private void btnIngresar_Click(object sender, EventArgs e)
@@ -56,7 +57,7 @@ namespace Software_Canchas_2022
                 Limpiar();
                 this.Hide();
                 MessageBox.Show("Se ingresó correctamente");
-                Menu formMenu = new Menu(_iPermiso, _iTraductor, _iCancha, _iUsuario);
+                Menu formMenu = new Menu(_iPermiso, _iTraductor, _iCancha, _iCliente, _iUsuario);
                 formMenu.Show();
             }
             catch (Exception ex)

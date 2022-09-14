@@ -21,10 +21,11 @@ namespace Software_Canchas_2022
             // Inyecciones de dependencias
             BLL.Usuario usuario = new BLL.Usuario();
             BLL.Cancha cancha = new BLL.Cancha();
+            BLL.Cliente cliente = new BLL.Cliente();
             BLL.Observer.Idioma traductor = new BLL.Observer.Idioma();
             BLL.Composite.Permiso permiso = new BLL.Composite.Permiso();
 
-            Application.Run(new Login(permiso, traductor, cancha, usuario));
+            Application.Run(new Login(permiso, traductor, cancha, cliente, usuario));
         }
     }
 }

@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cancha.cs" />
+    <Compile Include="Cliente.cs" />
     <Compile Include="Composite\Permiso.cs" />
     <Compile Include="Observer\Idioma.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

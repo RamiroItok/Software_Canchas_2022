@@ -132,6 +132,7 @@
             this.gestionClientesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.gestionClientesToolStripMenuItem.Tag = "menu_Gestion_Clientes";
             this.gestionClientesToolStripMenuItem.Text = "Clientes";
+            this.gestionClientesToolStripMenuItem.Click += new System.EventHandler(this.gestionClientesToolStripMenuItem_Click);
             // 
             // informesToolStripMenuItem
             // 

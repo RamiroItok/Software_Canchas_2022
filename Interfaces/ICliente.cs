@@ -10,7 +10,7 @@ namespace Interfaces
     {
         int AltaCliente(BE.Cliente cliente);
         int ModificarCliente(BE.Cliente cliente);
-        int BajaCliente(int idCliente);
+        void BajaCliente(BE.Cliente Cliente);
         List<BE.Cliente> ObtenerClientes();
 
     }

@@ -104,7 +104,7 @@ namespace Software_Canchas_2022
 
                 _iUsuario.AltaUsuario(usuario);
 
-                MessageBox.Show("El usuario se dió de alta correctamente");
+                MessageBox.Show(TraducirMensaje("msg_UsuarioAlta"));
                 Limpiar();
             }
             catch (Exception ex)
@@ -173,7 +173,7 @@ namespace Software_Canchas_2022
 
                 CargarUsuarios();
                 Limpiar();
-                MessageBox.Show(TraducirMensaje("msg_UsuarioEliminado"));
+                MessageBox.Show(TraducirMensaje("msg_UsuarioBaja"));
                 txtContraseña.Enabled = true;
             }
             catch (Exception ex)

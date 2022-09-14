@@ -50,7 +50,7 @@ namespace Software_Canchas_2022
             _idiomas = new List<IIdioma>();
         }*/
 
-        public Menu(IPermiso permiso, ITraductor traductor, ICancha cancha, IUsuario usuario)
+        public Menu(IPermiso permiso, ITraductor traductor, ICancha cancha, ICliente cliente, IUsuario usuario)
         {
             InitializeComponent();
 
@@ -58,6 +58,7 @@ namespace Software_Canchas_2022
             _iTraductor = traductor;
             _iCancha = cancha;
             _iUsuario = usuario;
+            _iCliente = cliente;
 
             _usuarioDTO = Sesion.GetInstance();
             _idiomas = new List<IIdioma>();
@@ -182,7 +183,7 @@ namespace Software_Canchas_2022
 
         private void Abrir_FormLLogin()
         {
-            Login login = new Login(_iPermiso, _iTraductor, _iCancha, _iUsuario);
+            Login login = new Login(_iPermiso, _iTraductor, _iCancha, _iCliente, _iUsuario);
             login.Show();
         }
 
@@ -218,6 +219,14 @@ namespace Software_Canchas_2022
             gestion_Canchas.MdiParent = this;
             gestion_Canchas.StartPosition = FormStartPosition.CenterScreen;
             gestion_Canchas.Show();
+        }
+
+        private void gestionClientesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Gestion_Clientes gestion_Clientes = new Gestion_Clientes(_iCliente, _iTraductor);
+            gestion_Clientes.MdiParent = this;
+            gestion_Clientes.StartPosition = FormStartPosition.CenterScreen;
+            gestion_Clientes.Show();
         }
     }
 }
