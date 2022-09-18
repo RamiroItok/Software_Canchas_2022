@@ -103,7 +103,7 @@ namespace Software_Canchas_2022
                 };
 
                 _iUsuario.AltaUsuario(usuario);
-
+                CargarUsuarios();
                 MessageBox.Show(TraducirMensaje("msg_UsuarioAlta"));
                 Limpiar();
             }
