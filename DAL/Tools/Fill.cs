@@ -124,6 +124,9 @@ namespace DAL.Tools
                 if (dr.Table.Columns.Contains("Material") && !Convert.IsDBNull(dr["Material"]))
                     cancha.Material = Convert.ToString(dr["Material"]);
 
+                if (dr.Table.Columns.Contains("PrecioBase") && !Convert.IsDBNull(dr["PrecioBase"]))
+                    cancha.PrecioBase = float.Parse(Convert.ToString(dr["PrecioBase"]));
+
             }
             catch (Exception ex)
             {
@@ -153,7 +156,7 @@ namespace DAL.Tools
                     reserva.Id_Cliente = Convert.ToInt32(dr["Id_Cliente"]);
 
                 if (dr.Table.Columns.Contains("Fecha") && !Convert.IsDBNull(dr["Fecha"]))
-                    reserva.Fecha = Convert.ToString(dr["Fecha"]);
+                    reserva.Fecha = Convert.ToDateTime(dr["Fecha"]);
 
                 if (dr.Table.Columns.Contains("Hora") && !Convert.IsDBNull(dr["Hora"]))
                     reserva.Hora = Convert.ToString(dr["Hora"]);

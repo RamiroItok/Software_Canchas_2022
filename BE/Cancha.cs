@@ -11,5 +11,6 @@ namespace BE
         public int Id { get; set; }
         public string Tipo { get; set; }
         public string Material { get; set; }
+        public float PrecioBase { get; set; }
     }
 }

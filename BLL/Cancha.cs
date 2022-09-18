@@ -105,7 +105,7 @@ namespace BLL
             if (string.IsNullOrEmpty(cancha.Id.ToString())) 
                 throw new Exception(TraducirMensaje("msg_CanchaId_Cancha"));
 
-            if (string.IsNullOrWhiteSpace(cancha.Tipo) || string.IsNullOrWhiteSpace(cancha.Material))
+            if (string.IsNullOrWhiteSpace(cancha.Tipo) || string.IsNullOrWhiteSpace(cancha.Material) || string.IsNullOrEmpty(cancha.PrecioBase.ToString()))
                 throw new Exception(TraducirMensaje("msg_CampoVacio"));
         }
 
@@ -114,5 +114,17 @@ namespace BLL
             return Traductor.TraducirMensaje(_IdiomaDAL, msgTag);
         }
         
+        public float ObtenerPrecio(int id)
+        {
+            try
+            {
+                float cancha = _CanchaDAL.ObtenerPrecio(id);
+                return cancha;
+            }
+            catch (Exception) 
+            { 
+                throw new Exception("Hubo un error al querer obtener el género."); 
+            }
+        }
     }
 }

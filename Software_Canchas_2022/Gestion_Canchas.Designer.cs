@@ -38,6 +38,8 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.dataGridCanchas = new System.Windows.Forms.DataGridView();
             this.lbl_Id_Cancha = new System.Windows.Forms.Label();
+            this.lbl_Precio = new System.Windows.Forms.Label();
+            this.txt_Precio = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridCanchas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -91,7 +93,7 @@
             // 
             // btnAlta
             // 
-            this.btnAlta.Location = new System.Drawing.Point(16, 171);
+            this.btnAlta.Location = new System.Drawing.Point(13, 203);
             this.btnAlta.Name = "btnAlta";
             this.btnAlta.Size = new System.Drawing.Size(99, 43);
             this.btnAlta.TabIndex = 4;
@@ -102,7 +104,7 @@
             // 
             // btnModificar
             // 
-            this.btnModificar.Location = new System.Drawing.Point(140, 171);
+            this.btnModificar.Location = new System.Drawing.Point(137, 203);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(99, 43);
             this.btnModificar.TabIndex = 5;
@@ -113,7 +115,7 @@
             // 
             // btnBaja
             // 
-            this.btnBaja.Location = new System.Drawing.Point(16, 231);
+            this.btnBaja.Location = new System.Drawing.Point(13, 263);
             this.btnBaja.Name = "btnBaja";
             this.btnBaja.Size = new System.Drawing.Size(99, 43);
             this.btnBaja.TabIndex = 6;
@@ -124,7 +126,7 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(140, 231);
+            this.btnCancelar.Location = new System.Drawing.Point(137, 263);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(99, 43);
             this.btnCancelar.TabIndex = 7;
@@ -138,7 +140,7 @@
             this.dataGridCanchas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridCanchas.Location = new System.Drawing.Point(266, 24);
             this.dataGridCanchas.Name = "dataGridCanchas";
-            this.dataGridCanchas.Size = new System.Drawing.Size(506, 250);
+            this.dataGridCanchas.Size = new System.Drawing.Size(506, 282);
             this.dataGridCanchas.TabIndex = 8;
             this.dataGridCanchas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridCanchas_CellClick);
             // 
@@ -152,11 +154,30 @@
             this.lbl_Id_Cancha.TabIndex = 9;
             this.lbl_Id_Cancha.Visible = false;
             // 
+            // lbl_Precio
+            // 
+            this.lbl_Precio.AutoSize = true;
+            this.lbl_Precio.Location = new System.Drawing.Point(48, 149);
+            this.lbl_Precio.Name = "lbl_Precio";
+            this.lbl_Precio.Size = new System.Drawing.Size(37, 13);
+            this.lbl_Precio.TabIndex = 10;
+            this.lbl_Precio.Tag = "lbl_Precio";
+            this.lbl_Precio.Text = "Precio";
+            // 
+            // txt_Precio
+            // 
+            this.txt_Precio.Location = new System.Drawing.Point(51, 165);
+            this.txt_Precio.Name = "txt_Precio";
+            this.txt_Precio.Size = new System.Drawing.Size(142, 20);
+            this.txt_Precio.TabIndex = 11;
+            // 
             // Gestion_Canchas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 299);
+            this.ClientSize = new System.Drawing.Size(800, 325);
+            this.Controls.Add(this.txt_Precio);
+            this.Controls.Add(this.lbl_Precio);
             this.Controls.Add(this.lbl_Id_Cancha);
             this.Controls.Add(this.dataGridCanchas);
             this.Controls.Add(this.btnCancelar);
@@ -190,5 +211,7 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.DataGridView dataGridCanchas;
         private System.Windows.Forms.Label lbl_Id_Cancha;
+        private System.Windows.Forms.Label lbl_Precio;
+        private System.Windows.Forms.TextBox txt_Precio;
     }
 }

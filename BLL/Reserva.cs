@@ -58,6 +58,27 @@ namespace BLL
             }
         }
 
+        public float CalcularDeuda(out float tot, float seña, int hora, float total)
+        {
+            try
+            {
+                float deuda;
+                if (hora > 18)
+                {
+                    tot = total + 500;
+                }
+                else
+                    tot = total;
+
+                deuda = tot - seña;
+                return deuda;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public List<BE.Reserva> ObtenerReservas()
         {
             try

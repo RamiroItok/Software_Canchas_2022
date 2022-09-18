@@ -62,7 +62,7 @@ namespace Software_Canchas_2022
                 {
                     Id_Cancha = int.Parse(cmb_Cancha.Text),
                     Id_Cliente = (int)cmb_Cliente.SelectedValue,
-                    Fecha = dtp_Fecha.Value.ToString().Substring(0, 10),
+                    Fecha = dtp_Fecha.Value,
                     Hora = cmb_Hora1.Text,
                     Forma_Pago = cmb_FormaPago.Text,
                     Seña = float.Parse(txt_Seña.Text),
@@ -108,7 +108,7 @@ namespace Software_Canchas_2022
                     Id = int.Parse(dataGridReservas.CurrentRow.Cells[0].Value.ToString()),
                     Id_Cancha = int.Parse(cmb_Cancha.Text),
                     Id_Cliente = int.Parse((cmb_Cliente.SelectedValue).ToString()),
-                    Fecha = dtp_Fecha.Value.ToString().Substring(0, 10),
+                    Fecha = dtp_Fecha.Value,
                     Hora = cmb_Hora1.Text,
                     Forma_Pago = cmb_FormaPago.Text,
                     Seña = float.Parse(txt_Seña.Text),
@@ -263,5 +263,16 @@ namespace Software_Canchas_2022
         }
         #endregion
 
+        private void btn_Aceptar_Click(object sender, EventArgs e)
+        {
+            BLL.Reserva reservaBLL = new BLL.Reserva();
+            txt_Total.Text = (_iCancha.ObtenerPrecio(int.Parse(cmb_Cancha.Text))).ToString();
+            float seña = float.Parse(txt_Seña.Text);
+            int hora = int.Parse(cmb_Hora1.Text.Substring(0, 2));
+            float total = float.Parse(txt_Total.Text);
+            txt_Deuda.Text = (reservaBLL.CalcularDeuda(out float tot, seña, hora, total)).ToString();
+            txt_Total.Text = tot.ToString();
+            
+        }
     }
 }

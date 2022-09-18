@@ -14,6 +14,5 @@ namespace Interfaces
         int AltaReserva(BE.Reserva reserva);
         int ModificarReserva(BE.Reserva reserva);
         void BajaReserva(BE.Reserva reserva);
-
     }
 }

@@ -265,11 +265,13 @@
             this.btn_Aceptar.Tag = "btn_Aceptar";
             this.btn_Aceptar.Text = "Aceptar";
             this.btn_Aceptar.UseVisualStyleBackColor = true;
+            this.btn_Aceptar.Click += new System.EventHandler(this.btn_Aceptar_Click);
             // 
             // txt_Deuda
             // 
             this.txt_Deuda.Location = new System.Drawing.Point(166, 140);
             this.txt_Deuda.Name = "txt_Deuda";
+            this.txt_Deuda.ReadOnly = true;
             this.txt_Deuda.Size = new System.Drawing.Size(144, 20);
             this.txt_Deuda.TabIndex = 23;
             // 
@@ -287,6 +289,7 @@
             // 
             this.txt_Total.Location = new System.Drawing.Point(6, 140);
             this.txt_Total.Name = "txt_Total";
+            this.txt_Total.ReadOnly = true;
             this.txt_Total.Size = new System.Drawing.Size(144, 20);
             this.txt_Total.TabIndex = 21;
             this.txt_Total.Tag = "";

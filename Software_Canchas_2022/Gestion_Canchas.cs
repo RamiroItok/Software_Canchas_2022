@@ -44,6 +44,7 @@ namespace Software_Canchas_2022
             lbl_Id_Cancha.Text = dataGridCanchas.CurrentRow.Cells["Id"].Value.ToString();
             cmbTipo.Text = dataGridCanchas.CurrentRow.Cells["Tipo"].Value.ToString();
             cmbMaterial.Text = dataGridCanchas.CurrentRow.Cells["Material"].Value.ToString();
+            txt_Precio.Text = dataGridCanchas.CurrentRow.Cells["PrecioBase"].Value.ToString();
         }
 
         private void btnAlta_Click(object sender, EventArgs e)
@@ -53,7 +54,8 @@ namespace Software_Canchas_2022
                 Cancha cancha = new Cancha()
                 {
                     Material = cmbMaterial.Text,
-                    Tipo = cmbTipo.Text
+                    Tipo = cmbTipo.Text,
+                    PrecioBase = float.Parse(txt_Precio.Text)
                 };
 
                 _iCancha.AltaCancha(cancha);
@@ -78,7 +80,8 @@ namespace Software_Canchas_2022
                 {
                     Id = int.Parse(dataGridCanchas.CurrentRow.Cells[0].Value.ToString()),
                     Material = cmbMaterial.Text,
-                    Tipo = cmbTipo.Text
+                    Tipo = cmbTipo.Text,
+                    PrecioBase = float.Parse(txt_Precio.Text)
                 };
                 _iCancha.ModificarCancha(cancha);
 
@@ -139,9 +142,10 @@ namespace Software_Canchas_2022
 
         private void Limpiar()
         {
-            cmbMaterial.SelectedItem = null;
-            cmbTipo.SelectedItem = null;
+            cmbMaterial.SelectedIndex = -1;
+            cmbTipo.SelectedIndex = -1;
             lbl_Id_Cancha.Text = "";
+            txt_Precio.Clear();
         }
     }
 }

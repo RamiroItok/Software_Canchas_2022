@@ -21,8 +21,8 @@ namespace DAL
         #endregion
 
         #region Querys
-        private const string ALTA_CANCHA = "INSERT INTO Cancha (Tipo, Material) OUTPUT inserted.Id Values (@parTipo, @parMaterial)";
-        private const string MODIFICAR_CANCHA = "UPDATE Cancha SET Tipo = @parTipo, Material = @parMaterial OUTPUT inserted.Id WHERE Id = @parId";
+        private const string ALTA_CANCHA = "INSERT INTO Cancha (Tipo, Material, PrecioBase) OUTPUT inserted.Id Values (@parTipo, @parMaterial, @parPrecioBase)";
+        private const string MODIFICAR_CANCHA = "UPDATE Cancha SET Tipo = @parTipo, Material = @parMaterial, PrecioBase = @parPrecioBase OUTPUT inserted.Id WHERE Id = @parId";
         private const string BAJA_CANCHA = "DELETE FROM Cancha WHERE Id = @parId";
         private const string OBTENER_CANCHAS = "SELECT * FROM Cancha";
         private const string OBTENER_TIPO_CANCHAS = "SELECT Tipo FROM Cancha group by Tipo";
@@ -38,7 +38,7 @@ namespace DAL
 
                 ExecuteParameters.Parameters.AddWithValue("@parTipo", cancha.Tipo);
                 ExecuteParameters.Parameters.AddWithValue("@parMaterial", cancha.Material);
-
+                ExecuteParameters.Parameters.AddWithValue("@parPrecioBase", cancha.PrecioBase);
 
                 return ExecuteNonEscalar();
             }
@@ -59,7 +59,7 @@ namespace DAL
                 ExecuteParameters.Parameters.AddWithValue("@parId", cancha.Id);
                 ExecuteParameters.Parameters.AddWithValue("@parTipo", cancha.Tipo);
                 ExecuteParameters.Parameters.AddWithValue("@parMaterial", cancha.Material);
-
+                ExecuteParameters.Parameters.AddWithValue("@parPrecioBase", cancha.PrecioBase);
 
                 return ExecuteNonEscalar();
             }
@@ -128,6 +128,22 @@ namespace DAL
                 string consulta = $@"SELECT Id FROM Cancha WHERE Tipo = '{tipo}'";
                 DataTable dt = GenerarConsulta(consulta);
                 return dt;
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error en la base de datos.");
+            }
+        }
+
+        public float ObtenerPrecio(int id)
+        {
+            try
+            {
+                float precio = 0;
+                string consulta = $@"SELECT TOP 1 PrecioBase FROM Cancha WHERE Id = '{id}'";
+                DataTable dt = GenerarConsulta(consulta);
+                precio = float.Parse(dt.Rows[0][0].ToString());
+                return precio;
             }
             catch (Exception)
             {
