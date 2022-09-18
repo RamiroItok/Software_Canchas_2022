@@ -16,7 +16,7 @@ namespace BE.DTOs
             _permisos = new List<Componente>();
         }
 
-        public int Id_Usuario { get; set; }
+        public int Id { get; set; }
         public string Nombre_Usuario { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
@@ -34,7 +34,7 @@ namespace BE.DTOs
         {
             UsuarioDTO usuarioDTO = new UsuarioDTO()
             {
-                Id_Usuario = usuario.Id_Usuario,
+                Id = usuario.Id,
                 Nombre = usuario.Nombre,
                 Apellido = usuario.Apellido,
                 Nombre_Usuario = usuario.Nombre_Usuario,

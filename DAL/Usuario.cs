@@ -22,13 +22,13 @@ namespace DAL
 
         //Querys
         private const string LISTAR_USUARIO = "SELECT * FROM Usuarios";
-        private const string OBTENER_USUARIO_ID = "SELECT TOP 1 * FROM Usuario WHERE Id_Usuario = {0}";
+        private const string OBTENER_USUARIO_ID = "SELECT TOP 1 * FROM Usuario WHERE Id = {0}";
         private const string ALTA_USUARIO = @"INSERT INTO Usuarios (Nombre, Apellido, Nombre_Usuario, Contraseña, Puesto, Dni, Sexo,  Mail, Telefono, Tipo, Estado, DVH) 
-                                            OUTPUT inserted.Id_Usuario VALUES (@parNombre, @parApellido, @parNombre_Usuario, @parContraseña, @parPuesto, @parDni, @parSexo, @parMail,
+                                            OUTPUT inserted.Id VALUES (@parNombre, @parApellido, @parNombre_Usuario, @parContraseña, @parPuesto, @parDni, @parSexo, @parMail,
                                             @parTelefono, @parTipo, @parEstado, @parDVH)";
-        private const string BAJA_USUARIO = "DELETE FROM Usuarios WHERE Id_Usuario = @parId_Usuario";
+        private const string BAJA_USUARIO = "DELETE FROM Usuarios WHERE Id = @parId";
         private const string MODIFICAR_USUARIO = @"UPDATE Usuarios SET Nombre = @parNombre, Apellido = @parApellido, Nombre_Usuario = @parNombre_Usuario, Puesto = @parPuesto,
-                                                Dni = @parDni, Sexo = @parSexo, Mail = @parMail, Telefono = @parTelefono, Tipo = @parTipo OUTPUT inserted.Id_Usuario WHERE Id_Usuario = @parId_Usuario";
+                                                Dni = @parDni, Sexo = @parSexo, Mail = @parMail, Telefono = @parTelefono, Tipo = @parTipo OUTPUT inserted.Id WHERE Id = @parId";
         private const string LOGIN = "SELECT TOP 1 * FROM Usuarios WHERE Nombre_Usuario = '{0}'";
         private const string BLOQUEAR = "UPDATE Usuarios SET Estado = Estado + 1 WHERE Nombre_Usuario = @parNombre_Usuario";
         private const string DESBLOQUEAR = "UPDATE Usuarios SET Estado = 0 WHERE Nombre_Usuario = @parNombre_Usuario";
@@ -113,7 +113,7 @@ namespace DAL
 
                 ExecuteParameters.Parameters.Clear();
 
-                ExecuteParameters.Parameters.AddWithValue("@parId_Usuario", usuario.Id_Usuario);
+                ExecuteParameters.Parameters.AddWithValue("@parId", usuario.Id);
 
                 ExecuteNonQuery();
             }
@@ -131,7 +131,7 @@ namespace DAL
 
                 ExecuteParameters.Parameters.Clear();
 
-                ExecuteParameters.Parameters.AddWithValue("@parId_Usuario", usuario.Id_Usuario);
+                ExecuteParameters.Parameters.AddWithValue("@parId", usuario.Id);
                 ExecuteParameters.Parameters.AddWithValue("@parNombre", usuario.Nombre);
                 ExecuteParameters.Parameters.AddWithValue("@parApellido", usuario.Apellido);
                 ExecuteParameters.Parameters.AddWithValue("@parNombre_Usuario", usuario.Nombre_Usuario);

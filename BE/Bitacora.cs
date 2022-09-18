@@ -8,7 +8,7 @@ namespace BE
 {
     public class Bitacora
     {
-        public int Id_Bitacora { get; set; }
+        public int Id { get; set; }
         public int Id_Usuario { get; set; }
         public string Descripcion { get; set; }
         public DateTime Fecha { get; set; }

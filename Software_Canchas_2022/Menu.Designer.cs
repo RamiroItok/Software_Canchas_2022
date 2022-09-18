@@ -71,7 +71,7 @@
             this.cerrarSesiónToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1491, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1577, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -91,6 +91,7 @@
             this.reservaToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
             this.reservaToolStripMenuItem.Tag = "menu_Reserva";
             this.reservaToolStripMenuItem.Text = "Reserva";
+            this.reservaToolStripMenuItem.Click += new System.EventHandler(this.reservaToolStripMenuItem_Click);
             // 
             // listadoToolStripMenuItem
             // 
@@ -113,7 +114,7 @@
             // gestionUsuariosToolStripMenuItem
             // 
             this.gestionUsuariosToolStripMenuItem.Name = "gestionUsuariosToolStripMenuItem";
-            this.gestionUsuariosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.gestionUsuariosToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.gestionUsuariosToolStripMenuItem.Tag = "menu_Gestion_Usuarios";
             this.gestionUsuariosToolStripMenuItem.Text = "Usuarios";
             this.gestionUsuariosToolStripMenuItem.Click += new System.EventHandler(this.usuariosToolStripMenuItem_Click);
@@ -121,7 +122,7 @@
             // gestionCanchasToolStripMenuItem
             // 
             this.gestionCanchasToolStripMenuItem.Name = "gestionCanchasToolStripMenuItem";
-            this.gestionCanchasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.gestionCanchasToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.gestionCanchasToolStripMenuItem.Tag = "menu_Gestion_Canchas";
             this.gestionCanchasToolStripMenuItem.Text = "Canchas";
             this.gestionCanchasToolStripMenuItem.Click += new System.EventHandler(this.gestionCanchasToolStripMenuItem_Click);
@@ -129,7 +130,7 @@
             // gestionClientesToolStripMenuItem
             // 
             this.gestionClientesToolStripMenuItem.Name = "gestionClientesToolStripMenuItem";
-            this.gestionClientesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.gestionClientesToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.gestionClientesToolStripMenuItem.Tag = "menu_Gestion_Clientes";
             this.gestionClientesToolStripMenuItem.Text = "Clientes";
             this.gestionClientesToolStripMenuItem.Click += new System.EventHandler(this.gestionClientesToolStripMenuItem_Click);
@@ -300,7 +301,7 @@
             // lblBienvenido
             // 
             this.lblBienvenido.AutoSize = true;
-            this.lblBienvenido.Location = new System.Drawing.Point(1172, 9);
+            this.lblBienvenido.Location = new System.Drawing.Point(1424, 9);
             this.lblBienvenido.Name = "lblBienvenido";
             this.lblBienvenido.Size = new System.Drawing.Size(35, 13);
             this.lblBienvenido.TabIndex = 1;
@@ -311,7 +312,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1491, 794);
+            this.ClientSize = new System.Drawing.Size(1577, 794);
             this.Controls.Add(this.lblBienvenido);
             this.Controls.Add(this.menuStrip1);
             this.IsMdiContainer = true;

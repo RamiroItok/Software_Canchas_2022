@@ -19,8 +19,8 @@ namespace DAL.Tools
             BE.Usuario usuario = new BE.Usuario();
             try
             {
-                if (dr.Table.Columns.Contains("Id_Usuario") && !Convert.IsDBNull(dr["Id_Usuario"]))
-                    usuario.Id_Usuario = Convert.ToInt32(dr["Id_Usuario"]);
+                if (dr.Table.Columns.Contains("Id") && !Convert.IsDBNull(dr["Id"]))
+                    usuario.Id = Convert.ToInt32(dr["Id"]);
 
                 if(dr.Table.Columns.Contains("Nombre") && !Convert.IsDBNull(dr["Nombre"]))
                     usuario.Nombre = Convert.ToString(dr["Nombre"]);
@@ -75,8 +75,8 @@ namespace DAL.Tools
             UsuarioDTO usuario = new UsuarioDTO();
             try
             {
-                if(dr.Table.Columns.Contains("Id_Usuario") && !Convert.IsDBNull(dr["Id_Usuario"]))
-                    usuario.Id_Usuario = Convert.ToInt32(dr["Id_Usuario"]);
+                if(dr.Table.Columns.Contains("Id") && !Convert.IsDBNull(dr["Id"]))
+                    usuario.Id = Convert.ToInt32(dr["Id"]);
 
                 if (dr.Table.Columns.Contains("Nombre_Usuario") && !Convert.IsDBNull(dr["Nombre_Usuario"]))
                     usuario.Nombre_Usuario = Convert.ToString(dr["Nombre_Usuario"]);
@@ -115,8 +115,8 @@ namespace DAL.Tools
             BE.Cancha cancha = new BE.Cancha();
             try
             {
-                if (dr.Table.Columns.Contains("Id_Cancha") && !Convert.IsDBNull(dr["Id_Cancha"]))
-                    cancha.Id_Cancha = Convert.ToInt32(dr["Id_Cancha"]);
+                if (dr.Table.Columns.Contains("Id") && !Convert.IsDBNull(dr["Id"]))
+                    cancha.Id = Convert.ToInt32(dr["Id"]);
 
                 if (dr.Table.Columns.Contains("Tipo") && !Convert.IsDBNull(dr["Tipo"]))
                     cancha.Tipo = Convert.ToString(dr["Tipo"]);
@@ -137,14 +137,64 @@ namespace DAL.Tools
         }
         #endregion Cancha
 
+        #region Reserva
+        public BE.Reserva FillObjectReserva(DataRow dr)
+        {
+            BE.Reserva reserva = new BE.Reserva();
+            try
+            {
+                if (dr.Table.Columns.Contains("Id") && !Convert.IsDBNull(dr["Id"]))
+                    reserva.Id = Convert.ToInt32(dr["Id"]);
+
+                if (dr.Table.Columns.Contains("Id_Cancha") && !Convert.IsDBNull(dr["Id_Cancha"]))
+                    reserva.Id_Cancha = Convert.ToInt32(dr["Id_Cancha"]);
+
+                if (dr.Table.Columns.Contains("Id_Cliente") && !Convert.IsDBNull(dr["Id_Cliente"]))
+                    reserva.Id_Cliente = Convert.ToInt32(dr["Id_Cliente"]);
+
+                if (dr.Table.Columns.Contains("Fecha") && !Convert.IsDBNull(dr["Fecha"]))
+                    reserva.Fecha = Convert.ToString(dr["Fecha"]);
+
+                if (dr.Table.Columns.Contains("Hora") && !Convert.IsDBNull(dr["Hora"]))
+                    reserva.Hora = Convert.ToString(dr["Hora"]);
+
+                if (dr.Table.Columns.Contains("Forma_Pago") && !Convert.IsDBNull(dr["Forma_Pago"]))
+                    reserva.Forma_Pago = Convert.ToString(dr["Forma_Pago"]);
+
+                if (dr.Table.Columns.Contains("Seña") && !Convert.IsDBNull(dr["Seña"]))
+                    reserva.Seña = float.Parse(Convert.ToString(dr["Seña"]));
+
+                if (dr.Table.Columns.Contains("Total") && !Convert.IsDBNull(dr["Total"]))
+                    reserva.Total = float.Parse(Convert.ToString(dr["Total"]));
+
+                if (dr.Table.Columns.Contains("Deuda") && !Convert.IsDBNull(dr["Deuda"]))
+                    reserva.Deuda = float.Parse(Convert.ToString(dr["Deuda"]));
+
+                if (dr.Table.Columns.Contains("DVH") && !Convert.IsDBNull(dr["DVH"]))
+                    reserva.DVH = Convert.ToInt32(dr["DVH"]);
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error en el método FillObject, " + ex.Message);
+            }
+            return reserva;
+        }
+        public List<BE.Reserva> FillListReserva(DataSet ds)
+        {
+            return (from DataRow dr in ds.Tables[0].Rows select (new Fill()).FillObjectReserva(dr)).ToList();
+        }
+
+        #endregion Reserva
+
         #region Cliente
         public BE.Cliente FillObjectCliente(DataRow dr)
         {
             BE.Cliente cliente = new BE.Cliente();
             try
             {
-                if (dr.Table.Columns.Contains("Id_Cliente") && !Convert.IsDBNull(dr["Id_Cliente"]))
-                    cliente.Id_Cliente = Convert.ToInt32(dr["Id_Cliente"]);
+                if (dr.Table.Columns.Contains("Id") && !Convert.IsDBNull(dr["Id"]))
+                    cliente.Id = Convert.ToInt32(dr["Id"]);
 
                 if (dr.Table.Columns.Contains("Nombre") && !Convert.IsDBNull(dr["Nombre"]))
                     cliente.Nombre = Convert.ToString(dr["Nombre"]);

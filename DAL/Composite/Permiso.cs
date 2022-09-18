@@ -97,7 +97,7 @@ namespace DAL.Composite
                 ExecuteCommandText = BORRAR_PERMISO_USUARIO;
                 ExecuteParameters.Parameters.Clear();
 
-                ExecuteParameters.Parameters.AddWithValue("@parUsuarioId", usuario.Id_Usuario);
+                ExecuteParameters.Parameters.AddWithValue("@parUsuarioId", usuario.Id);
 
                 ExecuteNonQuery();
 
@@ -106,7 +106,7 @@ namespace DAL.Composite
                     ExecuteCommandText = GUARDAR_PERMISO_USUARIO;
                     ExecuteParameters.Parameters.Clear();
 
-                    ExecuteParameters.Parameters.AddWithValue("@parUsuarioId", usuario.Id_Usuario);
+                    ExecuteParameters.Parameters.AddWithValue("@parUsuarioId", usuario.Id);
                     ExecuteParameters.Parameters.AddWithValue("@parPatenteId", item.Id);
                     ExecuteNonQuery();
                 }
@@ -345,7 +345,7 @@ namespace DAL.Composite
         {
             try
             {
-                SelectCommandText = String.Format(GET_USUARIO_PERMISO, usuario.Id_Usuario);
+                SelectCommandText = String.Format(GET_USUARIO_PERMISO, usuario.Id);
                 DataSet ds = ExecuteNonReader();
                 DataTable dt = ds.Tables[0];
 

@@ -18,10 +18,11 @@ namespace DAL
             _fill = new Fill();  
         }
 
-        private const string ALTA_CLIENTE = "INSERT INTO Cliente (Nombre, Apellido, Telefono) OUTPUT inserted.Id_Cliente VALUES (@parNombre, @parApellido, @parTelefono)";
-        private const string MODIFICAR_CLIENTE = "UPDATE Cliente SET Nombre = @parNombre, Apellido = @parApellido, Telefono = @parTelefono OUTPUT inserted.Id_Cliente WHERE Id_Cliente = @parId_Cliente";
-        private const string BAJA_CLIENTE = "DELETE FROM Cliente WHERE Id_Cliente = @parId_Cliente";
+        private const string ALTA_CLIENTE = "INSERT INTO Cliente (Nombre, Apellido, Telefono) OUTPUT inserted.Id VALUES (@parNombre, @parApellido, @parTelefono)";
+        private const string MODIFICAR_CLIENTE = "UPDATE Cliente SET Nombre = @parNombre, Apellido = @parApellido, Telefono = @parTelefono OUTPUT inserted.Id WHERE Id = @parId";
+        private const string BAJA_CLIENTE = "DELETE FROM Cliente WHERE Id = @parId";
         private const string OBTENER_CLIENTES = "SELECT * FROM Cliente";
+        private const string OBTENER_NOMBRE_CLIENTES = "SELECT Id, Nombre + ' ' + Apellido as Nombre FROM Cliente";
 
         public int AltaCliente(BE.Cliente cliente)
         {
@@ -49,7 +50,9 @@ namespace DAL
             {
                 ExecuteCommandText = MODIFICAR_CLIENTE;
 
-                ExecuteParameters.Parameters.AddWithValue("@parId_Cliente", cliente.Id_Cliente);
+                ExecuteParameters.Parameters.Clear();
+
+                ExecuteParameters.Parameters.AddWithValue("@parId", cliente.Id);
                 ExecuteParameters.Parameters.AddWithValue("@parNombre", cliente.Nombre);
                 ExecuteParameters.Parameters.AddWithValue("@parApellido", cliente.Apellido);
                 ExecuteParameters.Parameters.AddWithValue("@parTelefono", cliente.Telefono); 
@@ -70,7 +73,7 @@ namespace DAL
 
                 ExecuteParameters.Parameters.Clear();
 
-                ExecuteParameters.Parameters.AddWithValue("@parId_Cliente", cliente.Id_Cliente);
+                ExecuteParameters.Parameters.AddWithValue("@parId", cliente.Id);
 
                 ExecuteNonQuery();
             }
@@ -99,5 +102,20 @@ namespace DAL
                 throw new Exception("Error en la base de datos.");
             }
         }
+
+        public DataTable ObtenerNombreClientes()
+        {
+            try
+            {
+                string consulta = OBTENER_NOMBRE_CLIENTES;
+                DataTable dt = GenerarConsulta(consulta);
+                return dt;
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error en la base de datos.");
+            }
+        }
+
     }
 }

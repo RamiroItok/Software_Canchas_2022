@@ -8,7 +8,7 @@ namespace BE
 {
     public class Cancha
     {
-        public int Id_Cancha { get; set; }
+        public int Id { get; set; }
         public string Tipo { get; set; }
         public string Material { get; set; }
     }

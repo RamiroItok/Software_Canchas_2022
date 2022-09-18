@@ -103,7 +103,7 @@ namespace BLL
                     {
                         UsuarioDTO usuarioSingleton = new UsuarioDTO()
                         {
-                            Id_Usuario = usuario.Id_Usuario,
+                            Id = usuario.Id,
                             Nombre_Usuario = _encriptacion.Decrypt_AES(usuario.Nombre_Usuario),
                             Nombre = _encriptacion.Decrypt_AES(usuario.Nombre),
                             Apellido = _encriptacion.Decrypt_AES(usuario.Apellido),
@@ -172,7 +172,7 @@ namespace BLL
 
         private void ValidarCambioPassword(BE.DTOs.UsuarioDTO user, string passwordActual, string nuevaPassword)
         {
-            BE.Usuario _usuario = _UsuarioDAL.ObtenerUsuarioId(user.Id_Usuario);
+            BE.Usuario _usuario = _UsuarioDAL.ObtenerUsuarioId(user.Id);
             if (passwordActual != _usuario.Contraseña) throw new Exception(TraducirMensaje("msg_PasswordNoCoindice"));
             if (string.IsNullOrWhiteSpace(nuevaPassword) || nuevaPassword.Length < 8) throw new Exception(TraducirMensaje("msg_NuevaPasswordFormato"));
         }

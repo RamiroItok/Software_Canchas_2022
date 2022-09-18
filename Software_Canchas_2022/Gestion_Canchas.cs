@@ -41,7 +41,7 @@ namespace Software_Canchas_2022
 
         private void dataGridCanchas_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            lbl_Id_Cancha.Text = dataGridCanchas.CurrentRow.Cells["Id_Cancha"].Value.ToString();
+            lbl_Id_Cancha.Text = dataGridCanchas.CurrentRow.Cells["Id"].Value.ToString();
             cmbTipo.Text = dataGridCanchas.CurrentRow.Cells["Tipo"].Value.ToString();
             cmbMaterial.Text = dataGridCanchas.CurrentRow.Cells["Material"].Value.ToString();
         }
@@ -76,7 +76,7 @@ namespace Software_Canchas_2022
 
                 Cancha cancha = new Cancha()
                 {
-                    Id_Cancha = int.Parse(dataGridCanchas.CurrentRow.Cells[0].Value.ToString()),
+                    Id = int.Parse(dataGridCanchas.CurrentRow.Cells[0].Value.ToString()),
                     Material = cmbMaterial.Text,
                     Tipo = cmbTipo.Text
                 };
@@ -100,7 +100,7 @@ namespace Software_Canchas_2022
 
                 Cancha cancha = new Cancha()
                 {
-                    Id_Cancha = int.Parse(dataGridCanchas.CurrentRow.Cells[0].Value.ToString()),
+                    Id = int.Parse(dataGridCanchas.CurrentRow.Cells[0].Value.ToString()),
                 };
                 _iCancha.BajaCancha(cancha);
 

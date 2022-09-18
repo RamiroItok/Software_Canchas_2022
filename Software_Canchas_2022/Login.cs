@@ -24,6 +24,7 @@ namespace Software_Canchas_2022
         private readonly IDigito_Verificador _iDV;
         private readonly IEncriptar _iEncriptar;
         private readonly IUsuario _iUsuario;
+        private readonly IReserva _iReserva;
 
         /*public Login(IPermiso permiso, ITraductor traductor, IBitacora bitacora, ICancha cancha, ICliente cliente, IDigito_Verificador dv, IEncriptar encriptar, IUsuario usuario)
         {
@@ -38,7 +39,7 @@ namespace Software_Canchas_2022
             _iUsuario = usuario;
         }*/
 
-        public Login(IPermiso permiso, ITraductor traductor, ICancha cancha, ICliente cliente, IUsuario usuario)
+        public Login(IPermiso permiso, ITraductor traductor, ICancha cancha, ICliente cliente, IUsuario usuario, IReserva reserva)
         {
             InitializeComponent();
             _iPermiso = permiso;
@@ -46,6 +47,7 @@ namespace Software_Canchas_2022
             _iCancha = cancha;
             _iUsuario = usuario;
             _iCliente = cliente;
+            _iReserva = reserva;
         }
 
         private void btnIngresar_Click(object sender, EventArgs e)
@@ -57,7 +59,7 @@ namespace Software_Canchas_2022
                 Limpiar();
                 this.Hide();
                 MessageBox.Show("Se ingresó correctamente");
-                Menu formMenu = new Menu(_iPermiso, _iTraductor, _iCancha, _iCliente, _iUsuario);
+                Menu formMenu = new Menu(_iPermiso, _iTraductor, _iCancha, _iCliente, _iUsuario, _iReserva);
                 formMenu.Show();
             }
             catch (Exception ex)
@@ -77,7 +79,7 @@ namespace Software_Canchas_2022
         {
             this.Hide();
 
-            Registro formRegistro = new Registro(_iPermiso, _iTraductor, _iBitacora, _iCancha, _iCliente, _iDV, _iEncriptar, _iUsuario);
+            Registro formRegistro = new Registro(_iPermiso, _iTraductor, _iBitacora, _iCancha, _iCliente, _iDV, _iEncriptar, _iUsuario, _iReserva);
             formRegistro.Show();
         }
 

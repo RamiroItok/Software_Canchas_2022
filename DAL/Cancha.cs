@@ -21,10 +21,11 @@ namespace DAL
         #endregion
 
         #region Querys
-        private const string ALTA_CANCHA = "INSERT INTO Cancha (Tipo, Material) OUTPUT inserted.Id_Cancha Values (@parTipo, @parMaterial)";
-        private const string MODIFICAR_CANCHA = "UPDATE Cancha SET Tipo = @parTipo, Material = @parMaterial OUTPUT inserted.Id_Cancha WHERE Id_Cancha = @parId_Cancha";
-        private const string BAJA_CANCHA = "DELETE FROM Cancha WHERE Id_Cancha = @parId_Cancha";
+        private const string ALTA_CANCHA = "INSERT INTO Cancha (Tipo, Material) OUTPUT inserted.Id Values (@parTipo, @parMaterial)";
+        private const string MODIFICAR_CANCHA = "UPDATE Cancha SET Tipo = @parTipo, Material = @parMaterial OUTPUT inserted.Id WHERE Id = @parId";
+        private const string BAJA_CANCHA = "DELETE FROM Cancha WHERE Id = @parId";
         private const string OBTENER_CANCHAS = "SELECT * FROM Cancha";
+        private const string OBTENER_TIPO_CANCHAS = "SELECT Tipo FROM Cancha group by Tipo";
         #endregion
 
         public int AltaCancha(BE.Cancha cancha)
@@ -55,7 +56,7 @@ namespace DAL
 
                 ExecuteParameters.Parameters.Clear();
 
-                ExecuteParameters.Parameters.AddWithValue("@parId_Cancha", cancha.Id_Cancha);
+                ExecuteParameters.Parameters.AddWithValue("@parId", cancha.Id);
                 ExecuteParameters.Parameters.AddWithValue("@parTipo", cancha.Tipo);
                 ExecuteParameters.Parameters.AddWithValue("@parMaterial", cancha.Material);
 
@@ -76,7 +77,7 @@ namespace DAL
 
                 ExecuteParameters.Parameters.Clear();
 
-                ExecuteParameters.Parameters.AddWithValue("@parId_Cancha", cancha.Id_Cancha);
+                ExecuteParameters.Parameters.AddWithValue("@parId", cancha.Id);
 
                 ExecuteNonQuery();
             }
@@ -99,6 +100,34 @@ namespace DAL
                     canchas = _fill.FillListCancha(ds);
 
                 return canchas;
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error en la base de datos.");
+            }
+        }
+
+        public DataTable ObtenerTipoCanchas()
+        {
+            try
+            {
+                string consulta = OBTENER_TIPO_CANCHAS;
+                DataTable dt = GenerarConsulta(consulta);
+                return dt;
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error en la base de datos.");
+            }
+        }
+
+        public DataTable ObtenerIdCanchas(string tipo)
+        {
+            try
+            {
+                string consulta = $@"SELECT Id FROM Cancha WHERE Tipo = '{tipo}'";
+                DataTable dt = GenerarConsulta(consulta);
+                return dt;
             }
             catch (Exception)
             {

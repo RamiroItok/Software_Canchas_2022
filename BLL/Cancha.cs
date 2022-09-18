@@ -3,6 +3,7 @@ using Interfaces.Observer;
 using Servicios;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -72,10 +73,36 @@ namespace BLL
                 throw new Exception("Error al Obtener las canchas");
             }
         }
-       
+
+        public DataTable ObtenerTipoCanchas()
+        {
+            try
+            {
+                DataTable bit = _CanchaDAL.ObtenerTipoCanchas();
+                return bit;
+            }
+            catch
+            {
+                throw new Exception(TraducirMensaje("msg_ErrorListar"));
+            }
+        }
+
+        public DataTable ObtenerIdCanchas(string tipo)
+        {
+            try
+            {
+                DataTable bit = _CanchaDAL.ObtenerIdCanchas(tipo);
+                return bit;
+            }
+            catch
+            {
+                throw new Exception(TraducirMensaje("msg_ErrorListar"));
+            }
+        }
+
         private void ValidarCancha(BE.Cancha cancha)
         {
-            if (string.IsNullOrEmpty(cancha.Id_Cancha.ToString())) 
+            if (string.IsNullOrEmpty(cancha.Id.ToString())) 
                 throw new Exception(TraducirMensaje("msg_CanchaId_Cancha"));
 
             if (string.IsNullOrWhiteSpace(cancha.Tipo) || string.IsNullOrWhiteSpace(cancha.Material))

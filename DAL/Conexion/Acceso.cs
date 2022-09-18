@@ -158,6 +158,31 @@ namespace DAL.Conexion
                 return ds;
             }
         }
+
+        public DataTable GenerarConsulta(string Consulta)
+        {
+            SqlDataReader dr;
+            DataTable dt = new DataTable();
+            Conectar();
+            SqlTransaction TR;
+            SqlCommand Comando = new SqlCommand(Consulta, connection);
+            TR = connection.BeginTransaction();
+
+            try
+            {
+                Comando.Transaction = TR;
+                dr = Comando.ExecuteReader();
+                dt.Load(dr);
+                TR.Commit();
+            }
+            catch (Exception Ex)
+            {
+                TR.Rollback();
+            }
+
+            Desconectar();
+            return dt;
+        }
         #endregion
     }
 }

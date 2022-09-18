@@ -74,7 +74,7 @@ namespace Servicios
 
                 //else ctrl.Text = ctrl.Text = "PLACEHOLDER_TAG_NOT_ASSIGNED";
 
-                if (ctrl.GetType() == typeof(TextBox) || ctrl.GetType() == typeof(ComboBox) || ctrl.GetType() == typeof(RichTextBox))
+                if (ctrl.GetType() == typeof(TextBox) || ctrl.GetType() == typeof(ComboBox) || ctrl.GetType() == typeof(RichTextBox) || ctrl.GetType() == typeof(DateTimePicker))
                 {
                     ctrl.Text = "";
                 }

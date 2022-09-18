@@ -2,6 +2,7 @@
 using Servicios;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -70,10 +71,23 @@ namespace BLL
             }
         }
 
+        public DataTable ObtenerNombreClientes()
+        {
+            try
+            {
+                DataTable bit = _clienteDAL.ObtenerNombreClientes();
+                return bit;
+            }
+            catch
+            {
+                throw new Exception(TraducirMensaje("msg_ErrorListar"));
+            }
+        }
+
         private void ValidarCliente(BE.Cliente cliente)
         {
-            if (string.IsNullOrEmpty(cliente.Id_Cliente.ToString()))
-                throw new Exception(TraducirMensaje("msg_CanchaId_Cancha"));
+            if (string.IsNullOrEmpty(cliente.Id.ToString()))
+                throw new Exception(TraducirMensaje("msg_Cliente_IdCliente"));
 
             if (string.IsNullOrWhiteSpace(cliente.Nombre) || string.IsNullOrWhiteSpace(cliente.Apellido) || string.IsNullOrEmpty(cliente.Telefono.ToString()))
                 throw new Exception(TraducirMensaje("msg_CampoVacio"));

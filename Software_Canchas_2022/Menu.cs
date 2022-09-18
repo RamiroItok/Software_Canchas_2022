@@ -27,6 +27,7 @@ namespace Software_Canchas_2022
         private readonly IDigito_Verificador _iDV;
         private readonly IEncriptar _iEncriptar;
         private readonly IUsuario _iUsuario;
+        private readonly IReserva _iReserva;
 
         private UsuarioDTO _usuarioDTO;
         private readonly IList<IIdioma> _idiomas;
@@ -50,7 +51,7 @@ namespace Software_Canchas_2022
             _idiomas = new List<IIdioma>();
         }*/
 
-        public Menu(IPermiso permiso, ITraductor traductor, ICancha cancha, ICliente cliente, IUsuario usuario)
+        public Menu(IPermiso permiso, ITraductor traductor, ICancha cancha, ICliente cliente, IUsuario usuario, IReserva reserva)
         {
             InitializeComponent();
 
@@ -59,6 +60,7 @@ namespace Software_Canchas_2022
             _iCancha = cancha;
             _iUsuario = usuario;
             _iCliente = cliente;
+            _iReserva = reserva;
 
             _usuarioDTO = Sesion.GetInstance();
             _idiomas = new List<IIdioma>();
@@ -183,7 +185,7 @@ namespace Software_Canchas_2022
 
         private void Abrir_FormLLogin()
         {
-            Login login = new Login(_iPermiso, _iTraductor, _iCancha, _iCliente, _iUsuario);
+            Login login = new Login(_iPermiso, _iTraductor, _iCancha, _iCliente, _iUsuario, _iReserva);
             login.Show();
         }
 
@@ -227,6 +229,14 @@ namespace Software_Canchas_2022
             gestion_Clientes.MdiParent = this;
             gestion_Clientes.StartPosition = FormStartPosition.CenterScreen;
             gestion_Clientes.Show();
+        }
+
+        private void reservaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Reserva reserva = new Reserva(_iReserva, _iTraductor, _iCliente, _iCancha);
+            reserva.MdiParent = this;
+            reserva.StartPosition = FormStartPosition.CenterScreen;
+            reserva.Show();
         }
     }
 }

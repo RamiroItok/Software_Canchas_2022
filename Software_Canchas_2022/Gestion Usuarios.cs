@@ -75,8 +75,8 @@ namespace Software_Canchas_2022
             txtContraseña.Clear();
             txtPuesto.Clear();
             txtNombre_Usuario.Clear();
-            cmbSexo.SelectedItem = null;
-            cmbTipo.SelectedItem = null;
+            cmbSexo.SelectedIndex = -1;
+            cmbTipo.SelectedIndex = -1;
             txtMail.Clear();
             txtTelefono.Clear();
         }
@@ -121,7 +121,7 @@ namespace Software_Canchas_2022
 
                 Usuario usuario = new Usuario()
                 {
-                    Id_Usuario = int.Parse(dataGridUsuarios.CurrentRow.Cells[0].Value.ToString()),
+                    Id = int.Parse(dataGridUsuarios.CurrentRow.Cells[0].Value.ToString()),
                     Nombre = txtNombre.Text,
                     Apellido = txtApellido.Text,
                     Nombre_Usuario = txtNombre_Usuario.Text,
@@ -161,13 +161,13 @@ namespace Software_Canchas_2022
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-             try
+            try
             {
                 if (dataGridUsuarios.CurrentRow == null) throw new Exception(TraducirMensaje("msg_UsuarioNoSeleccionado"));
 
                 Usuario usuario = new Usuario()
                 {
-                    Id_Usuario = int.Parse(dataGridUsuarios.CurrentRow.Cells[0].Value.ToString()),
+                    Id = int.Parse(dataGridUsuarios.CurrentRow.Cells[0].Value.ToString()),
                 };
                 _iUsuario.BajaUsuario(usuario);
 

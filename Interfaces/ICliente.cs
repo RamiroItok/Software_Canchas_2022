@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ namespace Interfaces
         int ModificarCliente(BE.Cliente cliente);
         void BajaCliente(BE.Cliente Cliente);
         List<BE.Cliente> ObtenerClientes();
+        DataTable ObtenerNombreClientes();
 
     }
 }

@@ -65,7 +65,7 @@ namespace Software_Canchas_2022
 
                 Cliente cliente = new Cliente()
                 {
-                    Id_Cliente = int.Parse(dataGridClientes.CurrentRow.Cells[0].Value.ToString()),
+                    Id = int.Parse(dataGridClientes.CurrentRow.Cells[0].Value.ToString()),
                     Nombre = txt_Nombre.Text,
                     Apellido = txt_Apellido.Text,
                     Telefono = int.Parse(txt_Telefono.Text)
@@ -90,7 +90,7 @@ namespace Software_Canchas_2022
 
                 Cliente cliente = new Cliente()
                 {
-                    Id_Cliente = int.Parse(dataGridClientes.CurrentRow.Cells[0].Value.ToString()),
+                    Id = int.Parse(dataGridClientes.CurrentRow.Cells[0].Value.ToString()),
                 };
                 _iCliente.BajaCliente(cliente);
 
