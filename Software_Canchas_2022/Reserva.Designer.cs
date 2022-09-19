@@ -62,6 +62,7 @@
             this.btn_Filtrar = new System.Windows.Forms.Button();
             this.dtp_Fecha2 = new System.Windows.Forms.DateTimePicker();
             this.chk_Fecha = new System.Windows.Forms.CheckBox();
+            this.lbl_IdReserva = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridReservas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -209,6 +210,7 @@
             this.cmb_Hora1.Name = "cmb_Hora1";
             this.cmb_Hora1.Size = new System.Drawing.Size(153, 21);
             this.cmb_Hora1.TabIndex = 8;
+            this.cmb_Hora1.SelectedIndexChanged += new System.EventHandler(this.cmb_Hora1_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -217,7 +219,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(78, 13);
             this.label3.TabIndex = 16;
-            this.label3.Tag = "lbl_Hora";
+            this.label3.Tag = "lbl_Forma_Pago";
             this.label3.Text = "Forma de pago";
             // 
             // btn_Calcular
@@ -226,8 +228,8 @@
             this.btn_Calcular.Name = "btn_Calcular";
             this.btn_Calcular.Size = new System.Drawing.Size(134, 23);
             this.btn_Calcular.TabIndex = 11;
-            this.btn_Calcular.Tag = "btn_CalcularTotal";
-            this.btn_Calcular.Text = "Calcular total";
+            this.btn_Calcular.Tag = "btn_CalcularDeuda";
+            this.btn_Calcular.Text = "Calcular deuda";
             this.btn_Calcular.UseVisualStyleBackColor = true;
             this.btn_Calcular.Click += new System.EventHandler(this.btn_Aceptar_Click);
             // 
@@ -412,11 +414,20 @@
             this.chk_Fecha.Text = "Por fecha";
             this.chk_Fecha.UseVisualStyleBackColor = true;
             // 
+            // lbl_IdReserva
+            // 
+            this.lbl_IdReserva.AutoSize = true;
+            this.lbl_IdReserva.Location = new System.Drawing.Point(389, 40);
+            this.lbl_IdReserva.Name = "lbl_IdReserva";
+            this.lbl_IdReserva.Size = new System.Drawing.Size(0, 13);
+            this.lbl_IdReserva.TabIndex = 31;
+            // 
             // Reserva
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1540, 545);
+            this.Controls.Add(this.lbl_IdReserva);
             this.Controls.Add(this.chk_Cliente);
             this.Controls.Add(this.lbl_Total);
             this.Controls.Add(this.cmb_Cliente2);
@@ -497,5 +508,6 @@
         private System.Windows.Forms.Button btn_Cancelar;
         private System.Windows.Forms.ComboBox cmb_Cliente2;
         private System.Windows.Forms.CheckBox chk_Cliente;
+        private System.Windows.Forms.Label lbl_IdReserva;
     }
 }

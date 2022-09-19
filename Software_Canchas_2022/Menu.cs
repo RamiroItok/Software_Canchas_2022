@@ -83,7 +83,6 @@ namespace Software_Canchas_2022
         private void CargarPermisosMenu()
         {
             PermisoTool.HabilitarMenu(_usuarioDTO, reservaToolStripMenuItem);
-            PermisoTool.HabilitarMenu(_usuarioDTO, listadoToolStripMenuItem);
             PermisoTool.HabilitarMenu(_usuarioDTO, gestiónToolStripMenuItem);
             PermisoTool.HabilitarMenu(_usuarioDTO, gestionUsuariosToolStripMenuItem);
             PermisoTool.HabilitarMenu(_usuarioDTO, gestionCanchasToolStripMenuItem);

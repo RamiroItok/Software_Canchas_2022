@@ -17,6 +17,6 @@ namespace Interfaces
         int AltaReserva(BE.Reserva reserva);
         int ModificarReserva(BE.Reserva reserva);
         void BajaReserva(BE.Reserva reserva);
-        List<string> ObtenerReservaHora(string fecha);
+        List<string> ObtenerReservaHora(string fecha, string cancha);
     }
 }

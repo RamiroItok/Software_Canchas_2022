@@ -58,19 +58,11 @@ namespace BLL
             }
         }
 
-        public float CalcularDeuda(out float tot, float seña, int hora, float total)
+        public float CalcularDeuda(float seña, float total)
         {
             try
             {
-                float deuda;
-                if (hora > 18)
-                {
-                    tot = total + 500;
-                }
-                else
-                    tot = total;
-
-                deuda = tot - seña;
+                float deuda = total - seña;
                 return deuda;
             }
             catch (Exception ex)
@@ -78,6 +70,18 @@ namespace BLL
                 throw new Exception(ex.Message);
             }
         }
+
+        public float CalcularTotal(int hora, int total)
+        {
+            float tot;
+            if (hora > 18)
+                tot = total + 500;
+            else
+                tot = total;
+
+            return tot;
+        }
+
 
         public List<BE.Reserva> ObtenerReservas()
         {
@@ -144,11 +148,11 @@ namespace BLL
             }
         }
 
-        public List<string> ObtenerReservaHora(string fecha)
+        public List<string> ObtenerReservaHora(string fecha, string cancha)
         {
             try
             {
-                List<string> listaHora = _reservaDAL.ObtenerReservaHora(fecha);
+                List<string> listaHora = _reservaDAL.ObtenerReservaHora(fecha, cancha);
                 return listaHora;
             }
             catch

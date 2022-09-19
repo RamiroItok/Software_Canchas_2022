@@ -31,7 +31,6 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.canchaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reservaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.listadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gestiónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gestionUsuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gestionCanchasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -78,8 +77,7 @@
             // canchaToolStripMenuItem
             // 
             this.canchaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.reservaToolStripMenuItem,
-            this.listadoToolStripMenuItem});
+            this.reservaToolStripMenuItem});
             this.canchaToolStripMenuItem.Name = "canchaToolStripMenuItem";
             this.canchaToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.canchaToolStripMenuItem.Tag = "menu_Cancha";
@@ -88,17 +86,10 @@
             // reservaToolStripMenuItem
             // 
             this.reservaToolStripMenuItem.Name = "reservaToolStripMenuItem";
-            this.reservaToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+            this.reservaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.reservaToolStripMenuItem.Tag = "menu_Reserva";
             this.reservaToolStripMenuItem.Text = "Reserva";
             this.reservaToolStripMenuItem.Click += new System.EventHandler(this.reservaToolStripMenuItem_Click);
-            // 
-            // listadoToolStripMenuItem
-            // 
-            this.listadoToolStripMenuItem.Name = "listadoToolStripMenuItem";
-            this.listadoToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
-            this.listadoToolStripMenuItem.Tag = "menu_Listado";
-            this.listadoToolStripMenuItem.Text = "Listado";
             // 
             // gestiónToolStripMenuItem
             // 
@@ -336,7 +327,6 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem canchaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reservaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem listadoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gestiónToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gestionUsuariosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gestionCanchasToolStripMenuItem;

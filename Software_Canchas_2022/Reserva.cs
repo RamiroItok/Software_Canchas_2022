@@ -34,11 +34,12 @@ namespace Software_Canchas_2022
 
         private void Reserva_Load(object sender, EventArgs e)
         {
-            CargarReservas();
             CargarClientes();
             CargarTipoCancha();
             Sesion.SuscribirObservador(this);
             UpdateLanguage(Sesion.GetInstance().Idioma);
+            CargarReservas();
+            LlenarCmbHora();
         }
 
         private void btn_CancelarReserva_Click(object sender, EventArgs e)
@@ -85,6 +86,7 @@ namespace Software_Canchas_2022
         private void cmb_Tipo_SelectedIndexChanged(object sender, EventArgs e)
         {
             CargarIdCanchas();
+            dtp_Fecha1.Value = DateTime.Now;
         }
 
         private void rdb_No_CheckedChanged(object sender, EventArgs e)
@@ -101,7 +103,7 @@ namespace Software_Canchas_2022
         {
             try
             {
-                if (dataGridReservas.CurrentRow == null) throw new Exception(TraducirMensaje("msg_ReservaNoSeleccionada"));
+                if (lbl_IdReserva.Text == "") throw new Exception(TraducirMensaje("msg_ReservaNoSeleccionada"));
 
                 BE.Reserva reserva = new BE.Reserva()
                 {
@@ -132,10 +134,12 @@ namespace Software_Canchas_2022
 
         private void dataGridReservas_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            lbl_IdReserva.Text = dataGridReservas.CurrentRow.Cells["Id"].Value.ToString();
             cmb_Tipo.Text = dataGridReservas.CurrentRow.Cells["TipoCancha"].Value.ToString();
             cmb_Cancha.Text = dataGridReservas.CurrentRow.Cells["Cancha"].Value.ToString();
             cmb_Cliente1.Text = dataGridReservas.CurrentRow.Cells["Cliente"].Value.ToString();
             dtp_Fecha1.Text = dataGridReservas.CurrentRow.Cells["Fecha"].Value.ToString();
+            cmb_Hora1.Items.Add(dataGridReservas.CurrentRow.Cells["Hora"].Value.ToString());
             cmb_Hora1.Text = dataGridReservas.CurrentRow.Cells["Hora"].Value.ToString();
             cmb_FormaPago.Text = dataGridReservas.CurrentRow.Cells["Forma_Pago"].Value.ToString();
             txt_Seña.Text = dataGridReservas.CurrentRow.Cells["Seña"].Value.ToString();
@@ -148,7 +152,7 @@ namespace Software_Canchas_2022
         {
             try
             {
-                if (dataGridReservas.CurrentRow == null) throw new Exception(TraducirMensaje("msg_ReservaNoSeleccionado"));
+                if (lbl_IdReserva.Text == "") throw new Exception(TraducirMensaje("msg_ReservaNoSeleccionado"));
 
                 BE.Reserva reserva = new BE.Reserva()
                 {
@@ -166,171 +170,14 @@ namespace Software_Canchas_2022
             }
         }
 
-        #region Funciones
-        private void CargarReservas()
-        {
-            dataGridReservas.DataSource = _iReserva.ObtenerReservaCliente();
-            dataGridReservas.ClearSelection();
-            dataGridReservas.TabStop = false;
-            dataGridReservas.ReadOnly = true;
-        }
-
-        private void CargarReservaFecha()
-        {
-            dataGridReservas.DataSource = _iReserva.ObtenerReservaClienteFecha(dtp_Fecha2.Value.ToString().Substring(0, 10));
-            dataGridReservas.ClearSelection();
-            dataGridReservas.TabStop = false;
-            dataGridReservas.ReadOnly = true;
-        }
-
-        private void CargarReservaCliente()
-        {
-            dataGridReservas.DataSource = _iReserva.ObtenerReservaClienteCliente(cmb_Cliente2.Text);
-            dataGridReservas.ClearSelection();
-            dataGridReservas.TabStop = false;
-            dataGridReservas.ReadOnly = true;
-        }
-
-        private void CargarReservaFechaCliente()
-        {
-            dataGridReservas.DataSource = _iReserva.ObtenerReservaFechaCliente(dtp_Fecha2.Value.ToString().Substring(0,10), cmb_Cliente2.Text);
-            dataGridReservas.ClearSelection();
-            dataGridReservas.TabStop = false;
-            dataGridReservas.ReadOnly = true;
-        }
-
-        private void CargarTipoCancha()
-        {
-            cmb_Tipo.DataSource = _iCancha.ObtenerTipoCanchas();
-            cmb_Tipo.DisplayMember = "Tipo";
-            cmb_Tipo.ValueMember = null;
-            cmb_Tipo.SelectedItem = -1;
-        }
-
-        private void CargarIdCanchas()
-        {
-            cmb_Cancha.DataSource = _iCancha.ObtenerIdCanchas(cmb_Tipo.Text);
-            cmb_Cancha.DisplayMember = "Id";
-            cmb_Cancha.ValueMember = null;
-            cmb_Cancha.SelectedItem = null;
-        }
-
-        private void CargarClientes()
-        {
-            cmb_Cliente1.DataSource = _iCliente.ObtenerNombreClientes();
-            cmb_Cliente1.DisplayMember = "Nombre";
-            cmb_Cliente1.ValueMember = "Id";
-            cmb_Cliente1.SelectedItem = null;
-            cmb_Cliente2.DataSource = _iCliente.ObtenerNombreClientes();
-            cmb_Cliente2.DisplayMember = "Nombre";
-            cmb_Cliente2.ValueMember = "Id";
-            cmb_Cliente2.SelectedItem = null;
-        }
-
-        private void Bloquear()
-        {
-            cmb_Cliente1.Enabled = false;
-            dtp_Fecha1.Enabled = false;
-            cmb_Hora1.Enabled = false;
-            cmb_FormaPago.Enabled = false;
-            txt_Seña.Enabled = false;
-            btn_Calcular.Enabled = false;
-            txt_Total.Enabled = false;
-            txt_Deuda.Enabled = false;
-            btn_Reservar.Enabled = false;
-            btn_ModificarReserva.Enabled = false;
-            btn_EliminarReserva.Enabled = false;
-            btn_AltaCliente.Enabled = true;
-        }
-
-        private void Desbloquear()
-        {
-            cmb_Cliente1.Enabled = true;
-            dtp_Fecha1.Enabled = true;
-            cmb_Hora1.Enabled = true;
-            cmb_FormaPago.Enabled = true;
-            txt_Seña.Enabled = true;
-            btn_Calcular.Enabled = true;
-            txt_Total.Enabled = true;
-            txt_Deuda.Enabled = true;
-            btn_Reservar.Enabled = true;
-            btn_ModificarReserva.Enabled = true;
-            btn_EliminarReserva.Enabled = true;
-            btn_AltaCliente.Enabled = false;
-        }
-
-        private void Limpiar()
-        {
-            cmb_Tipo.SelectedIndex = -1;
-            cmb_Cancha.SelectedIndex = -1;
-            cmb_Cliente1.SelectedIndex = -1;
-            cmb_Hora1.SelectedIndex = -1;
-            cmb_FormaPago.SelectedIndex = -1;
-            rdb_No.Checked = false;
-            rdb_Si.Checked = false;
-            dtp_Fecha1.Value = DateTime.Now;
-            txt_Seña.Clear();
-            txt_Total.Clear();
-            txt_Deuda.Clear();
-            Desbloquear();
-        }
-
-        private void LimpiarFiltros()
-        {
-            dtp_Fecha1.Value = DateTime.Now;
-            chk_Cliente.Checked = false;
-            chk_Fecha.Checked = false;
-            cmb_Cliente2.SelectedIndex = -1;
-        }
-
-        private void LlenarCmbHora()
-        {
-            cmb_Hora1.Items.Clear();
-            cmb_Hora1.Items.AddRange(new object[] {
-            "11:00",
-            "12:00",
-            "13:00",
-            "14:00",
-            "15:00",
-            "16:00",
-            "17:00",
-            "18:00",
-            "19:00",
-            "20:00",
-            "21:00",
-            "22:00",
-            "23:00",
-            "00:00"});
-        }
-
-        public void UpdateLanguage(IIdioma idioma)
-        {
-            Traducir(idioma);
-        }
-
-        private void Traducir(IIdioma idioma)
-        {
-            Traductor.Traducir(_iTraductor, idioma, this.Controls);
-        }
-
-        private string TraducirMensaje(string msgTag)
-        {
-            return Traductor.TraducirMensaje(_iTraductor, msgTag);
-        }
-        #endregion
-
         private void btn_Aceptar_Click(object sender, EventArgs e)
         {
             try
             {
                 BLL.Reserva reservaBLL = new BLL.Reserva();
-                txt_Total.Text = _iCancha.ObtenerPrecio(cmb_Cancha.Text).ToString();
-                txt_Deuda.Text = "";
                 float seña = float.Parse(txt_Seña.Text);
-                int hora = int.Parse(cmb_Hora1.Text.Substring(0, 2));
                 float total = float.Parse(txt_Total.Text);
-                txt_Deuda.Text = reservaBLL.CalcularDeuda(out float tot, seña, hora, total).ToString();
-                txt_Total.Text = tot.ToString();
+                txt_Deuda.Text = reservaBLL.CalcularDeuda(seña, total).ToString();
             }
             catch (Exception ex)
             {
@@ -341,7 +188,8 @@ namespace Software_Canchas_2022
         private void dtp_Fecha_ValueChanged(object sender, EventArgs e)
         {
             LlenarCmbHora();
-            List<string> horas = _iReserva.ObtenerReservaHora(dtp_Fecha1.Value.ToString().Substring(0, 10));
+            string fecha = dtp_Fecha1.Value.ToString().Substring(0, 10);
+            List<string> horas = _iReserva.ObtenerReservaHora(fecha, cmb_Cancha.Text);
             int contador = 0;
             for (int i = 0; i < cmb_Hora1.Items.Count; i++)
             {
@@ -383,5 +231,191 @@ namespace Software_Canchas_2022
                 
 
         }
+
+        private void cmb_Hora1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                BLL.Reserva reservaBLL = new BLL.Reserva();
+                int hora = int.Parse(cmb_Hora1.Text.Substring(0, 2));
+                int total = int.Parse(_iCancha.ObtenerPrecio(cmb_Cancha.Text).ToString());
+                txt_Total.Text = reservaBLL.CalcularTotal(hora, total).ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        #region Funciones
+        private void CargarReservas()
+        {
+            dataGridReservas.DataSource = _iReserva.ObtenerReservaCliente();
+            dataGridReservas.ClearSelection();
+            dataGridReservas.TabStop = false;
+            dataGridReservas.ReadOnly = true;
+            PintarFila();
+        }
+
+        private void CargarReservaFecha()
+        {
+            dataGridReservas.DataSource = _iReserva.ObtenerReservaClienteFecha(dtp_Fecha2.Value.ToString().Substring(0, 10));
+            dataGridReservas.ClearSelection();
+            dataGridReservas.TabStop = false;
+            dataGridReservas.ReadOnly = true;
+        }
+
+        private void CargarReservaCliente()
+        {
+            dataGridReservas.DataSource = _iReserva.ObtenerReservaClienteCliente(cmb_Cliente2.Text);
+            dataGridReservas.ClearSelection();
+            dataGridReservas.TabStop = false;
+            dataGridReservas.ReadOnly = true;
+        }
+
+        private void CargarReservaFechaCliente()
+        {
+            dataGridReservas.DataSource = _iReserva.ObtenerReservaFechaCliente(dtp_Fecha2.Value.ToString().Substring(0, 10), cmb_Cliente2.Text);
+            dataGridReservas.ClearSelection();
+            dataGridReservas.TabStop = false;
+            dataGridReservas.ReadOnly = true;
+        }
+
+        private void CargarTipoCancha()
+        {
+            cmb_Tipo.DataSource = _iCancha.ObtenerTipoCanchas();
+            cmb_Tipo.DisplayMember = "Tipo";
+            cmb_Tipo.ValueMember = null;
+            cmb_Tipo.SelectedItem = -1;
+        }
+
+        private void CargarIdCanchas()
+        {
+            cmb_Cancha.DataSource = _iCancha.ObtenerIdCanchas(cmb_Tipo.Text);
+            cmb_Cancha.DisplayMember = "Id";
+            cmb_Cancha.ValueMember = null;
+            cmb_Cancha.SelectedItem = null;
+        }
+
+        private void CargarClientes()
+        {
+            cmb_Cliente1.DataSource = _iCliente.ObtenerNombreClientes();
+            cmb_Cliente1.DisplayMember = "Nombre";
+            cmb_Cliente1.ValueMember = "Id";
+            cmb_Cliente1.SelectedItem = null;
+            cmb_Cliente2.DataSource = _iCliente.ObtenerNombreClientes();
+            cmb_Cliente2.DisplayMember = "Nombre";
+            cmb_Cliente2.ValueMember = "Id";
+            cmb_Cliente2.SelectedItem = null;
+        }
+
+        private void PintarFila()
+        {
+            int filas = dataGridReservas.Rows.Count;
+            for (int i = 0; i < filas; i++)
+            {
+                if (dataGridReservas.Rows[i].Cells[10].Value?.ToString() == "0")
+                {
+                    dataGridReservas.Rows[i].DefaultCellStyle.BackColor = Color.Yellow;
+                    dataGridReservas.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
+                }
+            }
+        }
+
+        private void Bloquear()
+        {
+            cmb_Cliente1.Enabled = false;
+            dtp_Fecha1.Enabled = false;
+            cmb_Hora1.Enabled = false;
+            cmb_FormaPago.Enabled = false;
+            txt_Seña.Enabled = false;
+            btn_Calcular.Enabled = false;
+            txt_Total.Enabled = false;
+            txt_Deuda.Enabled = false;
+            btn_Reservar.Enabled = false;
+            btn_ModificarReserva.Enabled = false;
+            btn_EliminarReserva.Enabled = false;
+            btn_AltaCliente.Enabled = true;
+        }
+
+        private void Desbloquear()
+        {
+            cmb_Cliente1.Enabled = true;
+            dtp_Fecha1.Enabled = true;
+            cmb_Hora1.Enabled = true;
+            cmb_FormaPago.Enabled = true;
+            txt_Seña.Enabled = true;
+            btn_Calcular.Enabled = true;
+            txt_Total.Enabled = true;
+            txt_Deuda.Enabled = true;
+            btn_Reservar.Enabled = true;
+            btn_ModificarReserva.Enabled = true;
+            btn_EliminarReserva.Enabled = true;
+            btn_AltaCliente.Enabled = false;
+        }
+
+        private void Limpiar()
+        {
+            lbl_IdReserva.Text = "";
+            cmb_Tipo.SelectedIndex = -1;
+            cmb_Cancha.SelectedIndex = -1;
+            cmb_Cliente1.SelectedIndex = -1;
+            cmb_Hora1.SelectedIndex = -1;
+            cmb_FormaPago.SelectedIndex = -1;
+            rdb_No.Checked = false;
+            rdb_Si.Checked = false;
+            dtp_Fecha1.Value = DateTime.Now;
+            txt_Seña.Clear();
+            txt_Total.Clear();
+            txt_Deuda.Clear();
+            Desbloquear();
+        }
+
+        private void LimpiarFiltros()
+        {
+            dtp_Fecha1.Value = DateTime.Now;
+            chk_Cliente.Checked = false;
+            chk_Fecha.Checked = false;
+            cmb_Cliente2.SelectedIndex = -1;
+        }
+
+        private void LlenarCmbHora()
+        {
+            cmb_Hora1.Items.Clear();
+            if (dtp_Fecha1.Value.ToString().Substring(0, 10) == DateTime.Now.ToString().Substring(0, 10))
+            {
+                for (int i = 11; i < 24; i++)
+                {
+                    if (i > int.Parse(DateTime.Now.ToString("HH")))
+                    {
+                        cmb_Hora1.Items.Add($"{Convert.ToString(i)}:00");
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 11; i < 24; i++)
+                {
+                    cmb_Hora1.Items.Add($"{Convert.ToString(i)}:00");
+                }
+            }
+        }
+
+        public void UpdateLanguage(IIdioma idioma)
+        {
+            Traducir(idioma);
+        }
+
+        private void Traducir(IIdioma idioma)
+        {
+            Traductor.Traducir(_iTraductor, idioma, this.Controls);
+        }
+
+        private string TraducirMensaje(string msgTag)
+        {
+            return Traductor.TraducirMensaje(_iTraductor, msgTag);
+        }
+        #endregion
+
     }
 }
