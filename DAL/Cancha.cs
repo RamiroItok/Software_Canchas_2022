@@ -135,7 +135,7 @@ namespace DAL
             }
         }
 
-        public float ObtenerPrecio(int id)
+        public float ObtenerPrecio(string id)
         {
             try
             {

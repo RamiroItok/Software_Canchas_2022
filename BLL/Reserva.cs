@@ -105,6 +105,45 @@ namespace BLL
             }
         }
 
+        public DataTable ObtenerReservaClienteFecha(string fecha)
+        {
+            try
+            {
+                DataTable bit = _reservaDAL.ObtenerReservaClienteFecha(fecha);
+                return bit;
+            }
+            catch
+            {
+                throw new Exception(TraducirMensaje("msg_ErrorListar"));
+            }
+        }
+
+        public DataTable ObtenerReservaClienteCliente(string cliente)
+        {
+            try
+            {
+                DataTable bit = _reservaDAL.ObtenerReservaClienteCliente(cliente);
+                return bit;
+            }
+            catch
+            {
+                throw new Exception(TraducirMensaje("msg_ErrorListar"));
+            }
+        }
+
+        public DataTable ObtenerReservaFechaCliente(string fecha, string cliente)
+        {
+            try
+            {
+                DataTable bit = _reservaDAL.ObtenerReservaFechaCliente(fecha, cliente);
+                return bit;
+            }
+            catch
+            {
+                throw new Exception(TraducirMensaje("msg_ErrorListar"));
+            }
+        }
+
         public List<string> ObtenerReservaHora(string fecha)
         {
             try

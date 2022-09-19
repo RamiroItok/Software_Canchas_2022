@@ -23,7 +23,7 @@ namespace DAL
         private const string MODIFICAR_RESERVA = "UPDATE Reserva SET Id_Cancha = @parId_Cancha, Id_Cliente = @parId_Cliente, Fecha = @parFecha, Hora = @parHora, Forma_Pago = @parForma_Pago, Seña = @parSeña, Total = @parTotal, Deuda = @parDeuda OUTPUT inserted.Id WHERE Id = @parId";
         private const string BAJA_RESERVA = "DELETE FROM Reserva WHERE Id = @parId";
         private const string OBTENER_RESERVA = "SELECT * FROM Reserva";
-        private const string OBTENER_RESERVA_CLIENTE = "SELECT r.Id, r.Id_Cancha as Cancha, cancha.Tipo as TipoCancha, r.Id_Cliente, cliente.Nombre + ' ' + cliente.Apellido as Cliente, r.Fecha as Fecha, r.Hora, r.Forma_Pago, r.Seña, r.Total, r.Deuda FROM Reserva r inner join Cancha cancha on r.Id_Cancha = cancha.Id join Cliente cliente on cliente.Id = r.Id_Cliente WHERE r.Fecha > GETDATE() ORDER BY r.Fecha asc, r.Hora asc";
+        private const string OBTENER_RESERVA_CLIENTE = "SELECT r.Id, r.Id_Cancha as Cancha, cancha.Tipo as TipoCancha, r.Id_Cliente, cliente.Nombre + ' ' + cliente.Apellido as Cliente, r.Fecha as Fecha, r.Hora, r.Forma_Pago, r.Seña, r.Total, r.Deuda FROM Reserva r inner join Cancha cancha on r.Id_Cancha = cancha.Id join Cliente cliente on cliente.Id = r.Id_Cliente WHERE convert(datetime, DATEADD(DAY,1, r.Fecha), 103) >= convert(datetime, GETDATE(), 103) ORDER BY r.Fecha asc, r.Hora asc";
 
         public int AltaReserva(BE.Reserva reserva)
         {
@@ -120,6 +120,48 @@ namespace DAL
             try
             {
                 string consulta = OBTENER_RESERVA_CLIENTE;
+                DataTable dt = GenerarConsulta(consulta);
+                return dt;
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error en la base de datos.");
+            }
+        }
+
+        public DataTable ObtenerReservaClienteFecha(string fecha)
+        {
+            try
+            {
+                string consulta = $@"SELECT r.Id, r.Id_Cancha as Cancha, cancha.Tipo as TipoCancha, r.Id_Cliente, cliente.Nombre + ' ' + cliente.Apellido as Cliente, r.Fecha as Fecha, r.Hora, r.Forma_Pago, r.Seña, r.Total, r.Deuda FROM Reserva r inner join Cancha cancha on r.Id_Cancha = cancha.Id join Cliente cliente on cliente.Id = r.Id_Cliente WHERE r.Fecha = convert(datetime, '{fecha}', 103) ORDER BY r.Fecha asc, r.Hora asc";
+                DataTable dt = GenerarConsulta(consulta);
+                return dt;
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error en la base de datos.");
+            }
+        }
+
+        public DataTable ObtenerReservaClienteCliente(string cliente)
+        {
+            try
+            {
+                string consulta = $@"SELECT r.Id, r.Id_Cancha as Cancha, cancha.Tipo as TipoCancha, r.Id_Cliente, cliente.Nombre + ' ' + cliente.Apellido as Cliente, r.Fecha as Fecha, r.Hora, r.Forma_Pago, r.Seña, r.Total, r.Deuda FROM Reserva r inner join Cancha cancha on r.Id_Cancha = cancha.Id join Cliente cliente on cliente.Id = r.Id_Cliente WHERE cliente.Nombre + ' ' + cliente.Apellido = '{cliente}' ORDER BY r.Fecha asc, r.Hora asc";
+                DataTable dt = GenerarConsulta(consulta);
+                return dt;
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error en la base de datos.");
+            }
+        }
+
+        public DataTable ObtenerReservaFechaCliente(string fecha, string cliente)
+        {
+            try
+            {
+                string consulta = $@"SELECT r.Id, r.Id_Cancha as Cancha, cancha.Tipo as TipoCancha, r.Id_Cliente, cliente.Nombre + ' ' + cliente.Apellido as Cliente, r.Fecha as Fecha, r.Hora, r.Forma_Pago, r.Seña, r.Total, r.Deuda FROM Reserva r inner join Cancha cancha on r.Id_Cancha = cancha.Id join Cliente cliente on cliente.Id = r.Id_Cliente WHERE r.Fecha = convert(datetime, '{fecha}', 103) and cliente.Nombre + ' ' + cliente.Apellido = '{cliente}' ORDER BY r.Fecha asc, r.Hora asc";
                 DataTable dt = GenerarConsulta(consulta);
                 return dt;
             }

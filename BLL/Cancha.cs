@@ -27,7 +27,7 @@ namespace BLL
         {
             try
             {
-                ValidarCancha(cancha);
+                ValidarCampo(cancha);
                 return _CanchaDAL.AltaCancha(cancha);
             }
             catch (Exception ex)
@@ -40,7 +40,7 @@ namespace BLL
         {
             try
             {
-                ValidarCancha(cancha);
+                ValidarCampo(cancha);
                 return _CanchaDAL.ModificarCancha(cancha);
             }
             catch (Exception ex)
@@ -100,7 +100,7 @@ namespace BLL
             }
         }
 
-        private void ValidarCancha(BE.Cancha cancha)
+        private void ValidarCampo(BE.Cancha cancha)
         {
             if (string.IsNullOrEmpty(cancha.Id.ToString())) 
                 throw new Exception(TraducirMensaje("msg_CanchaId_Cancha"));
@@ -114,7 +114,7 @@ namespace BLL
             return Traductor.TraducirMensaje(_IdiomaDAL, msgTag);
         }
         
-        public float ObtenerPrecio(int id)
+        public float ObtenerPrecio(string id)
         {
             try
             {
@@ -123,7 +123,7 @@ namespace BLL
             }
             catch (Exception) 
             { 
-                throw new Exception("Hubo un error al querer obtener el género."); 
+                throw new Exception("Hubo un error al realizar el calculo."); 
             }
         }
     }

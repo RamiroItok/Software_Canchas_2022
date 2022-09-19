@@ -11,6 +11,9 @@ namespace Interfaces
     {
         List<BE.Reserva> ObtenerReservas();
         DataTable ObtenerReservaCliente();
+        DataTable ObtenerReservaClienteFecha(string fecha);
+        DataTable ObtenerReservaClienteCliente(string cliente);
+        DataTable ObtenerReservaFechaCliente(string fecha, string cliente);
         int AltaReserva(BE.Reserva reserva);
         int ModificarReserva(BE.Reserva reserva);
         void BajaReserva(BE.Reserva reserva);

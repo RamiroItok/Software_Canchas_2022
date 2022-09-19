@@ -15,6 +15,6 @@ namespace Interfaces
         List<BE.Cancha> ObtenerCanchas();
         DataTable ObtenerTipoCanchas();
         DataTable ObtenerIdCanchas(string tipo);
-        float ObtenerPrecio(int id);
+        float ObtenerPrecio(string id);
     }
 }
