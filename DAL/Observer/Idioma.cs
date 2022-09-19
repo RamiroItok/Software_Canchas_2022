@@ -25,7 +25,7 @@ namespace DAL.Observer
         private const string OBTENER_TRADUCCIONES= "SELECT t.Id, t.Traduccion as Traduccion, e.Id, e.Nombre as Nombre_Etiqueta " +
                                                     "FROM TRADUCCION t INNER JOIN Etiqueta e on t.EtiquetaId = e.Id WHERE t.IdiomaId = {0}";
         private const string ALTA_IDIOMA = "INSERT INTO Idioma (Nombre, [Default]) OUTPUT inserted.Id VALUES (@parNombre, 0)";
-        private const string BAJA_IDIOMA = "DELETE FROM Idioma WHERE Id = {0}";
+        private const string MODIFICAR_IDIOMA = "UPDATE Idioma SET Nombre = @parNombre OUTPUT inserted.Id WHERE Id = @parId";
         private const string ALTA_TRADUCCION = "INSERT INTO Traduccion (IdiomaId, EtiquetaId, Traduccion) OUTPUT inserted.Id" +
                                                 "VALUES (@parIdiomaId, @parEtiquetaId, @parTraduccion)";
         private const string MODIFICAR_TRADUCCION = "UPDATE Traduccion SET Traduccion = @parTraduccion OUTPUT inserted.Id WHERE Id = @parId";
@@ -101,15 +101,17 @@ namespace DAL.Observer
             }
         }
 
-        public int BajaIdioma(BE.Observer.Idioma idioma)
+
+        public int ModificarIdioma(BE.Observer.Idioma idioma)
         {
             try
             {
-                ExecuteCommandText = BAJA_IDIOMA;
+                ExecuteCommandText = MODIFICAR_IDIOMA;
 
                 ExecuteParameters.Parameters.Clear();
 
-                ExecuteParameters.Parameters.AddWithValue("@parNombre", idioma);
+                ExecuteParameters.Parameters.AddWithValue("@parId", idioma.Id);
+                ExecuteParameters.Parameters.AddWithValue("@parNombre", idioma.Nombre);
 
                 return ExecuteNonEscalar();
             }

@@ -13,7 +13,7 @@ namespace Interfaces.Observer
         IIdioma ObtenerIdiomaDefault();
         IDictionary<string, ITraduccion> ObtenerTraducciones(IIdioma idioma);
         int AltaIdioma(BE.Observer.Idioma idioma);
-        int BajaIdioma(BE.Observer.Idioma idioma);
+        int ModificarIdioma(BE.Observer.Idioma idioma);
         int AltaTraduccion(BE.Observer.IIdioma idioma, BE.Observer.Traduccion traduccion);
         int ModificarTraduccion(BE.Observer.Traduccion traduccion);
         List<BE.Observer.Etiqueta> GetEtiquetas();

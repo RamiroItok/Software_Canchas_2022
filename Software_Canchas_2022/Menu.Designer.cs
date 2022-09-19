@@ -86,7 +86,7 @@
             // reservaToolStripMenuItem
             // 
             this.reservaToolStripMenuItem.Name = "reservaToolStripMenuItem";
-            this.reservaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.reservaToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
             this.reservaToolStripMenuItem.Tag = "menu_Reserva";
             this.reservaToolStripMenuItem.Text = "Reserva";
             this.reservaToolStripMenuItem.Click += new System.EventHandler(this.reservaToolStripMenuItem_Click);
@@ -149,28 +149,29 @@
             this.cargarEtiquetasToolStripMenuItem1,
             this.modificarEtiquetasToolStripMenuItem1});
             this.gestionIdiomaToolStripMenuItem.Name = "gestionIdiomaToolStripMenuItem";
-            this.gestionIdiomaToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.gestionIdiomaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.gestionIdiomaToolStripMenuItem.Tag = "menu_Gestion_Idioma";
             this.gestionIdiomaToolStripMenuItem.Text = "Gestion idioma";
             // 
             // altaIdiomaToolStripMenuItem1
             // 
             this.altaIdiomaToolStripMenuItem1.Name = "altaIdiomaToolStripMenuItem1";
-            this.altaIdiomaToolStripMenuItem1.Size = new System.Drawing.Size(176, 22);
+            this.altaIdiomaToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.altaIdiomaToolStripMenuItem1.Tag = "menu_AltaIdioma";
             this.altaIdiomaToolStripMenuItem1.Text = "Alta idioma";
+            this.altaIdiomaToolStripMenuItem1.Click += new System.EventHandler(this.altaIdiomaToolStripMenuItem1_Click);
             // 
             // cargarEtiquetasToolStripMenuItem1
             // 
             this.cargarEtiquetasToolStripMenuItem1.Name = "cargarEtiquetasToolStripMenuItem1";
-            this.cargarEtiquetasToolStripMenuItem1.Size = new System.Drawing.Size(176, 22);
+            this.cargarEtiquetasToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.cargarEtiquetasToolStripMenuItem1.Tag = "menu_CargarEtiquetas";
             this.cargarEtiquetasToolStripMenuItem1.Text = "Cargar etiquetas";
             // 
             // modificarEtiquetasToolStripMenuItem1
             // 
             this.modificarEtiquetasToolStripMenuItem1.Name = "modificarEtiquetasToolStripMenuItem1";
-            this.modificarEtiquetasToolStripMenuItem1.Size = new System.Drawing.Size(176, 22);
+            this.modificarEtiquetasToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.modificarEtiquetasToolStripMenuItem1.Tag = "menu_ModificarEtiquetas";
             this.modificarEtiquetasToolStripMenuItem1.Text = "Modificar etiquetas";
             // 

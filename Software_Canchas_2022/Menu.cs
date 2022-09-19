@@ -237,5 +237,13 @@ namespace Software_Canchas_2022
             reserva.StartPosition = FormStartPosition.CenterScreen;
             reserva.Show();
         }
+
+        private void altaIdiomaToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Idioma idioma = new Idioma(_iTraductor);
+            idioma.MdiParent = this;
+            idioma.StartPosition = FormStartPosition.CenterScreen;
+            idioma.Show();
+        }
     }
 }

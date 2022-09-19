@@ -33,12 +33,12 @@ namespace BLL.Observer
             }
         }
 
-        public int BajaIdioma(BE.Observer.Idioma idioma)
+        public int ModificarIdioma(BE.Observer.Idioma idioma)
         {
             try
             {
                 ValidarIdioma(idioma);
-                return _idiomaDAL.BajaIdioma(idioma);
+                return _idiomaDAL.ModificarIdioma(idioma);
             }
             catch (Exception ex)
             {
