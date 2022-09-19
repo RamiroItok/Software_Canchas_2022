@@ -272,7 +272,46 @@ namespace Software_Canchas_2022
             float total = float.Parse(txt_Total.Text);
             txt_Deuda.Text = (reservaBLL.CalcularDeuda(out float tot, seña, hora, total)).ToString();
             txt_Total.Text = tot.ToString();
-            
+        }
+
+        private void dtp_Fecha_ValueChanged(object sender, EventArgs e)
+        {
+            LlenarCmbHora();
+            List<string> horas = _iReserva.ObtenerReservaHora(dtp_Fecha.Value.ToString().Substring(0, 10));
+            int contador = 0;
+            for (int i = 0; i < cmb_Hora1.Items.Count; i++)
+            {
+                for (int j = 0; j < horas.Count; j++)
+                {
+                    if (horas[j].ToString() == cmb_Hora1.Items[i].ToString())
+                    {
+                        cmb_Hora1.Items.Remove(horas[j].ToString());
+                        contador += 1;
+                    }
+                }
+                if (contador == horas.Count)
+                    break;
+            }
+        }
+
+        private void LlenarCmbHora()
+        {
+            cmb_Hora1.Items.Clear();
+            cmb_Hora1.Items.AddRange(new object[] {
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00",
+            "21:00",
+            "22:00",
+            "23:00",
+            "00:00"});
         }
     }
 }

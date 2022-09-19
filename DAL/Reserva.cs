@@ -129,5 +129,25 @@ namespace DAL
             }
         }
 
+        public List<string> ObtenerReservaHora(string fecha)
+        {
+            try
+            {
+                string consulta = $@"SELECT Hora FROM Reserva WHERE Fecha = convert(datetime, '{fecha}', 103) order by Hora asc";
+                DataTable dt = GenerarConsulta(consulta);
+                List<string> listaHora = new List<string>();
+                for(int i = 0; i < dt.Rows.Count; i++)
+                {
+                    var hora = dt.Rows[i]["Hora"].ToString();
+                    listaHora.Add(hora);
+                }
+
+                return listaHora;
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error en la base de datos.");
+            }
+        }
     }
 }

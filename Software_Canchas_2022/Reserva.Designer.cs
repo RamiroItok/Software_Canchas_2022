@@ -182,6 +182,7 @@
             this.dtp_Fecha.Size = new System.Drawing.Size(153, 20);
             this.dtp_Fecha.TabIndex = 12;
             this.dtp_Fecha.Tag = "";
+            this.dtp_Fecha.ValueChanged += new System.EventHandler(this.dtp_Fecha_ValueChanged);
             // 
             // lbl_IngreseFecha
             // 
@@ -207,21 +208,6 @@
             // 
             this.cmb_Hora1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmb_Hora1.FormattingEnabled = true;
-            this.cmb_Hora1.Items.AddRange(new object[] {
-            "11:00",
-            "12:00",
-            "13:00",
-            "14:00",
-            "15:00",
-            "16:00",
-            "17:00",
-            "18:00",
-            "19:00",
-            "20:00",
-            "21:00",
-            "22:00",
-            "23:00",
-            "00:00"});
             this.cmb_Hora1.Location = new System.Drawing.Point(206, 193);
             this.cmb_Hora1.Name = "cmb_Hora1";
             this.cmb_Hora1.Size = new System.Drawing.Size(153, 21);

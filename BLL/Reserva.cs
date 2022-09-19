@@ -105,6 +105,19 @@ namespace BLL
             }
         }
 
+        public List<string> ObtenerReservaHora(string fecha)
+        {
+            try
+            {
+                List<string> listaHora = _reservaDAL.ObtenerReservaHora(fecha);
+                return listaHora;
+            }
+            catch
+            {
+                throw new Exception(TraducirMensaje("msg_ErrorListar"));
+            }
+        }
+
         private void ValidarReserva(BE.Reserva reserva)
         {
             if (string.IsNullOrEmpty(reserva.Id.ToString()))
