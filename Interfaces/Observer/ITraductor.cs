@@ -14,7 +14,7 @@ namespace Interfaces.Observer
         IDictionary<string, ITraduccion> ObtenerTraducciones(IIdioma idioma);
         int AltaIdioma(BE.Observer.Idioma idioma);
         int ModificarIdioma(BE.Observer.Idioma idioma);
-        int AltaTraduccion(BE.Observer.IIdioma idioma, BE.Observer.Traduccion traduccion);
+        int AltaTraduccion(IIdioma idioma, BE.Observer.Traduccion traduccion);
         int ModificarTraduccion(BE.Observer.Traduccion traduccion);
         List<BE.Observer.Etiqueta> GetEtiquetas();
         List<BE.Observer.Traduccion> GetTraduccionesPorIdioma(int Id_Idioma);

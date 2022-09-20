@@ -40,7 +40,6 @@
             this.gestionIdiomaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.altaIdiomaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.cargarEtiquetasToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.modificarEtiquetasToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.seguridadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.recalcularDigitosVerificadoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bitácoraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -146,8 +145,7 @@
             // 
             this.gestionIdiomaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.altaIdiomaToolStripMenuItem1,
-            this.cargarEtiquetasToolStripMenuItem1,
-            this.modificarEtiquetasToolStripMenuItem1});
+            this.cargarEtiquetasToolStripMenuItem1});
             this.gestionIdiomaToolStripMenuItem.Name = "gestionIdiomaToolStripMenuItem";
             this.gestionIdiomaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.gestionIdiomaToolStripMenuItem.Tag = "menu_Gestion_Idioma";
@@ -167,13 +165,7 @@
             this.cargarEtiquetasToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.cargarEtiquetasToolStripMenuItem1.Tag = "menu_CargarEtiquetas";
             this.cargarEtiquetasToolStripMenuItem1.Text = "Cargar etiquetas";
-            // 
-            // modificarEtiquetasToolStripMenuItem1
-            // 
-            this.modificarEtiquetasToolStripMenuItem1.Name = "modificarEtiquetasToolStripMenuItem1";
-            this.modificarEtiquetasToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.modificarEtiquetasToolStripMenuItem1.Tag = "menu_ModificarEtiquetas";
-            this.modificarEtiquetasToolStripMenuItem1.Text = "Modificar etiquetas";
+            this.cargarEtiquetasToolStripMenuItem1.Click += new System.EventHandler(this.cargarEtiquetasToolStripMenuItem1_Click);
             // 
             // seguridadToolStripMenuItem
             // 
@@ -353,6 +345,5 @@
         private System.Windows.Forms.Label lblBienvenido;
         private System.Windows.Forms.ToolStripMenuItem altaIdiomaToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem cargarEtiquetasToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem modificarEtiquetasToolStripMenuItem1;
     }
 }

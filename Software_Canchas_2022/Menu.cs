@@ -245,5 +245,13 @@ namespace Software_Canchas_2022
             idioma.StartPosition = FormStartPosition.CenterScreen;
             idioma.Show();
         }
+
+        private void cargarEtiquetasToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Gestion_Etiquetas etiquetas = new Gestion_Etiquetas(_iTraductor);
+            etiquetas.MdiParent = this;
+            etiquetas.StartPosition = FormStartPosition.CenterScreen;
+            etiquetas.Show();
+        }
     }
 }

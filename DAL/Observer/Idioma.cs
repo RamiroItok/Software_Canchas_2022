@@ -26,12 +26,11 @@ namespace DAL.Observer
                                                     "FROM TRADUCCION t INNER JOIN Etiqueta e on t.EtiquetaId = e.Id WHERE t.IdiomaId = {0}";
         private const string ALTA_IDIOMA = "INSERT INTO Idioma (Nombre, [Default]) OUTPUT inserted.Id VALUES (@parNombre, 0)";
         private const string MODIFICAR_IDIOMA = "UPDATE Idioma SET Nombre = @parNombre OUTPUT inserted.Id WHERE Id = @parId";
-        private const string ALTA_TRADUCCION = "INSERT INTO Traduccion (IdiomaId, EtiquetaId, Traduccion) OUTPUT inserted.Id" +
-                                                "VALUES (@parIdiomaId, @parEtiquetaId, @parTraduccion)";
+        private const string ALTA_TRADUCCION = "INSERT INTO Traduccion (IdiomaId, EtiquetaId, Traduccion) OUTPUT inserted.Id VALUES (@parIdiomaId, @parEtiquetaId, @parTraduccion)";
         private const string MODIFICAR_TRADUCCION = "UPDATE Traduccion SET Traduccion = @parTraduccion OUTPUT inserted.Id WHERE Id = @parId";
         private const string GET_ETIQUETAS = "SELECT * FROM Etiqueta";
         private const string GET_ETIQUETA = "SELECT * FROM Etiqueta WHERE Id = {0}";
-        private const string GET_TRADUCCIONES_POR_IDIOMA= "SELECT * FROM Traduccion WHERE Id = {0}";
+        private const string GET_TRADUCCIONES_POR_IDIOMA= "SELECT * FROM Traduccion WHERE IdiomaId = {0}";
         private const string GET_TRADUCCIONES_POR_ID = "SELECT * FROM Traduccion WHERE Id = {0}";
 
         public IList<IIdioma> ObtenerIdiomas()
@@ -121,7 +120,7 @@ namespace DAL.Observer
             }
         }
 
-        public int AltaTraduccion(BE.Observer.IIdioma idioma, BE.Observer.Traduccion traduccion)
+        public int AltaTraduccion(IIdioma idioma, BE.Observer.Traduccion traduccion)
         {
             try
             {
@@ -150,7 +149,7 @@ namespace DAL.Observer
                 ExecuteParameters.Parameters.Clear();
 
                 ExecuteParameters.Parameters.AddWithValue("@parTraduccion", traduccion.Texto);
-                ExecuteParameters.Parameters.AddWithValue("@parId_Traduccion", traduccion.Id);
+                ExecuteParameters.Parameters.AddWithValue("@parId", traduccion.Id);
 
                 return ExecuteNonEscalar();
             }

@@ -66,6 +66,12 @@
     <Compile Include="Gestion_Clientes.Designer.cs">
       <DependentUpon>Gestion_Clientes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Gestion_Etiquetas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gestion_Etiquetas.Designer.cs">
+      <DependentUpon>Gestion_Etiquetas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Idioma.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,6 +117,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Gestion_Clientes.resx">
       <DependentUpon>Gestion_Clientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gestion_Etiquetas.resx">
+      <DependentUpon>Gestion_Etiquetas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Idioma.resx">
       <DependentUpon>Idioma.cs</DependentUpon>

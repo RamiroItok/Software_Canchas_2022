@@ -46,7 +46,7 @@ namespace BLL.Observer
             }
         }
 
-        public int AltaTraduccion(BE.Observer.IIdioma idioma, BE.Observer.Traduccion traduccion)
+        public int AltaTraduccion(IIdioma idioma, BE.Observer.Traduccion traduccion)
         {
             try
             {
