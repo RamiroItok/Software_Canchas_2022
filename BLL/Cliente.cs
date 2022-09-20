@@ -67,7 +67,7 @@ namespace BLL
             }
             catch
             {
-                throw new Exception(TraducirMensaje("msg_ErrorListarClientes"));
+                throw new Exception(TraducirMensaje("msg_ErrorListar"));
             }
         }
 
@@ -86,11 +86,8 @@ namespace BLL
 
         private void ValidarCliente(BE.Cliente cliente)
         {
-            if (string.IsNullOrEmpty(cliente.Id.ToString()))
-                throw new Exception(TraducirMensaje("msg_Cliente_IdCliente"));
-
-            if (string.IsNullOrWhiteSpace(cliente.Nombre) || string.IsNullOrWhiteSpace(cliente.Apellido) || string.IsNullOrEmpty(cliente.Telefono.ToString()))
-                throw new Exception(TraducirMensaje("msg_CampoVacio"));
+            if (string.IsNullOrEmpty(cliente.Id.ToString()) || string.IsNullOrWhiteSpace(cliente.Nombre) || string.IsNullOrWhiteSpace(cliente.Apellido) || string.IsNullOrEmpty(cliente.Telefono.ToString()))
+                throw new Exception(TraducirMensaje("msg_CamposVacios"));
         }
 
         private string TraducirMensaje(string msgTag)

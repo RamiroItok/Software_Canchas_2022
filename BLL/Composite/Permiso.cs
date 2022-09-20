@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BE.Composite;
 using BE.DTOs;
+using Servicios;
 
 namespace BLL.Composite
 {
@@ -14,12 +15,12 @@ namespace BLL.Composite
     {
         #region Inyección de dependencias
         private readonly DAL.Composite.Permiso _permisoDAL;
-        private readonly DAL.Observer.Idioma _idiomaDAL;
+        private readonly DAL.Observer.Idioma _IdiomaDAL;
 
         public Permiso()
         {
             _permisoDAL = new DAL.Composite.Permiso();
-            _idiomaDAL = new DAL.Observer.Idioma();
+            _IdiomaDAL = new DAL.Observer.Idioma();
         }
         #endregion
 
@@ -69,7 +70,7 @@ namespace BLL.Composite
                 IList<Componente> componentes = _permisoDAL.TraerFamiliaPatentes(familiaId);
                 return componentes;
             }
-            catch (Exception) { throw new Exception("Hubo un error al querer obtener los componentes."); }
+            catch (Exception) { throw new Exception(TraducirMensaje("msg_ErrorObtenerComponentes")); }
         }
 
         public Componente GetFamiliaArbol(int familiaId, Componente componenteOriginal, Componente componenteAgregar)
@@ -79,7 +80,7 @@ namespace BLL.Composite
                 Componente comp = _permisoDAL.GetFamiliaArbol(familiaId, componenteOriginal, componenteAgregar);
                 return comp;
             }
-            catch (Exception) { throw new Exception("Hubo un error al querer obtener los componentes."); }
+            catch (Exception) { throw new Exception(TraducirMensaje("msg_ErrorObtenerComponentes")); }
         }
 
         public Componente GetUsuarioArbol(int usuarioId, Componente componenteOriginal, Componente componenteAgregar)
@@ -89,7 +90,7 @@ namespace BLL.Composite
                 Componente comp = _permisoDAL.GetUsuarioArbol(usuarioId, componenteOriginal, componenteAgregar);
                 return comp;
             }
-            catch (Exception) { throw new Exception("Hubo un error al querer obtener los componentes."); }
+            catch (Exception) { throw new Exception(TraducirMensaje("msg_ErrorObtenerComponentes")); }
         }
 
         public IList<Familia> GetFamilias()
@@ -99,7 +100,7 @@ namespace BLL.Composite
                 IList<Familia> familias = _permisoDAL.GetFamilias();
                 return familias;
             }
-            catch (Exception) { throw new Exception("Hubo un error al querer obtener las familias."); }
+            catch (Exception) { throw new Exception(TraducirMensaje("msg_ErrorObtenerFamilias")); }
         }
 
         public IList<Patente> GetPatentes()
@@ -109,7 +110,7 @@ namespace BLL.Composite
                 IList<Patente> patentes = _permisoDAL.GetPatentes();
                 return patentes;
             }
-            catch (Exception) { throw new Exception("Hubo un error al querer obtener las patentes."); }
+            catch (Exception) { throw new Exception(TraducirMensaje("msg_ErrorObtenerPatentes")); }
         }
 
         public Array TraerPermisos()
@@ -118,7 +119,7 @@ namespace BLL.Composite
             {
                 return Enum.GetValues(typeof(BE.Composite.Permiso));
             }
-            catch (Exception) { throw new Exception("Hubo un error al querer obtener los permisos."); }
+            catch (Exception) { throw new Exception(TraducirMensaje("msg_ErrorObtenerPermisos")); }
         }
 
         public IList<Familia> GetFamiliasValidacion(int familiaId)
@@ -128,7 +129,7 @@ namespace BLL.Composite
                 IList<Familia> familias = _permisoDAL.GetFamiliasValidacion(familiaId);
                 return familias;
             }
-            catch (Exception) { throw new Exception("Hubo un error al querer obtener las familias."); }
+            catch (Exception) { throw new Exception(TraducirMensaje("msg_ErrorObtenerFamilias")); }
         }
         #endregion
 
@@ -174,6 +175,11 @@ namespace BLL.Composite
             {
                 throw new Exception(ex.Message);
             }
+        }
+
+        private string TraducirMensaje(string msgTag)
+        {
+            return Traductor.TraducirMensaje(_IdiomaDAL, msgTag);
         }
         #endregion
     }

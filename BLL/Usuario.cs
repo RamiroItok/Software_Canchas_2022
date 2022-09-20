@@ -88,15 +88,15 @@ namespace BLL
         {
             try
             {
-                if (Sesion.GetInstance() != null) throw new Exception("Ya hay una instancia de un usuario creada.");
-                if (string.IsNullOrWhiteSpace(nombre_usuario) || string.IsNullOrWhiteSpace(contraseña)) throw new Exception("Se deben completar los campos");
+                if (Sesion.GetInstance() != null) throw new Exception(TraducirMensaje("msg_Instancia"));
+                if (string.IsNullOrWhiteSpace(nombre_usuario) || string.IsNullOrWhiteSpace(contraseña)) throw new Exception(TraducirMensaje("msg_CamposVacios"));
 
                 string nomUsu_Encriptado = _encriptacion.Encriptar_AES(nombre_usuario);
                 BE.Usuario usuario = _UsuarioDAL.Login(nomUsu_Encriptado);
 
                 if (usuario != null)
                 {
-                    if (usuario.Estado >= 3) throw new Exception("El usuario está bloqueado.");
+                    if (usuario.Estado >= 3) throw new Exception(TraducirMensaje("msg_UsuarioBloqueado"));
 
                     string passwordEncriptada = _encriptacion.Encriptar_MD5(contraseña);
                     if (passwordEncriptada == usuario.Contraseña)
@@ -116,10 +116,10 @@ namespace BLL
                     else
                     {
                         _UsuarioDAL.Bloquear(usuario.Nombre_Usuario);
-                        throw new Exception("La contraseña ingresada es incorrecta.");
+                        throw new Exception(TraducirMensaje("msg_ContraseñaIncorrecta"));
                     }
                 }
-                else throw new Exception("No existe un usuario con ese nombre de usuario.");
+                else throw new Exception(TraducirMensaje("msg_UsuarioNoExiste"));
             }
             catch (Exception ex) { throw new Exception(ex.Message); }
         }
@@ -132,7 +132,7 @@ namespace BLL
             }
             catch
             {
-                throw new Exception("Hubo un error al querer desloguear. Contacte al administrador.");
+                throw new Exception(TraducirMensaje("msg_ErrorDeslogeo"));
             }
         }
 
@@ -141,16 +141,16 @@ namespace BLL
             if (string.IsNullOrWhiteSpace(usuario.Nombre) || string.IsNullOrWhiteSpace(usuario.Apellido) || string.IsNullOrWhiteSpace(usuario.Nombre_Usuario) 
                 || string.IsNullOrWhiteSpace(usuario.Contraseña) || string.IsNullOrWhiteSpace(usuario.Puesto) || string.IsNullOrWhiteSpace(usuario.Sexo) 
                 || string.IsNullOrWhiteSpace(usuario.Mail) || string.IsNullOrWhiteSpace((usuario.Telefono).ToString()) || string.IsNullOrWhiteSpace(usuario.Tipo))
-                    throw new Exception("Falta completar un campo");
-            
+                    throw new Exception(TraducirMensaje("msg_CamposVacios"));
+
             if (usuario.Nombre.Length < 3)
-                throw new Exception("El nombre debe tener al menos 3 caracteres");
+                throw new Exception(TraducirMensaje("msg_ValidacionNombre"));
 
             if (usuario.Apellido.Length < 3)
-                throw new Exception("El apellido debe tener al menos 3 caracteres");
+                throw new Exception(TraducirMensaje("msg_ValidacionApellido"));
 
             if ((usuario.Dni).ToString().Length < 6 || (usuario.Dni).ToString().Length > 10)
-                throw new Exception("Debe ingresar un DNI entre 6 y 10 digitos");
+                throw new Exception(TraducirMensaje("msg_ValidacionDni"));
         }
 
         public int CambiarContraseña(UsuarioDTO usuario, string contActual, string contNueva)
@@ -158,7 +158,7 @@ namespace BLL
             try
             {
                 ValidarCambioPassword(usuario, _encriptacion.Encriptar_MD5(contActual), contNueva);
-                if (string.IsNullOrWhiteSpace(contNueva) || contNueva.Length < 8) throw new Exception("msg_ValidacionPassword");
+                if (string.IsNullOrWhiteSpace(contNueva) || contNueva.Length < 8) throw new Exception(TraducirMensaje("msg_ValidacionPassword"));
 
                 string nuevaPasswordEncriptada = _encriptacion.Encriptar_MD5(contNueva);
 
@@ -174,7 +174,7 @@ namespace BLL
         {
             BE.Usuario _usuario = _UsuarioDAL.ObtenerUsuarioId(user.Id);
             if (passwordActual != _usuario.Contraseña) throw new Exception(TraducirMensaje("msg_PasswordNoCoindice"));
-            if (string.IsNullOrWhiteSpace(nuevaPassword) || nuevaPassword.Length < 8) throw new Exception(TraducirMensaje("msg_NuevaPasswordFormato"));
+            if (string.IsNullOrWhiteSpace(nuevaPassword) || nuevaPassword.Length < 8) throw new Exception(TraducirMensaje("msg_ValidacionPassword"));
         }
 
         private string TraducirMensaje(string msgTag)
@@ -192,7 +192,7 @@ namespace BLL
             }
             catch
             {
-                throw new Exception("Error al Listar Usuarios");
+                throw new Exception(TraducirMensaje("msg_ErrorListar"));
             }
         }
 
@@ -213,7 +213,10 @@ namespace BLL
 
                 return usuariosDesencriptado;
             }
-            catch (Exception) { throw new Exception("Hubo un error al querer obtener los usuarios."); }
+            catch (Exception) 
+            { 
+                throw new Exception(TraducirMensaje("msg_ErrorObtenerUsuarios"));
+            }
         }
 
         public List<BE.Usuario> ObtenerUsuarioDesencriptado()
@@ -231,16 +234,19 @@ namespace BLL
                     user.Contraseña = user.Contraseña;
                     user.Puesto = user.Puesto;
                     user.Dni = user.Dni;
-                    user.Sexo  = user.Sexo;
+                    user.Sexo = user.Sexo;
                     user.Mail = user.Mail;
-                    user.Telefono  = user.Telefono;
+                    user.Telefono = user.Telefono;
                     user.Tipo = user.Tipo;
                     usuariosDesencriptado.Add(user);
                 }
 
                 return usuariosDesencriptado;
             }
-            catch (Exception) { throw new Exception("Hubo un error al querer obtener los usuarios."); }
+            catch (Exception)
+            {
+                throw new Exception(TraducirMensaje("msg_ErrorObtenerUsuarios"));
+            }
         }
 
         public List<BE.Usuario> ListarUsuario()
@@ -253,8 +259,8 @@ namespace BLL
             }
             catch
             {
-                throw new Exception("Error al Listar Usuarios");
-            }
+                throw new Exception(TraducirMensaje("msg_ErrorListar"));
+                }
         }
         public List<BE.DTOs.UsuarioDTO> ListarBloqueados()
         {

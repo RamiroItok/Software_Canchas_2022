@@ -70,7 +70,7 @@ namespace BLL
             }
             catch
             {
-                throw new Exception("Error al Obtener las canchas");
+                throw new Exception(TraducirMensaje("msg_ErrorObtenerCanchas"));
             }
         }
 
@@ -101,12 +101,9 @@ namespace BLL
         }
 
         private void ValidarCampo(BE.Cancha cancha)
-        {
-            if (string.IsNullOrEmpty(cancha.Id.ToString())) 
-                throw new Exception(TraducirMensaje("msg_CanchaId_Cancha"));
-
-            if (string.IsNullOrWhiteSpace(cancha.Tipo) || string.IsNullOrWhiteSpace(cancha.Material) || string.IsNullOrEmpty(cancha.PrecioBase.ToString()))
-                throw new Exception(TraducirMensaje("msg_CampoVacio"));
+        { 
+            if (string.IsNullOrEmpty(cancha.Id.ToString()) || string.IsNullOrWhiteSpace(cancha.Tipo) || string.IsNullOrWhiteSpace(cancha.Material) || string.IsNullOrEmpty(cancha.PrecioBase.ToString()))
+                throw new Exception(TraducirMensaje("msg_CamposVacios"));
         }
 
         private string TraducirMensaje(string msgTag)
@@ -123,7 +120,7 @@ namespace BLL
             }
             catch (Exception) 
             { 
-                throw new Exception("Hubo un error al realizar el calculo."); 
+                throw new Exception(TraducirMensaje("msg_ErrorPrecio"));
             }
         }
     }
