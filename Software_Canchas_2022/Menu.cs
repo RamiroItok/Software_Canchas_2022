@@ -60,30 +60,28 @@ namespace Software_Canchas_2022
         {
             Sesion.SuscribirObservador(this);
             MostrarIdiomasDisponibles();
+            CargarPermisosMenu();
             MostrarControles();
             UpdateLanguage(Sesion.GetInstance().Idioma);
         }
 
         private void CargarPermisosMenu()
         {
-            PermisoTool.HabilitarMenu(_usuarioDTO, reservaToolStripMenuItem);
+            PermisoTool.HabilitarMenu(_usuarioDTO, canchaToolStripMenuItem);
             PermisoTool.HabilitarMenu(_usuarioDTO, gestiónToolStripMenuItem);
-            PermisoTool.HabilitarMenu(_usuarioDTO, gestionUsuariosToolStripMenuItem);
-            PermisoTool.HabilitarMenu(_usuarioDTO, gestionCanchasToolStripMenuItem);
-            PermisoTool.HabilitarMenu(_usuarioDTO, gestionClientesToolStripMenuItem);
             PermisoTool.HabilitarMenu(_usuarioDTO, informesToolStripMenuItem);
-            PermisoTool.HabilitarMenu(_usuarioDTO, altaIdiomaToolStripMenuItem1);
-            PermisoTool.HabilitarMenu(_usuarioDTO, recalcularDigitosVerificadoresToolStripMenuItem);
-            PermisoTool.HabilitarMenu(_usuarioDTO, bitácoraToolStripMenuItem);
-            PermisoTool.HabilitarMenu(_usuarioDTO, backUpToolStripMenuItem);
-            PermisoTool.HabilitarMenu(_usuarioDTO, restoreToolStripMenuItem);
-            PermisoTool.HabilitarMenu(_usuarioDTO, gestiónFamiliaToolStripMenuItem);
-            PermisoTool.HabilitarMenu(_usuarioDTO, asignarPermisosToolStripMenuItem);
-            PermisoTool.HabilitarMenu(_usuarioDTO, consultarPermisosToolStripMenuItem);
-            PermisoTool.HabilitarMenu(_usuarioDTO, bloqueadosToolStripMenuItem);
-            PermisoTool.HabilitarMenu(_usuarioDTO, cambiarContraseñaToolStripMenuItem);
-            PermisoTool.HabilitarMenu(_usuarioDTO, salirToolStripMenuItem);
-
+            PermisoTool.HabilitarMenu(_usuarioDTO, seguridadToolStripMenuItem);
+            reservaToolStripMenuItem.Enabled = PermisoTool.TienePermiso(_usuarioDTO, BE.Composite.Permiso.Reserva);
+            gestionUsuariosToolStripMenuItem.Enabled = PermisoTool.TienePermiso(_usuarioDTO, BE.Composite.Permiso.Reserva);
+            gestionCanchasToolStripMenuItem.Enabled = PermisoTool.TienePermiso(_usuarioDTO, BE.Composite.Permiso.Reserva);
+            gestionClientesToolStripMenuItem.Enabled = PermisoTool.TienePermiso(_usuarioDTO, BE.Composite.Permiso.Reserva);
+            gestionIdiomaToolStripMenuItem.Enabled = PermisoTool.TienePermiso(_usuarioDTO, BE.Composite.Permiso.Reserva);
+            recalcularDigitosVerificadoresToolStripMenuItem.Enabled = PermisoTool.TienePermiso(_usuarioDTO, BE.Composite.Permiso.Reserva);
+            bitácoraToolStripMenuItem.Enabled = PermisoTool.TienePermiso(_usuarioDTO, BE.Composite.Permiso.Reserva);
+            backUpToolStripMenuItem.Enabled = PermisoTool.TienePermiso(_usuarioDTO, BE.Composite.Permiso.Reserva);
+            restoreToolStripMenuItem.Enabled = PermisoTool.TienePermiso(_usuarioDTO, BE.Composite.Permiso.Reserva);
+            rolesToolStripMenuItem.Enabled = PermisoTool.TienePermiso(_usuarioDTO, BE.Composite.Permiso.Reserva);
+            seguridadUsuariosToolStripMenuItem.Enabled = PermisoTool.TienePermiso(_usuarioDTO, BE.Composite.Permiso.Reserva);
         }
 
         public void UpdateLanguage(IIdioma idioma)

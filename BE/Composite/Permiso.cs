@@ -9,11 +9,21 @@ namespace BE.Composite
     public enum Permiso
     {
         EsFamilia,
-        Gestion,
         Gestion_Usuarios,
         Gestion_Canchas,
         Gestion_Clientes,
         Reserva,
-        Gestion_Idioma
+        Informes,
+        Seguridad,
+        Recalcular_DV,
+        Bitacora,
+        Backup,
+        Restore,
+        Roles,
+        Seguridad_Usuarios,
+        Salir,
+        AltaIdioma,
+        CargarEtiquetas,
+        Cerrar_Sesion
     }
 }
