@@ -77,7 +77,7 @@ namespace DAL
             }
         }
 
-        public void BajaReserva(BE.Reserva reserva)
+        public int BajaReserva(BE.Reserva reserva)
         {
             try
             {
@@ -88,6 +88,8 @@ namespace DAL
                 ExecuteParameters.Parameters.AddWithValue("@parId", reserva.Id);
 
                 ExecuteNonQuery();
+
+                return reserva.Id;
             }
             catch
             {

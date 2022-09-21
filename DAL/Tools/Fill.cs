@@ -98,6 +98,32 @@ namespace DAL.Tools
             return usuario;
         }
 
+        public UsuarioDTO FillObjectUsuarioDesencriptado(DataRow dr)
+        {
+            UsuarioDTO usuario = new UsuarioDTO();
+
+            try
+            {
+                if (dr.Table.Columns.Contains("Id") && !Convert.IsDBNull(dr["Id"]))
+                    usuario.Id = Convert.ToInt32(dr["Id"]);
+
+                if (dr.Table.Columns.Contains("Nombre") && !Convert.IsDBNull(dr["Nombre"]))
+                    usuario.Nombre = Servicios.Encriptacion.Decrypt_AES(Convert.ToString(dr["Nombre"]));
+
+                if (dr.Table.Columns.Contains("Apellido") && !Convert.IsDBNull(dr["Apellido"]))
+                    usuario.Apellido = Servicios.Encriptacion.Decrypt_AES(Convert.ToString(dr["Apellido"]));
+
+                if (dr.Table.Columns.Contains("Nombre_Usuario") && !Convert.IsDBNull(dr["Nombre_Usuario"]))
+                    usuario.Nombre_Usuario = Servicios.Encriptacion.Decrypt_AES(Convert.ToString(dr["Nombre_Usuario"]));
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error en el método FillObject, " + ex.Message);
+            }
+            return usuario;
+        }
+
         public List<BE.DTOs.UsuarioDTO> FillListUsuarioDTO(DataSet ds)
         {
             return (from DataRow dr in ds.Tables[0].Rows select (new Fill()).FillObjectUsuarioDTO(dr)).ToList();
@@ -107,6 +133,8 @@ namespace DAL.Tools
         {
             return (from DataRow dr in ds.Tables[0].Rows select (new Fill()).FillObjectUsuarioDTO(dr)).ToList();
         }
+
+
         #endregion Usuario
 
         #region Cancha
@@ -397,6 +425,47 @@ namespace DAL.Tools
         public List<BE.Composite.Patente> FillListPatente(DataSet ds)
         {
             return (from DataRow dr in ds.Tables[0].Rows select (new Fill()).FillObjectPatente(dr)).ToList();
+        }
+        #endregion
+
+        #region Bitacora
+        public BE.Bitacora FillObjectBitacora(DataRow dr)
+        {
+            DAL.Usuario _usuarioDAL = new DAL.Usuario();
+
+            BE.Bitacora bitacora = new BE.Bitacora();
+
+            try
+            {
+                if (dr.Table.Columns.Contains("Id") && !Convert.IsDBNull(dr["Id"]))
+                    bitacora.Id = Convert.ToInt32(dr["Id"]);
+
+                if (dr.Table.Columns.Contains("Nombre_Usuario") && !Convert.IsDBNull(dr["Nombre_Usuario"]))
+                    bitacora.Nombre_Usuario = Convert.ToString(dr["Nombre_Usuario"]);
+
+                if (dr.Table.Columns.Contains("Descripcion") && !Convert.IsDBNull(dr["Descripcion"]))
+                    bitacora.Descripcion = Convert.ToString(dr["Descripcion"]);
+
+                if (dr.Table.Columns.Contains("Criticidad") && !Convert.IsDBNull(dr["Criticidad"]))
+                    bitacora.Criticidad = Convert.ToString(dr["Criticidad"]);
+
+                if (dr.Table.Columns.Contains("Fecha") && !Convert.IsDBNull(dr["Fecha"]))
+                    bitacora.Fecha = Convert.ToDateTime(dr["Fecha"]);
+
+                if (dr.Table.Columns.Contains("DVH") && !Convert.IsDBNull(dr["DVH"]))
+                    bitacora.DVH = Convert.ToInt32(dr["DVH"]);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error en el método FillObject, " + ex.Message);
+            }
+
+            return bitacora;
+        }
+
+        public List<BE.Bitacora> FillListBitacora(DataSet ds)
+        {
+            return (from DataRow dr in ds.Tables[0].Rows select (new Fill()).FillObjectBitacora(dr)).ToList();
         }
         #endregion
     }

@@ -11,7 +11,7 @@ namespace Interfaces
     {
         int AltaCliente(BE.Cliente cliente);
         int ModificarCliente(BE.Cliente cliente);
-        void BajaCliente(BE.Cliente Cliente);
+        int BajaCliente(BE.Cliente Cliente);
         List<BE.Cliente> ObtenerClientes();
         DataTable ObtenerNombreClientes();
 

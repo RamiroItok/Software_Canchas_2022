@@ -96,13 +96,13 @@ namespace Software_Canchas_2022
         {
             this.Hide();
 
-            Login formLogin = new Login(_iPermiso, _iTraductor, _iCancha, _iCliente, _iUsuario, _iReserva);
+            Login formLogin = new Login(_iPermiso, _iTraductor, _iCancha, _iCliente, _iUsuario, _iReserva, _iBitacora);
             formLogin.Show();
         }
 
         private void Registro_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Login formLogin = new Login(_iPermiso, _iTraductor, _iCancha, _iCliente, _iUsuario, _iReserva);
+            Login formLogin = new Login(_iPermiso, _iTraductor, _iCancha, _iCliente, _iUsuario, _iReserva, _iBitacora);
             formLogin.Show();
         }
     }

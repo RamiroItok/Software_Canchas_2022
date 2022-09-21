@@ -69,7 +69,7 @@ namespace DAL
             }
         }
 
-        public void BajaCancha(BE.Cancha cancha)
+        public int BajaCancha(BE.Cancha cancha)
         {
             try
             {   
@@ -80,6 +80,7 @@ namespace DAL
                 ExecuteParameters.Parameters.AddWithValue("@parId", cancha.Id);
 
                 ExecuteNonQuery();
+                return cancha.Id;
             }
             catch
             {

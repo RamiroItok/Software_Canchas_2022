@@ -12,7 +12,7 @@ namespace Servicios
         public static string IV = "qo1lc3sjd8zpt9cx"; //16 chars = 128 bytes
         public static string key = "ow7dxys8glfor9tnc2ansdfo1etkfjcv";  // 32 chars = 256 bytes
 
-        public string Encriptar_AES(string decrypted)
+        public static string Encriptar_AES(string decrypted)
         {
             byte[] textbytes = ASCIIEncoding.ASCII.GetBytes(decrypted);
             AesCryptoServiceProvider encdec = new AesCryptoServiceProvider();
@@ -31,7 +31,7 @@ namespace Servicios
             return Convert.ToBase64String(enc);
         }
 
-        public string Decrypt_AES(string encrypted)
+        public static string Decrypt_AES(string encrypted)
         {
             byte[] encbytes = Convert.FromBase64String(encrypted);
             AesCryptoServiceProvider encdec = new AesCryptoServiceProvider();
@@ -50,7 +50,7 @@ namespace Servicios
             return ASCIIEncoding.ASCII.GetString(dec);
         }
 
-        public string Encriptar_MD5(string cadena)
+        public static string Encriptar_MD5(string cadena)
         {
             MD5 md5 = MD5.Create();
             byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(cadena);

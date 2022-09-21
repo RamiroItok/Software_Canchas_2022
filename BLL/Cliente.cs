@@ -13,11 +13,13 @@ namespace BLL
     {
         private readonly DAL.Cliente _clienteDAL;
         private readonly DAL.Observer.Idioma _idiomaDAL;
+        private readonly IBitacora _bitacora;
 
         public Cliente()
         {
             _clienteDAL = new DAL.Cliente();
             _idiomaDAL = new DAL.Observer.Idioma();
+            _bitacora = new BLL.Bitacora();
         }
 
         public int AltaCliente(BE.Cliente cliente)
@@ -25,7 +27,10 @@ namespace BLL
             try
             {
                 ValidarCliente(cliente);
-                return _clienteDAL.AltaCliente(cliente);
+                int id = _clienteDAL.AltaCliente(cliente);
+                //GUARDAR EN BITACORA
+                //_bitacora.AltaBitacora("Se dió de alta el cliente " + id + ".", "MEDIA");
+                return id;
             }
             catch (Exception ex)
             {
@@ -38,7 +43,10 @@ namespace BLL
             try
             {
                 ValidarCliente(cliente);
-                return _clienteDAL.ModificarCliente(cliente);
+                int id = _clienteDAL.ModificarCliente(cliente);
+                //GUARDAR EN BITACORA
+                //_bitacora.AltaBitacora("Se modificó el cliente " + id + ".", "MEDIA");
+                return id;
             }
             catch (Exception ex)
             {
@@ -46,11 +54,14 @@ namespace BLL
             }
         }
 
-        public void BajaCliente(BE.Cliente cliente)
+        public int BajaCliente(BE.Cliente cliente)
         {
             try
             {
-                _clienteDAL.BajaCliente(cliente);
+                int id = _clienteDAL.BajaCliente(cliente);
+                //GUARDAR EN BITACORA
+                //_bitacora.AltaBitacora("Se dió de baja el cliente " + id + ".", "ALTA");
+                return id;
             }
             catch (Exception ex)
             {

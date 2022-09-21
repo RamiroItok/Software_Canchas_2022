@@ -34,24 +34,7 @@ namespace Software_Canchas_2022
 
         private bool mdiChildActivo = false;
 
-        /*public Menu(IPermiso permiso, ITraductor traductor, IBitacora bitacora, ICancha cancha, ICliente cliente, IDigito_Verificador dv, IEncriptar encriptar, IUsuario usuario)
-        {
-            InitializeComponent();
-
-            _iPermiso = permiso;
-            _iTraductor = traductor;
-            _iBitacora = bitacora;
-            _iCancha = cancha;
-            _iCliente = cliente;
-            _iDV = dv;
-            _iEncriptar = encriptar;
-            _iUsuario = usuario;
-
-            _usuarioDTO = Sesion.GetInstance();
-            _idiomas = new List<IIdioma>();
-        }*/
-
-        public Menu(IPermiso permiso, ITraductor traductor, ICancha cancha, ICliente cliente, IUsuario usuario, IReserva reserva)
+        public Menu(IPermiso permiso, ITraductor traductor, ICancha cancha, ICliente cliente, IUsuario usuario, IReserva reserva, IBitacora bitacora)
         {
             InitializeComponent();
 
@@ -61,6 +44,7 @@ namespace Software_Canchas_2022
             _iUsuario = usuario;
             _iCliente = cliente;
             _iReserva = reserva;
+            _iBitacora = bitacora;
 
             _usuarioDTO = Sesion.GetInstance();
             _idiomas = new List<IIdioma>();
@@ -184,7 +168,7 @@ namespace Software_Canchas_2022
 
         private void Abrir_FormLLogin()
         {
-            Login login = new Login(_iPermiso, _iTraductor, _iCancha, _iCliente, _iUsuario, _iReserva);
+            Login login = new Login(_iPermiso, _iTraductor, _iCancha, _iCliente, _iUsuario, _iReserva, _iBitacora);
             login.Show();
         }
 
@@ -252,6 +236,14 @@ namespace Software_Canchas_2022
             etiquetas.MdiParent = this;
             etiquetas.StartPosition = FormStartPosition.CenterScreen;
             etiquetas.Show();
+        }
+
+        private void bitácoraToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Bitacora bitacora = new Bitacora(_iBitacora, _iTraductor, _iUsuario);
+            bitacora.MdiParent = this;
+            bitacora.StartPosition = FormStartPosition.CenterScreen;
+            bitacora.Show();
         }
     }
 }
