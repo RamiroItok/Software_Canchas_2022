@@ -90,7 +90,7 @@ namespace Software_Canchas_2022
 
         private void btn_Cancelar_Click(object sender, EventArgs e)
         {
-
+            Limpiar();
         }
 
         private void Gestion_Etiquetas_Load(object sender, EventArgs e)
@@ -117,6 +117,7 @@ namespace Software_Canchas_2022
                 dataGridEtiquetas.ClearSelection();
                 dataGridEtiquetas.TabStop = false;
                 dataGridEtiquetas.ReadOnly = true;
+                dataGridEtiquetas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             }
         }
 

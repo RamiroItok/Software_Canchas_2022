@@ -32,7 +32,7 @@ namespace BLL
                 ValidarCampo(cancha);
                 int id = _CanchaDAL.AltaCancha(cancha);
                 //GUARDAR EN BITACORA
-                //_bitacora.AltaBitacora("Se dió de alta la cancha " + id + ".", "MEDIA");
+                //_bitacora.AltaBitacora("Se dió de alta la cancha " + id + ".", "BAJA");
                 return id;
             }
             catch (Exception ex)
@@ -48,7 +48,7 @@ namespace BLL
                 ValidarCampo(cancha);
                 int id =  _CanchaDAL.ModificarCancha(cancha);
                 //GUARDAR EN BITACORA
-                //_bitacora.AltaBitacora("Se modificó la cancha " + id + ".", "MEDIA");
+                //_bitacora.AltaBitacora("Se modificó la cancha " + id + ".", "BAJA");
                 return id;
             }
             catch (Exception ex)

@@ -15,6 +15,7 @@ namespace BLL
         private readonly DAL.Observer.Idioma _IdiomaDAL;
         private readonly DAL.Composite.Permiso _permisoDAL;
         private readonly IBitacora _bitacora;
+        private readonly IDigito_Verificador _digitoVerificador;
 
         public Usuario()
         {
@@ -22,6 +23,7 @@ namespace BLL
             _IdiomaDAL = new DAL.Observer.Idioma();
             _permisoDAL = new DAL.Composite.Permiso();
             _bitacora = new BLL.Bitacora();
+            _digitoVerificador = new BLL.DigitoVerificador();
         }
 
         public int AltaUsuario(BE.Usuario usuario)
@@ -44,7 +46,8 @@ namespace BLL
 
                 int id = _UsuarioDAL.Alta_Usuario(usuario);
                 //GUARDAR EN BITACORA
-                //_bitacora.AltaBitacora("Se dió de alta el usuario " + id + ".", "MEDIA");
+                _bitacora.AltaBitacora("Se dió de alta el usuario " + id + ".", "ALTA");
+                _digitoVerificador.RecalcularDV();
                 return id;
             }
             catch (Exception ex)
@@ -70,6 +73,7 @@ namespace BLL
                 int id = _UsuarioDAL.Modificar_Usuario(usuario);
                 //GUARDAR EN BITACORA
                 //_bitacora.AltaBitacora("Se modificó el usuario " + id + ".", "ALTA");
+                _digitoVerificador.RecalcularDV();
                 return id;
             }
             catch (Exception ex)
@@ -85,6 +89,7 @@ namespace BLL
                 int id = _UsuarioDAL.Baja_Usuario(usuario);
                 //GUARDAR EN BITACORA
                 //_bitacora.AltaBitacora("Se dió de baja el usuario " + id + ".", "ALTA");
+                _digitoVerificador.RecalcularDV();
                 return id;
             }
             catch (Exception ex)
@@ -123,11 +128,13 @@ namespace BLL
 
                         Sesion.CreateInstance(usuarioSingleton, _IdiomaDAL.ObtenerIdiomaDefault());
                         //GUARDAR EN BITACORA
-                        //_bitacora.AltaBitacora("Se logeó el usuario.", "ALTA");
+                        _bitacora.AltaBitacora("Se logeó el usuario.", "ALTA");
+                        _digitoVerificador.RecalcularDV();
                     }
                     else
                     {
                         _UsuarioDAL.Bloquear(usuario.Nombre_Usuario);
+                        _digitoVerificador.RecalcularDV();
                         throw new Exception(TraducirMensaje("msg_ContraseñaIncorrecta"));
                     }
                 }
@@ -178,6 +185,7 @@ namespace BLL
 
                 //GUARDAR EN BITACORA
                 //_bitacora.AltaBitacora("Se cambi el usuario.", "ALTA");
+                _digitoVerificador.RecalcularDV();
                 return _UsuarioDAL.CambiarContraseña(usuario, nuevaPasswordEncriptada);
             }
             catch (Exception ex)

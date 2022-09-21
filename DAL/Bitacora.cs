@@ -19,7 +19,7 @@ namespace DAL
         }
 
         private const string ALTA_BITACORA = "INSERT INTO Bitacora (Nombre_Usuario, Descripcion, Fecha, Criticidad, DVH) OUTPUT inserted.Id Values (@parNombre_Usuario, @parDescripcion, @parFecha, @parCriticidad, @parDVH)";
-        private const string LISTAR_EVENTO = "SELECT Id, Nombre_Usuario, Descripcion, Fecha, Criticidad FROM Bitacora";
+        private const string LISTAR_EVENTO = "SELECT Id, Nombre_Usuario, Descripcion, Fecha, Criticidad FROM Bitacora ORDER BY Fecha asc";
 
         public int AltaBitacora(BE.Bitacora bitacora)
         {

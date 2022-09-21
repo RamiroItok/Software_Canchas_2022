@@ -11,6 +11,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BE.Observer;
+using Servicios;
 
 namespace Software_Canchas_2022
 {
@@ -21,23 +23,10 @@ namespace Software_Canchas_2022
         private readonly IBitacora _iBitacora;
         private readonly ICancha _iCancha;
         private readonly ICliente _iCliente;
-        private readonly IDigito_Verificador _iDV;
+        private readonly IDigito_Verificador _IDigitoVerifivador;
         private readonly IEncriptar _iEncriptar;
         private readonly IUsuario _iUsuario;
         private readonly IReserva _iReserva;
-
-        /*public Login(IPermiso permiso, ITraductor traductor, IBitacora bitacora, ICancha cancha, ICliente cliente, IDigito_Verificador dv, IEncriptar encriptar, IUsuario usuario)
-        {
-            InitializeComponent();
-            _iPermiso = permiso;
-            _iTraductor = traductor;
-            _iBitacora = bitacora;
-            _iCancha = cancha;
-            _iCliente = cliente;
-            _iDV = dv;
-            _iEncriptar = encriptar;
-            _iUsuario = usuario;
-        }*/
 
         public Login(IPermiso permiso, ITraductor traductor, ICancha cancha, ICliente cliente, IUsuario usuario, IReserva reserva, IBitacora bitacora)
         {
@@ -49,6 +38,16 @@ namespace Software_Canchas_2022
             _iCliente = cliente;
             _iReserva = reserva;
             _iBitacora = bitacora;
+            _IDigitoVerifivador = new BLL.DigitoVerificador();
+           /* if(VerificarIntegridad() == false)
+            {
+                this.WindowState = FormWindowState.Minimized;
+                btnIngresar.Enabled = false;
+                txtUser.Enabled = false;
+                txtPass.Enabled = false;
+                LogInSeguridad logInSeguridad = new LogInSeguridad();
+                logInSeguridad.Show();
+            }*/
         }
 
         private void btnIngresar_Click(object sender, EventArgs e)
@@ -80,13 +79,49 @@ namespace Software_Canchas_2022
         {
             this.Hide();
 
-            Registro formRegistro = new Registro(_iPermiso, _iTraductor, _iBitacora, _iCancha, _iCliente, _iDV, _iEncriptar, _iUsuario, _iReserva);
+            Registro formRegistro = new Registro(_iPermiso, _iTraductor, _iBitacora, _iCancha, _iCliente, _IDigitoVerifivador, _iEncriptar, _iUsuario, _iReserva);
             formRegistro.Show();
         }
 
         private void Login_FormClosed(object sender, FormClosedEventArgs e)
         {
             System.Environment.Exit(0);
+        }
+
+        private bool VerificarIntegridad()
+        {
+            try
+            {
+                string mensaje = _IDigitoVerifivador.VerificarDV();
+                if (mensaje != "true")
+                {
+                    MessageBox.Show(mensaje);
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            catch
+            {
+                throw new Exception();
+            }
+        }
+
+        public void UpdateLanguage(IIdioma idioma)
+        {
+            Traducir(idioma);
+        }
+
+        private void Traducir(IIdioma idioma)
+        {
+            Traductor.Traducir(_iTraductor, idioma, this.Controls);
+        }
+
+        private string TraducirMensaje(string msgTag)
+        {
+            return Traductor.TraducirMensaje(_iTraductor, msgTag);
         }
     }
 }

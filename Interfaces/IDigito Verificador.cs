@@ -8,7 +8,8 @@ namespace Interfaces
 {
     public interface IDigito_Verificador
     {
-        bool VerificarDV();
+        string VerificarDV();
         bool RecalcularDV();
+        void LoginSeguridad(string nombre_usuario, string contraseña);
     }
 }

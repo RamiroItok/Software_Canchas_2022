@@ -13,11 +13,13 @@ namespace BLL
     {
         private readonly DAL.Bitacora _BitacoraDAL;
         private readonly DAL.Observer.Idioma _IdiomaDAL;
-        
+        private readonly IDigito_Verificador _digitoVerificador;
+
         public Bitacora()
         {
             _BitacoraDAL = new DAL.Bitacora();
             _IdiomaDAL = new DAL.Observer.Idioma();
+            _digitoVerificador = new BLL.DigitoVerificador();
         }
 
         public int AltaBitacora(string descripcion, string criticidad)
@@ -33,6 +35,7 @@ namespace BLL
                 };
                 
                 ValidarCampo(bitacora);
+                _digitoVerificador.RecalcularDV();
                 return _BitacoraDAL.AltaBitacora(bitacora);
             }
             catch (Exception ex)
@@ -45,7 +48,11 @@ namespace BLL
         {
             try
             {
-                return _BitacoraDAL.BajaBitacora(fechaIni, fechaFin);
+                int id = _BitacoraDAL.BajaBitacora(fechaIni, fechaFin);
+                //GUARDAR EN BITACORA
+                AltaBitacora("Se eliminaron las bitacoras desde el día " + fechaIni + " hasta el día " + fechaFin + "." , "MEDIA");
+                _digitoVerificador.RecalcularDV();
+                return id;
             }
             catch (Exception ex)
             {

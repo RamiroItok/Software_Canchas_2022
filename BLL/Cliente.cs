@@ -29,7 +29,7 @@ namespace BLL
                 ValidarCliente(cliente);
                 int id = _clienteDAL.AltaCliente(cliente);
                 //GUARDAR EN BITACORA
-                //_bitacora.AltaBitacora("Se dió de alta el cliente " + id + ".", "MEDIA");
+                //_bitacora.AltaBitacora("Se dió de alta el cliente " + id + ".", "BAJA");
                 return id;
             }
             catch (Exception ex)
@@ -45,7 +45,7 @@ namespace BLL
                 ValidarCliente(cliente);
                 int id = _clienteDAL.ModificarCliente(cliente);
                 //GUARDAR EN BITACORA
-                //_bitacora.AltaBitacora("Se modificó el cliente " + id + ".", "MEDIA");
+                //_bitacora.AltaBitacora("Se modificó el cliente " + id + ".", "BAJA");
                 return id;
             }
             catch (Exception ex)
@@ -60,7 +60,7 @@ namespace BLL
             {
                 int id = _clienteDAL.BajaCliente(cliente);
                 //GUARDAR EN BITACORA
-                //_bitacora.AltaBitacora("Se dió de baja el cliente " + id + ".", "ALTA");
+                //_bitacora.AltaBitacora("Se dió de baja el cliente " + id + ".", "BAJA");
                 return id;
             }
             catch (Exception ex)
