@@ -12,16 +12,16 @@ namespace BLL
     public class Usuario : IUsuario
     {
         private readonly DAL.Usuario _UsuarioDAL;
-        private readonly Servicios.Encriptacion _encriptacion;
         private readonly DAL.Observer.Idioma _IdiomaDAL;
         private readonly DAL.Composite.Permiso _permisoDAL;
+        private readonly IBitacora _bitacora;
 
         public Usuario()
         {
             _UsuarioDAL = new DAL.Usuario();
             _IdiomaDAL = new DAL.Observer.Idioma();
-            _encriptacion = new Servicios.Encriptacion();
             _permisoDAL = new DAL.Composite.Permiso();
+            _bitacora = new BLL.Bitacora();
         }
 
         public int AltaUsuario(BE.Usuario usuario)
@@ -29,10 +29,10 @@ namespace BLL
             try
             {
                 ValidarUsuario(usuario);
-                usuario.Nombre = _encriptacion.Encriptar_AES(usuario.Nombre);
-                usuario.Apellido = _encriptacion.Encriptar_AES(usuario.Apellido);
-                usuario.Nombre_Usuario = _encriptacion.Encriptar_AES(usuario.Nombre_Usuario);
-                usuario.Contraseña = _encriptacion.Encriptar_MD5(usuario.Contraseña);
+                usuario.Nombre = Encriptacion.Encriptar_AES(usuario.Nombre);
+                usuario.Apellido = Encriptacion.Encriptar_AES(usuario.Apellido);
+                usuario.Nombre_Usuario = Encriptacion.Encriptar_AES(usuario.Nombre_Usuario);
+                usuario.Contraseña = Encriptacion.Encriptar_MD5(usuario.Contraseña);
                 usuario.Puesto = usuario.Puesto;
                 usuario.Dni = usuario.Dni;
                 usuario.Sexo = usuario.Sexo;
@@ -42,7 +42,10 @@ namespace BLL
                 usuario.Estado = 0;
                 usuario.DVH = 0;
 
-                return _UsuarioDAL.Alta_Usuario(usuario);
+                int id = _UsuarioDAL.Alta_Usuario(usuario);
+                //GUARDAR EN BITACORA
+                //_bitacora.AltaBitacora("Se dió de alta el usuario " + id + ".", "MEDIA");
+                return id;
             }
             catch (Exception ex)
             {
@@ -54,9 +57,9 @@ namespace BLL
         {
             try
             {
-                usuario.Nombre = _encriptacion.Encriptar_AES(usuario.Nombre);
-                usuario.Apellido = _encriptacion.Encriptar_AES(usuario.Apellido);
-                usuario.Nombre_Usuario = _encriptacion.Encriptar_AES(usuario.Nombre_Usuario);
+                usuario.Nombre = Encriptacion.Encriptar_AES(usuario.Nombre);
+                usuario.Apellido = Encriptacion.Encriptar_AES(usuario.Apellido);
+                usuario.Nombre_Usuario = Encriptacion.Encriptar_AES(usuario.Nombre_Usuario);
                 usuario.Puesto = usuario.Puesto;
                 usuario.Dni = usuario.Dni;
                 usuario.Sexo = usuario.Sexo;
@@ -64,7 +67,10 @@ namespace BLL
                 usuario.Telefono = usuario.Telefono;
                 usuario.Tipo = usuario.Tipo;
 
-                return _UsuarioDAL.Modificar_Usuario(usuario);
+                int id = _UsuarioDAL.Modificar_Usuario(usuario);
+                //GUARDAR EN BITACORA
+                //_bitacora.AltaBitacora("Se modificó el usuario " + id + ".", "ALTA");
+                return id;
             }
             catch (Exception ex)
             {
@@ -72,11 +78,14 @@ namespace BLL
             }
         }
 
-        public void BajaUsuario(BE.Usuario usuario)
+        public int BajaUsuario(BE.Usuario usuario)
         {
             try
             {
-                _UsuarioDAL.Baja_Usuario(usuario);
+                int id = _UsuarioDAL.Baja_Usuario(usuario);
+                //GUARDAR EN BITACORA
+                //_bitacora.AltaBitacora("Se dió de baja el usuario " + id + ".", "ALTA");
+                return id;
             }
             catch (Exception ex)
             {
@@ -91,27 +100,30 @@ namespace BLL
                 if (Sesion.GetInstance() != null) throw new Exception(TraducirMensaje("msg_Instancia"));
                 if (string.IsNullOrWhiteSpace(nombre_usuario) || string.IsNullOrWhiteSpace(contraseña)) throw new Exception(TraducirMensaje("msg_CamposVacios"));
 
-                string nomUsu_Encriptado = _encriptacion.Encriptar_AES(nombre_usuario);
+                string nomUsu_Encriptado = Encriptacion.Encriptar_AES(nombre_usuario);
                 BE.Usuario usuario = _UsuarioDAL.Login(nomUsu_Encriptado);
 
                 if (usuario != null)
                 {
                     if (usuario.Estado >= 3) throw new Exception(TraducirMensaje("msg_UsuarioBloqueado"));
 
-                    string passwordEncriptada = _encriptacion.Encriptar_MD5(contraseña);
+                    string passwordEncriptada = Encriptacion.Encriptar_MD5(contraseña);
                     if (passwordEncriptada == usuario.Contraseña)
                     {
                         UsuarioDTO usuarioSingleton = new UsuarioDTO()
                         {
                             Id = usuario.Id,
-                            Nombre_Usuario = _encriptacion.Decrypt_AES(usuario.Nombre_Usuario),
-                            Nombre = _encriptacion.Decrypt_AES(usuario.Nombre),
-                            Apellido = _encriptacion.Decrypt_AES(usuario.Apellido),
+                            Nombre_Usuario = Encriptacion.Decrypt_AES(usuario.Nombre_Usuario),
+                            Nombre = Encriptacion.Decrypt_AES(usuario.Nombre),
+                            Apellido = Encriptacion.Decrypt_AES(usuario.Apellido),
                             Telefono = usuario.Telefono,
                         };
                         _permisoDAL.GetComponenteUsuario(usuarioSingleton);
                         _UsuarioDAL.Desbloquear(usuario.Nombre_Usuario);
+
                         Sesion.CreateInstance(usuarioSingleton, _IdiomaDAL.ObtenerIdiomaDefault());
+                        //GUARDAR EN BITACORA
+                        //_bitacora.AltaBitacora("Se logeó el usuario.", "ALTA");
                     }
                     else
                     {
@@ -128,6 +140,8 @@ namespace BLL
         {
             try
             {
+                //GUARDAR EN BITACORA
+                //_bitacora.AltaBitacora("Cerró la sesión.", "ALTA");
                 Sesion.RemoveInstance();
             }
             catch
@@ -157,11 +171,13 @@ namespace BLL
         {
             try
             {
-                ValidarCambioPassword(usuario, _encriptacion.Encriptar_MD5(contActual), contNueva);
+                ValidarCambioPassword(usuario, Encriptacion.Encriptar_MD5(contActual), contNueva);
                 if (string.IsNullOrWhiteSpace(contNueva) || contNueva.Length < 8) throw new Exception(TraducirMensaje("msg_ValidacionPassword"));
 
-                string nuevaPasswordEncriptada = _encriptacion.Encriptar_MD5(contNueva);
+                string nuevaPasswordEncriptada = Encriptacion.Encriptar_MD5(contNueva);
 
+                //GUARDAR EN BITACORA
+                //_bitacora.AltaBitacora("Se cambi el usuario.", "ALTA");
                 return _UsuarioDAL.CambiarContraseña(usuario, nuevaPasswordEncriptada);
             }
             catch (Exception ex)
@@ -188,7 +204,6 @@ namespace BLL
             {
                 List<BE.DTOs.UsuarioDTO> usuario = _UsuarioDAL.ListarUsuarioDTO();
                 return usuario;
-
             }
             catch
             {
@@ -205,9 +220,9 @@ namespace BLL
 
                 foreach (UsuarioDTO user in usuarios)
                 {
-                    user.Nombre_Usuario = _encriptacion.Decrypt_AES(user.Nombre_Usuario);
-                    user.Nombre = _encriptacion.Decrypt_AES(user.Nombre);
-                    user.Apellido = _encriptacion.Decrypt_AES(user.Apellido);
+                    user.Nombre_Usuario = Encriptacion.Decrypt_AES(user.Nombre_Usuario);
+                    user.Nombre = Encriptacion.Decrypt_AES(user.Nombre);
+                    user.Apellido = Encriptacion.Decrypt_AES(user.Apellido);
                     usuariosDesencriptado.Add(user);
                 }
 
@@ -228,9 +243,9 @@ namespace BLL
 
                 foreach (BE.Usuario user in usuarios)
                 {
-                    user.Nombre = _encriptacion.Decrypt_AES(user.Nombre);
-                    user.Apellido = _encriptacion.Decrypt_AES(user.Apellido);
-                    user.Nombre_Usuario = _encriptacion.Decrypt_AES(user.Nombre_Usuario);
+                    user.Nombre = Encriptacion.Decrypt_AES(user.Nombre);
+                    user.Apellido = Encriptacion.Decrypt_AES(user.Apellido);
+                    user.Nombre_Usuario = Encriptacion.Decrypt_AES(user.Nombre_Usuario);
                     user.Contraseña = user.Contraseña;
                     user.Puesto = user.Puesto;
                     user.Dni = user.Dni;

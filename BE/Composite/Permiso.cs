@@ -13,6 +13,7 @@ namespace BE.Composite
         Gestion_Usuarios,
         Gestion_Canchas,
         Gestion_Clientes,
-        Reserva
+        Reserva,
+        Gestion_Idioma
     }
 }

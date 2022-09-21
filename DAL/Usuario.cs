@@ -105,7 +105,7 @@ namespace DAL
             }
         }
 
-        public void Baja_Usuario(BE.Usuario usuario)
+        public int Baja_Usuario(BE.Usuario usuario)
         {
             try
             {
@@ -116,6 +116,8 @@ namespace DAL
                 ExecuteParameters.Parameters.AddWithValue("@parId", usuario.Id);
 
                 ExecuteNonQuery();
+                
+                return usuario.Id;
             }
             catch
             {

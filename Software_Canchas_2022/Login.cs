@@ -39,7 +39,7 @@ namespace Software_Canchas_2022
             _iUsuario = usuario;
         }*/
 
-        public Login(IPermiso permiso, ITraductor traductor, ICancha cancha, ICliente cliente, IUsuario usuario, IReserva reserva)
+        public Login(IPermiso permiso, ITraductor traductor, ICancha cancha, ICliente cliente, IUsuario usuario, IReserva reserva, IBitacora bitacora)
         {
             InitializeComponent();
             _iPermiso = permiso;
@@ -48,6 +48,7 @@ namespace Software_Canchas_2022
             _iUsuario = usuario;
             _iCliente = cliente;
             _iReserva = reserva;
+            _iBitacora = bitacora;
         }
 
         private void btnIngresar_Click(object sender, EventArgs e)
@@ -59,7 +60,7 @@ namespace Software_Canchas_2022
                 Limpiar();
                 this.Hide();
                 MessageBox.Show("Se ingresó correctamente");
-                Menu formMenu = new Menu(_iPermiso, _iTraductor, _iCancha, _iCliente, _iUsuario, _iReserva);
+                Menu formMenu = new Menu(_iPermiso, _iTraductor, _iCancha, _iCliente, _iUsuario, _iReserva, _iBitacora);
                 formMenu.Show();
             }
             catch (Exception ex)

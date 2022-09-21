@@ -15,11 +15,13 @@ namespace BLL
         
         private readonly DAL.Cancha _CanchaDAL;
         private readonly DAL.Observer.Idioma _IdiomaDAL;
+        private readonly IBitacora _bitacora;
 
         public Cancha()
         {
             _CanchaDAL = new DAL.Cancha();
             _IdiomaDAL = new DAL.Observer.Idioma();
+            _bitacora = new BLL.Bitacora();
         }
         
 
@@ -28,7 +30,10 @@ namespace BLL
             try
             {
                 ValidarCampo(cancha);
-                return _CanchaDAL.AltaCancha(cancha);
+                int id = _CanchaDAL.AltaCancha(cancha);
+                //GUARDAR EN BITACORA
+                //_bitacora.AltaBitacora("Se dió de alta la cancha " + id + ".", "MEDIA");
+                return id;
             }
             catch (Exception ex)
             {
@@ -41,7 +46,10 @@ namespace BLL
             try
             {
                 ValidarCampo(cancha);
-                return _CanchaDAL.ModificarCancha(cancha);
+                int id =  _CanchaDAL.ModificarCancha(cancha);
+                //GUARDAR EN BITACORA
+                //_bitacora.AltaBitacora("Se modificó la cancha " + id + ".", "MEDIA");
+                return id;
             }
             catch (Exception ex)
             {
@@ -49,11 +57,14 @@ namespace BLL
             }
         }
 
-        public void BajaCancha(BE.Cancha cancha)
+        public int BajaCancha(BE.Cancha cancha)
         {
             try
             {
-                _CanchaDAL.BajaCancha(cancha);
+                int id = _CanchaDAL.BajaCancha(cancha);
+                //GUARDAR EN BITACORA
+                //_bitacora.AltaBitacora("Se dió de baja la cancha " + id + ".", "MEDIA");
+                return id;
             }
             catch (Exception ex)
             {

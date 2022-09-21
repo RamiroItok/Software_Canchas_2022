@@ -65,7 +65,7 @@ namespace DAL
             }
         }
 
-        public void BajaCliente(BE.Cliente cliente)
+        public int BajaCliente(BE.Cliente cliente)
         {
             try
             {
@@ -76,6 +76,7 @@ namespace DAL
                 ExecuteParameters.Parameters.AddWithValue("@parId", cliente.Id);
 
                 ExecuteNonQuery();
+                return cliente.Id;
             }
             catch
             {
