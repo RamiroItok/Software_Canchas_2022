@@ -261,5 +261,13 @@ namespace Software_Canchas_2022
             restore.StartPosition = FormStartPosition.CenterScreen;
             restore.Show();
         }
+
+        private void gestiónFamiliaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GestionFamilia familia = new GestionFamilia(_iPermiso, _iTraductor);
+            familia.MdiParent = this;
+            familia.StartPosition = FormStartPosition.CenterScreen;
+            familia.Show();
+        }
     }
 }

@@ -37,11 +37,11 @@ namespace BLL.Composite
             }
         }
 
-        public int GuardarPatenteFamilia(Componente componente, bool familia)
+        public int AltaFamiliaPatente(Componente componente, bool familia)
         {
             try
             {
-                return _permisoDAL.GuardarPatenteFamilia(componente, familia);
+                return _permisoDAL.AltaFamiliaPatente(componente, familia);
             }
             catch (Exception ex)
             {
@@ -93,11 +93,11 @@ namespace BLL.Composite
             catch (Exception) { throw new Exception(TraducirMensaje("msg_ErrorObtenerComponentes")); }
         }
 
-        public IList<Familia> GetFamilias()
+        public IList<Familia> ObtenerFamilias()
         {
             try
             {
-                IList<Familia> familias = _permisoDAL.GetFamilias();
+                IList<Familia> familias = _permisoDAL.ObtenerFamilias();
                 return familias;
             }
             catch (Exception) { throw new Exception(TraducirMensaje("msg_ErrorObtenerFamilias")); }

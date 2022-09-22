@@ -10,9 +10,9 @@ namespace Interfaces.Composite
 {
     public interface IPermiso
     {
-        int GuardarPatenteFamilia(Componente componente, bool familia);
+        int AltaFamiliaPatente(Componente componente, bool familia);
         void GuardarFamiliaCreada(Familia familia);
-        IList<Familia> GetFamilias();
+        IList<Familia> ObtenerFamilias();
         IList<Patente> GetPatentes();
         IList<Componente> TraerFamiliaPatentes(int familiaId);
         Array TraerPermisos();

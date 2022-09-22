@@ -226,21 +226,22 @@
             // gestiónFamiliaToolStripMenuItem
             // 
             this.gestiónFamiliaToolStripMenuItem.Name = "gestiónFamiliaToolStripMenuItem";
-            this.gestiónFamiliaToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.gestiónFamiliaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.gestiónFamiliaToolStripMenuItem.Tag = "menu_Roles_Familia";
             this.gestiónFamiliaToolStripMenuItem.Text = "Gestión Familia";
+            this.gestiónFamiliaToolStripMenuItem.Click += new System.EventHandler(this.gestiónFamiliaToolStripMenuItem_Click);
             // 
             // asignarPermisosToolStripMenuItem
             // 
             this.asignarPermisosToolStripMenuItem.Name = "asignarPermisosToolStripMenuItem";
-            this.asignarPermisosToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.asignarPermisosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.asignarPermisosToolStripMenuItem.Tag = "menu_Asignar_Permisos";
             this.asignarPermisosToolStripMenuItem.Text = "Asignar permisos";
             // 
             // consultarPermisosToolStripMenuItem
             // 
             this.consultarPermisosToolStripMenuItem.Name = "consultarPermisosToolStripMenuItem";
-            this.consultarPermisosToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.consultarPermisosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.consultarPermisosToolStripMenuItem.Tag = "menu_Consultar_Permisos";
             this.consultarPermisosToolStripMenuItem.Text = "Consultar permisos";
             // 

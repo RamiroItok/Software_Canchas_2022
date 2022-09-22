@@ -22,10 +22,10 @@ namespace DAL.Composite
         #endregion
 
         #region Querys
-        private const string GUARDAR_COMPONENTE = "INSERT INTO Permiso (Nombre, Permiso) OUTPUT inserted.Id VALUES (@parNombre, @parPermiso)";
+        private const string ALTA_FAMILIA_PATENTE = "INSERT INTO Permiso (Nombre, Permiso) OUTPUT inserted.Id VALUES (@parNombre, @parPermiso)";
         private const string BORRAR_FAMILIA = "DELETE FROM FamiliaPatente WHERE PadreId = @parId";
         private const string GUARDAR_FAMILIA = "INSERT INTO FamiliaPatente (PadreId, HijoId) VALUES (@parPadreId, @parHijoId)";
-        private const string GET_FAMILIAS = "SELECT * FROM Permiso WHERE Permiso IS NULL";
+        private const string OBTENER_FAMILIA = "SELECT * FROM Permiso WHERE Permiso IS NULL";
         private const string GET_PATENTES = "SELECT * FROM Permiso WHERE Permiso IS NOT NULL";
         private const string GET_FAMILIA_PATENTE = "WITH RECURSIVO AS (SELECT fp.PadreId, fp.HijoId FROM FamiliaPatente fp WHERE fp.PadreId = {0}" +
                                                     " UNION ALL SELECT fp2.PadreId, fp2.HijoId FROM FamiliaPatente fp2 INNER JOIN RECURSIVO r on r.HijoId = fp2.PadreId) " +
@@ -43,11 +43,11 @@ namespace DAL.Composite
         #endregion
 
         #region Métodos CRUD
-        public int GuardarPatenteFamilia(Componente componente, bool familia)
+        public int AltaFamiliaPatente(Componente componente, bool familia)
         {
             try
             {
-                ExecuteCommandText = GUARDAR_COMPONENTE;
+                ExecuteCommandText = ALTA_FAMILIA_PATENTE;
 
                 ExecuteParameters.Parameters.Clear();
 
@@ -119,11 +119,11 @@ namespace DAL.Composite
         #endregion
 
         #region Métodos View
-        public IList<Familia> GetFamilias()
+        public IList<Familia> ObtenerFamilias()
         {
             try
             {
-                SelectCommandText = String.Format(GET_FAMILIAS);
+                SelectCommandText = String.Format(OBTENER_FAMILIA);
                 DataSet ds = ExecuteNonReader();
 
                 IList<BE.Composite.Familia> familias = new List<BE.Composite.Familia>();
