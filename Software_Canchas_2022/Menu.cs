@@ -28,13 +28,14 @@ namespace Software_Canchas_2022
         private readonly IEncriptar _iEncriptar;
         private readonly IUsuario _iUsuario;
         private readonly IReserva _iReserva;
+        private readonly IBackUp _iBackup;
 
         private UsuarioDTO _usuarioDTO;
         private readonly IList<IIdioma> _idiomas;
 
         private bool mdiChildActivo = false;
 
-        public Menu(IPermiso permiso, ITraductor traductor, ICancha cancha, ICliente cliente, IUsuario usuario, IReserva reserva, IBitacora bitacora)
+        public Menu(IPermiso permiso, ITraductor traductor, ICancha cancha, ICliente cliente, IUsuario usuario, IReserva reserva, IBitacora bitacora, IBackUp backup)
         {
             InitializeComponent();
 
@@ -45,6 +46,7 @@ namespace Software_Canchas_2022
             _iCliente = cliente;
             _iReserva = reserva;
             _iBitacora = bitacora;
+            _iBackup = backup;
 
             _usuarioDTO = Sesion.GetInstance();
             _idiomas = new List<IIdioma>();
@@ -166,7 +168,7 @@ namespace Software_Canchas_2022
 
         private void Abrir_FormLLogin()
         {
-            Login login = new Login(_iPermiso, _iTraductor, _iCancha, _iCliente, _iUsuario, _iReserva, _iBitacora);
+            Login login = new Login(_iPermiso, _iTraductor, _iCancha, _iCliente, _iUsuario, _iReserva, _iBitacora, _iBackup);
             login.Show();
         }
 
@@ -242,6 +244,14 @@ namespace Software_Canchas_2022
             bitacora.MdiParent = this;
             bitacora.StartPosition = FormStartPosition.CenterScreen;
             bitacora.Show();
+        }
+
+        private void backUpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Backup backup = new Backup(_iBackup, _iTraductor);
+            backup.MdiParent = this;
+            backup.StartPosition = FormStartPosition.CenterScreen;
+            backup.Show();
         }
     }
 }

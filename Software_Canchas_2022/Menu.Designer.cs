@@ -147,14 +147,14 @@
             this.altaIdiomaToolStripMenuItem1,
             this.cargarEtiquetasToolStripMenuItem1});
             this.gestionIdiomaToolStripMenuItem.Name = "gestionIdiomaToolStripMenuItem";
-            this.gestionIdiomaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.gestionIdiomaToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.gestionIdiomaToolStripMenuItem.Tag = "menu_Gestion_Idioma";
             this.gestionIdiomaToolStripMenuItem.Text = "Gestion idioma";
             // 
             // altaIdiomaToolStripMenuItem1
             // 
             this.altaIdiomaToolStripMenuItem1.Name = "altaIdiomaToolStripMenuItem1";
-            this.altaIdiomaToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.altaIdiomaToolStripMenuItem1.Size = new System.Drawing.Size(160, 22);
             this.altaIdiomaToolStripMenuItem1.Tag = "menu_AltaIdioma";
             this.altaIdiomaToolStripMenuItem1.Text = "Alta idioma";
             this.altaIdiomaToolStripMenuItem1.Click += new System.EventHandler(this.altaIdiomaToolStripMenuItem1_Click);
@@ -162,7 +162,7 @@
             // cargarEtiquetasToolStripMenuItem1
             // 
             this.cargarEtiquetasToolStripMenuItem1.Name = "cargarEtiquetasToolStripMenuItem1";
-            this.cargarEtiquetasToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.cargarEtiquetasToolStripMenuItem1.Size = new System.Drawing.Size(160, 22);
             this.cargarEtiquetasToolStripMenuItem1.Tag = "menu_CargarEtiquetas";
             this.cargarEtiquetasToolStripMenuItem1.Text = "Cargar etiquetas";
             this.cargarEtiquetasToolStripMenuItem1.Click += new System.EventHandler(this.cargarEtiquetasToolStripMenuItem1_Click);
@@ -202,6 +202,7 @@
             this.backUpToolStripMenuItem.Size = new System.Drawing.Size(237, 22);
             this.backUpToolStripMenuItem.Tag = "menu_Backup";
             this.backUpToolStripMenuItem.Text = "Copia de seguridad";
+            this.backUpToolStripMenuItem.Click += new System.EventHandler(this.backUpToolStripMenuItem_Click);
             // 
             // restoreToolStripMenuItem
             // 

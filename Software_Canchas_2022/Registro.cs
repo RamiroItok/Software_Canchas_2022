@@ -26,8 +26,9 @@ namespace Software_Canchas_2022
         private readonly IEncriptar _iEncriptar;
         private readonly IUsuario _iUsuario;
         private readonly IReserva _iReserva;
+        private readonly IBackUp _iBackup;
 
-        public Registro(IPermiso permiso, ITraductor traductor, IBitacora bitacora, ICancha cancha, ICliente cliente, IDigito_Verificador dv, IEncriptar encriptar, IUsuario usuario, IReserva reserva)
+        public Registro(IPermiso permiso, ITraductor traductor, IBitacora bitacora, ICancha cancha, ICliente cliente, IDigito_Verificador dv, IEncriptar encriptar, IUsuario usuario, IReserva reserva, IBackUp backup)
         {
             InitializeComponent();
             _iPermiso = permiso;
@@ -39,6 +40,7 @@ namespace Software_Canchas_2022
             _iEncriptar = encriptar;
             _iUsuario = usuario;
             _iReserva = reserva;
+            _iBackup = backup;
         }
 
         private void btnRegistrar_Click(object sender, EventArgs e)
@@ -96,13 +98,13 @@ namespace Software_Canchas_2022
         {
             this.Hide();
 
-            Login formLogin = new Login(_iPermiso, _iTraductor, _iCancha, _iCliente, _iUsuario, _iReserva, _iBitacora);
+            Login formLogin = new Login(_iPermiso, _iTraductor, _iCancha, _iCliente, _iUsuario, _iReserva, _iBitacora, _iBackup);
             formLogin.Show();
         }
 
         private void Registro_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Login formLogin = new Login(_iPermiso, _iTraductor, _iCancha, _iCliente, _iUsuario, _iReserva, _iBitacora);
+            Login formLogin = new Login(_iPermiso, _iTraductor, _iCancha, _iCliente, _iUsuario, _iReserva, _iBitacora, _iBackup);
             formLogin.Show();
         }
     }
