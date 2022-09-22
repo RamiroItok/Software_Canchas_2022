@@ -128,7 +128,7 @@ namespace BLL
 
                         Sesion.CreateInstance(usuarioSingleton, _IdiomaDAL.ObtenerIdiomaDefault());
                         //GUARDAR EN BITACORA
-                        _bitacora.AltaBitacora("Se logeó el usuario.", "ALTA");
+                        _bitacora.AltaBitacora("Se logeó el usuario.", "BAJA");
                         _digitoVerificador.RecalcularDV();
                     }
                     else
@@ -148,12 +148,30 @@ namespace BLL
             try
             {
                 //GUARDAR EN BITACORA
-                //_bitacora.AltaBitacora("Cerró la sesión.", "ALTA");
+                _bitacora.AltaBitacora("Cerró la sesión.", "BAJA");
                 Sesion.RemoveInstance();
             }
             catch
             {
                 throw new Exception(TraducirMensaje("msg_ErrorDeslogeo"));
+            }
+        }
+
+        public void Desbloquear(string Nombre_Usuario)
+        {
+            try
+            {
+                BE.Usuario usuario = new BE.Usuario();
+                usuario.Nombre_Usuario = Encriptacion.Encriptar_AES(Nombre_Usuario);
+
+                _UsuarioDAL.Desbloquear(usuario.Nombre_Usuario);
+                //GUARDAR EN BITACORA
+                _bitacora.AltaBitacora("Se desbloqueó el usuario " + usuario.Id + ".", "ALTA");
+                _digitoVerificador.RecalcularDV();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
             }
         }
 
@@ -290,7 +308,17 @@ namespace BLL
             try
             {
                 List<BE.DTOs.UsuarioDTO> usuario = _UsuarioDAL.ListarBloqueados();
-                return usuario;
+                List<BE.DTOs.UsuarioDTO> usuariosDesencriptado = new List<BE.DTOs.UsuarioDTO>();
+
+                foreach (BE.DTOs.UsuarioDTO user in usuario)
+                {
+                    user.Nombre = Encriptacion.Decrypt_AES(user.Nombre);
+                    user.Apellido = Encriptacion.Decrypt_AES(user.Apellido);
+                    user.Nombre_Usuario = Encriptacion.Decrypt_AES(user.Nombre_Usuario);
+                    user.Telefono = user.Telefono;
+                    usuariosDesencriptado.Add(user);
+                }
+                return usuariosDesencriptado;
             }
             catch (Exception ex)
             {

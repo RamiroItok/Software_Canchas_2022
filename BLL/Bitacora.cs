@@ -50,7 +50,7 @@ namespace BLL
             {
                 int id = _BitacoraDAL.BajaBitacora(fechaIni, fechaFin);
                 //GUARDAR EN BITACORA
-                AltaBitacora("Se eliminaron las bitacoras desde el día " + fechaIni + " hasta el día " + fechaFin + "." , "MEDIA");
+                AltaBitacora("Se eliminaron las bitacoras desde el día " + fechaIni + " hasta el día " + fechaFin + "." , "ALTA");
                 _digitoVerificador.RecalcularDV();
                 return id;
             }

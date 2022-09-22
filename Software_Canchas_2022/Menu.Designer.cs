@@ -253,6 +253,7 @@
             this.bloqueadosToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.bloqueadosToolStripMenuItem.Tag = "menu_Usuarios_Bloqueados";
             this.bloqueadosToolStripMenuItem.Text = "Bloqueados";
+            this.bloqueadosToolStripMenuItem.Click += new System.EventHandler(this.bloqueadosToolStripMenuItem_Click);
             // 
             // cambiarContraseñaToolStripMenuItem
             // 

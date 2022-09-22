@@ -277,5 +277,13 @@ namespace Software_Canchas_2022
             gestion_Permisos.StartPosition = FormStartPosition.CenterScreen;
             gestion_Permisos.Show();
         }
+
+        private void bloqueadosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Usuarios_Bloqueados usuarios_Bloqueados = new Usuarios_Bloqueados(_iUsuario, _iTraductor);
+            usuarios_Bloqueados.MdiParent = this;
+            usuarios_Bloqueados.StartPosition = FormStartPosition.CenterScreen;
+            usuarios_Bloqueados.Show();
+        }
     }
 }

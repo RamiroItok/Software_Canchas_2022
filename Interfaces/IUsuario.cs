@@ -18,6 +18,7 @@ namespace Interfaces
         List<BE.Usuario> ObtenerUsuarioDesencriptado();
         void Login(string nombre_usuario, string contraseña);
         void Logout();
+        void Desbloquear(string nombre);
         List<BE.DTOs.UsuarioDTO> ListarBloqueados();
         int CambiarContraseña(UsuarioDTO usuario, string passwordActual, string nuevaPassword);
 

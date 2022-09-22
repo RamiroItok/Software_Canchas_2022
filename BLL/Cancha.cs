@@ -63,7 +63,7 @@ namespace BLL
             {
                 int id = _CanchaDAL.BajaCancha(cancha);
                 //GUARDAR EN BITACORA
-                //_bitacora.AltaBitacora("Se dió de baja la cancha " + id + ".", "MEDIA");
+                //_bitacora.AltaBitacora("Se dió de baja la cancha " + id + ".", "BAJA");
                 return id;
             }
             catch (Exception ex)

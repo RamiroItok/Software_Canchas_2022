@@ -140,6 +140,12 @@
     <Compile Include="Restore.Designer.cs">
       <DependentUpon>Restore.cs</DependentUpon>
     </Compile>
+    <Compile Include="Usuarios_Bloqueados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Usuarios_Bloqueados.Designer.cs">
+      <DependentUpon>Usuarios_Bloqueados.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -189,6 +195,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Restore.resx">
       <DependentUpon>Restore.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Usuarios_Bloqueados.resx">
+      <DependentUpon>Usuarios_Bloqueados.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
