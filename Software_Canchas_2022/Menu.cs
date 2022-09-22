@@ -253,5 +253,13 @@ namespace Software_Canchas_2022
             backup.StartPosition = FormStartPosition.CenterScreen;
             backup.Show();
         }
+
+        private void restoreToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Restore restore = new Restore(_iBackup, _iTraductor);
+            restore.MdiParent = this;
+            restore.StartPosition = FormStartPosition.CenterScreen;
+            restore.Show();
+        }
     }
 }

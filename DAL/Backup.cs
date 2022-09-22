@@ -17,7 +17,7 @@ namespace DAL
             {
                 SelectCommandText = "USE[Canchas_2022] BACKUP DATABASE Canchas_2022 TO DISK = '" + ruta + nombre + ".bak' WITH FORMAT, MEDIANAME = 'SQLServerBackups', NAME = 'Full Backup of Canchas'";
 
-                DataSet ds = ExecuteNonReader();
+                ExecuteNonReader();
                 return "La copia se ha creado correctamente en la ruta en" + ruta + ".";
             }
             catch
@@ -26,12 +26,14 @@ namespace DAL
             }
         }
 
-        public string Realizar_Restore()
+        public string Realizar_Restore(string ruta)
         {
             try
             {
+                SelectCommandText = $@"ALTER DATABASE[Canchas_2022] SET SINGLE_USER WITH ROLLBACK IMMEDIATE USE MASTER RESTORE DATABASE[Canchas_2022] FROM DISK = '{ruta}' WITH REPLACE ALTER DATABASE [Canchas_2022] SET MULTI_USER";
+                ExecuteNonReader();
 
-                return "";
+                return "Se restauró el sistema de manera correcta.";
             }
             catch
             {

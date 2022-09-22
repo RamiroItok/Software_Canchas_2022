@@ -210,6 +210,7 @@
             this.restoreToolStripMenuItem.Size = new System.Drawing.Size(237, 22);
             this.restoreToolStripMenuItem.Tag = "menu_Restore";
             this.restoreToolStripMenuItem.Text = "Restaurar";
+            this.restoreToolStripMenuItem.Click += new System.EventHandler(this.restoreToolStripMenuItem_Click);
             // 
             // rolesToolStripMenuItem
             // 

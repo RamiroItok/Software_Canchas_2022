@@ -9,6 +9,6 @@ namespace Interfaces
     public interface IBackUp
     {
         string Realizar_Backup(string ruta, string nombre);
-        string Realizar_Restore();
+        string Realizar_Restore(string ruta);
     }
 }

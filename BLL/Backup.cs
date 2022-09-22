@@ -35,11 +35,11 @@ namespace BLL
             }
         }
 
-        public string Realizar_Restore()
+        public string Realizar_Restore(string ruta)
         {
             try
             {
-                _backupDAL.Realizar_Restore();
+                _backupDAL.Realizar_Restore(ruta);
                 _iBitacora.AltaBitacora("Se realizó un restore.", "ALTA");
                 return TraducirMensaje("msg_RestoreRealizado");
             }
