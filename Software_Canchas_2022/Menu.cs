@@ -269,5 +269,13 @@ namespace Software_Canchas_2022
             familia.StartPosition = FormStartPosition.CenterScreen;
             familia.Show();
         }
+
+        private void asignarPermisosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Gestion_Permisos gestion_Permisos = new Gestion_Permisos(_iPermiso, _iTraductor);
+            gestion_Permisos.MdiParent = this;
+            gestion_Permisos.StartPosition = FormStartPosition.CenterScreen;
+            gestion_Permisos.Show();
+        }
     }
 }

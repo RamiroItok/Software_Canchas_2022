@@ -13,7 +13,7 @@ namespace Interfaces.Composite
         int AltaFamiliaPatente(Componente componente, bool familia);
         void GuardarFamiliaCreada(Familia familia);
         IList<Familia> ObtenerFamilias();
-        IList<Patente> GetPatentes();
+        IList<Patente> ObtenerPatentes();
         IList<Componente> TraerFamiliaPatentes(int familiaId);
         Array TraerPermisos();
         bool ExisteComponente(Componente componente, int Id);
@@ -21,7 +21,7 @@ namespace Interfaces.Composite
         void GetComponenteFamilia(Familia familia);
         void GuardarPermiso(UsuarioDTO usuario);
         IList<Familia> GetFamiliasValidacion(int familiaId);
-        Componente GetFamiliaArbol(int familiaId, Componente componenteOriginal, Componente componenteAgregar);
+        Componente ObtenerFamiliaArbol(int familiaId, Componente componenteOriginal, Componente componenteAgregar);
         Componente GetUsuarioArbol(int usuarioId, Componente componenteOriginal, Componente componenteAgregar);
     }
 }

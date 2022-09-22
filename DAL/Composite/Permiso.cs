@@ -13,20 +13,17 @@ namespace DAL.Composite
 {
     public class Permiso : Acceso
     {
-        #region Inyección de dependencias
         private readonly Fill _fill;
         public Permiso()
         {
             _fill = new Fill();
         }
-        #endregion
 
-        #region Querys
         private const string ALTA_FAMILIA_PATENTE = "INSERT INTO Permiso (Nombre, Permiso) OUTPUT inserted.Id VALUES (@parNombre, @parPermiso)";
         private const string BORRAR_FAMILIA = "DELETE FROM FamiliaPatente WHERE PadreId = @parId";
         private const string GUARDAR_FAMILIA = "INSERT INTO FamiliaPatente (PadreId, HijoId) VALUES (@parPadreId, @parHijoId)";
         private const string OBTENER_FAMILIA = "SELECT * FROM Permiso WHERE Permiso IS NULL";
-        private const string GET_PATENTES = "SELECT * FROM Permiso WHERE Permiso IS NOT NULL";
+        private const string OBTENER_PATENTES = "SELECT * FROM Permiso WHERE Permiso IS NOT NULL";
         private const string GET_FAMILIA_PATENTE = "WITH RECURSIVO AS (SELECT fp.PadreId, fp.HijoId FROM FamiliaPatente fp WHERE fp.PadreId = {0}" +
                                                     " UNION ALL SELECT fp2.PadreId, fp2.HijoId FROM FamiliaPatente fp2 INNER JOIN RECURSIVO r on r.HijoId = fp2.PadreId) " +
                                                     " SELECT r.PadreId, r.HijoId, p.Id as PermisoId, p.Nombre, p.Permiso FROM RECURSIVO r INNER JOIN Permiso p on r.HijoId = p.Id" +
@@ -34,15 +31,10 @@ namespace DAL.Composite
         private const string GET_USUARIO_PERMISO = "SELECT p.* FROM UsuarioPermiso up INNER JOIN Permiso p on p.Id = up.PatenteId WHERE UsuarioId = {0}";
         private const string BORRAR_PERMISO_USUARIO = "DELETE FROM UsuarioPermiso WHERE UsuarioId = @parUsuarioId";
         private const string GUARDAR_PERMISO_USUARIO = "INSERT INTO UsuarioPermiso (UsuarioId, PatenteId) VALUES (@parUsuarioId, @parPatenteId)";
-        private const string GET_FAMILIA_VALIDACION = "SELECT p.Id, p.Nombre FROM FamiliaPatente fm INNER JOIN Permiso p ON p.Id = fm.PadreId" +
-                                                        " INNER JOIN Permiso p2 ON p2.Id = fm.HijoId WHERE fm.HijoId = {0}";
+        private const string GET_FAMILIA_VALIDACION = "SELECT p.Id, p.Nombre FROM FamiliaPatente fm INNER JOIN Permiso p ON p.Id = fm.PadreId INNER JOIN Permiso p2 ON p2.Id = fm.HijoId WHERE fm.HijoId = {0}";
 
-        private const string GET_PATENTES_DE_FAMILIA = "SELECT Id as PermisoId, Nombre, Permiso, PadreId, HijoId FROM Permiso p INNER JOIN FamiliaPatente fm on fm.HijoId = p.Id WHERE PadreId = {0} ORDER BY Permiso DESC";
-        private const string GET_PERMISOS_USUARIO = "SELECT Id as PermisoId, Nombre, Permiso FROM Permiso p INNER JOIN UsuarioPermiso up on up.PatenteId = p.Id" +
-                                                    " WHERE up.UsuarioId = {0} ORDER BY Permiso DESC";
-        #endregion
-
-        #region Métodos CRUD
+        private const string OBTENER_PATENTES_FAMILIA = "SELECT Id as PermisoId, Nombre, Permiso, PadreId, HijoId FROM Permiso p INNER JOIN FamiliaPatente fm on fm.HijoId = p.Id WHERE PadreId = {0} ORDER BY Permiso DESC";
+        private const string GET_PERMISOS_USUARIO = "SELECT Id as PermisoId, Nombre, Permiso FROM Permiso p INNER JOIN UsuarioPermiso up on up.PatenteId = p.Id WHERE up.UsuarioId = {0} ORDER BY Permiso DESC";
         public int AltaFamiliaPatente(Componente componente, bool familia)
         {
             try
@@ -116,9 +108,7 @@ namespace DAL.Composite
                 throw new Exception("Error en la base de datos.");
             }
         }
-        #endregion
 
-        #region Métodos View
         public IList<Familia> ObtenerFamilias()
         {
             try
@@ -139,11 +129,11 @@ namespace DAL.Composite
             }
         }
 
-        public IList<Patente> GetPatentes()
+        public IList<Patente> ObtenerPatentes()
         {
             try
             {
-                SelectCommandText = String.Format(GET_PATENTES);
+                SelectCommandText = String.Format(OBTENER_PATENTES);
                 DataSet ds = ExecuteNonReader();
 
                 IList<BE.Composite.Patente> patentes = new List<BE.Composite.Patente>();
@@ -205,12 +195,11 @@ namespace DAL.Composite
             }
         }
 
-
-        public Componente GetFamiliaArbol(int familiaId, Componente componenteOriginal, Componente componenteAgregar)
+        public Componente ObtenerFamiliaArbol(int familiaId, Componente componenteOriginal, Componente componenteAgregar)
         {
             try
             {
-                SelectCommandText = String.Format(GET_PATENTES_DE_FAMILIA, familiaId);
+                SelectCommandText = String.Format(OBTENER_PATENTES_FAMILIA, familiaId);
                 DataSet ds = ExecuteNonReader();
                 DataTable dt = ds.Tables[0];
 
@@ -318,9 +307,6 @@ namespace DAL.Composite
             }
         }
 
-        #endregion
-
-        #region Tools
         private Componente GetComponente(int id, IList<Componente> lista)
         {
             try
@@ -403,8 +389,8 @@ namespace DAL.Composite
 
             componenteRaiz.AgregarHijo(familia);
 
-            GetFamiliaArbol(componente.Id, componenteOriginal, familia);
+            ObtenerFamiliaArbol(componente.Id, componenteOriginal, familia);
         }
-        #endregion
+
     }
 }

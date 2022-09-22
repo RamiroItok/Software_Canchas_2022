@@ -24,6 +24,5 @@ namespace BE.Composite
         Salir,
         AltaIdioma,
         CargarEtiquetas,
-        Cerrar_Sesion
     }
 }

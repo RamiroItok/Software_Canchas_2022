@@ -48,7 +48,6 @@
             this.rolesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gestiónFamiliaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.asignarPermisosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.consultarPermisosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.seguridadUsuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bloqueadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cambiarContraseñaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -216,8 +215,7 @@
             // 
             this.rolesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.gestiónFamiliaToolStripMenuItem,
-            this.asignarPermisosToolStripMenuItem,
-            this.consultarPermisosToolStripMenuItem});
+            this.asignarPermisosToolStripMenuItem});
             this.rolesToolStripMenuItem.Name = "rolesToolStripMenuItem";
             this.rolesToolStripMenuItem.Size = new System.Drawing.Size(237, 22);
             this.rolesToolStripMenuItem.Tag = "menu_Roles";
@@ -237,13 +235,7 @@
             this.asignarPermisosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.asignarPermisosToolStripMenuItem.Tag = "menu_Asignar_Permisos";
             this.asignarPermisosToolStripMenuItem.Text = "Asignar permisos";
-            // 
-            // consultarPermisosToolStripMenuItem
-            // 
-            this.consultarPermisosToolStripMenuItem.Name = "consultarPermisosToolStripMenuItem";
-            this.consultarPermisosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.consultarPermisosToolStripMenuItem.Tag = "menu_Consultar_Permisos";
-            this.consultarPermisosToolStripMenuItem.Text = "Consultar permisos";
+            this.asignarPermisosToolStripMenuItem.Click += new System.EventHandler(this.asignarPermisosToolStripMenuItem_Click);
             // 
             // seguridadUsuariosToolStripMenuItem
             // 
@@ -341,7 +333,6 @@
         private System.Windows.Forms.ToolStripMenuItem rolesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gestiónFamiliaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem asignarPermisosToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem consultarPermisosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem seguridadUsuariosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem bloqueadosToolStripMenuItem;

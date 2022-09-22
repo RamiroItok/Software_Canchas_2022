@@ -8,28 +8,28 @@ using System.Threading.Tasks;
 using BE.Composite;
 using BE.DTOs;
 using Servicios;
+using Interfaces;
 
 namespace BLL.Composite
 {
     public class Permiso : IPermiso
     {
-        #region Inyección de dependencias
         private readonly DAL.Composite.Permiso _permisoDAL;
         private readonly DAL.Observer.Idioma _IdiomaDAL;
+        private readonly IBitacora _iBitacora;
 
         public Permiso()
         {
             _permisoDAL = new DAL.Composite.Permiso();
             _IdiomaDAL = new DAL.Observer.Idioma();
+            _iBitacora = new BLL.Bitacora();
         }
-        #endregion
-
-        #region Métodos CRUD
         public void GuardarFamiliaCreada(Familia familia)
         {
             try
             {
                 _permisoDAL.GuardarFamiliaCreada(familia);
+                _iBitacora.AltaBitacora("Se realizaron modificaciones en la familia " + familia.Nombre + ".","ALTA");
             }
             catch (Exception ex)
             {
@@ -41,7 +41,9 @@ namespace BLL.Composite
         {
             try
             {
-                return _permisoDAL.AltaFamiliaPatente(componente, familia);
+                _permisoDAL.AltaFamiliaPatente(componente, familia);
+                _iBitacora.AltaBitacora("Se agregó una familia a patente.","ALTA");
+                return 1;
             }
             catch (Exception ex)
             {
@@ -54,15 +56,14 @@ namespace BLL.Composite
             try
             {
                 _permisoDAL.GuardarPermiso(usuario);
+                _iBitacora.AltaBitacora("Se guardaron los permisos del usuario " + usuario.Nombre_Usuario + ".", "ALTA");
             }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
         }
-        #endregion
 
-        #region Métodos View
         public IList<Componente> TraerFamiliaPatentes(int familiaId)
         {
             try
@@ -73,11 +74,11 @@ namespace BLL.Composite
             catch (Exception) { throw new Exception(TraducirMensaje("msg_ErrorObtenerComponentes")); }
         }
 
-        public Componente GetFamiliaArbol(int familiaId, Componente componenteOriginal, Componente componenteAgregar)
+        public Componente ObtenerFamiliaArbol(int familiaId, Componente componenteOriginal, Componente componenteAgregar)
         {
             try
             {
-                Componente comp = _permisoDAL.GetFamiliaArbol(familiaId, componenteOriginal, componenteAgregar);
+                Componente comp = _permisoDAL.ObtenerFamiliaArbol(familiaId, componenteOriginal, componenteAgregar);
                 return comp;
             }
             catch (Exception) { throw new Exception(TraducirMensaje("msg_ErrorObtenerComponentes")); }
@@ -103,11 +104,11 @@ namespace BLL.Composite
             catch (Exception) { throw new Exception(TraducirMensaje("msg_ErrorObtenerFamilias")); }
         }
 
-        public IList<Patente> GetPatentes()
+        public IList<Patente> ObtenerPatentes()
         {
             try
             {
-                IList<Patente> patentes = _permisoDAL.GetPatentes();
+                IList<Patente> patentes = _permisoDAL.ObtenerPatentes();
                 return patentes;
             }
             catch (Exception) { throw new Exception(TraducirMensaje("msg_ErrorObtenerPatentes")); }
@@ -131,9 +132,7 @@ namespace BLL.Composite
             }
             catch (Exception) { throw new Exception(TraducirMensaje("msg_ErrorObtenerFamilias")); }
         }
-        #endregion
 
-        #region Tools
         public bool ExisteComponente(Componente componente, int Id)
         {
             bool existeComponente = false;
@@ -181,6 +180,6 @@ namespace BLL.Composite
         {
             return Traductor.TraducirMensaje(_IdiomaDAL, msgTag);
         }
-        #endregion
+
     }
 }
