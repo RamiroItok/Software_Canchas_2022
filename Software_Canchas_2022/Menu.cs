@@ -285,5 +285,13 @@ namespace Software_Canchas_2022
             usuarios_Bloqueados.StartPosition = FormStartPosition.CenterScreen;
             usuarios_Bloqueados.Show();
         }
+
+        private void cambiarContraseñaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Cambiar_Contraseña cambiar_Contraseña = new Cambiar_Contraseña(_iUsuario, _iTraductor);
+            cambiar_Contraseña.MdiParent = this;
+            cambiar_Contraseña.StartPosition = FormStartPosition.CenterScreen;
+            cambiar_Contraseña.Show();
+        }
     }
 }

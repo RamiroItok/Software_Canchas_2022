@@ -197,14 +197,13 @@ namespace BLL
             try
             {
                 ValidarCambioPassword(usuario, Encriptacion.Encriptar_MD5(contActual), contNueva);
-                if (string.IsNullOrWhiteSpace(contNueva) || contNueva.Length < 8) throw new Exception(TraducirMensaje("msg_ValidacionPassword"));
 
                 string nuevaPasswordEncriptada = Encriptacion.Encriptar_MD5(contNueva);
-
+                _UsuarioDAL.CambiarContraseña(usuario, nuevaPasswordEncriptada);
                 //GUARDAR EN BITACORA
-                //_bitacora.AltaBitacora("Se cambi el usuario.", "ALTA");
+                _bitacora.AltaBitacora("Se cambió la contraseña para el usuario " + usuario.Id + ".", "ALTA");
                 _digitoVerificador.RecalcularDV();
-                return _UsuarioDAL.CambiarContraseña(usuario, nuevaPasswordEncriptada);
+                return 1;
             }
             catch (Exception ex)
             {
@@ -216,7 +215,6 @@ namespace BLL
         {
             BE.Usuario _usuario = _UsuarioDAL.ObtenerUsuarioId(user.Id);
             if (passwordActual != _usuario.Contraseña) throw new Exception(TraducirMensaje("msg_PasswordNoCoindice"));
-            if (string.IsNullOrWhiteSpace(nuevaPassword) || nuevaPassword.Length < 8) throw new Exception(TraducirMensaje("msg_ValidacionPassword"));
         }
 
         private string TraducirMensaje(string msgTag)

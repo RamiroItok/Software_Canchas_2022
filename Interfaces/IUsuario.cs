@@ -20,7 +20,7 @@ namespace Interfaces
         void Logout();
         void Desbloquear(string nombre);
         List<BE.DTOs.UsuarioDTO> ListarBloqueados();
-        int CambiarContraseña(UsuarioDTO usuario, string passwordActual, string nuevaPassword);
+        int CambiarContraseña(UsuarioDTO usuarioDTO, string passwordActual, string nuevaPassword);
 
     }
 }

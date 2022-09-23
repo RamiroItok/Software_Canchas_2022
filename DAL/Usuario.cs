@@ -22,7 +22,7 @@ namespace DAL
 
         //Querys
         private const string LISTAR_USUARIO = "SELECT * FROM Usuarios";
-        private const string OBTENER_USUARIO_ID = "SELECT TOP 1 * FROM Usuario WHERE Id = {0}";
+        private const string OBTENER_USUARIO_ID = "SELECT TOP 1 * FROM Usuarios WHERE Id = {0}";
         private const string ALTA_USUARIO = @"INSERT INTO Usuarios (Nombre, Apellido, Nombre_Usuario, Contraseña, Puesto, Dni, Sexo,  Mail, Telefono, Tipo, Estado, DVH) 
                                             OUTPUT inserted.Id VALUES (@parNombre, @parApellido, @parNombre_Usuario, @parContraseña, @parPuesto, @parDni, @parSexo, @parMail,
                                             @parTelefono, @parTipo, @parEstado, @parDVH)";
@@ -33,7 +33,7 @@ namespace DAL
         private const string BLOQUEAR = "UPDATE Usuarios SET Estado = Estado + 1 WHERE Nombre_Usuario = @parNombre_Usuario";
         private const string DESBLOQUEAR = "UPDATE Usuarios SET Estado = 0 WHERE Nombre_Usuario = @parNombre_Usuario";
         private const string LISTAR_BLOQUEADOS = "SELECT * FROM Usuarios WHERE Estado = 3";
-        private const string CAMBIAR_CONTRASEÑA = "UPDATE Usuarios SET Contraseña = @parContraseña  WHERE Nombre_Usuario = @parNombre_USuario";
+        private const string CAMBIAR_CONTRASEÑA = "UPDATE Usuarios SET Contraseña = @parContraseña OUTPUT inserted.Id WHERE Id = @parId";
 
         public List<UsuarioDTO> ListarUsuarioDTO()
         {
@@ -248,7 +248,7 @@ namespace DAL
 
                 ExecuteParameters.Parameters.Clear();
 
-                ExecuteParameters.Parameters.AddWithValue("@parNombre_Usuario", usuario);
+                ExecuteParameters.Parameters.AddWithValue("@parId", usuario.Id);
                 ExecuteParameters.Parameters.AddWithValue("@parContraseña", nuevaPassword);
 
                 return ExecuteNonEscalar();
