@@ -102,15 +102,15 @@ namespace BLL
         {
             try
             {
-                if (Sesion.GetInstance() != null) throw new Exception(TraducirMensaje("msg_Instancia"));
-                if (string.IsNullOrWhiteSpace(nombre_usuario) || string.IsNullOrWhiteSpace(contraseña)) throw new Exception(TraducirMensaje("msg_CamposVacios"));
+                if (Sesion.GetInstance() != null) throw new Exception("Error al obtener la sesión.");
+                if (string.IsNullOrWhiteSpace(nombre_usuario) || string.IsNullOrWhiteSpace(contraseña)) throw new Exception("Hay campos sin completar.");
 
                 string nomUsu_Encriptado = Encriptacion.Encriptar_AES(nombre_usuario);
                 BE.Usuario usuario = _UsuarioDAL.Login(nomUsu_Encriptado);
 
                 if (usuario != null)
                 {
-                    if (usuario.Estado >= 3) throw new Exception(TraducirMensaje("msg_UsuarioBloqueado"));
+                    if (usuario.Estado >= 3) throw new Exception("El usuario está bloqueado ya que alcanzó la cantidad máxima de intentos. Contacte un administrador para su desbloqueo");
 
                     string passwordEncriptada = Encriptacion.Encriptar_MD5(contraseña);
                     if (passwordEncriptada == usuario.Contraseña)
@@ -135,10 +135,10 @@ namespace BLL
                     {
                         _UsuarioDAL.Bloquear(usuario.Nombre_Usuario);
                         _digitoVerificador.RecalcularDV();
-                        throw new Exception(TraducirMensaje("msg_ContraseñaIncorrecta"));
+                        throw new Exception("La contraseña ingresada es incorrecta.");
                     }
                 }
-                else throw new Exception(TraducirMensaje("msg_UsuarioNoExiste"));
+                else throw new Exception("No existe un usuario con nombre de usuario.");
             }
             catch (Exception ex) { throw new Exception(ex.Message); }
         }

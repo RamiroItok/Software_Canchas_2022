@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,6 +47,7 @@
     <Compile Include="Cancha.cs" />
     <Compile Include="Cliente.cs" />
     <Compile Include="Composite\Permiso.cs" />
+    <Compile Include="ControlReserva.cs" />
     <Compile Include="DigitoVerificador.cs" />
     <Compile Include="Observer\Idioma.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -468,5 +468,70 @@ namespace DAL.Tools
             return (from DataRow dr in ds.Tables[0].Rows select (new Fill()).FillObjectBitacora(dr)).ToList();
         }
         #endregion
+
+        #region Control Reserva
+        public BE.ControlReserva FillObjectControlReserva(DataRow dr)
+        {
+            Cancha _canchaDAL = new Cancha();
+            Cliente _clienteDAL = new Cliente();
+            Usuario _usuarioDAL = new Usuario();
+
+            BE.ControlReserva controlReserva = new BE.ControlReserva();
+
+            try
+            {
+                if (dr.Table.Columns.Contains("Id") && !Convert.IsDBNull(dr["Id"]))
+                    controlReserva.Id = Convert.ToInt32(dr["Id"]);
+
+                if (dr.Table.Columns.Contains("Id_Cancha") && !Convert.IsDBNull(dr["Id_Cancha"]))
+                    controlReserva.Id_Cancha = _canchaDAL.ObtenerCanchaPorId(Convert.ToInt32(dr["Id_Cancha"]));
+
+                if (dr.Table.Columns.Contains("Id_Cliente") && !Convert.IsDBNull(dr["Id_Cliente"]))
+                    controlReserva.Id_Cliente = _clienteDAL.ObtenerClientePorId(Convert.ToInt32(dr["Id_Cliente"]));
+
+                if (dr.Table.Columns.Contains("Fecha") && !Convert.IsDBNull(dr["Fecha"]))
+                    controlReserva.Fecha = Convert.ToDateTime(dr["Fecha"]);
+
+                if (dr.Table.Columns.Contains("Hora") && !Convert.IsDBNull(dr["Hora"]))
+                    controlReserva.Hora = Convert.ToString(dr["Hora"]);
+
+                if (dr.Table.Columns.Contains("Forma_Pago") && !Convert.IsDBNull(dr["Forma_Pago"]))
+                    controlReserva.Forma_Pago = Convert.ToString(dr["Forma_Pago"]);
+
+                if (dr.Table.Columns.Contains("Seña") && !Convert.IsDBNull(dr["Seña"]))
+                    controlReserva.Seña = float.Parse(Convert.ToString(dr["Seña"]));
+
+                if (dr.Table.Columns.Contains("Total") && !Convert.IsDBNull(dr["Total"]))
+                    controlReserva.Total = float.Parse(Convert.ToString(dr["Total"]));
+
+                if (dr.Table.Columns.Contains("Deuda") && !Convert.IsDBNull(dr["Deuda"]))
+                    controlReserva.Deuda = float.Parse(Convert.ToString(dr["Deuda"]));
+
+                if (dr.Table.Columns.Contains("Fecha_Modificacion") && !Convert.IsDBNull(dr["Fecha_Modificacion"]))
+                    controlReserva.Fecha_Modificacion = Convert.ToDateTime(dr["Fecha_Modificacion"]);
+
+                if (dr.Table.Columns.Contains("Id_Usuario") && !Convert.IsDBNull(dr["Id_Usuario"]))
+                    controlReserva.Id_Usuario = _usuarioDAL.ObtenerUsuarioDTOId(Convert.ToInt32(dr["Id_Usuario"]));
+
+                if (dr.Table.Columns.Contains("Descripcion") && !Convert.IsDBNull(dr["Descripcion"]))
+                    controlReserva.Descripcion = Convert.ToString(dr["Descripcion"]);
+
+                if (dr.Table.Columns.Contains("DVH") && !Convert.IsDBNull(dr["DVH"]))
+                    controlReserva.DVH = Convert.ToInt32(dr["DVH"]);
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error en el método FillObject, " + ex.Message);
+            }
+
+            return controlReserva;
+        }
+
+        public List<BE.ControlReserva> FillListControlReserva(DataSet ds)
+        {
+            return (from DataRow dr in ds.Tables[0].Rows select (new Fill()).FillObjectControlReserva(dr)).ToList();
+        }
+        #endregion
     }
 }

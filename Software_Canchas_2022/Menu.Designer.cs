@@ -51,6 +51,7 @@
             this.seguridadUsuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bloqueadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cambiarContraseñaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.controlDeCambiosDeReservaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarSesiónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblBienvenido = new System.Windows.Forms.Label();
@@ -174,7 +175,8 @@
             this.backUpToolStripMenuItem,
             this.restoreToolStripMenuItem,
             this.rolesToolStripMenuItem,
-            this.seguridadUsuariosToolStripMenuItem});
+            this.seguridadUsuariosToolStripMenuItem,
+            this.controlDeCambiosDeReservaToolStripMenuItem});
             this.seguridadToolStripMenuItem.Name = "seguridadToolStripMenuItem";
             this.seguridadToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
             this.seguridadToolStripMenuItem.Tag = "menu_Seguridad";
@@ -224,7 +226,7 @@
             // gestiónFamiliaToolStripMenuItem
             // 
             this.gestiónFamiliaToolStripMenuItem.Name = "gestiónFamiliaToolStripMenuItem";
-            this.gestiónFamiliaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.gestiónFamiliaToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.gestiónFamiliaToolStripMenuItem.Tag = "menu_Roles_Familia";
             this.gestiónFamiliaToolStripMenuItem.Text = "Gestión Familia";
             this.gestiónFamiliaToolStripMenuItem.Click += new System.EventHandler(this.gestiónFamiliaToolStripMenuItem_Click);
@@ -232,7 +234,7 @@
             // asignarPermisosToolStripMenuItem
             // 
             this.asignarPermisosToolStripMenuItem.Name = "asignarPermisosToolStripMenuItem";
-            this.asignarPermisosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.asignarPermisosToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.asignarPermisosToolStripMenuItem.Tag = "menu_Asignar_Permisos";
             this.asignarPermisosToolStripMenuItem.Text = "Asignar permisos";
             this.asignarPermisosToolStripMenuItem.Click += new System.EventHandler(this.asignarPermisosToolStripMenuItem_Click);
@@ -262,6 +264,14 @@
             this.cambiarContraseñaToolStripMenuItem.Tag = "menu_Cambiar_Contraseña";
             this.cambiarContraseñaToolStripMenuItem.Text = "Cambiar Contraseña";
             this.cambiarContraseñaToolStripMenuItem.Click += new System.EventHandler(this.cambiarContraseñaToolStripMenuItem_Click);
+            // 
+            // controlDeCambiosDeReservaToolStripMenuItem
+            // 
+            this.controlDeCambiosDeReservaToolStripMenuItem.Name = "controlDeCambiosDeReservaToolStripMenuItem";
+            this.controlDeCambiosDeReservaToolStripMenuItem.Size = new System.Drawing.Size(237, 22);
+            this.controlDeCambiosDeReservaToolStripMenuItem.Tag = "menu_Control_Reserva";
+            this.controlDeCambiosDeReservaToolStripMenuItem.Text = "Control de cambios de Reserva";
+            this.controlDeCambiosDeReservaToolStripMenuItem.Click += new System.EventHandler(this.controlDeCambiosDeReservaToolStripMenuItem_Click);
             // 
             // cerrarSesiónToolStripMenuItem
             // 
@@ -342,5 +352,6 @@
         private System.Windows.Forms.Label lblBienvenido;
         private System.Windows.Forms.ToolStripMenuItem altaIdiomaToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem cargarEtiquetasToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem controlDeCambiosDeReservaToolStripMenuItem;
     }
 }

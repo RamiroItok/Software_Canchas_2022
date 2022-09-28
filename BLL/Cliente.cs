@@ -95,6 +95,18 @@ namespace BLL
             }
         }
 
+        public int ObtenerClientePorId(int id)
+        {
+            try
+            {
+                return _clienteDAL.ObtenerClientePorId(id);
+            }
+            catch
+            {
+                throw new Exception(TraducirMensaje("msg_ErrorListar"));
+            }
+        }
+
         private void ValidarCliente(BE.Cliente cliente)
         {
             if (string.IsNullOrEmpty(cliente.Id.ToString()) || string.IsNullOrWhiteSpace(cliente.Nombre) || string.IsNullOrWhiteSpace(cliente.Apellido) || string.IsNullOrEmpty(cliente.Telefono.ToString()))

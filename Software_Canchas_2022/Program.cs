@@ -24,11 +24,12 @@ namespace Software_Canchas_2022
             BLL.Cliente cliente = new BLL.Cliente();
             BLL.Reserva reserva = new BLL.Reserva();
             BLL.Bitacora bitacora = new BLL.Bitacora();
+            BLL.ControlReserva controlReserva = new BLL.ControlReserva();
             BLL.Backup backup = new BLL.Backup();
             BLL.Observer.Idioma traductor = new BLL.Observer.Idioma();
             BLL.Composite.Permiso permiso = new BLL.Composite.Permiso();
 
-            Application.Run(new Login(permiso, traductor, cancha, cliente, usuario, reserva, bitacora, backup));
+            Application.Run(new Login(permiso, traductor, cancha, cliente, usuario, reserva, bitacora, backup, controlReserva));
         }
     }
 }

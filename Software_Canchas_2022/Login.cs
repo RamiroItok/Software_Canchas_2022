@@ -28,8 +28,9 @@ namespace Software_Canchas_2022
         private readonly IUsuario _iUsuario;
         private readonly IReserva _iReserva;
         private readonly IBackUp _iBackup;
+        private readonly IControlReserva _iControlReserva;
 
-        public Login(IPermiso permiso, ITraductor traductor, ICancha cancha, ICliente cliente, IUsuario usuario, IReserva reserva, IBitacora bitacora, IBackUp backup)
+        public Login(IPermiso permiso, ITraductor traductor, ICancha cancha, ICliente cliente, IUsuario usuario, IReserva reserva, IBitacora bitacora, IBackUp backup, IControlReserva controlReserva)
         {
             InitializeComponent();
             _iPermiso = permiso;
@@ -40,6 +41,7 @@ namespace Software_Canchas_2022
             _iReserva = reserva;
             _iBitacora = bitacora;
             _iBackup = backup;
+            _iControlReserva = controlReserva;
             _IDigitoVerifivador = new BLL.DigitoVerificador();
            /* if(VerificarIntegridad() == false)
             {
@@ -61,7 +63,7 @@ namespace Software_Canchas_2022
                 Limpiar();
                 this.Hide();
                 MessageBox.Show("Se ingresó correctamente");
-                Menu formMenu = new Menu(_iPermiso, _iTraductor, _iCancha, _iCliente, _iUsuario, _iReserva, _iBitacora, _iBackup);
+                Menu formMenu = new Menu(_iPermiso, _iTraductor, _iCancha, _iCliente, _iUsuario, _iReserva, _iBitacora, _iBackup, _iControlReserva);
                 formMenu.Show();
             }
             catch (Exception ex)
@@ -81,7 +83,7 @@ namespace Software_Canchas_2022
         {
             this.Hide();
 
-            Registro formRegistro = new Registro(_iPermiso, _iTraductor, _iBitacora, _iCancha, _iCliente, _IDigitoVerifivador, _iEncriptar, _iUsuario, _iReserva, _iBackup);
+            Registro formRegistro = new Registro(_iPermiso, _iTraductor, _iBitacora, _iCancha, _iCliente, _IDigitoVerifivador, _iEncriptar, _iUsuario, _iReserva, _iBackup, _iControlReserva);
             formRegistro.Show();
         }
 

@@ -21,6 +21,7 @@ namespace BE.Composite
         Restore,
         Roles,
         Seguridad_Usuarios,
+        Control_Reserva,
         Salir,
         AltaIdioma,
         CargarEtiquetas,

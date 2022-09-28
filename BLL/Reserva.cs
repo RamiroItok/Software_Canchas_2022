@@ -15,6 +15,7 @@ namespace BLL
         private readonly DAL.Observer.Idioma _idiomaDAL;
         private readonly IBitacora _bitacora;
         private readonly IDigito_Verificador _digitoVerificador;
+        private readonly IControlReserva _controlReserva;
 
         public Reserva()
         {
@@ -22,6 +23,7 @@ namespace BLL
             _idiomaDAL = new DAL.Observer.Idioma();
             _bitacora = new BLL.Bitacora();
             _digitoVerificador = new BLL.DigitoVerificador();
+            _controlReserva = new BLL.ControlReserva();
         }
 
         public int AltaReserva(BE.Reserva reserva)
@@ -33,6 +35,7 @@ namespace BLL
                 //GUARDAR EN BITACORA
                 //_bitacora.AltaBitacora("Se dió de alta la reserva " + id + ".", "ALTA");
                 _digitoVerificador.RecalcularDV();
+                _controlReserva.AltaControlReserva(reserva);
                 return id;
             }
             catch (Exception ex)
@@ -50,6 +53,7 @@ namespace BLL
                 //GUARDAR EN BITACORA
                 //_bitacora.AltaBitacora("Se modificó la reserva " + id + ".", "ALTA");
                 _digitoVerificador.RecalcularDV();
+                _controlReserva.ActualizarControlReserva(reserva);
                 return id;
             }
             catch (Exception ex)
@@ -66,6 +70,7 @@ namespace BLL
                 //GUARDAR EN BITACORA
                 //_bitacora.AltaBitacora("Se dió de baja la reserva " + id + ".", "ALTA");
                 _digitoVerificador.RecalcularDV();
+                _controlReserva.BajaReservaControlReserva(reserva);
                 return id;
             }
             catch (Exception ex)

@@ -157,6 +157,14 @@ namespace Software_Canchas_2022
                 BE.Reserva reserva = new BE.Reserva()
                 {
                     Id = int.Parse(dataGridReservas.CurrentRow.Cells[0].Value.ToString()),
+                    Id_Cancha = int.Parse(cmb_Cancha.Text),
+                    Id_Cliente = int.Parse((cmb_Cliente1.SelectedValue).ToString()),
+                    Fecha = dtp_Fecha1.Value,
+                    Hora = cmb_Hora1.Text,
+                    Forma_Pago = cmb_FormaPago.Text,
+                    Seña = float.Parse(txt_Seña.Text),
+                    Total = float.Parse(txt_Total.Text),
+                    Deuda = float.Parse(txt_Deuda.Text),
                 };
                 _iReserva.BajaReserva(reserva);
 
@@ -228,8 +236,6 @@ namespace Software_Canchas_2022
                 CargarReservas();
                 LimpiarFiltros();
             }
-                
-
         }
 
         private void cmb_Hora1_SelectedIndexChanged(object sender, EventArgs e)

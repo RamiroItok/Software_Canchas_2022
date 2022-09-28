@@ -23,6 +23,7 @@ namespace DAL
         private const string BAJA_CLIENTE = "DELETE FROM Cliente WHERE Id = @parId";
         private const string OBTENER_CLIENTES = "SELECT * FROM Cliente";
         private const string OBTENER_NOMBRE_CLIENTES = "SELECT Id, Nombre + ' ' + Apellido as Nombre FROM Cliente";
+        private const string OBTENER_CLIENTE_POR_ID = "SELECT TOP 1 * FROM Cliente WHERE Id = {0}";
 
         public int AltaCliente(BE.Cliente cliente)
         {
@@ -111,6 +112,23 @@ namespace DAL
                 string consulta = OBTENER_NOMBRE_CLIENTES;
                 DataTable dt = GenerarConsulta(consulta);
                 return dt;
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error en la base de datos.");
+            }
+        }
+
+        public int ObtenerClientePorId(int id)
+        {
+            try
+            {
+                SelectCommandText = String.Format(OBTENER_CLIENTE_POR_ID, id);
+
+                DataSet ds = ExecuteNonReader();
+                BE.Cliente cliente = ds.Tables[0].Rows.Count <= 0 ? null : _fill.FillObjectCliente(ds.Tables[0].Rows[0]);
+
+                return cliente.Id;
             }
             catch (Exception)
             {

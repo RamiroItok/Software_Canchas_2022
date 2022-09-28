@@ -26,6 +26,7 @@ namespace DAL
         private const string BAJA_CANCHA = "DELETE FROM Cancha WHERE Id = @parId";
         private const string OBTENER_CANCHAS = "SELECT * FROM Cancha";
         private const string OBTENER_TIPO_CANCHAS = "SELECT Tipo FROM Cancha group by Tipo";
+        private const string OBTENER_CANCHA_POR_ID = "SELECT TOP 1 * FROM Cancha WHERE Id = {0}";
         #endregion
 
         public int AltaCancha(BE.Cancha cancha)
@@ -145,6 +146,23 @@ namespace DAL
                 DataTable dt = GenerarConsulta(consulta);
                 precio = float.Parse(dt.Rows[0][0].ToString());
                 return precio;
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error en la base de datos.");
+            }
+        }
+
+        public int ObtenerCanchaPorId(int id)
+        {
+            try
+            {
+                SelectCommandText = String.Format(OBTENER_CANCHA_POR_ID, id);
+
+                DataSet ds = ExecuteNonReader();
+                BE.Cancha cancha = ds.Tables[0].Rows.Count <= 0 ? null : _fill.FillObjectCancha(ds.Tables[0].Rows[0]);
+
+                return cancha.Id;
             }
             catch (Exception)
             {

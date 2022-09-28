@@ -240,6 +240,23 @@ namespace DAL
             }
         }
 
+        public int ObtenerUsuarioDTOId(int usuarioId)
+        {
+            try
+            {
+                SelectCommandText = String.Format(OBTENER_USUARIO_ID, usuarioId);
+
+                DataSet ds = ExecuteNonReader();
+                BE.DTOs.UsuarioDTO usuario = ds.Tables[0].Rows.Count <= 0 ? null : _fill.FillObjectUsuarioDTO(ds.Tables[0].Rows[0]);
+
+                return usuario.Id;
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error en la base de datos.");
+            }
+        }
+
         public int CambiarContraseña(BE.DTOs.UsuarioDTO usuario, string nuevaPassword)
         {
             try
