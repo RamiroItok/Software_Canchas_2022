@@ -1,8 +1,11 @@
-﻿using BE.DTOs;
+﻿using BE.Composite;
+using BE.DTOs;
 using Interfaces;
 using Servicios;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -46,7 +49,7 @@ namespace BLL
 
                 int id = _UsuarioDAL.Alta_Usuario(usuario);
                 //GUARDAR EN BITACORA
-                _bitacora.AltaBitacora("Se dió de alta el usuario " + id + ".", "ALTA");
+                //_bitacora.AltaBitacora("Se dió de alta el usuario " + id + ".", "ALTA");
                 _digitoVerificador.RecalcularDV();
                 return id;
             }
@@ -149,6 +152,7 @@ namespace BLL
             {
                 //GUARDAR EN BITACORA
                 _bitacora.AltaBitacora("Cerró la sesión.", "BAJA");
+                _digitoVerificador.RecalcularDV();
                 Sesion.RemoveInstance();
             }
             catch
@@ -321,6 +325,64 @@ namespace BLL
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
+            }
+        }
+
+        public void LoguearUsuarioTemporal(string usuario, string contraseña)
+        {
+            try
+            {
+                if (Sesion.GetInstance() != null) Sesion.RemoveInstance();
+                if (string.IsNullOrWhiteSpace(usuario) || string.IsNullOrWhiteSpace(contraseña)) throw new Exception("Se deben completar los campos");
+
+                string nombreUsuario = "";
+                string contraseñaUsuario = "";
+
+                DirectoryInfo directorioInfo = new DirectoryInfo(ConfigurationManager.AppSettings["Usuario_Temporal"]);
+
+                    FileInfo usuarioTxt = directorioInfo.GetFiles().FirstOrDefault();
+
+                    using (StreamReader sr = new StreamReader($"{directorioInfo}/{usuarioTxt}"))
+                    {
+                        string str = sr.ReadLine();
+
+                        char spliter = ';';
+                        string[] user = str.Split(spliter);
+                        nombreUsuario = user[0];
+                        contraseñaUsuario = user[1];
+                    }
+
+                if (nombreUsuario == Encriptacion.Encriptar_AES(usuario) && contraseñaUsuario == Encriptacion.Encriptar_MD5(contraseña))
+                {
+                    UsuarioDTO userDTO = new UsuarioDTO()
+                    {
+                        Nombre_Usuario = usuario,
+                        Nombre = "TEMPORAL",
+                        Apellido = "TEMPORAL",
+                    };
+                    Patente patenteRestore = new Patente()
+                    {
+                        Permiso = Permiso.Restore
+                    };
+                    Patente patenteDV = new Patente()
+                    {
+                        Permiso = Permiso.Recalcular_DV
+                    };
+
+                    userDTO.Permisos.Add(patenteRestore);
+                    userDTO.Permisos.Add(patenteDV);
+
+                    Sesion.CreateInstance(userDTO, _IdiomaDAL.ObtenerIdiomaDefault());
+                }
+                else
+                {
+                    throw new Exception();
+                }
+
+            }
+            catch (Exception)
+            {
+                throw new Exception($"Hubo un error al querer loguear con el usuario temporal. Utilice las credenciales que se crearon en: {ConfigurationManager.AppSettings["Usuario_Temporal"]}");
             }
         }
     }

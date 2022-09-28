@@ -72,6 +72,12 @@
     <Compile Include="ControlReserva.Designer.cs">
       <DependentUpon>ControlReserva.cs</DependentUpon>
     </Compile>
+    <Compile Include="ErrorIntegridad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ErrorIntegridad.Designer.cs">
+      <DependentUpon>ErrorIntegridad.cs</DependentUpon>
+    </Compile>
     <Compile Include="Gestion Usuarios.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -174,6 +180,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ControlReserva.resx">
       <DependentUpon>ControlReserva.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ErrorIntegridad.resx">
+      <DependentUpon>ErrorIntegridad.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Gestion Usuarios.resx">
       <DependentUpon>Gestion Usuarios.cs</DependentUpon>

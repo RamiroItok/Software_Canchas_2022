@@ -43,15 +43,15 @@ namespace Software_Canchas_2022
             _iBackup = backup;
             _iControlReserva = controlReserva;
             _IDigitoVerifivador = new BLL.DigitoVerificador();
-           /* if(VerificarIntegridad() == false)
+            if(VerificarIntegridad() == false)
             {
                 this.WindowState = FormWindowState.Minimized;
                 btnIngresar.Enabled = false;
                 txtUser.Enabled = false;
                 txtPass.Enabled = false;
-                LogInSeguridad logInSeguridad = new LogInSeguridad();
+                LogInSeguridad logInSeguridad = new LogInSeguridad(_iUsuario, _iTraductor, _iBackup, _IDigitoVerifivador, _iBitacora);
                 logInSeguridad.Show();
-            }*/
+            }
         }
 
         private void btnIngresar_Click(object sender, EventArgs e)
@@ -89,7 +89,7 @@ namespace Software_Canchas_2022
 
         private void Login_FormClosed(object sender, FormClosedEventArgs e)
         {
-            System.Environment.Exit(0);
+            Environment.Exit(0);
         }
 
         private bool VerificarIntegridad()
@@ -99,7 +99,7 @@ namespace Software_Canchas_2022
                 string mensaje = _IDigitoVerifivador.VerificarDV();
                 if (mensaje != "true")
                 {
-                    MessageBox.Show(mensaje);
+                    MessageBox.Show("ERROR. La base de datos fue modificada exteriormente.","Error");
                     return false;
                 }
                 else

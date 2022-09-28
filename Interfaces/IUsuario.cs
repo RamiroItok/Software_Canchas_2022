@@ -21,6 +21,7 @@ namespace Interfaces
         void Desbloquear(string nombre);
         List<BE.DTOs.UsuarioDTO> ListarBloqueados();
         int CambiarContraseña(UsuarioDTO usuarioDTO, string passwordActual, string nuevaPassword);
+        void LoguearUsuarioTemporal(string nombreUsuario, string contraseña);
 
     }
 }

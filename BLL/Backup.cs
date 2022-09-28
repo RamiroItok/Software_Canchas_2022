@@ -13,12 +13,14 @@ namespace BLL
         private readonly DAL.Backup _backupDAL;
         private readonly DAL.Observer.Idioma _IdiomaDAL;
         private readonly IBitacora _iBitacora;
+        private readonly IDigito_Verificador _iDigitoVerificador;
 
         public Backup()
         {
             _backupDAL = new DAL.Backup();
             _IdiomaDAL = new DAL.Observer.Idioma();
             _iBitacora = new BLL.Bitacora();
+            _iDigitoVerificador = new BLL.DigitoVerificador();
         }
 
         public string Realizar_Backup(string ruta, string nombre)
@@ -27,6 +29,7 @@ namespace BLL
             {
                 _backupDAL.Realizar_Backup(ruta, nombre);
                 _iBitacora.AltaBitacora("Se realizó una copia de seguridad.","ALTA");
+                _iDigitoVerificador.RecalcularDV();
                 return TraducirMensaje("msg_BackupRealizado");
             }
             catch (Exception ex)
@@ -41,6 +44,7 @@ namespace BLL
             {
                 _backupDAL.Realizar_Restore(ruta);
                 _iBitacora.AltaBitacora("Se realizó un restore.", "ALTA");
+                _iDigitoVerificador.RecalcularDV();
                 return TraducirMensaje("msg_RestoreRealizado");
             }
             catch (Exception ex)
