@@ -269,6 +269,7 @@ namespace Software_Canchas_2022
             dataGridReservas.ClearSelection();
             dataGridReservas.TabStop = false;
             dataGridReservas.ReadOnly = true;
+            PintarFila();
         }
 
         private void CargarReservaCliente()
@@ -277,6 +278,7 @@ namespace Software_Canchas_2022
             dataGridReservas.ClearSelection();
             dataGridReservas.TabStop = false;
             dataGridReservas.ReadOnly = true;
+            PintarFila();
         }
 
         private void CargarReservaFechaCliente()
@@ -285,6 +287,7 @@ namespace Software_Canchas_2022
             dataGridReservas.ClearSelection();
             dataGridReservas.TabStop = false;
             dataGridReservas.ReadOnly = true;
+            PintarFila();
         }
 
         private void CargarTipoCancha()

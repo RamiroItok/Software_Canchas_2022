@@ -54,7 +54,6 @@
             this.controlDeCambiosDeReservaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarSesiónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lblBienvenido = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -290,22 +289,11 @@
             this.salirToolStripMenuItem.Text = "Salir";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
-            // lblBienvenido
-            // 
-            this.lblBienvenido.AutoSize = true;
-            this.lblBienvenido.Location = new System.Drawing.Point(1424, 9);
-            this.lblBienvenido.Name = "lblBienvenido";
-            this.lblBienvenido.Size = new System.Drawing.Size(35, 13);
-            this.lblBienvenido.TabIndex = 1;
-            this.lblBienvenido.Tag = "lbl_Bienvenido";
-            this.lblBienvenido.Text = "label1";
-            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1692, 794);
-            this.Controls.Add(this.lblBienvenido);
             this.Controls.Add(this.menuStrip1);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
@@ -349,7 +337,6 @@
         private System.Windows.Forms.ToolStripMenuItem seguridadUsuariosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem bloqueadosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cambiarContraseñaToolStripMenuItem;
-        private System.Windows.Forms.Label lblBienvenido;
         private System.Windows.Forms.ToolStripMenuItem altaIdiomaToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem cargarEtiquetasToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem controlDeCambiosDeReservaToolStripMenuItem;

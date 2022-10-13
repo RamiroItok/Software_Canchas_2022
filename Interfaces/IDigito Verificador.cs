@@ -10,6 +10,5 @@ namespace Interfaces
     {
         string VerificarDV();
         bool RecalcularDV();
-        void LoginSeguridad(string nombre_usuario, string contraseña);
     }
 }

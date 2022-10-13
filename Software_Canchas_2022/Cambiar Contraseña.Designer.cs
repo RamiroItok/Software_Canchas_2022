@@ -77,8 +77,9 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(143, 13);
             this.label1.TabIndex = 3;
-            this.label1.Tag = "lbl_NuevaContraseña";
+            this.label1.Tag = "lbl_Confirmar_NuevaContraseña";
             this.label1.Text = "Confirmar Nueva Contraseña";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // txt_Usuario
             // 

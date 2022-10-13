@@ -89,7 +89,7 @@ namespace Software_Canchas_2022
 
         private void Login_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Environment.Exit(0);
+            Application.Exit();
         }
 
         private bool VerificarIntegridad()

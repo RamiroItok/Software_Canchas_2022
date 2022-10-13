@@ -60,6 +60,7 @@
             this.Controls.Add(this.btn_DesbloquearUsuario);
             this.Controls.Add(this.dataGridUsuarios);
             this.Name = "Usuarios_Bloqueados";
+            this.Tag = "Usuarios_Bloqueados";
             this.Text = "Usuarios_Bloqueados";
             this.Load += new System.EventHandler(this.Usuarios_Bloqueados_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridUsuarios)).EndInit();

@@ -65,7 +65,6 @@ namespace Software_Canchas_2022
             Sesion.SuscribirObservador(this);
             MostrarIdiomasDisponibles();
             CargarPermisosMenu();
-            MostrarControles();
             UpdateLanguage(Sesion.GetInstance().Idioma);
         }
 
@@ -124,17 +123,6 @@ namespace Software_Canchas_2022
             Sesion.CambiarIdioma(((IIdioma)((ToolStripMenuItem)sender).Tag));
         }
 
-        private void MostrarControles()
-        {
-            lblBienvenido.Visible = true;
-            lblBienvenido.Text = lblBienvenido.Text + _usuarioDTO.Nombre;
-        }
-
-        private void OcultarControles()
-        {
-            lblBienvenido.Visible = false;
-        }
-
         private void AgregarIdiomaMenu()
         {
             IList<IIdioma> idiomas = _iTraductor.ObtenerIdiomas();
@@ -181,14 +169,12 @@ namespace Software_Canchas_2022
 
             if (formEvento.ActiveMdiChild == null)
             {
-                MostrarControles();
                 mdiChildActivo = false;
                 UpdateLanguage(Sesion.GetInstance().Idioma);
                 AgregarIdiomaMenu();
             }
             else
             {
-                OcultarControles();
                 mdiChildActivo = true;
             }
         }

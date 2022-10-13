@@ -43,17 +43,5 @@ namespace BLL
             }
         }
 
-        public void LoginSeguridad(string user, string pass)
-        {
-            try
-            {
-
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
-
     }
 }
