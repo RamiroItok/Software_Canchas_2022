@@ -49,7 +49,7 @@ namespace BLL
 
                 int id = _UsuarioDAL.Alta_Usuario(usuario);
                 //GUARDAR EN BITACORA
-                //_bitacora.AltaBitacora("Se dió de alta el usuario " + id + ".", "ALTA");
+                _bitacora.AltaBitacora("Se dió de alta el usuario " + id + ".", "ALTA");
                 _digitoVerificador.RecalcularDV();
                 return id;
             }
@@ -75,7 +75,7 @@ namespace BLL
 
                 int id = _UsuarioDAL.Modificar_Usuario(usuario);
                 //GUARDAR EN BITACORA
-                //_bitacora.AltaBitacora("Se modificó el usuario " + id + ".", "ALTA");
+                _bitacora.AltaBitacora("Se modificó el usuario " + id + ".", "ALTA");
                 _digitoVerificador.RecalcularDV();
                 return id;
             }
@@ -91,7 +91,7 @@ namespace BLL
             {
                 int id = _UsuarioDAL.Baja_Usuario(usuario);
                 //GUARDAR EN BITACORA
-                //_bitacora.AltaBitacora("Se dió de baja el usuario " + id + ".", "ALTA");
+                _bitacora.AltaBitacora("Se dió de baja el usuario " + id + ".", "ALTA");
                 _digitoVerificador.RecalcularDV();
                 return id;
             }

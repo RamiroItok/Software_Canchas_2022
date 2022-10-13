@@ -33,7 +33,7 @@ namespace BLL
                 ValidarReserva(reserva);
                 int id = _reservaDAL.AltaReserva(reserva);
                 //GUARDAR EN BITACORA
-                //_bitacora.AltaBitacora("Se dió de alta la reserva " + id + ".", "ALTA");
+                _bitacora.AltaBitacora("Se dió de alta la reserva " + id + ".", "MEDIA");
                 _digitoVerificador.RecalcularDV();
                 _controlReserva.AltaControlReserva(reserva);
                 return id;
@@ -51,7 +51,7 @@ namespace BLL
                 ValidarReserva(reserva);
                 int id = _reservaDAL.ModificarReserva(reserva);
                 //GUARDAR EN BITACORA
-                //_bitacora.AltaBitacora("Se modificó la reserva " + id + ".", "ALTA");
+                _bitacora.AltaBitacora("Se modificó la reserva " + id + ".", "MEDIA");
                 _digitoVerificador.RecalcularDV();
                 _controlReserva.ActualizarControlReserva(reserva);
                 return id;
@@ -68,7 +68,7 @@ namespace BLL
             {
                 int id = _reservaDAL.BajaReserva(reserva);
                 //GUARDAR EN BITACORA
-                //_bitacora.AltaBitacora("Se dió de baja la reserva " + id + ".", "ALTA");
+                _bitacora.AltaBitacora("Se dió de baja la reserva " + id + ".", "MEDIA");
                 _digitoVerificador.RecalcularDV();
                 _controlReserva.BajaReservaControlReserva(reserva);
                 return id;

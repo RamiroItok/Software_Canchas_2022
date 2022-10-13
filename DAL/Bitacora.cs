@@ -47,7 +47,7 @@ namespace DAL
         {
             try
             {
-                string consulta = $@"DELETE FROM Bitacora WHERE Fecha > CONVERT(datetime, '{fecha_ini} 00:00:00', 103) AND Fecha < convert(datetime, '{fecha_fin} 23:59:59', 103)";
+                string consulta = $@"DELETE Bitacora WHERE Fecha < CONVERT(datetime, '{fecha_ini} 23:59:59', 103) AND Fecha > convert(datetime, '{fecha_fin} 00:00:00', 103)";
                 GenerarConsulta(consulta);
                 int eliminar = 1;
                 return eliminar;
