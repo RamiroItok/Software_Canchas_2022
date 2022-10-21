@@ -99,7 +99,7 @@ namespace Software_Canchas_2022
                 string mensaje = _IDigitoVerifivador.VerificarDV();
                 if (mensaje != "true")
                 {
-                    MessageBox.Show("ERROR. La base de datos fue modificada exteriormente.","Error");
+                    MessageBox.Show(mensaje,"Error");
                     return false;
                 }
                 else
