@@ -121,7 +121,7 @@ namespace DAL
                         {
                             if (tabla == "Usuarios")
                             {
-                                string consulta1 = $@"UPDATE {tabla} set DVH = '{dvh_fila}' WHERE Nombre_Usuario = '{dt2.Rows[x]["Nombre_Usuario"].ToString()}'";
+                                string consulta1 = $@"UPDATE {tabla} set DVH = '{dvh_fila}' WHERE Id = '{dt2.Rows[x]["Id"].ToString()}'";
                                 acceso.GenerarConsulta(consulta1);
                             }
                             else if (tabla == "Bitacora")
