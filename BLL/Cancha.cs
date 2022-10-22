@@ -16,12 +16,14 @@ namespace BLL
         private readonly DAL.Cancha _CanchaDAL;
         private readonly DAL.Observer.Idioma _IdiomaDAL;
         private readonly IBitacora _bitacora;
+        private readonly IDigito_Verificador _digitoVerificador;
 
         public Cancha()
         {
             _CanchaDAL = new DAL.Cancha();
             _IdiomaDAL = new DAL.Observer.Idioma();
             _bitacora = new BLL.Bitacora();
+            _digitoVerificador = new BLL.DigitoVerificador();
         }
         
 

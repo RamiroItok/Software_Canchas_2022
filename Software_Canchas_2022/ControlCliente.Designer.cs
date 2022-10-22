@@ -1,6 +1,6 @@
 ﻿namespace Software_Canchas_2022
 {
-    partial class ControlReserva
+    partial class ControlCliente
     {
         /// <summary>
         /// Required designer variable.
@@ -30,6 +30,7 @@
         {
             this.dataGridControl = new System.Windows.Forms.DataGridView();
             this.btn_Salir = new System.Windows.Forms.Button();
+            this.btn_Restaurar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridControl)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,17 +53,29 @@
             this.btn_Salir.UseVisualStyleBackColor = true;
             this.btn_Salir.Click += new System.EventHandler(this.btn_Salir_Click);
             // 
-            // ControlReserva
+            // btn_Restaurar
+            // 
+            this.btn_Restaurar.Location = new System.Drawing.Point(872, 444);
+            this.btn_Restaurar.Name = "btn_Restaurar";
+            this.btn_Restaurar.Size = new System.Drawing.Size(98, 32);
+            this.btn_Restaurar.TabIndex = 2;
+            this.btn_Restaurar.Tag = "btn_Restaurar";
+            this.btn_Restaurar.Text = "Restaurar";
+            this.btn_Restaurar.UseVisualStyleBackColor = true;
+            this.btn_Restaurar.Click += new System.EventHandler(this.btn_Restaurar_Click);
+            // 
+            // ControlCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1105, 496);
+            this.Controls.Add(this.btn_Restaurar);
             this.Controls.Add(this.btn_Salir);
             this.Controls.Add(this.dataGridControl);
-            this.Name = "ControlReserva";
+            this.Name = "ControlCliente";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ControlReserva";
-            this.Load += new System.EventHandler(this.ControlReserva_Load);
+            this.Text = "ControlCliente";
+            this.Load += new System.EventHandler(this.ControlCliente_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridControl)).EndInit();
             this.ResumeLayout(false);
 
@@ -72,5 +85,6 @@
 
         private System.Windows.Forms.DataGridView dataGridControl;
         private System.Windows.Forms.Button btn_Salir;
+        private System.Windows.Forms.Button btn_Restaurar;
     }
 }

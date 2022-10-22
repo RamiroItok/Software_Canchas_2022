@@ -46,7 +46,7 @@
     <Compile Include="ICancha.cs" />
     <Compile Include="ICliente.cs" />
     <Compile Include="Composite\IPermiso.cs" />
-    <Compile Include="IControlReserva.cs" />
+    <Compile Include="IControlCliente.cs" />
     <Compile Include="IDigito Verificador.cs" />
     <Compile Include="IEncriptar.cs" />
     <Compile Include="IReserva.cs" />

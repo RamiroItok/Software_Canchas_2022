@@ -14,12 +14,16 @@ namespace BLL
         private readonly DAL.Cliente _clienteDAL;
         private readonly DAL.Observer.Idioma _idiomaDAL;
         private readonly IBitacora _bitacora;
+        private readonly IDigito_Verificador _digitoVerificador;
+        private readonly IControlCliente _controlCliente;
 
         public Cliente()
         {
             _clienteDAL = new DAL.Cliente();
             _idiomaDAL = new DAL.Observer.Idioma();
             _bitacora = new BLL.Bitacora();
+            _digitoVerificador = new BLL.DigitoVerificador();
+            _controlCliente = new BLL.ControlCliente();
         }
 
         public int AltaCliente(BE.Cliente cliente)
@@ -30,6 +34,7 @@ namespace BLL
                 int id = _clienteDAL.AltaCliente(cliente);
                 //GUARDAR EN BITACORA
                 _bitacora.AltaBitacora("Se dió de alta el cliente " + id + ".", "MEDIA");
+                _controlCliente.AltaControlCliente(cliente);
                 return id;
             }
             catch (Exception ex)
@@ -46,6 +51,7 @@ namespace BLL
                 int id = _clienteDAL.ModificarCliente(cliente);
                 //GUARDAR EN BITACORA
                 _bitacora.AltaBitacora("Se modificó el cliente " + id + ".", "MEDIA");
+                _controlCliente.ActualizarControlCliente(cliente);
                 return id;
             }
             catch (Exception ex)
@@ -61,6 +67,7 @@ namespace BLL
                 int id = _clienteDAL.BajaCliente(cliente);
                 //GUARDAR EN BITACORA
                 _bitacora.AltaBitacora("Se dió de baja el cliente " + id + ".", "ALTA");
+                _controlCliente.BajaControlCliente(cliente);
                 return id;
             }
             catch (Exception ex)

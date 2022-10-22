@@ -61,7 +61,7 @@ namespace Software_Canchas_2022
         {
             try
             {
-                if (dataGridClientes.CurrentRow == null) throw new Exception(TraducirMensaje("msg_ClienteNoSeleccionada"));
+                if (dataGridClientes.CurrentRow == null) throw new Exception(TraducirMensaje("msg_ClienteNoSeleccionado"));
 
                 Cliente cliente = new Cliente()
                 {
@@ -86,11 +86,14 @@ namespace Software_Canchas_2022
         {
             try
             {
-                if (dataGridClientes.CurrentRow == null) throw new Exception(TraducirMensaje("msg_CanchaNoSeleccionada"));
+                if (dataGridClientes.CurrentRow == null) throw new Exception(TraducirMensaje("msg_ClienteNoSeleccionado"));
 
                 Cliente cliente = new Cliente()
                 {
                     Id = int.Parse(dataGridClientes.CurrentRow.Cells[0].Value.ToString()),
+                    Nombre = dataGridClientes.CurrentRow.Cells[1].Value.ToString(),
+                    Apellido = dataGridClientes.CurrentRow.Cells[2].Value.ToString(),
+                    Telefono = int.Parse(dataGridClientes.CurrentRow.Cells[3].Value.ToString())
                 };
                 _iCliente.BajaCliente(cliente);
 

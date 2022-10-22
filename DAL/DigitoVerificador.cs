@@ -139,12 +139,6 @@ namespace DAL
                                 string consulta1 = $@"UPDATE {tabla} set DVH = '{dvh_fila}' WHERE Id = '{dt2.Rows[x]["Id"].ToString()}'";
                                 acceso.GenerarConsulta(consulta1);
                             }
-                            else if (tabla == "ControlReserva")
-                            {
-                                string consulta1 = $@"UPDATE {tabla} set DVH = '{dvh_fila}' WHERE Id = '{dt2.Rows[x]["Id"].ToString()}'";
-                                acceso.GenerarConsulta(consulta1);
-                            }
-
                         }
                         x = x + 1;
                         DV_tabla = DV_tabla + dvh_fila;

@@ -48,7 +48,7 @@
     <Compile Include="Composite\Familia.cs" />
     <Compile Include="Composite\Patente.cs" />
     <Compile Include="Composite\Permiso.cs" />
-    <Compile Include="ControlReserva.cs" />
+    <Compile Include="ControlCliente.cs" />
     <Compile Include="DTOs\TraduccionesDTO.cs" />
     <Compile Include="DTOs\UsuarioDTO.cs" />
     <Compile Include="DigitoVerificador.cs" />

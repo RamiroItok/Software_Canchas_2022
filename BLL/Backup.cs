@@ -29,7 +29,6 @@ namespace BLL
             {
                 _backupDAL.Realizar_Backup(ruta, nombre);
                 _iBitacora.AltaBitacora("Se realizó una copia de seguridad.","ALTA");
-                _iDigitoVerificador.RecalcularDV();
                 return TraducirMensaje("msg_BackupRealizado");
             }
             catch (Exception ex)
@@ -44,7 +43,6 @@ namespace BLL
             {
                 _backupDAL.Realizar_Restore(ruta);
                 _iBitacora.AltaBitacora("Se realizó un restore.", "ALTA");
-                _iDigitoVerificador.RecalcularDV();
                 return TraducirMensaje("msg_RestoreRealizado");
             }
             catch (Exception ex)

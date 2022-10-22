@@ -42,8 +42,8 @@ namespace Software_Canchas_2022
             {
                 try
                 {
-                    _iBitacora.AltaBitacora("Se recalcularon los digitos verificadores", "ALTA");
                     _iDigito_Verificador.RecalcularDV();
+                    _iBitacora.AltaBitacora("Se recalcularon los digitos verificadores", "ALTA");
                     MessageBox.Show("Se recalcularon los digitos verificadores de manera correcta");
                     Application.Exit();
                 }

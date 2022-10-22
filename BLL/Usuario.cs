@@ -49,8 +49,7 @@ namespace BLL
 
                 int id = _UsuarioDAL.Alta_Usuario(usuario);
                 //GUARDAR EN BITACORA
-                _bitacora.AltaBitacora("Se dió de alta el usuario " + id + ".", "ALTA");
-                _digitoVerificador.RecalcularDV();
+                _bitacora.AltaBitacora("Se dió de alta el usuario " + id + ".", "MEDIA");
                 return id;
             }
             catch (Exception ex)
@@ -76,7 +75,6 @@ namespace BLL
                 int id = _UsuarioDAL.Modificar_Usuario(usuario);
                 //GUARDAR EN BITACORA
                 _bitacora.AltaBitacora("Se modificó el usuario " + id + ".", "ALTA");
-                _digitoVerificador.RecalcularDV();
                 return id;
             }
             catch (Exception ex)
@@ -92,7 +90,6 @@ namespace BLL
                 int id = _UsuarioDAL.Baja_Usuario(usuario);
                 //GUARDAR EN BITACORA
                 _bitacora.AltaBitacora("Se dió de baja el usuario " + id + ".", "ALTA");
-                _digitoVerificador.RecalcularDV();
                 return id;
             }
             catch (Exception ex)
@@ -132,7 +129,6 @@ namespace BLL
                         Sesion.CreateInstance(usuarioSingleton, _IdiomaDAL.ObtenerIdiomaDefault());
                         //GUARDAR EN BITACORA
                         _bitacora.AltaBitacora("Se logeó el usuario.", "BAJA");
-                        _digitoVerificador.RecalcularDV();
                     }
                     else
                     {
@@ -152,7 +148,6 @@ namespace BLL
             {
                 //GUARDAR EN BITACORA
                 _bitacora.AltaBitacora("Cerró la sesión.", "BAJA");
-                _digitoVerificador.RecalcularDV();
                 Sesion.RemoveInstance();
             }
             catch
@@ -171,7 +166,6 @@ namespace BLL
                 _UsuarioDAL.Desbloquear(usuario.Nombre_Usuario);
                 //GUARDAR EN BITACORA
                 _bitacora.AltaBitacora("Se desbloqueó el usuario " + usuario.Id + ".", "ALTA");
-                _digitoVerificador.RecalcularDV();
             }
             catch (Exception ex)
             {
@@ -206,7 +200,6 @@ namespace BLL
                 _UsuarioDAL.CambiarContraseña(usuario, nuevaPasswordEncriptada);
                 //GUARDAR EN BITACORA
                 _bitacora.AltaBitacora("Se cambió la contraseña para el usuario " + usuario.Id + ".", "ALTA");
-                _digitoVerificador.RecalcularDV();
                 return 1;
             }
             catch (Exception ex)

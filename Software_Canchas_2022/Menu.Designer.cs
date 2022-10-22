@@ -51,7 +51,7 @@
             this.seguridadUsuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bloqueadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cambiarContraseñaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.controlDeCambiosDeReservaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.controlDeCambiosDeClienteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarSesiónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
@@ -175,7 +175,7 @@
             this.restoreToolStripMenuItem,
             this.rolesToolStripMenuItem,
             this.seguridadUsuariosToolStripMenuItem,
-            this.controlDeCambiosDeReservaToolStripMenuItem});
+            this.controlDeCambiosDeClienteToolStripMenuItem});
             this.seguridadToolStripMenuItem.Name = "seguridadToolStripMenuItem";
             this.seguridadToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
             this.seguridadToolStripMenuItem.Tag = "menu_Seguridad";
@@ -184,14 +184,14 @@
             // recalcularDigitosVerificadoresToolStripMenuItem
             // 
             this.recalcularDigitosVerificadoresToolStripMenuItem.Name = "recalcularDigitosVerificadoresToolStripMenuItem";
-            this.recalcularDigitosVerificadoresToolStripMenuItem.Size = new System.Drawing.Size(237, 22);
+            this.recalcularDigitosVerificadoresToolStripMenuItem.Size = new System.Drawing.Size(239, 22);
             this.recalcularDigitosVerificadoresToolStripMenuItem.Tag = "menu_Recalcular_DV";
             this.recalcularDigitosVerificadoresToolStripMenuItem.Text = "Recalcular digitos verificadores";
             // 
             // bitácoraToolStripMenuItem
             // 
             this.bitácoraToolStripMenuItem.Name = "bitácoraToolStripMenuItem";
-            this.bitácoraToolStripMenuItem.Size = new System.Drawing.Size(237, 22);
+            this.bitácoraToolStripMenuItem.Size = new System.Drawing.Size(239, 22);
             this.bitácoraToolStripMenuItem.Tag = "menu_Bitacora";
             this.bitácoraToolStripMenuItem.Text = "Bitácora";
             this.bitácoraToolStripMenuItem.Click += new System.EventHandler(this.bitácoraToolStripMenuItem_Click);
@@ -199,7 +199,7 @@
             // backUpToolStripMenuItem
             // 
             this.backUpToolStripMenuItem.Name = "backUpToolStripMenuItem";
-            this.backUpToolStripMenuItem.Size = new System.Drawing.Size(237, 22);
+            this.backUpToolStripMenuItem.Size = new System.Drawing.Size(239, 22);
             this.backUpToolStripMenuItem.Tag = "menu_Backup";
             this.backUpToolStripMenuItem.Text = "Copia de seguridad";
             this.backUpToolStripMenuItem.Click += new System.EventHandler(this.backUpToolStripMenuItem_Click);
@@ -207,7 +207,7 @@
             // restoreToolStripMenuItem
             // 
             this.restoreToolStripMenuItem.Name = "restoreToolStripMenuItem";
-            this.restoreToolStripMenuItem.Size = new System.Drawing.Size(237, 22);
+            this.restoreToolStripMenuItem.Size = new System.Drawing.Size(239, 22);
             this.restoreToolStripMenuItem.Tag = "menu_Restore";
             this.restoreToolStripMenuItem.Text = "Restaurar";
             this.restoreToolStripMenuItem.Click += new System.EventHandler(this.restoreToolStripMenuItem_Click);
@@ -218,7 +218,7 @@
             this.gestiónFamiliaToolStripMenuItem,
             this.asignarPermisosToolStripMenuItem});
             this.rolesToolStripMenuItem.Name = "rolesToolStripMenuItem";
-            this.rolesToolStripMenuItem.Size = new System.Drawing.Size(237, 22);
+            this.rolesToolStripMenuItem.Size = new System.Drawing.Size(239, 22);
             this.rolesToolStripMenuItem.Tag = "menu_Roles";
             this.rolesToolStripMenuItem.Text = "Roles";
             // 
@@ -244,7 +244,7 @@
             this.bloqueadosToolStripMenuItem,
             this.cambiarContraseñaToolStripMenuItem});
             this.seguridadUsuariosToolStripMenuItem.Name = "seguridadUsuariosToolStripMenuItem";
-            this.seguridadUsuariosToolStripMenuItem.Size = new System.Drawing.Size(237, 22);
+            this.seguridadUsuariosToolStripMenuItem.Size = new System.Drawing.Size(239, 22);
             this.seguridadUsuariosToolStripMenuItem.Tag = "menu_Seguridad_Usuarios";
             this.seguridadUsuariosToolStripMenuItem.Text = "Usuarios";
             // 
@@ -264,13 +264,13 @@
             this.cambiarContraseñaToolStripMenuItem.Text = "Cambiar Contraseña";
             this.cambiarContraseñaToolStripMenuItem.Click += new System.EventHandler(this.cambiarContraseñaToolStripMenuItem_Click);
             // 
-            // controlDeCambiosDeReservaToolStripMenuItem
+            // controlDeCambiosDeClienteToolStripMenuItem
             // 
-            this.controlDeCambiosDeReservaToolStripMenuItem.Name = "controlDeCambiosDeReservaToolStripMenuItem";
-            this.controlDeCambiosDeReservaToolStripMenuItem.Size = new System.Drawing.Size(237, 22);
-            this.controlDeCambiosDeReservaToolStripMenuItem.Tag = "menu_Control_Reserva";
-            this.controlDeCambiosDeReservaToolStripMenuItem.Text = "Control de cambios de Reserva";
-            this.controlDeCambiosDeReservaToolStripMenuItem.Click += new System.EventHandler(this.controlDeCambiosDeReservaToolStripMenuItem_Click);
+            this.controlDeCambiosDeClienteToolStripMenuItem.Name = "controlDeCambiosDeClienteToolStripMenuItem";
+            this.controlDeCambiosDeClienteToolStripMenuItem.Size = new System.Drawing.Size(239, 22);
+            this.controlDeCambiosDeClienteToolStripMenuItem.Tag = "menu_Control_Cliente";
+            this.controlDeCambiosDeClienteToolStripMenuItem.Text = "Control de cambios de Clientes";
+            this.controlDeCambiosDeClienteToolStripMenuItem.Click += new System.EventHandler(this.controlDeCambiosDeReservaToolStripMenuItem_Click);
             // 
             // cerrarSesiónToolStripMenuItem
             // 
@@ -339,6 +339,6 @@
         private System.Windows.Forms.ToolStripMenuItem cambiarContraseñaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem altaIdiomaToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem cargarEtiquetasToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem controlDeCambiosDeReservaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem controlDeCambiosDeClienteToolStripMenuItem;
     }
 }

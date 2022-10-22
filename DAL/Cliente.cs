@@ -37,7 +37,8 @@ namespace DAL
                 ExecuteParameters.Parameters.AddWithValue("@parApellido", cliente.Apellido);
                 ExecuteParameters.Parameters.AddWithValue("@parTelefono", cliente.Telefono);
 
-                return ExecuteNonEscalar();
+                cliente.Id = ExecuteNonEscalar();
+                return cliente.Id;
             }
             catch
             {

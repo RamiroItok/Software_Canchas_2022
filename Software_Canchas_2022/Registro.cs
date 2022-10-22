@@ -27,9 +27,9 @@ namespace Software_Canchas_2022
         private readonly IUsuario _iUsuario;
         private readonly IReserva _iReserva;
         private readonly IBackUp _iBackup;
-        private readonly IControlReserva _iControlReserva;
+        private readonly IControlCliente _iControlCliente;
 
-        public Registro(IPermiso permiso, ITraductor traductor, IBitacora bitacora, ICancha cancha, ICliente cliente, IDigito_Verificador dv, IEncriptar encriptar, IUsuario usuario, IReserva reserva, IBackUp backup, IControlReserva controlReserva)
+        public Registro(IPermiso permiso, ITraductor traductor, IBitacora bitacora, ICancha cancha, ICliente cliente, IDigito_Verificador dv, IEncriptar encriptar, IUsuario usuario, IReserva reserva, IBackUp backup, IControlCliente controlCliente)
         {
             InitializeComponent();
             _iPermiso = permiso;
@@ -42,7 +42,7 @@ namespace Software_Canchas_2022
             _iUsuario = usuario;
             _iReserva = reserva;
             _iBackup = backup;
-            _iControlReserva = controlReserva;
+            _iControlCliente = controlCliente;
         }
 
         private void btnRegistrar_Click(object sender, EventArgs e)
@@ -100,13 +100,13 @@ namespace Software_Canchas_2022
         {
             this.Hide();
 
-            Login formLogin = new Login(_iPermiso, _iTraductor, _iCancha, _iCliente, _iUsuario, _iReserva, _iBitacora, _iBackup, _iControlReserva);
+            Login formLogin = new Login(_iPermiso, _iTraductor, _iCancha, _iCliente, _iUsuario, _iReserva, _iBitacora, _iBackup, _iControlCliente);
             formLogin.Show();
         }
 
         private void Registro_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Login formLogin = new Login(_iPermiso, _iTraductor, _iCancha, _iCliente, _iUsuario, _iReserva, _iBitacora, _iBackup, _iControlReserva);
+            Login formLogin = new Login(_iPermiso, _iTraductor, _iCancha, _iCliente, _iUsuario, _iReserva, _iBitacora, _iBackup, _iControlCliente);
             formLogin.Show();
         }
     }

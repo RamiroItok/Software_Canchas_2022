@@ -35,8 +35,9 @@ namespace BLL
                 };
                 
                 ValidarCampo(bitacora);
+                _BitacoraDAL.AltaBitacora(bitacora);
                 _digitoVerificador.RecalcularDV();
-                return _BitacoraDAL.AltaBitacora(bitacora);
+                return 1;
             }
             catch (Exception ex)
             {

@@ -29,14 +29,14 @@ namespace Software_Canchas_2022
         private readonly IUsuario _iUsuario;
         private readonly IReserva _iReserva;
         private readonly IBackUp _iBackup;
-        private readonly IControlReserva _iControlReserva;
+        private readonly IControlCliente _iControlCliente;
 
         private UsuarioDTO _usuarioDTO;
         private readonly IList<IIdioma> _idiomas;
 
         private bool mdiChildActivo = false;
 
-        public Menu(IPermiso permiso, ITraductor traductor, ICancha cancha, ICliente cliente, IUsuario usuario, IReserva reserva, IBitacora bitacora, IBackUp backup, IControlReserva controlReserva)
+        public Menu(IPermiso permiso, ITraductor traductor, ICancha cancha, ICliente cliente, IUsuario usuario, IReserva reserva, IBitacora bitacora, IBackUp backup, IControlCliente controlCliente)
         {
             InitializeComponent();
 
@@ -48,7 +48,7 @@ namespace Software_Canchas_2022
             _iReserva = reserva;
             _iBitacora = bitacora;
             _iBackup = backup;
-            _iControlReserva = controlReserva;
+            _iControlCliente = controlCliente;
 
             _usuarioDTO = Sesion.GetInstance();
             _idiomas = new List<IIdioma>();
@@ -158,7 +158,7 @@ namespace Software_Canchas_2022
 
         private void Abrir_FormLLogin()
         {
-            Login login = new Login(_iPermiso, _iTraductor, _iCancha, _iCliente, _iUsuario, _iReserva, _iBitacora, _iBackup, _iControlReserva);
+            Login login = new Login(_iPermiso, _iTraductor, _iCancha, _iCliente, _iUsuario, _iReserva, _iBitacora, _iBackup, _iControlCliente);
             login.Show();
         }
 
@@ -284,10 +284,10 @@ namespace Software_Canchas_2022
 
         private void controlDeCambiosDeReservaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ControlReserva controlReserva = new ControlReserva(_iControlReserva);
-            controlReserva.MdiParent = this;
-            controlReserva.StartPosition = FormStartPosition.CenterScreen;
-            controlReserva.Show();
+            ControlCliente controlCliente = new ControlCliente(_iControlCliente, _iTraductor);
+            controlCliente.MdiParent = this;
+            controlCliente.StartPosition = FormStartPosition.CenterScreen;
+            controlCliente.Show();
         }
     }
 }

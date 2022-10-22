@@ -17,12 +17,14 @@ namespace BLL.Composite
         private readonly DAL.Composite.Permiso _permisoDAL;
         private readonly DAL.Observer.Idioma _IdiomaDAL;
         private readonly IBitacora _iBitacora;
+        private readonly IDigito_Verificador _digitoVerificador;
 
         public Permiso()
         {
             _permisoDAL = new DAL.Composite.Permiso();
             _IdiomaDAL = new DAL.Observer.Idioma();
             _iBitacora = new BLL.Bitacora();
+            _digitoVerificador = new BLL.DigitoVerificador();
         }
         public void GuardarFamiliaCreada(Familia familia)
         {
