@@ -147,5 +147,11 @@ namespace Software_Canchas_2022
             lbl_Id_Cancha.Text = "";
             txt_Precio.Clear();
         }
+
+        private void Gestion_Canchas_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Sesion.DesuscribirObservador(this);
+            this.Dispose();
+        }
     }
 }

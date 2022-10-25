@@ -192,6 +192,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Tag = "Gestion_Canchas";
             this.Text = "Gestion Canchas";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Gestion_Canchas_FormClosed);
             this.Load += new System.EventHandler(this.Gestion_Canchas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridCanchas)).EndInit();
             this.ResumeLayout(false);

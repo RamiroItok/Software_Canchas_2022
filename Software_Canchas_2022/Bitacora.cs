@@ -78,7 +78,10 @@ namespace Software_Canchas_2022
                 CargarEventos();
                 MessageBox.Show(TraducirMensaje("msg_BitacoraBaja"));
             }
-            catch (Exception ex) { }
+            catch (Exception ex) 
+            { 
+                MessageBox.Show(TraducirMensaje(ex.Message));
+            }
         }
 
         private void btn_Cancelar2_Click(object sender, EventArgs e)

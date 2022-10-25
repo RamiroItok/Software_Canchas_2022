@@ -136,11 +136,11 @@
     <Compile Include="Gestion_Etiquetas.Designer.cs">
       <DependentUpon>Gestion_Etiquetas.cs</DependentUpon>
     </Compile>
-    <Compile Include="Gestion_Permisos.cs">
+    <Compile Include="Gestion_Familia_Patente.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Gestion_Permisos.Designer.cs">
-      <DependentUpon>Gestion_Permisos.cs</DependentUpon>
+    <Compile Include="Gestion_Familia_Patente.Designer.cs">
+      <DependentUpon>Gestion_Familia_Patente.cs</DependentUpon>
     </Compile>
     <Compile Include="Idioma.cs">
       <SubType>Form</SubType>
@@ -165,6 +165,12 @@
     </Compile>
     <Compile Include="Menu.Designer.cs">
       <DependentUpon>Menu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Permisos_Usuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Permisos_Usuarios.Designer.cs">
+      <DependentUpon>Permisos_Usuarios.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -228,8 +234,8 @@
     <EmbeddedResource Include="Gestion_Etiquetas.resx">
       <DependentUpon>Gestion_Etiquetas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Gestion_Permisos.resx">
-      <DependentUpon>Gestion_Permisos.cs</DependentUpon>
+    <EmbeddedResource Include="Gestion_Familia_Patente.resx">
+      <DependentUpon>Gestion_Familia_Patente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Idioma.resx">
       <DependentUpon>Idioma.cs</DependentUpon>
@@ -242,6 +248,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Permisos_Usuarios.resx">
+      <DependentUpon>Permisos_Usuarios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Registro.resx">
       <DependentUpon>Registro.cs</DependentUpon>

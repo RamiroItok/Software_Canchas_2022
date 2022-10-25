@@ -258,14 +258,6 @@ namespace Software_Canchas_2022
             familia.Show();
         }
 
-        private void asignarPermisosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Gestion_Permisos gestion_Permisos = new Gestion_Permisos(_iPermiso, _iTraductor);
-            gestion_Permisos.MdiParent = this;
-            gestion_Permisos.StartPosition = FormStartPosition.CenterScreen;
-            gestion_Permisos.Show();
-        }
-
         private void bloqueadosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Usuarios_Bloqueados usuarios_Bloqueados = new Usuarios_Bloqueados(_iUsuario, _iTraductor);
@@ -288,6 +280,22 @@ namespace Software_Canchas_2022
             controlCliente.MdiParent = this;
             controlCliente.StartPosition = FormStartPosition.CenterScreen;
             controlCliente.Show();
+        }
+
+        private void gestionFamiliasYPatentesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Gestion_Familia_Patente gestion_Familia_Patente = new Gestion_Familia_Patente(_iPermiso, _iTraductor);
+            gestion_Familia_Patente.MdiParent = this;
+            gestion_Familia_Patente.StartPosition = FormStartPosition.CenterScreen;
+            gestion_Familia_Patente.Show();
+        }
+
+        private void permisosAUsuariosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Permisos_Usuarios permisos_Usuarios = new Permisos_Usuarios(_iPermiso, _iUsuario, _iTraductor);
+            permisos_Usuarios.MdiParent = this;
+            permisos_Usuarios.StartPosition = FormStartPosition.CenterScreen;
+            permisos_Usuarios.Show();
         }
     }
 }

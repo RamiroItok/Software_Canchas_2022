@@ -136,7 +136,7 @@ namespace DAL
                             }
                             else if (tabla == "UsuarioPermiso")
                             {
-                                string consulta1 = $@"UPDATE {tabla} set DVH = '{dvh_fila}' WHERE Id = '{dt2.Rows[x]["Id"].ToString()}'";
+                                string consulta1 = $@"UPDATE {tabla} set DVH = '{dvh_fila}' WHERE Id_UsuarioPermiso = '{dt2.Rows[x]["Id_UsuarioPermiso"].ToString()}'";
                                 acceso.GenerarConsulta(consulta1);
                             }
                         }

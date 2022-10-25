@@ -15,13 +15,13 @@ using System.Windows.Forms;
 
 namespace Software_Canchas_2022
 {
-    public partial class Gestion_Permisos : Form
+    public partial class Gestion_Familia_Patente : Form
     {
         private Familia _seleccionFamilia;
         private List<Familia> _familiaComparacion;
         private readonly IPermiso _iPermiso;
         private readonly ITraductor _iTraductor;
-        public Gestion_Permisos(IPermiso permiso, ITraductor traductor)
+        public Gestion_Familia_Patente(IPermiso permiso, ITraductor traductor)
         {
             InitializeComponent();
             _iPermiso = permiso;

@@ -30,7 +30,7 @@ namespace DAL.Composite
                                                      " group by r.PadreId, r.HijoId, p.Id, p.Nombre, p.Permiso ";
         private const string GET_USUARIO_PERMISO = "SELECT p.* FROM UsuarioPermiso up INNER JOIN Permiso p on p.Id = up.PatenteId WHERE UsuarioId = {0}";
         private const string BORRAR_PERMISO_USUARIO = "DELETE FROM UsuarioPermiso WHERE UsuarioId = @parUsuarioId";
-        private const string GUARDAR_PERMISO_USUARIO = "INSERT INTO UsuarioPermiso (UsuarioId, PatenteId) VALUES (@parUsuarioId, @parPatenteId)";
+        private const string GUARDAR_PERMISO_USUARIO = "INSERT INTO UsuarioPermiso (UsuarioId, PatenteId, DVH) VALUES (@parUsuarioId, @parPatenteId, @parDVH)";
         private const string GET_FAMILIA_VALIDACION = "SELECT p.Id, p.Nombre FROM FamiliaPatente fm INNER JOIN Permiso p ON p.Id = fm.PadreId INNER JOIN Permiso p2 ON p2.Id = fm.HijoId WHERE fm.HijoId = {0}";
 
         private const string OBTENER_PATENTES_FAMILIA = "SELECT Id as PermisoId, Nombre, Permiso, PadreId, HijoId FROM Permiso p INNER JOIN FamiliaPatente fm on fm.HijoId = p.Id WHERE PadreId = {0} ORDER BY Permiso DESC";
@@ -100,6 +100,7 @@ namespace DAL.Composite
 
                     ExecuteParameters.Parameters.AddWithValue("@parUsuarioId", usuario.Id);
                     ExecuteParameters.Parameters.AddWithValue("@parPatenteId", item.Id);
+                    ExecuteParameters.Parameters.AddWithValue("@parDVH", 0);
                     ExecuteNonQuery();
                 }
             }

@@ -1,6 +1,6 @@
 ﻿namespace Software_Canchas_2022
 {
-    partial class Gestion_Permisos
+    partial class Gestion_Familia_Patente
     {
         /// <summary>
         /// Required designer variable.
