@@ -264,6 +264,8 @@ namespace Software_Canchas_2022
                 int hora = int.Parse(cmb_Hora1.Text.Substring(0, 2));
                 int total = int.Parse(_iCancha.ObtenerPrecio(cmb_Cancha.Text).ToString());
                 txt_Total.Text = reservaBLL.CalcularTotalHora(hora, total).ToString();
+                if(cmb_FormaPago.SelectedIndex != -1)
+                    txt_Total.Text = reservaBLL.CalcularTotalTipoPago(hora, total, cmb_FormaPago.SelectedItem.ToString()).ToString();
             }
             catch (Exception ex)
             {
@@ -279,8 +281,7 @@ namespace Software_Canchas_2022
                 string formaPago = cmb_FormaPago.SelectedItem.ToString();
                 int hora = int.Parse(cmb_Hora1.Text.Substring(0, 2));
                 int total = int.Parse(_iCancha.ObtenerPrecio(cmb_Cancha.Text).ToString());
-                txt_Total.Text = reservaBLL.CalcularTotalHora(hora, total).ToString();
-                txt_Total.Text = reservaBLL.CalcularTotalTipoPago(total, formaPago).ToString();
+                txt_Total.Text = reservaBLL.CalcularTotalTipoPago(hora, total, formaPago).ToString();
             }
             catch (Exception ex)
             {

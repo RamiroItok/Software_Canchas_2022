@@ -29,6 +29,8 @@ namespace BLL
             try
             {
                 ValidarCampos(reserva);
+                ValidarReservaFecha(reserva);
+                ValidarReservaSeña(reserva);
                 int resultado = ValidarDeudaCliente(reserva);
                 if (resultado == 0)
                 {
@@ -59,6 +61,7 @@ namespace BLL
             try
             {
                 ValidarCampos(reserva);
+                ValidarReservaFecha(reserva);
                 int id = _reservaDAL.ModificarReserva(reserva);
                 if (reserva.Deuda > 0)
                 {
@@ -129,9 +132,9 @@ namespace BLL
             }
         }
 
-        public float CalcularTotalHora(int hora, int total)
+        public int CalcularTotalHora(int hora, int total)
         {
-            float tot;
+            int tot;
             if (hora > 18)
                 tot = total + 500;
             else
@@ -140,14 +143,15 @@ namespace BLL
             return tot;
         }
 
-        public float CalcularTotalTipoPago(int total, string formaPago)
+        public float CalcularTotalTipoPago(int hora, int total, string formaPago)
         {
+            int tot = CalcularTotalHora(hora, total);
             if (formaPago == "Efectivo")
             {
-                total = ((total * 90) / 100);
+                tot = ((tot * 90) / 100);
             }
             
-            return total;
+            return tot;
         }
 
         public string Pagado(int deuda)
@@ -266,7 +270,20 @@ namespace BLL
             {
                 return 0;
             }
-            
+        }
+
+        private void ValidarReservaFecha(BE.Reserva reserva)
+        {
+            string fecha = reserva.Fecha.ToString("dd/MM/yyyy");
+            fecha = fecha + " " + reserva.Hora;
+            if (DateTime.Parse(fecha) < DateTime.Today)
+                throw new Exception(TraducirMensaje("msg_ReservaVencida"));
+        }
+
+        private void ValidarReservaSeña(BE.Reserva reserva)
+        {
+            if(reserva.Seña > reserva.Total)
+                throw new Exception(TraducirMensaje("msg_SeñaMayorTotal"));
         }
 
         private string TraducirMensaje(string msgTag)
