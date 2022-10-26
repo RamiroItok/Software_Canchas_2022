@@ -29,8 +29,9 @@ namespace Software_Canchas_2022
         private readonly IReserva _iReserva;
         private readonly IBackUp _iBackup;
         private readonly IControlCliente _iControlCliente;
+        private readonly IDeudas _iDeudas;
 
-        public Login(IPermiso permiso, ITraductor traductor, ICancha cancha, ICliente cliente, IUsuario usuario, IReserva reserva, IBitacora bitacora, IBackUp backup, IControlCliente controlCliente)
+        public Login(IPermiso permiso, ITraductor traductor, ICancha cancha, ICliente cliente, IUsuario usuario, IReserva reserva, IBitacora bitacora, IBackUp backup, IControlCliente controlCliente, IDeudas deudas)
         {
             InitializeComponent();
             _iPermiso = permiso;
@@ -42,6 +43,8 @@ namespace Software_Canchas_2022
             _iBitacora = bitacora;
             _iBackup = backup;
             _iControlCliente = controlCliente;
+            _iDeudas = deudas;
+
             _IDigitoVerifivador = new BLL.DigitoVerificador();
             if(VerificarIntegridad() == false)
             {
@@ -63,7 +66,7 @@ namespace Software_Canchas_2022
                 Limpiar();
                 this.Hide();
                 MessageBox.Show("Se ingresó correctamente");
-                Menu formMenu = new Menu(_iPermiso, _iTraductor, _iCancha, _iCliente, _iUsuario, _iReserva, _iBitacora, _iBackup, _iControlCliente);
+                Menu formMenu = new Menu(_iPermiso, _iTraductor, _iCancha, _iCliente, _iUsuario, _iReserva, _iBitacora, _iBackup, _iControlCliente, _iDeudas);
                 formMenu.Show();
             }
             catch (Exception ex)

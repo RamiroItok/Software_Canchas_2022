@@ -49,6 +49,7 @@
     <Compile Include="Cliente.cs" />
     <Compile Include="Composite\Permiso.cs" />
     <Compile Include="ControlCliente.cs" />
+    <Compile Include="Deudas.cs" />
     <Compile Include="DigitoVerificador.cs" />
     <Compile Include="Observer\Idioma.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

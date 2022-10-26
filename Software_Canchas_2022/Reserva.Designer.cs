@@ -63,6 +63,8 @@
             this.dtp_Fecha2 = new System.Windows.Forms.DateTimePicker();
             this.chk_Fecha = new System.Windows.Forms.CheckBox();
             this.lbl_IdReserva = new System.Windows.Forms.Label();
+            this.txt_Pagado = new System.Windows.Forms.TextBox();
+            this.lbl_Pagado = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridReservas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -298,10 +300,11 @@
             this.cmb_FormaPago.Name = "cmb_FormaPago";
             this.cmb_FormaPago.Size = new System.Drawing.Size(153, 21);
             this.cmb_FormaPago.TabIndex = 9;
+            this.cmb_FormaPago.SelectedIndexChanged += new System.EventHandler(this.cmb_FormaPago_SelectedIndexChanged);
             // 
             // btn_Reservar
             // 
-            this.btn_Reservar.Location = new System.Drawing.Point(30, 413);
+            this.btn_Reservar.Location = new System.Drawing.Point(30, 466);
             this.btn_Reservar.Name = "btn_Reservar";
             this.btn_Reservar.Size = new System.Drawing.Size(150, 40);
             this.btn_Reservar.TabIndex = 12;
@@ -312,7 +315,7 @@
             // 
             // btn_ModificarReserva
             // 
-            this.btn_ModificarReserva.Location = new System.Drawing.Point(209, 413);
+            this.btn_ModificarReserva.Location = new System.Drawing.Point(209, 466);
             this.btn_ModificarReserva.Name = "btn_ModificarReserva";
             this.btn_ModificarReserva.Size = new System.Drawing.Size(150, 40);
             this.btn_ModificarReserva.TabIndex = 13;
@@ -323,7 +326,7 @@
             // 
             // btn_EliminarReserva
             // 
-            this.btn_EliminarReserva.Location = new System.Drawing.Point(30, 477);
+            this.btn_EliminarReserva.Location = new System.Drawing.Point(30, 520);
             this.btn_EliminarReserva.Name = "btn_EliminarReserva";
             this.btn_EliminarReserva.Size = new System.Drawing.Size(150, 40);
             this.btn_EliminarReserva.TabIndex = 14;
@@ -334,12 +337,12 @@
             // 
             // btn_CancelarReserva
             // 
-            this.btn_CancelarReserva.Location = new System.Drawing.Point(209, 477);
+            this.btn_CancelarReserva.Location = new System.Drawing.Point(209, 520);
             this.btn_CancelarReserva.Name = "btn_CancelarReserva";
             this.btn_CancelarReserva.Size = new System.Drawing.Size(150, 40);
             this.btn_CancelarReserva.TabIndex = 15;
-            this.btn_CancelarReserva.Tag = "btn_CancelarReserva";
-            this.btn_CancelarReserva.Text = "Cancelar reserva";
+            this.btn_CancelarReserva.Tag = "btn_Cancelar";
+            this.btn_CancelarReserva.Text = "Cancelar";
             this.btn_CancelarReserva.UseVisualStyleBackColor = true;
             this.btn_CancelarReserva.Click += new System.EventHandler(this.btn_CancelarReserva_Click);
             // 
@@ -348,14 +351,14 @@
             this.dataGridReservas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridReservas.Location = new System.Drawing.Point(379, 89);
             this.dataGridReservas.Name = "dataGridReservas";
-            this.dataGridReservas.Size = new System.Drawing.Size(1149, 443);
+            this.dataGridReservas.Size = new System.Drawing.Size(935, 473);
             this.dataGridReservas.TabIndex = 22;
             this.dataGridReservas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridReservas_CellClick);
             // 
             // chk_Cliente
             // 
             this.chk_Cliente.AutoSize = true;
-            this.chk_Cliente.Location = new System.Drawing.Point(1190, 25);
+            this.chk_Cliente.Location = new System.Drawing.Point(999, 17);
             this.chk_Cliente.Name = "chk_Cliente";
             this.chk_Cliente.Size = new System.Drawing.Size(58, 17);
             this.chk_Cliente.TabIndex = 30;
@@ -367,14 +370,14 @@
             // 
             this.cmb_Cliente2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmb_Cliente2.FormattingEnabled = true;
-            this.cmb_Cliente2.Location = new System.Drawing.Point(1190, 49);
+            this.cmb_Cliente2.Location = new System.Drawing.Point(999, 41);
             this.cmb_Cliente2.Name = "cmb_Cliente2";
             this.cmb_Cliente2.Size = new System.Drawing.Size(153, 21);
             this.cmb_Cliente2.TabIndex = 17;
             // 
             // btn_Cancelar
             // 
-            this.btn_Cancelar.Location = new System.Drawing.Point(1371, 51);
+            this.btn_Cancelar.Location = new System.Drawing.Point(1180, 43);
             this.btn_Cancelar.Name = "btn_Cancelar";
             this.btn_Cancelar.Size = new System.Drawing.Size(134, 23);
             this.btn_Cancelar.TabIndex = 19;
@@ -385,7 +388,7 @@
             // 
             // btn_Filtrar
             // 
-            this.btn_Filtrar.Location = new System.Drawing.Point(1371, 22);
+            this.btn_Filtrar.Location = new System.Drawing.Point(1180, 14);
             this.btn_Filtrar.Name = "btn_Filtrar";
             this.btn_Filtrar.Size = new System.Drawing.Size(134, 23);
             this.btn_Filtrar.TabIndex = 18;
@@ -397,7 +400,7 @@
             // dtp_Fecha2
             // 
             this.dtp_Fecha2.Checked = false;
-            this.dtp_Fecha2.Location = new System.Drawing.Point(1006, 50);
+            this.dtp_Fecha2.Location = new System.Drawing.Point(815, 42);
             this.dtp_Fecha2.Name = "dtp_Fecha2";
             this.dtp_Fecha2.Size = new System.Drawing.Size(153, 20);
             this.dtp_Fecha2.TabIndex = 16;
@@ -406,7 +409,7 @@
             // chk_Fecha
             // 
             this.chk_Fecha.AutoSize = true;
-            this.chk_Fecha.Location = new System.Drawing.Point(1006, 27);
+            this.chk_Fecha.Location = new System.Drawing.Point(815, 19);
             this.chk_Fecha.Name = "chk_Fecha";
             this.chk_Fecha.Size = new System.Drawing.Size(72, 17);
             this.chk_Fecha.TabIndex = 28;
@@ -421,12 +424,34 @@
             this.lbl_IdReserva.Name = "lbl_IdReserva";
             this.lbl_IdReserva.Size = new System.Drawing.Size(0, 13);
             this.lbl_IdReserva.TabIndex = 31;
+            this.lbl_IdReserva.Visible = false;
+            // 
+            // txt_Pagado
+            // 
+            this.txt_Pagado.Location = new System.Drawing.Point(206, 414);
+            this.txt_Pagado.Name = "txt_Pagado";
+            this.txt_Pagado.ReadOnly = true;
+            this.txt_Pagado.Size = new System.Drawing.Size(153, 20);
+            this.txt_Pagado.TabIndex = 32;
+            this.txt_Pagado.Tag = "";
+            // 
+            // lbl_Pagado
+            // 
+            this.lbl_Pagado.AutoSize = true;
+            this.lbl_Pagado.Location = new System.Drawing.Point(203, 398);
+            this.lbl_Pagado.Name = "lbl_Pagado";
+            this.lbl_Pagado.Size = new System.Drawing.Size(44, 13);
+            this.lbl_Pagado.TabIndex = 33;
+            this.lbl_Pagado.Tag = "lbl_Pagado";
+            this.lbl_Pagado.Text = "Pagado";
             // 
             // Reserva
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1540, 545);
+            this.ClientSize = new System.Drawing.Size(1335, 583);
+            this.Controls.Add(this.lbl_Pagado);
+            this.Controls.Add(this.txt_Pagado);
             this.Controls.Add(this.lbl_IdReserva);
             this.Controls.Add(this.chk_Cliente);
             this.Controls.Add(this.lbl_Total);
@@ -509,5 +534,7 @@
         private System.Windows.Forms.ComboBox cmb_Cliente2;
         private System.Windows.Forms.CheckBox chk_Cliente;
         private System.Windows.Forms.Label lbl_IdReserva;
+        private System.Windows.Forms.TextBox txt_Pagado;
+        private System.Windows.Forms.Label lbl_Pagado;
     }
 }

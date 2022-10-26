@@ -17,6 +17,7 @@ namespace BE
         public float Seña { get; set; }
         public float Total { get; set; }
         public float Deuda { get; set; }
+        public string Pagado { get; set; }
         public int DVH { get; set; }
     }
 }

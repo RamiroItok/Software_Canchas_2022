@@ -47,6 +47,7 @@
     <Compile Include="ICliente.cs" />
     <Compile Include="Composite\IPermiso.cs" />
     <Compile Include="IControlCliente.cs" />
+    <Compile Include="IDeudas.cs" />
     <Compile Include="IDigito Verificador.cs" />
     <Compile Include="IEncriptar.cs" />
     <Compile Include="IReserva.cs" />

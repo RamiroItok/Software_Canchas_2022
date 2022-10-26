@@ -56,6 +56,7 @@
             this.controlDeCambiosDeClienteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarSesiónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deudasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -96,7 +97,8 @@
             this.gestiónToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.gestionUsuariosToolStripMenuItem,
             this.gestionCanchasToolStripMenuItem,
-            this.gestionClientesToolStripMenuItem});
+            this.gestionClientesToolStripMenuItem,
+            this.deudasToolStripMenuItem});
             this.gestiónToolStripMenuItem.Name = "gestiónToolStripMenuItem";
             this.gestiónToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.gestiónToolStripMenuItem.Tag = "menu_Gestion";
@@ -105,7 +107,7 @@
             // gestionUsuariosToolStripMenuItem
             // 
             this.gestionUsuariosToolStripMenuItem.Name = "gestionUsuariosToolStripMenuItem";
-            this.gestionUsuariosToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.gestionUsuariosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.gestionUsuariosToolStripMenuItem.Tag = "menu_Gestion_Usuarios";
             this.gestionUsuariosToolStripMenuItem.Text = "Usuarios";
             this.gestionUsuariosToolStripMenuItem.Click += new System.EventHandler(this.usuariosToolStripMenuItem_Click);
@@ -113,7 +115,7 @@
             // gestionCanchasToolStripMenuItem
             // 
             this.gestionCanchasToolStripMenuItem.Name = "gestionCanchasToolStripMenuItem";
-            this.gestionCanchasToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.gestionCanchasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.gestionCanchasToolStripMenuItem.Tag = "menu_Gestion_Canchas";
             this.gestionCanchasToolStripMenuItem.Text = "Canchas";
             this.gestionCanchasToolStripMenuItem.Click += new System.EventHandler(this.gestionCanchasToolStripMenuItem_Click);
@@ -121,7 +123,7 @@
             // gestionClientesToolStripMenuItem
             // 
             this.gestionClientesToolStripMenuItem.Name = "gestionClientesToolStripMenuItem";
-            this.gestionClientesToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.gestionClientesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.gestionClientesToolStripMenuItem.Tag = "menu_Gestion_Clientes";
             this.gestionClientesToolStripMenuItem.Text = "Clientes";
             this.gestionClientesToolStripMenuItem.Click += new System.EventHandler(this.gestionClientesToolStripMenuItem_Click);
@@ -227,7 +229,7 @@
             // gestiónFamiliaToolStripMenuItem
             // 
             this.gestiónFamiliaToolStripMenuItem.Name = "gestiónFamiliaToolStripMenuItem";
-            this.gestiónFamiliaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.gestiónFamiliaToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.gestiónFamiliaToolStripMenuItem.Tag = "menu_Roles_Familia";
             this.gestiónFamiliaToolStripMenuItem.Text = "Gestión Familia";
             this.gestiónFamiliaToolStripMenuItem.Click += new System.EventHandler(this.gestiónFamiliaToolStripMenuItem_Click);
@@ -238,7 +240,7 @@
             this.gestionFamiliasYPatentesToolStripMenuItem,
             this.permisosAUsuariosToolStripMenuItem});
             this.asignarPermisosToolStripMenuItem.Name = "asignarPermisosToolStripMenuItem";
-            this.asignarPermisosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.asignarPermisosToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.asignarPermisosToolStripMenuItem.Tag = "menu_Asignar_Permisos";
             this.asignarPermisosToolStripMenuItem.Text = "Asignar permisos";
             // 
@@ -307,6 +309,14 @@
             this.salirToolStripMenuItem.Text = "Salir";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
+            // deudasToolStripMenuItem
+            // 
+            this.deudasToolStripMenuItem.Name = "deudasToolStripMenuItem";
+            this.deudasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deudasToolStripMenuItem.Tag = "menu_Deudas_Pendientes";
+            this.deudasToolStripMenuItem.Text = "Deudas Pendientes";
+            this.deudasToolStripMenuItem.Click += new System.EventHandler(this.deudasToolStripMenuItem_Click);
+            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -360,5 +370,6 @@
         private System.Windows.Forms.ToolStripMenuItem controlDeCambiosDeClienteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gestionFamiliasYPatentesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem permisosAUsuariosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deudasToolStripMenuItem;
     }
 }

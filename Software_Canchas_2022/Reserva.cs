@@ -21,13 +21,15 @@ namespace Software_Canchas_2022
         private readonly ITraductor _iTraductor;
         private readonly ICliente _iCliente;
         private readonly ICancha _iCancha;
+        private readonly IDeudas _iDeudas;
 
-        public Reserva(IReserva reserva, ITraductor traductor, ICliente cliente, ICancha cancha)
+        public Reserva(IReserva reserva, ITraductor traductor, ICliente cliente, ICancha cancha, IDeudas deudas)
         {
             _iReserva = reserva;
             _iTraductor = traductor;
             _iCliente = cliente;
             _iCancha = cancha;
+            _iDeudas = deudas;
 
             InitializeComponent();
         }
@@ -40,6 +42,7 @@ namespace Software_Canchas_2022
             UpdateLanguage(Sesion.GetInstance().Idioma);
             CargarReservas();
             LlenarCmbHora();
+            PintarFila();
         }
 
         private void btn_CancelarReserva_Click(object sender, EventArgs e)
@@ -69,13 +72,21 @@ namespace Software_Canchas_2022
                     Seña = float.Parse(txt_Seña.Text),
                     Total = float.Parse(txt_Total.Text),
                     Deuda = float.Parse(txt_Deuda.Text),
+                    Pagado = txt_Pagado.Text
                 };
 
-                _iReserva.AltaReserva(reserva);
+                int id = _iReserva.AltaReserva(reserva);
 
+                if(id == 0)
+                {
+                    MessageBox.Show(TraducirMensaje("msg_ClienteTieneDeudas"));
+                }
+                else
+                {
+                    MessageBox.Show(TraducirMensaje("msg_ReservaAlta"));
+                }
                 CargarReservas();
                 Limpiar();
-                MessageBox.Show(TraducirMensaje("msg_ReservaAlta"));
             }
             catch (Exception ex)
             {
@@ -116,6 +127,7 @@ namespace Software_Canchas_2022
                     Seña = float.Parse(txt_Seña.Text),
                     Total = float.Parse(txt_Total.Text),
                     Deuda = float.Parse(txt_Deuda.Text),
+                    Pagado = txt_Pagado.Text
                 };
 
                 _iReserva.ModificarReserva(reserva);
@@ -145,6 +157,7 @@ namespace Software_Canchas_2022
             txt_Seña.Text = dataGridReservas.CurrentRow.Cells["Seña"].Value.ToString();
             txt_Total.Text = dataGridReservas.CurrentRow.Cells["Total"].Value.ToString();
             txt_Deuda.Text = dataGridReservas.CurrentRow.Cells["Deuda"].Value.ToString();
+            txt_Pagado.Text = dataGridReservas.CurrentRow.Cells["Pagado"].Value.ToString();
             rdb_Si.Checked = true;
         }
 
@@ -152,6 +165,7 @@ namespace Software_Canchas_2022
         {
             try
             {
+                cmb_FormaPago.SelectedIndexChanged -= cmb_FormaPago_SelectedIndexChanged;
                 if (lbl_IdReserva.Text == "") throw new Exception(TraducirMensaje("msg_ReservaNoSeleccionado"));
 
                 BE.Reserva reserva = new BE.Reserva()
@@ -165,12 +179,14 @@ namespace Software_Canchas_2022
                     Seña = float.Parse(txt_Seña.Text),
                     Total = float.Parse(txt_Total.Text),
                     Deuda = float.Parse(txt_Deuda.Text),
+                    Pagado = txt_Pagado.Text
                 };
                 _iReserva.BajaReserva(reserva);
 
                 CargarReservas();
                 Limpiar();
                 MessageBox.Show(TraducirMensaje("msg_ReservaBaja"));
+                cmb_FormaPago.SelectedIndexChanged += cmb_FormaPago_SelectedIndexChanged;
             }
             catch (Exception ex)
             {
@@ -185,7 +201,9 @@ namespace Software_Canchas_2022
                 BLL.Reserva reservaBLL = new BLL.Reserva();
                 float seña = float.Parse(txt_Seña.Text);
                 float total = float.Parse(txt_Total.Text);
-                txt_Deuda.Text = reservaBLL.CalcularDeuda(seña, total).ToString();
+                string formaPago = cmb_FormaPago.Text;
+                txt_Deuda.Text = reservaBLL.CalcularDeuda(seña, total, formaPago).ToString();
+                txt_Pagado.Text = reservaBLL.Pagado(int.Parse(txt_Deuda.Text));
             }
             catch (Exception ex)
             {
@@ -245,7 +263,24 @@ namespace Software_Canchas_2022
                 BLL.Reserva reservaBLL = new BLL.Reserva();
                 int hora = int.Parse(cmb_Hora1.Text.Substring(0, 2));
                 int total = int.Parse(_iCancha.ObtenerPrecio(cmb_Cancha.Text).ToString());
-                txt_Total.Text = reservaBLL.CalcularTotal(hora, total).ToString();
+                txt_Total.Text = reservaBLL.CalcularTotalHora(hora, total).ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void cmb_FormaPago_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                BLL.Reserva reservaBLL = new BLL.Reserva();
+                string formaPago = cmb_FormaPago.SelectedItem.ToString();
+                int hora = int.Parse(cmb_Hora1.Text.Substring(0, 2));
+                int total = int.Parse(_iCancha.ObtenerPrecio(cmb_Cancha.Text).ToString());
+                txt_Total.Text = reservaBLL.CalcularTotalHora(hora, total).ToString();
+                txt_Total.Text = reservaBLL.CalcularTotalTipoPago(total, formaPago).ToString();
             }
             catch (Exception ex)
             {
@@ -261,6 +296,8 @@ namespace Software_Canchas_2022
             dataGridReservas.TabStop = false;
             dataGridReservas.ReadOnly = true;
             PintarFila();
+            dataGridReservas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
         }
 
         private void CargarReservaFecha()
@@ -341,6 +378,7 @@ namespace Software_Canchas_2022
             btn_Calcular.Enabled = false;
             txt_Total.Enabled = false;
             txt_Deuda.Enabled = false;
+            txt_Pagado.Enabled = false;
             btn_Reservar.Enabled = false;
             btn_ModificarReserva.Enabled = false;
             btn_EliminarReserva.Enabled = false;
@@ -357,6 +395,7 @@ namespace Software_Canchas_2022
             btn_Calcular.Enabled = true;
             txt_Total.Enabled = true;
             txt_Deuda.Enabled = true;
+            txt_Pagado.Enabled = true;
             btn_Reservar.Enabled = true;
             btn_ModificarReserva.Enabled = true;
             btn_EliminarReserva.Enabled = true;
@@ -365,6 +404,7 @@ namespace Software_Canchas_2022
 
         private void Limpiar()
         {
+            cmb_FormaPago.SelectedIndexChanged -= cmb_FormaPago_SelectedIndexChanged;
             lbl_IdReserva.Text = "";
             cmb_Tipo.SelectedIndex = -1;
             cmb_Cancha.SelectedIndex = -1;
@@ -377,6 +417,8 @@ namespace Software_Canchas_2022
             txt_Seña.Clear();
             txt_Total.Clear();
             txt_Deuda.Clear();
+            txt_Pagado.Clear();
+            cmb_FormaPago.SelectedIndexChanged -= cmb_FormaPago_SelectedIndexChanged;
             Desbloquear();
         }
 
@@ -425,6 +467,5 @@ namespace Software_Canchas_2022
             return Traductor.TraducirMensaje(_iTraductor, msgTag);
         }
         #endregion
-
     }
 }

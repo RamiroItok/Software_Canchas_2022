@@ -30,13 +30,14 @@ namespace Software_Canchas_2022
         private readonly IReserva _iReserva;
         private readonly IBackUp _iBackup;
         private readonly IControlCliente _iControlCliente;
+        private readonly IDeudas _iDeudas;
 
         private UsuarioDTO _usuarioDTO;
         private readonly IList<IIdioma> _idiomas;
 
         private bool mdiChildActivo = false;
 
-        public Menu(IPermiso permiso, ITraductor traductor, ICancha cancha, ICliente cliente, IUsuario usuario, IReserva reserva, IBitacora bitacora, IBackUp backup, IControlCliente controlCliente)
+        public Menu(IPermiso permiso, ITraductor traductor, ICancha cancha, ICliente cliente, IUsuario usuario, IReserva reserva, IBitacora bitacora, IBackUp backup, IControlCliente controlCliente, IDeudas deudas)
         {
             InitializeComponent();
 
@@ -49,6 +50,7 @@ namespace Software_Canchas_2022
             _iBitacora = bitacora;
             _iBackup = backup;
             _iControlCliente = controlCliente;
+            _iDeudas = deudas;
 
             _usuarioDTO = Sesion.GetInstance();
             _idiomas = new List<IIdioma>();
@@ -75,16 +77,17 @@ namespace Software_Canchas_2022
             PermisoTool.HabilitarMenu(_usuarioDTO, informesToolStripMenuItem);
             PermisoTool.HabilitarMenu(_usuarioDTO, seguridadToolStripMenuItem);
             reservaToolStripMenuItem.Enabled = PermisoTool.TienePermiso(_usuarioDTO, BE.Composite.Permiso.Reserva);
-            gestionUsuariosToolStripMenuItem.Enabled = PermisoTool.TienePermiso(_usuarioDTO, BE.Composite.Permiso.Reserva);
-            gestionCanchasToolStripMenuItem.Enabled = PermisoTool.TienePermiso(_usuarioDTO, BE.Composite.Permiso.Reserva);
-            gestionClientesToolStripMenuItem.Enabled = PermisoTool.TienePermiso(_usuarioDTO, BE.Composite.Permiso.Reserva);
-            gestionIdiomaToolStripMenuItem.Enabled = PermisoTool.TienePermiso(_usuarioDTO, BE.Composite.Permiso.Reserva);
-            recalcularDigitosVerificadoresToolStripMenuItem.Enabled = PermisoTool.TienePermiso(_usuarioDTO, BE.Composite.Permiso.Reserva);
-            bitácoraToolStripMenuItem.Enabled = PermisoTool.TienePermiso(_usuarioDTO, BE.Composite.Permiso.Reserva);
-            backUpToolStripMenuItem.Enabled = PermisoTool.TienePermiso(_usuarioDTO, BE.Composite.Permiso.Reserva);
-            restoreToolStripMenuItem.Enabled = PermisoTool.TienePermiso(_usuarioDTO, BE.Composite.Permiso.Reserva);
-            rolesToolStripMenuItem.Enabled = PermisoTool.TienePermiso(_usuarioDTO, BE.Composite.Permiso.Reserva);
-            seguridadUsuariosToolStripMenuItem.Enabled = PermisoTool.TienePermiso(_usuarioDTO, BE.Composite.Permiso.Reserva);
+            gestionUsuariosToolStripMenuItem.Enabled = PermisoTool.TienePermiso(_usuarioDTO, BE.Composite.Permiso.Gestion_Usuarios);
+            gestionCanchasToolStripMenuItem.Enabled = PermisoTool.TienePermiso(_usuarioDTO, BE.Composite.Permiso.Gestion_Canchas);
+            gestionClientesToolStripMenuItem.Enabled = PermisoTool.TienePermiso(_usuarioDTO, BE.Composite.Permiso.Gestion_Clientes);
+            gestionIdiomaToolStripMenuItem.Enabled = PermisoTool.TienePermiso(_usuarioDTO, BE.Composite.Permiso.Gestion_Idioma);
+            recalcularDigitosVerificadoresToolStripMenuItem.Enabled = PermisoTool.TienePermiso(_usuarioDTO, BE.Composite.Permiso.Recalcular_DV);
+            bitácoraToolStripMenuItem.Enabled = PermisoTool.TienePermiso(_usuarioDTO, BE.Composite.Permiso.Bitacora);
+            backUpToolStripMenuItem.Enabled = PermisoTool.TienePermiso(_usuarioDTO, BE.Composite.Permiso.Backup);
+            restoreToolStripMenuItem.Enabled = PermisoTool.TienePermiso(_usuarioDTO, BE.Composite.Permiso.Restore);
+            rolesToolStripMenuItem.Enabled = PermisoTool.TienePermiso(_usuarioDTO, BE.Composite.Permiso.Roles);
+            seguridadUsuariosToolStripMenuItem.Enabled = PermisoTool.TienePermiso(_usuarioDTO, BE.Composite.Permiso.Seguridad_Usuarios);
+            deudasToolStripMenuItem.Enabled = PermisoTool.TienePermiso(_usuarioDTO, BE.Composite.Permiso.Deudas_Pendientes);
         }
 
         public void UpdateLanguage(IIdioma idioma)
@@ -158,7 +161,7 @@ namespace Software_Canchas_2022
 
         private void Abrir_FormLLogin()
         {
-            Login login = new Login(_iPermiso, _iTraductor, _iCancha, _iCliente, _iUsuario, _iReserva, _iBitacora, _iBackup, _iControlCliente);
+            Login login = new Login(_iPermiso, _iTraductor, _iCancha, _iCliente, _iUsuario, _iReserva, _iBitacora, _iBackup, _iControlCliente, _iDeudas);
             login.Show();
         }
 
@@ -204,7 +207,7 @@ namespace Software_Canchas_2022
 
         private void reservaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Reserva reserva = new Reserva(_iReserva, _iTraductor, _iCliente, _iCancha);
+            Reserva reserva = new Reserva(_iReserva, _iTraductor, _iCliente, _iCancha, _iDeudas);
             reserva.MdiParent = this;
             reserva.StartPosition = FormStartPosition.CenterScreen;
             reserva.Show();
@@ -296,6 +299,14 @@ namespace Software_Canchas_2022
             permisos_Usuarios.MdiParent = this;
             permisos_Usuarios.StartPosition = FormStartPosition.CenterScreen;
             permisos_Usuarios.Show();
+        }
+
+        private void deudasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GestionDeudas gestionDeudas = new GestionDeudas(_iTraductor, _iDeudas);
+            gestionDeudas.MdiParent = this;
+            gestionDeudas.StartPosition = FormStartPosition.CenterScreen;
+            gestionDeudas.Show();
         }
     }
 }

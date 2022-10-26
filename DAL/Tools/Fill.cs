@@ -201,6 +201,9 @@ namespace DAL.Tools
                 if (dr.Table.Columns.Contains("Deuda") && !Convert.IsDBNull(dr["Deuda"]))
                     reserva.Deuda = float.Parse(Convert.ToString(dr["Deuda"]));
 
+                if (dr.Table.Columns.Contains("Pagado") && !Convert.IsDBNull(dr["Pagado"]))
+                    reserva.Pagado = Convert.ToString(dr["Pagado"]);
+
                 if (dr.Table.Columns.Contains("DVH") && !Convert.IsDBNull(dr["DVH"]))
                     reserva.DVH = Convert.ToInt32(dr["DVH"]);
 
@@ -217,6 +220,40 @@ namespace DAL.Tools
         }
 
         #endregion Reserva
+
+        #region Deudas
+        public BE.Deudas FillObjectDeudas(DataRow dr)
+        {
+            BE.Deudas deudas = new BE.Deudas();
+            try
+            {
+                if (dr.Table.Columns.Contains("Id") && !Convert.IsDBNull(dr["Id"]))
+                    deudas.Id = Convert.ToInt32(dr["Id"]);
+
+                if (dr.Table.Columns.Contains("Id_Reserva") && !Convert.IsDBNull(dr["Id_Reserva"]))
+                    deudas.Id_Reserva = Convert.ToInt32(dr["Id_Reserva"]);
+
+                if (dr.Table.Columns.Contains("Id_Cliente") && !Convert.IsDBNull(dr["Id_Cliente"]))
+                    deudas.Id_Cliente = Convert.ToInt32(dr["Id_Cliente"]);
+
+                if (dr.Table.Columns.Contains("Fecha_Pago") && !Convert.IsDBNull(dr["Fecha_Pago"]))
+                    deudas.Fecha_Pago = Convert.ToDateTime(dr["Fecha_Pago"]);
+
+                if (dr.Table.Columns.Contains("DVH") && !Convert.IsDBNull(dr["DVH"]))
+                    deudas.DVH = Convert.ToInt32(dr["DVH"]);
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error en el método FillObject, " + ex.Message);
+            }
+            return deudas;
+        }
+        public List<BE.Deudas> FillListDeudas(DataSet ds)
+        {
+            return (from DataRow dr in ds.Tables[0].Rows select (new Fill()).FillObjectDeudas(dr)).ToList();
+        }
+        #endregion Deudas
 
         #region Cliente
         public BE.Cliente FillObjectCliente(DataRow dr)

@@ -23,7 +23,9 @@ namespace BE.Composite
         Seguridad_Usuarios,
         Control_Cliente,
         Salir,
+        Gestion_Idioma,
         AltaIdioma,
         CargarEtiquetas,
+        Deudas_Pendientes
     }
 }

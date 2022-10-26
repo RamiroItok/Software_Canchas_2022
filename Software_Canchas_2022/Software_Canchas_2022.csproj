@@ -112,6 +112,12 @@
     <Compile Include="Gestion Usuarios.Designer.cs">
       <DependentUpon>Gestion Usuarios.cs</DependentUpon>
     </Compile>
+    <Compile Include="GestionDeudas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionDeudas.Designer.cs">
+      <DependentUpon>GestionDeudas.cs</DependentUpon>
+    </Compile>
     <Compile Include="GestionFamilia.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -221,6 +227,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Gestion Usuarios.resx">
       <DependentUpon>Gestion Usuarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GestionDeudas.resx">
+      <DependentUpon>GestionDeudas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GestionFamilia.resx">
       <DependentUpon>GestionFamilia.cs</DependentUpon>

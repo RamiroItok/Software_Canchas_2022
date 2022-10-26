@@ -44,8 +44,9 @@ namespace Software_Canchas_2022
                     BLL.Backup backup = new BLL.Backup();
                     BLL.Observer.Idioma traductor = new BLL.Observer.Idioma();
                     BLL.Composite.Permiso permiso = new BLL.Composite.Permiso();
+                    BLL.Deudas deudas = new BLL.Deudas();
 
-                    Application.Run(new Login(permiso, traductor, cancha, cliente, usuario, reserva, bitacora, backup, controlCliente));
+                    Application.Run(new Login(permiso, traductor, cancha, cliente, usuario, reserva, bitacora, backup, controlCliente, deudas));
                     mutex.ReleaseMutex();
                 }
                 else
