@@ -22,6 +22,7 @@ namespace DAL
         private const string ALTA_RESERVA = "INSERT INTO Reserva (Id_Cancha, Id_Cliente, Fecha, Hora, Forma_Pago, Seña, Total, Deuda, Pagado, DVH) OUTPUT inserted.Id VALUES (@parId_Cancha, @parId_Cliente, @parFecha, @parHora, @parForma_Pago, @parSeña, @parTotal, @parDeuda, @parPagado, @parDVH)";
         private const string MODIFICAR_RESERVA = "UPDATE Reserva SET Id_Cancha = @parId_Cancha, Id_Cliente = @parId_Cliente, Fecha = @parFecha, Hora = @parHora, Forma_Pago = @parForma_Pago, Seña = @parSeña, Total = @parTotal, Deuda = @parDeuda, Pagado = @parPagado OUTPUT inserted.Id WHERE Id = @parId";
         private const string BAJA_RESERVA = "DELETE FROM Reserva WHERE Id = @parId";
+        private const string PAGAR_RESERVA = "UPDATE Reserva SET Seña = @parSeña, Deuda = @parDeuda, Pagado = @parPagado OUTPUT inserted.Id WHERE Id = @parId";
         private const string OBTENER_RESERVA = "SELECT * FROM Reserva";
         private const string OBTENER_RESERVA_CLIENTE = "SELECT r.Id, r.Id_Cancha as Cancha, cancha.Tipo as TipoCancha, r.Id_Cliente, cliente.Nombre + ' ' + cliente.Apellido as Cliente, r.Fecha as Fecha, r.Hora, r.Forma_Pago, r.Seña, r.Total, r.Deuda, r.Pagado FROM Reserva r inner join Cancha cancha on r.Id_Cancha = cancha.Id join Cliente cliente on cliente.Id = r.Id_Cliente WHERE convert(datetime, DATEADD(DAY,1, r.Fecha), 103) >= convert(datetime, GETDATE(), 103) ORDER BY r.Fecha asc, r.Hora asc";
 
@@ -92,6 +93,29 @@ namespace DAL
                 ExecuteNonQuery();
 
                 return reserva.Id;
+            }
+            catch
+            {
+                throw new Exception("Error en la base de datos. ");
+            }
+        }
+
+        public int PagarDeudaCliente(int idReserva, float seña, float deuda)
+        {
+            try
+            {
+                ExecuteCommandText = PAGAR_RESERVA;
+
+                ExecuteParameters.Parameters.Clear();
+
+                ExecuteParameters.Parameters.AddWithValue("@parId", idReserva);
+                ExecuteParameters.Parameters.AddWithValue("@parSeña", seña);
+                ExecuteParameters.Parameters.AddWithValue("@parDeuda", 0);
+                ExecuteParameters.Parameters.AddWithValue("@parPagado", "Pagado");
+
+                ExecuteNonQuery();
+
+                return idReserva;
             }
             catch
             {

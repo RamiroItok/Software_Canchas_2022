@@ -10,9 +10,11 @@ namespace Interfaces
     public interface IDeudas
     {
         int AltaDeuda(int idReserva, int idCliente, DateTime fechaPago);
-        int BajaDeuda(int idCliente);
+        int BajaDeudaPorCliente(int idCliente);
+        int BajaDeudaPorReserva(int idReserva);
         int ModificarDeuda(int idCliente, DateTime fechaPago);
         DataTable ObtenerDeudaCliente(int idCliente);
         DataTable ListarDeudas();
+        DataTable ListarDeudaCliente(string cliente);
     }
 }

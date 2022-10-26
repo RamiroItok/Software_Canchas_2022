@@ -66,7 +66,7 @@ namespace BLL
                 }
                 else
                 {
-                    _deudas.BajaDeuda(reserva.Id_Cliente);
+                    _deudas.BajaDeudaPorCliente(reserva.Id_Cliente);
                 }
 
                 //GUARDAR EN BITACORA
@@ -84,10 +84,28 @@ namespace BLL
             try
             {
                 int id = _reservaDAL.BajaReserva(reserva);
-                _deudas.BajaDeuda(reserva.Id_Cliente);
+                _deudas.BajaDeudaPorCliente(reserva.Id_Cliente);
 
                 //GUARDAR EN BITACORA
                 _bitacora.AltaBitacora("Se dió de baja la reserva " + id + ".", "MEDIA");
+                return id;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public int PagarDeudaCliente(int idReserva, float seña, float deuda)
+        {
+            try
+            {
+                seña = seña + deuda;
+                int id = _reservaDAL.PagarDeudaCliente(idReserva, seña, deuda);
+                _deudas.BajaDeudaPorReserva(idReserva);
+
+                //GUARDAR EN BITACORA
+                _bitacora.AltaBitacora("Se pagó la deuda de la reserva " + idReserva + ".", "ALTA");
                 return id;
             }
             catch (Exception ex)

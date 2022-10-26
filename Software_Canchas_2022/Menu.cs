@@ -303,7 +303,7 @@ namespace Software_Canchas_2022
 
         private void deudasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            GestionDeudas gestionDeudas = new GestionDeudas(_iTraductor, _iDeudas);
+            GestionDeudas gestionDeudas = new GestionDeudas(_iTraductor, _iDeudas, _iCliente, _iReserva);
             gestionDeudas.MdiParent = this;
             gestionDeudas.StartPosition = FormStartPosition.CenterScreen;
             gestionDeudas.Show();

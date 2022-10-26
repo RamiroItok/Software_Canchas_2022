@@ -23,8 +23,9 @@ namespace DAL
         #region Querys
         private const string ALTA_DEUDA = "INSERT INTO Deudas (Id_Reserva, Id_Cliente, Fecha_Pago, DVH) OUTPUT inserted.Id Values (@parId_Reserva, @parId_Cliente, @parFecha_Pago, @parDVH)";
         private const string MODIFICAR_DEUDA = "UPDATE Deudas SET Fecha_Pago = @parFecha_Pago OUTPUT inserted.Id WHERE Id_Cliente = @parId_Cliente";
-        private const string BAJA_DEUDA = "DELETE FROM Deudas WHERE Id_Cliente = @parId_Cliente";
-        private const string LISTAR_DEUDAS = @"SELECT d.Id, c.Nombre + ' ' + c.Apellido AS Cliente, FORMAT(r.Fecha, 'dd/MM/yyyy') AS FechaReserva, r.Hora AS HoraReserva, r.Seña, r.Total, 
+        private const string BAJA_DEUDA_CLIENTE = "DELETE FROM Deudas WHERE Id_Cliente = @parId_Cliente";
+        private const string BAJA_DEUDA_RESERVA = "DELETE FROM Deudas WHERE Id_Reserva = @parId_Reserva";
+        private const string LISTAR_DEUDAS = @"SELECT d.Id, r.Id as Reserva, c.Nombre + ' ' + c.Apellido AS Cliente, FORMAT(r.Fecha, 'dd/MM/yyyy') AS FechaReserva, r.Hora AS HoraReserva, r.Seña, r.Total, 
                                             r.Deuda, FORMAT(d.Fecha_Pago,'dd/MM/yyyy hh:mm:ss') AS FechaPago FROM Deudas d 
                                             INNER JOIN Reserva r ON d.Id_Cliente = r.Id_Cliente
                                             INNER JOIN Cliente c ON r.Id_Cliente = c.Id";
@@ -70,15 +71,34 @@ namespace DAL
             }
         }
 
-        public int BajaDeuda(int idCliente)
+        public int BajaDeudaPorCliente(int idCliente)
         {
             try
             {
-                ExecuteCommandText = BAJA_DEUDA;
+                ExecuteCommandText = BAJA_DEUDA_CLIENTE;
 
                 ExecuteParameters.Parameters.Clear();
 
                 ExecuteParameters.Parameters.AddWithValue("@parId_Cliente", idCliente);
+
+                ExecuteNonQuery();
+                return 1;
+            }
+            catch
+            {
+                throw new Exception("Error en la base de datos.");
+            }
+        }
+
+        public int BajaDeudaPorReserva(int idReserva)
+        {
+            try
+            {
+                ExecuteCommandText = BAJA_DEUDA_RESERVA;
+
+                ExecuteParameters.Parameters.Clear();
+
+                ExecuteParameters.Parameters.AddWithValue("@parId_Reserva", idReserva);
 
                 ExecuteNonQuery();
                 return 1;
@@ -107,6 +127,24 @@ namespace DAL
             try
             {
                 string consulta = $@"SELECT TOP 1 * FROM Deudas WHERE Id_Cliente = '{idCliente}'";
+                DataTable dt = GenerarConsulta(consulta);
+                return dt;
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error en la base de datos.");
+            }
+        }
+
+        public DataTable ListarDeudaCliente(string cliente)
+        {
+            try
+            {
+                string consulta = $@"SELECT d.Id, r.Id as Reserva, c.Nombre + ' ' + c.Apellido AS Cliente, FORMAT(r.Fecha, 'dd/MM/yyyy') AS FechaReserva, r.Hora AS HoraReserva, r.Seña, r.Total, r.Deuda, 
+                                    FORMAT(d.Fecha_Pago,'dd/MM/yyyy hh:mm:ss') AS FechaPago FROM Deudas d 
+                                    INNER JOIN Reserva r ON d.Id_Cliente = r.Id_Cliente 
+                                    INNER JOIN Cliente c ON r.Id_Cliente = c.Id
+                                    WHERE c.Nombre + ' ' + c.Apellido = '{cliente}'";
                 DataTable dt = GenerarConsulta(consulta);
                 return dt;
             }

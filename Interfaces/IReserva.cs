@@ -18,5 +18,6 @@ namespace Interfaces
         DataTable ObtenerReservaClienteCliente(string cliente);
         DataTable ObtenerReservaFechaCliente(string fecha, string cliente);
         List<string> ObtenerReservaHora(string fecha, string cancha);
+        int PagarDeudaCliente(int idReserva, float seña, float deuda);
     }
 }

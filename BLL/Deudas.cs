@@ -58,11 +58,25 @@ namespace BLL
             }
         }
 
-        public int BajaDeuda(int idCliente)
+        public int BajaDeudaPorCliente(int idCliente)
         {
             try
             {
-                int id = _deudasDAL.BajaDeuda(idCliente);
+                int id = _deudasDAL.BajaDeudaPorCliente(idCliente);
+                _digitoVerificador.RecalcularDV();
+                return id;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public int BajaDeudaPorReserva(int idReserva)
+        {
+            try
+            {
+                int id = _deudasDAL.BajaDeudaPorReserva(idReserva);
                 _digitoVerificador.RecalcularDV();
                 return id;
             }
@@ -90,6 +104,19 @@ namespace BLL
             try
             {
                 DataTable dt = _deudasDAL.ObtenerDeudaCliente(idCliente);
+                return dt;
+            }
+            catch
+            {
+                throw new Exception(TraducirMensaje("msg_ErrorListar"));
+            }
+        }
+
+        public DataTable ListarDeudaCliente(string cliente)
+        {
+            try
+            {
+                DataTable dt = _deudasDAL.ListarDeudaCliente(cliente);
                 return dt;
             }
             catch
