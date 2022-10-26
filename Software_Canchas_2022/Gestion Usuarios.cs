@@ -59,6 +59,7 @@ namespace Software_Canchas_2022
             dataGridUsuarios.ClearSelection();
             dataGridUsuarios.TabStop = false;
             dataGridUsuarios.ReadOnly = true;
+            dataGridUsuarios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
 
         private void button2_Click(object sender, EventArgs e)

@@ -37,7 +37,7 @@
             // 
             // btn_Backup
             // 
-            this.btn_Backup.Location = new System.Drawing.Point(173, 122);
+            this.btn_Backup.Location = new System.Drawing.Point(167, 115);
             this.btn_Backup.Name = "btn_Backup";
             this.btn_Backup.Size = new System.Drawing.Size(116, 46);
             this.btn_Backup.TabIndex = 3;
@@ -48,7 +48,7 @@
             // 
             // btn_Cancelar
             // 
-            this.btn_Cancelar.Location = new System.Drawing.Point(338, 122);
+            this.btn_Cancelar.Location = new System.Drawing.Point(332, 115);
             this.btn_Cancelar.Name = "btn_Cancelar";
             this.btn_Cancelar.Size = new System.Drawing.Size(116, 46);
             this.btn_Cancelar.TabIndex = 4;
@@ -61,7 +61,7 @@
             // 
             this.lbl_Destino.AutoSize = true;
             this.lbl_Destino.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Destino.Location = new System.Drawing.Point(50, 73);
+            this.lbl_Destino.Location = new System.Drawing.Point(90, 51);
             this.lbl_Destino.Name = "lbl_Destino";
             this.lbl_Destino.Size = new System.Drawing.Size(73, 24);
             this.lbl_Destino.TabIndex = 5;
@@ -70,14 +70,14 @@
             // 
             // txt_Explorador
             // 
-            this.txt_Explorador.Location = new System.Drawing.Point(124, 78);
+            this.txt_Explorador.Location = new System.Drawing.Point(94, 78);
             this.txt_Explorador.Name = "txt_Explorador";
             this.txt_Explorador.Size = new System.Drawing.Size(394, 20);
             this.txt_Explorador.TabIndex = 6;
             // 
             // btn_Explorador
             // 
-            this.btn_Explorador.Location = new System.Drawing.Point(541, 73);
+            this.btn_Explorador.Location = new System.Drawing.Point(506, 69);
             this.btn_Explorador.Name = "btn_Explorador";
             this.btn_Explorador.Size = new System.Drawing.Size(38, 29);
             this.btn_Explorador.TabIndex = 7;

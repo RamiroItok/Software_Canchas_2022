@@ -62,7 +62,7 @@
             this.dataGridUsuarios.Location = new System.Drawing.Point(275, 25);
             this.dataGridUsuarios.Name = "dataGridUsuarios";
             this.dataGridUsuarios.ReadOnly = true;
-            this.dataGridUsuarios.Size = new System.Drawing.Size(1073, 583);
+            this.dataGridUsuarios.Size = new System.Drawing.Size(822, 583);
             this.dataGridUsuarios.TabIndex = 0;
             this.dataGridUsuarios.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridUsuarios_CellClick);
             // 
@@ -296,7 +296,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1360, 666);
+            this.ClientSize = new System.Drawing.Size(1119, 631);
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.btnBaja);
             this.Controls.Add(this.btnCancelar);

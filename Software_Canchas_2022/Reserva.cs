@@ -166,7 +166,7 @@ namespace Software_Canchas_2022
             try
             {
                 cmb_FormaPago.SelectedIndexChanged -= cmb_FormaPago_SelectedIndexChanged;
-                if (lbl_IdReserva.Text == "") throw new Exception(TraducirMensaje("msg_ReservaNoSeleccionado"));
+                if (lbl_IdReserva.Text == "") throw new Exception(TraducirMensaje("msg_ReservaNoSeleccionada"));
 
                 BE.Reserva reserva = new BE.Reserva()
                 {

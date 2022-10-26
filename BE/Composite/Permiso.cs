@@ -24,8 +24,8 @@ namespace BE.Composite
         Control_Cliente,
         Salir,
         Gestion_Idioma,
-        AltaIdioma,
         CargarEtiquetas,
+        Control_Clientes,
         Deudas_Pendientes
     }
 }

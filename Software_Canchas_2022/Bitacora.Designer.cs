@@ -53,7 +53,7 @@
             // lbl_FechaDesde
             // 
             this.lbl_FechaDesde.AutoSize = true;
-            this.lbl_FechaDesde.Location = new System.Drawing.Point(35, 42);
+            this.lbl_FechaDesde.Location = new System.Drawing.Point(32, 42);
             this.lbl_FechaDesde.Name = "lbl_FechaDesde";
             this.lbl_FechaDesde.Size = new System.Drawing.Size(69, 13);
             this.lbl_FechaDesde.TabIndex = 0;
@@ -63,7 +63,7 @@
             // chk_Fecha
             // 
             this.chk_Fecha.AutoSize = true;
-            this.chk_Fecha.Location = new System.Drawing.Point(35, 12);
+            this.chk_Fecha.Location = new System.Drawing.Point(35, 24);
             this.chk_Fecha.Name = "chk_Fecha";
             this.chk_Fecha.Size = new System.Drawing.Size(56, 17);
             this.chk_Fecha.TabIndex = 1;
@@ -73,14 +73,14 @@
             // 
             // dtp_FechaDesde1
             // 
-            this.dtp_FechaDesde1.Location = new System.Drawing.Point(110, 39);
+            this.dtp_FechaDesde1.Location = new System.Drawing.Point(35, 56);
             this.dtp_FechaDesde1.Name = "dtp_FechaDesde1";
             this.dtp_FechaDesde1.Size = new System.Drawing.Size(192, 20);
             this.dtp_FechaDesde1.TabIndex = 2;
             // 
             // dtp_FechaHasta1
             // 
-            this.dtp_FechaHasta1.Location = new System.Drawing.Point(110, 70);
+            this.dtp_FechaHasta1.Location = new System.Drawing.Point(260, 55);
             this.dtp_FechaHasta1.Name = "dtp_FechaHasta1";
             this.dtp_FechaHasta1.Size = new System.Drawing.Size(192, 20);
             this.dtp_FechaHasta1.TabIndex = 4;
@@ -88,7 +88,7 @@
             // lbl_FechaHasta
             // 
             this.lbl_FechaHasta.AutoSize = true;
-            this.lbl_FechaHasta.Location = new System.Drawing.Point(35, 74);
+            this.lbl_FechaHasta.Location = new System.Drawing.Point(257, 39);
             this.lbl_FechaHasta.Name = "lbl_FechaHasta";
             this.lbl_FechaHasta.Size = new System.Drawing.Size(66, 13);
             this.lbl_FechaHasta.TabIndex = 3;
@@ -98,7 +98,7 @@
             // chk_Usuario
             // 
             this.chk_Usuario.AutoSize = true;
-            this.chk_Usuario.Location = new System.Drawing.Point(331, 12);
+            this.chk_Usuario.Location = new System.Drawing.Point(496, 32);
             this.chk_Usuario.Name = "chk_Usuario";
             this.chk_Usuario.Size = new System.Drawing.Size(62, 17);
             this.chk_Usuario.TabIndex = 5;
@@ -109,7 +109,7 @@
             // 
             this.cmb_Usuarios.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmb_Usuarios.FormattingEnabled = true;
-            this.cmb_Usuarios.Location = new System.Drawing.Point(331, 38);
+            this.cmb_Usuarios.Location = new System.Drawing.Point(496, 55);
             this.cmb_Usuarios.Name = "cmb_Usuarios";
             this.cmb_Usuarios.Size = new System.Drawing.Size(173, 21);
             this.cmb_Usuarios.TabIndex = 7;
@@ -122,7 +122,7 @@
             "ALTA",
             "MEDIA",
             "BAJA"});
-            this.cmb_Criticidad.Location = new System.Drawing.Point(536, 38);
+            this.cmb_Criticidad.Location = new System.Drawing.Point(708, 55);
             this.cmb_Criticidad.Name = "cmb_Criticidad";
             this.cmb_Criticidad.Size = new System.Drawing.Size(173, 21);
             this.cmb_Criticidad.TabIndex = 10;
@@ -130,7 +130,7 @@
             // chk_Criticidad
             // 
             this.chk_Criticidad.AutoSize = true;
-            this.chk_Criticidad.Location = new System.Drawing.Point(536, 13);
+            this.chk_Criticidad.Location = new System.Drawing.Point(708, 32);
             this.chk_Criticidad.Name = "chk_Criticidad";
             this.chk_Criticidad.Size = new System.Drawing.Size(69, 17);
             this.chk_Criticidad.TabIndex = 8;
@@ -140,9 +140,9 @@
             // 
             // btn_Filtrar
             // 
-            this.btn_Filtrar.Location = new System.Drawing.Point(762, 25);
+            this.btn_Filtrar.Location = new System.Drawing.Point(626, 92);
             this.btn_Filtrar.Name = "btn_Filtrar";
-            this.btn_Filtrar.Size = new System.Drawing.Size(92, 28);
+            this.btn_Filtrar.Size = new System.Drawing.Size(119, 28);
             this.btn_Filtrar.TabIndex = 11;
             this.btn_Filtrar.Tag = "btn_Filtrar";
             this.btn_Filtrar.Text = "Filtrar";
@@ -151,9 +151,9 @@
             // 
             // btn_Cancelar1
             // 
-            this.btn_Cancelar1.Location = new System.Drawing.Point(762, 62);
+            this.btn_Cancelar1.Location = new System.Drawing.Point(762, 92);
             this.btn_Cancelar1.Name = "btn_Cancelar1";
-            this.btn_Cancelar1.Size = new System.Drawing.Size(92, 28);
+            this.btn_Cancelar1.Size = new System.Drawing.Size(119, 28);
             this.btn_Cancelar1.TabIndex = 12;
             this.btn_Cancelar1.Tag = "btn_Cancelar";
             this.btn_Cancelar1.Text = "Cancelar";
@@ -163,7 +163,7 @@
             // dataGridBitacora
             // 
             this.dataGridBitacora.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridBitacora.Location = new System.Drawing.Point(15, 113);
+            this.dataGridBitacora.Location = new System.Drawing.Point(23, 131);
             this.dataGridBitacora.Name = "dataGridBitacora";
             this.dataGridBitacora.Size = new System.Drawing.Size(852, 306);
             this.dataGridBitacora.TabIndex = 13;
@@ -172,7 +172,7 @@
             // 
             this.lbl_EliminarBitacora.AutoSize = true;
             this.lbl_EliminarBitacora.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_EliminarBitacora.Location = new System.Drawing.Point(27, 433);
+            this.lbl_EliminarBitacora.Location = new System.Drawing.Point(32, 456);
             this.lbl_EliminarBitacora.Name = "lbl_EliminarBitacora";
             this.lbl_EliminarBitacora.Size = new System.Drawing.Size(120, 18);
             this.lbl_EliminarBitacora.TabIndex = 14;
@@ -182,7 +182,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(25, 467);
+            this.label1.Location = new System.Drawing.Point(32, 487);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(69, 13);
             this.label1.TabIndex = 15;
@@ -192,7 +192,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(336, 467);
+            this.label2.Location = new System.Drawing.Point(271, 487);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(66, 13);
             this.label2.TabIndex = 16;
@@ -201,21 +201,21 @@
             // 
             // dtp_FechaDesde2
             // 
-            this.dtp_FechaDesde2.Location = new System.Drawing.Point(100, 461);
+            this.dtp_FechaDesde2.Location = new System.Drawing.Point(35, 503);
             this.dtp_FechaDesde2.Name = "dtp_FechaDesde2";
             this.dtp_FechaDesde2.Size = new System.Drawing.Size(210, 20);
             this.dtp_FechaDesde2.TabIndex = 17;
             // 
             // dtp_FechaHasta2
             // 
-            this.dtp_FechaHasta2.Location = new System.Drawing.Point(407, 461);
+            this.dtp_FechaHasta2.Location = new System.Drawing.Point(274, 503);
             this.dtp_FechaHasta2.Name = "dtp_FechaHasta2";
             this.dtp_FechaHasta2.Size = new System.Drawing.Size(204, 20);
             this.dtp_FechaHasta2.TabIndex = 18;
             // 
             // btn_Eliminar
             // 
-            this.btn_Eliminar.Location = new System.Drawing.Point(648, 454);
+            this.btn_Eliminar.Location = new System.Drawing.Point(514, 496);
             this.btn_Eliminar.Name = "btn_Eliminar";
             this.btn_Eliminar.Size = new System.Drawing.Size(92, 27);
             this.btn_Eliminar.TabIndex = 19;
@@ -226,7 +226,7 @@
             // 
             // btn_Cancelar2
             // 
-            this.btn_Cancelar2.Location = new System.Drawing.Point(759, 455);
+            this.btn_Cancelar2.Location = new System.Drawing.Point(626, 497);
             this.btn_Cancelar2.Name = "btn_Cancelar2";
             this.btn_Cancelar2.Size = new System.Drawing.Size(92, 26);
             this.btn_Cancelar2.TabIndex = 20;
@@ -239,7 +239,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(893, 514);
+            this.ClientSize = new System.Drawing.Size(893, 548);
             this.Controls.Add(this.btn_Cancelar2);
             this.Controls.Add(this.btn_Eliminar);
             this.Controls.Add(this.dtp_FechaHasta2);

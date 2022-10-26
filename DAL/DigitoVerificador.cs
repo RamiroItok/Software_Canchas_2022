@@ -49,7 +49,7 @@ namespace DAL
                                 if (dc.ColumnName.ToString().ToUpper() != "DVH")
                                 {
                                     string celda = fila1[dc].ToString();
-                                    for (int i = 0; i < fila1[dc].ToString().Length; i++)
+                                    for (int i = 0; +i < fila1[dc].ToString().Length; i++)
                                     {
                                         byte[] bytes = Encoding.ASCII.GetBytes(fila1[dc].ToString().Substring(i, 1));
                                         int result = bytes[0];

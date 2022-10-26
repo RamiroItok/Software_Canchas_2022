@@ -39,12 +39,12 @@
             this.dataGridControl.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridControl.Location = new System.Drawing.Point(12, 26);
             this.dataGridControl.Name = "dataGridControl";
-            this.dataGridControl.Size = new System.Drawing.Size(1076, 412);
+            this.dataGridControl.Size = new System.Drawing.Size(958, 412);
             this.dataGridControl.TabIndex = 0;
             // 
             // btn_Salir
             // 
-            this.btn_Salir.Location = new System.Drawing.Point(990, 444);
+            this.btn_Salir.Location = new System.Drawing.Point(872, 444);
             this.btn_Salir.Name = "btn_Salir";
             this.btn_Salir.Size = new System.Drawing.Size(98, 32);
             this.btn_Salir.TabIndex = 1;
@@ -55,7 +55,7 @@
             // 
             // btn_Restaurar
             // 
-            this.btn_Restaurar.Location = new System.Drawing.Point(872, 444);
+            this.btn_Restaurar.Location = new System.Drawing.Point(754, 444);
             this.btn_Restaurar.Name = "btn_Restaurar";
             this.btn_Restaurar.Size = new System.Drawing.Size(98, 32);
             this.btn_Restaurar.TabIndex = 2;
@@ -68,12 +68,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1105, 496);
+            this.ClientSize = new System.Drawing.Size(990, 496);
             this.Controls.Add(this.btn_Restaurar);
             this.Controls.Add(this.btn_Salir);
             this.Controls.Add(this.dataGridControl);
             this.Name = "ControlCliente";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Tag = "Control_Cliente";
             this.Text = "ControlCliente";
             this.Load += new System.EventHandler(this.ControlCliente_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridControl)).EndInit();

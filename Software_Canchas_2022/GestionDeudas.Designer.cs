@@ -136,6 +136,7 @@
             this.Controls.Add(this.cmb_Cliente);
             this.Controls.Add(this.dataGridDeudas);
             this.Name = "GestionDeudas";
+            this.Tag = "Gestion_Deudas";
             this.Text = "GestionDeudas";
             this.Load += new System.EventHandler(this.GestionDeudas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridDeudas)).EndInit();

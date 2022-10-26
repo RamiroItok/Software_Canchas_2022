@@ -39,7 +39,7 @@
             // 
             this.lbl_Origen.AutoSize = true;
             this.lbl_Origen.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Origen.Location = new System.Drawing.Point(64, 59);
+            this.lbl_Origen.Location = new System.Drawing.Point(104, 36);
             this.lbl_Origen.Name = "lbl_Origen";
             this.lbl_Origen.Size = new System.Drawing.Size(68, 24);
             this.lbl_Origen.TabIndex = 0;
@@ -48,14 +48,14 @@
             // 
             // txt_explorador
             // 
-            this.txt_explorador.Location = new System.Drawing.Point(138, 63);
+            this.txt_explorador.Location = new System.Drawing.Point(108, 63);
             this.txt_explorador.Name = "txt_explorador";
             this.txt_explorador.Size = new System.Drawing.Size(365, 20);
             this.txt_explorador.TabIndex = 1;
             // 
             // btn_explorador
             // 
-            this.btn_explorador.Location = new System.Drawing.Point(519, 53);
+            this.btn_explorador.Location = new System.Drawing.Point(495, 53);
             this.btn_explorador.Name = "btn_explorador";
             this.btn_explorador.Size = new System.Drawing.Size(39, 30);
             this.btn_explorador.TabIndex = 2;
@@ -65,7 +65,7 @@
             // 
             // btn_RealizarRestore
             // 
-            this.btn_RealizarRestore.Location = new System.Drawing.Point(178, 117);
+            this.btn_RealizarRestore.Location = new System.Drawing.Point(158, 104);
             this.btn_RealizarRestore.Name = "btn_RealizarRestore";
             this.btn_RealizarRestore.Size = new System.Drawing.Size(125, 42);
             this.btn_RealizarRestore.TabIndex = 3;
@@ -76,7 +76,7 @@
             // 
             // btn_Cancelar
             // 
-            this.btn_Cancelar.Location = new System.Drawing.Point(363, 117);
+            this.btn_Cancelar.Location = new System.Drawing.Point(343, 104);
             this.btn_Cancelar.Name = "btn_Cancelar";
             this.btn_Cancelar.Size = new System.Drawing.Size(125, 42);
             this.btn_Cancelar.TabIndex = 4;
@@ -89,7 +89,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(646, 202);
+            this.ClientSize = new System.Drawing.Size(646, 185);
             this.Controls.Add(this.btn_Cancelar);
             this.Controls.Add(this.btn_RealizarRestore);
             this.Controls.Add(this.btn_explorador);

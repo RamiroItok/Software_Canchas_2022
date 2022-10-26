@@ -43,7 +43,7 @@
             // lbl_Usuario
             // 
             this.lbl_Usuario.AutoSize = true;
-            this.lbl_Usuario.Location = new System.Drawing.Point(132, 33);
+            this.lbl_Usuario.Location = new System.Drawing.Point(75, 28);
             this.lbl_Usuario.Name = "lbl_Usuario";
             this.lbl_Usuario.Size = new System.Drawing.Size(43, 13);
             this.lbl_Usuario.TabIndex = 0;
@@ -53,7 +53,7 @@
             // lbl_ContraseñaActual
             // 
             this.lbl_ContraseñaActual.AutoSize = true;
-            this.lbl_ContraseñaActual.Location = new System.Drawing.Point(82, 89);
+            this.lbl_ContraseñaActual.Location = new System.Drawing.Point(76, 89);
             this.lbl_ContraseñaActual.Name = "lbl_ContraseñaActual";
             this.lbl_ContraseñaActual.Size = new System.Drawing.Size(93, 13);
             this.lbl_ContraseñaActual.TabIndex = 1;
@@ -63,7 +63,7 @@
             // lbl_NuevaContraseña
             // 
             this.lbl_NuevaContraseña.AutoSize = true;
-            this.lbl_NuevaContraseña.Location = new System.Drawing.Point(79, 149);
+            this.lbl_NuevaContraseña.Location = new System.Drawing.Point(76, 150);
             this.lbl_NuevaContraseña.Name = "lbl_NuevaContraseña";
             this.lbl_NuevaContraseña.Size = new System.Drawing.Size(96, 13);
             this.lbl_NuevaContraseña.TabIndex = 2;
@@ -73,7 +73,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(32, 206);
+            this.label1.Location = new System.Drawing.Point(76, 213);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(143, 13);
             this.label1.TabIndex = 3;
@@ -83,7 +83,7 @@
             // 
             // txt_Usuario
             // 
-            this.txt_Usuario.Location = new System.Drawing.Point(192, 30);
+            this.txt_Usuario.Location = new System.Drawing.Point(78, 44);
             this.txt_Usuario.Name = "txt_Usuario";
             this.txt_Usuario.ReadOnly = true;
             this.txt_Usuario.Size = new System.Drawing.Size(156, 20);
@@ -91,7 +91,7 @@
             // 
             // txt_ContraseñaActual
             // 
-            this.txt_ContraseñaActual.Location = new System.Drawing.Point(192, 82);
+            this.txt_ContraseñaActual.Location = new System.Drawing.Point(78, 105);
             this.txt_ContraseñaActual.Name = "txt_ContraseñaActual";
             this.txt_ContraseñaActual.PasswordChar = '*';
             this.txt_ContraseñaActual.Size = new System.Drawing.Size(156, 20);
@@ -99,7 +99,7 @@
             // 
             // txt_NuevaContraseña
             // 
-            this.txt_NuevaContraseña.Location = new System.Drawing.Point(192, 142);
+            this.txt_NuevaContraseña.Location = new System.Drawing.Point(79, 166);
             this.txt_NuevaContraseña.Name = "txt_NuevaContraseña";
             this.txt_NuevaContraseña.PasswordChar = '*';
             this.txt_NuevaContraseña.Size = new System.Drawing.Size(156, 20);
@@ -107,7 +107,7 @@
             // 
             // txt_ConfirmarContraseñaNueva
             // 
-            this.txt_ConfirmarContraseñaNueva.Location = new System.Drawing.Point(192, 199);
+            this.txt_ConfirmarContraseñaNueva.Location = new System.Drawing.Point(79, 229);
             this.txt_ConfirmarContraseñaNueva.Name = "txt_ConfirmarContraseñaNueva";
             this.txt_ConfirmarContraseñaNueva.PasswordChar = '*';
             this.txt_ConfirmarContraseñaNueva.Size = new System.Drawing.Size(156, 20);
@@ -115,7 +115,7 @@
             // 
             // btn_Aceptar
             // 
-            this.btn_Aceptar.Location = new System.Drawing.Point(126, 253);
+            this.btn_Aceptar.Location = new System.Drawing.Point(47, 272);
             this.btn_Aceptar.Name = "btn_Aceptar";
             this.btn_Aceptar.Size = new System.Drawing.Size(95, 30);
             this.btn_Aceptar.TabIndex = 8;
@@ -126,7 +126,7 @@
             // 
             // btn_Cancelar
             // 
-            this.btn_Cancelar.Location = new System.Drawing.Point(253, 253);
+            this.btn_Cancelar.Location = new System.Drawing.Point(174, 272);
             this.btn_Cancelar.Name = "btn_Cancelar";
             this.btn_Cancelar.Size = new System.Drawing.Size(95, 30);
             this.btn_Cancelar.TabIndex = 9;
@@ -139,7 +139,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(422, 321);
+            this.ClientSize = new System.Drawing.Size(315, 346);
             this.Controls.Add(this.btn_Cancelar);
             this.Controls.Add(this.btn_Aceptar);
             this.Controls.Add(this.txt_ConfirmarContraseñaNueva);
