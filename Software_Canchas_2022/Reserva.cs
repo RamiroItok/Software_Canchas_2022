@@ -133,8 +133,6 @@ namespace Software_Canchas_2022
                 _iReserva.ModificarReserva(reserva);
 
                 CargarReservas();
-                CargarClientes();
-                CargarTipoCancha();
                 Limpiar();
                 MessageBox.Show(TraducirMensaje("msg_ReservaModificada"));
             }

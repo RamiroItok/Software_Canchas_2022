@@ -143,6 +143,20 @@ namespace DAL
             }
         }
 
+        public DataTable ObtenerReservaClienteFechaHora(int idCliente, string fecha, string hora)
+        {
+            try
+            {
+                string consulta = $@"SELECT TOP 1 Id_Cliente, Fecha, Hora FROM Reserva WHERE Id_Cliente = '{idCliente}' and Fecha = convert(date, '{fecha}', 103) and Hora = '{hora}'";
+                DataTable dt = GenerarConsulta(consulta);
+                return dt;
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error en la base de datos.");
+            }
+        }
+
         public DataTable ObtenerReservaCliente()
         {
             try

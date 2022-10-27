@@ -31,22 +31,30 @@ namespace BLL
                 ValidarCampos(reserva);
                 ValidarReservaFecha(reserva);
                 ValidarReservaSeña(reserva);
-                int resultado = ValidarDeudaCliente(reserva);
-                if (resultado == 0)
+                int validarReservaHora = ValidarReservaClienteFechaHora(reserva);
+                if(validarReservaHora == 0)
                 {
-                    int id = _reservaDAL.AltaReserva(reserva);
-                    if (reserva.Deuda > 0)
+                    int resultado = ValidarDeudaCliente(reserva);
+                    if (resultado == 0)
                     {
-                        _deudas.AltaDeuda(id, reserva.Id_Cliente, DateTime.Now);
-                    }
+                        int id = _reservaDAL.AltaReserva(reserva);
+                        if (reserva.Deuda > 0)
+                        {
+                            _deudas.AltaDeuda(id, reserva.Id_Cliente, DateTime.Now);
+                        }
 
-                    //GUARDAR EN BITACORA
-                    _bitacora.AltaBitacora("Se dió de alta la reserva " + id + ".", "MEDIA");
-                    return id;
+                        //GUARDAR EN BITACORA
+                        _bitacora.AltaBitacora("Se dió de alta la reserva " + id + ".", "MEDIA");
+                        return id;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
                 }
                 else
                 {
-                    return 0;
+                    throw new Exception(TraducirMensaje("msg_ReservaClienteHoraDuplicada"));
                 }
                     
             }
@@ -62,19 +70,28 @@ namespace BLL
             {
                 ValidarCampos(reserva);
                 ValidarReservaFecha(reserva);
-                int id = _reservaDAL.ModificarReserva(reserva);
-                if (reserva.Deuda > 0)
+                int validarReservaHora = ValidarReservaClienteFechaHora(reserva);
+                if (validarReservaHora == 0)
                 {
-                    _deudas.ModificarDeuda(reserva.Id_Cliente, DateTime.Now);
+                    int id = _reservaDAL.ModificarReserva(reserva);
+
+                    if (reserva.Deuda > 0)
+                    {
+                        _deudas.ModificarDeuda(reserva.Id_Cliente, DateTime.Now);
+                    }
+                    else
+                    {
+                        _deudas.BajaDeudaPorCliente(reserva.Id_Cliente);
+                    }
+
+                    //GUARDAR EN BITACORA
+                    _bitacora.AltaBitacora("Se modificó la reserva " + id + ".", "MEDIA");
+                    return id;
                 }
                 else
                 {
-                    _deudas.BajaDeudaPorCliente(reserva.Id_Cliente);
+                    throw new Exception(TraducirMensaje("msg_ReservaClienteHoraDuplicada"));
                 }
-
-                //GUARDAR EN BITACORA
-                _bitacora.AltaBitacora("Se modificó la reserva " + id + ".", "MEDIA");
-                return id;
             }
             catch (Exception ex)
             {
@@ -201,6 +218,19 @@ namespace BLL
             }
         }
 
+        public DataTable ObtenerReservaClienteFechaHora(int idCliente, string fecha, string hora)
+        {
+            try
+            {
+                DataTable dt = _reservaDAL.ObtenerReservaClienteFechaHora(idCliente, fecha, hora);
+                return dt;
+            }
+            catch
+            {
+                throw new Exception(TraducirMensaje("msg_ErrorListar"));
+            }
+        }
+
         public DataTable ObtenerReservaClienteFecha(string fecha)
         {
             try
@@ -284,6 +314,29 @@ namespace BLL
         {
             if(reserva.Seña > reserva.Total)
                 throw new Exception(TraducirMensaje("msg_SeñaMayorTotal"));
+        }
+
+        private int ValidarReservaClienteFechaHora(BE.Reserva reserva)
+        {
+            try
+            {
+                int id = reserva.Id_Cliente;
+                string fecha = reserva.Fecha.ToString();
+                string hora = reserva.Hora;
+                DataTable tabla = _reservaDAL.ObtenerReservaClienteFechaHora(id, fecha, hora);
+                if (tabla.Rows.Count > 0)
+                {
+                    return 1;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            catch
+            {
+                throw new Exception(TraducirMensaje("msg_ErrorReservaClienteHora"));
+            }
         }
 
         private string TraducirMensaje(string msgTag)
