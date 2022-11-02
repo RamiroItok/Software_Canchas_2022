@@ -218,11 +218,11 @@ namespace BLL
             }
         }
 
-        public DataTable ObtenerReservaClienteFechaHora(int idCliente, string fecha, string hora)
+        public DataTable ObtenerReservaClienteFechaHora(int idCliente, string fecha, string hora, int idReserva)
         {
             try
             {
-                DataTable dt = _reservaDAL.ObtenerReservaClienteFechaHora(idCliente, fecha, hora);
+                DataTable dt = _reservaDAL.ObtenerReservaClienteFechaHora(idCliente, fecha, hora, idReserva);
                 return dt;
             }
             catch
@@ -323,7 +323,8 @@ namespace BLL
                 int id = reserva.Id_Cliente;
                 string fecha = reserva.Fecha.ToString();
                 string hora = reserva.Hora;
-                DataTable tabla = _reservaDAL.ObtenerReservaClienteFechaHora(id, fecha, hora);
+                int idReserva = reserva.Id;
+                DataTable tabla = _reservaDAL.ObtenerReservaClienteFechaHora(id, fecha, hora, idReserva);
                 if (tabla.Rows.Count > 0)
                 {
                     return 1;

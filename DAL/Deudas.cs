@@ -28,7 +28,8 @@ namespace DAL
         private const string LISTAR_DEUDAS = @"SELECT d.Id, r.Id as Reserva, c.Nombre + ' ' + c.Apellido AS Cliente, FORMAT(r.Fecha, 'dd/MM/yyyy') AS FechaReserva, r.Hora AS HoraReserva, r.Seña, r.Total, 
                                             r.Deuda, FORMAT(d.Fecha_Pago,'dd/MM/yyyy hh:mm:ss') AS FechaPago FROM Deudas d 
                                             INNER JOIN Reserva r ON d.Id_Cliente = r.Id_Cliente
-                                            INNER JOIN Cliente c ON r.Id_Cliente = c.Id";
+                                            INNER JOIN Cliente c ON r.Id_Cliente = c.Id
+                                            WHERE r.Deuda > 0";
         #endregion
 
         public int AltaDeuda(BE.Deudas deuda)

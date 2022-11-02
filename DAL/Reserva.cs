@@ -143,11 +143,11 @@ namespace DAL
             }
         }
 
-        public DataTable ObtenerReservaClienteFechaHora(int idCliente, string fecha, string hora)
+        public DataTable ObtenerReservaClienteFechaHora(int idCliente, string fecha, string hora, int reserva)
         {
             try
             {
-                string consulta = $@"SELECT TOP 1 Id_Cliente, Fecha, Hora FROM Reserva WHERE Id_Cliente = '{idCliente}' and Fecha = convert(date, '{fecha}', 103) and Hora = '{hora}'";
+                string consulta = $@"SELECT TOP 1 Id_Cliente, Fecha, Hora FROM Reserva WHERE Id_Cliente = '{idCliente}' and Fecha = convert(date, '{fecha}', 103) and Hora = '{hora}' and Id != '{reserva}'";
                 DataTable dt = GenerarConsulta(consulta);
                 return dt;
             }
