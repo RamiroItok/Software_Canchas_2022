@@ -49,7 +49,7 @@ namespace Software_Canchas_2022
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                MessageBox.Show(ex.Message);
             }
         }
 

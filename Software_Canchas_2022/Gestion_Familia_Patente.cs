@@ -50,7 +50,7 @@ namespace Software_Canchas_2022
             }
             catch (Exception)
             {
-                throw new Exception(TraducirMensaje("msg_ErrorCargarArbol"));
+                MessageBox.Show(TraducirMensaje("msg_ErrorCargarArbol"));
             }
         }
 
@@ -239,7 +239,7 @@ namespace Software_Canchas_2022
             }
             catch (Exception)
             {
-                throw new Exception(TraducirMensaje("msg_ErrorCargarArbol"));
+                MessageBox.Show(TraducirMensaje("msg_ErrorCargarArbol"));
             }
         }
 
@@ -262,7 +262,7 @@ namespace Software_Canchas_2022
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -284,7 +284,7 @@ namespace Software_Canchas_2022
             }
             catch (Exception)
             {
-                throw new Exception(TraducirMensaje("msg_ErrorCargarArbol"));
+                MessageBox.Show(TraducirMensaje("msg_ErrorCargarArbol"));
             }
         }
 
@@ -343,7 +343,7 @@ namespace Software_Canchas_2022
             }
             catch (Exception)
             {
-                throw new Exception(TraducirMensaje("msg_ErrorCargarArbol"));
+                MessageBox.Show(TraducirMensaje("msg_ErrorCargarArbol"));
             }
         }
 

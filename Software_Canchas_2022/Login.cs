@@ -110,9 +110,10 @@ namespace Software_Canchas_2022
                     return true;
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                throw new Exception();
+                MessageBox.Show(ex.Message);
+                return false;
             }
         }
 
