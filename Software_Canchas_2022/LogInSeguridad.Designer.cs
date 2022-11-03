@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LogInSeguridad));
             this.lbl_Nombre_Usuario = new System.Windows.Forms.Label();
             this.lbl_Contraseña = new System.Windows.Forms.Label();
             this.txt_Nombre_Usuario = new System.Windows.Forms.TextBox();
@@ -104,6 +105,7 @@
             this.Controls.Add(this.txt_Nombre_Usuario);
             this.Controls.Add(this.lbl_Contraseña);
             this.Controls.Add(this.lbl_Nombre_Usuario);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "LogInSeguridad";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LogInSeguridad";

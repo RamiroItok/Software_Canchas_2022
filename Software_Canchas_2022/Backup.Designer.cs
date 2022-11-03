@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Backup));
             this.btn_Backup = new System.Windows.Forms.Button();
             this.btn_Cancelar = new System.Windows.Forms.Button();
             this.lbl_Destino = new System.Windows.Forms.Label();
@@ -95,6 +96,7 @@
             this.Controls.Add(this.lbl_Destino);
             this.Controls.Add(this.btn_Cancelar);
             this.Controls.Add(this.btn_Backup);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Backup";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Backup";

@@ -69,6 +69,7 @@ namespace BLL
             try
             {
                 ValidarCampos(reserva);
+                ValidarReservaSeña(reserva);
                 ValidarReservaFecha(reserva);
                 int validarReservaHora = ValidarReservaClienteFechaHora(reserva);
                 if (validarReservaHora == 0)

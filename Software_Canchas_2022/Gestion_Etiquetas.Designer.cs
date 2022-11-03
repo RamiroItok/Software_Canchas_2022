@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Gestion_Etiquetas));
             this.lbl_Idioma = new System.Windows.Forms.Label();
             this.lbl_Etiqueta = new System.Windows.Forms.Label();
             this.cmb_Idioma = new System.Windows.Forms.ComboBox();
@@ -169,6 +170,7 @@
             this.Controls.Add(this.cmb_Idioma);
             this.Controls.Add(this.lbl_Etiqueta);
             this.Controls.Add(this.lbl_Idioma);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Gestion_Etiquetas";
             this.Text = "Gestion_Etiquetas";
             this.Load += new System.EventHandler(this.Gestion_Etiquetas_Load);

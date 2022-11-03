@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ErrorIntegridad));
             this.label1 = new System.Windows.Forms.Label();
             this.btn_RecalcularDV = new System.Windows.Forms.Button();
             this.btn_Restore = new System.Windows.Forms.Button();
@@ -71,6 +72,7 @@
             this.Controls.Add(this.btn_Restore);
             this.Controls.Add(this.btn_RecalcularDV);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ErrorIntegridad";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ErrorIntegridad";

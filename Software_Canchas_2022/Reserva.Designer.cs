@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Reserva));
             this.label1 = new System.Windows.Forms.Label();
             this.lbl_Cliente1 = new System.Windows.Forms.Label();
             this.cmb_Cancha = new System.Windows.Forms.ComboBox();
@@ -488,6 +489,7 @@
             this.Controls.Add(this.cmb_Cancha);
             this.Controls.Add(this.lbl_Cliente1);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Reserva";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Reserva";

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Idioma));
             this.lbl_Nombre = new System.Windows.Forms.Label();
             this.txt_Nombre = new System.Windows.Forms.TextBox();
             this.btn_Alta = new System.Windows.Forms.Button();
@@ -117,6 +118,7 @@
             this.Controls.Add(this.btn_Alta);
             this.Controls.Add(this.txt_Nombre);
             this.Controls.Add(this.lbl_Nombre);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Idioma";
             this.Tag = "form_Idioma";
             this.Text = "Idioma";

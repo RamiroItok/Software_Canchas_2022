@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Permisos_Usuarios));
             this.lbl_Usuario = new System.Windows.Forms.Label();
             this.lbl_Familia = new System.Windows.Forms.Label();
             this.cmb_Usuario = new System.Windows.Forms.ComboBox();
@@ -181,6 +182,7 @@
             this.Controls.Add(this.cmb_Usuario);
             this.Controls.Add(this.lbl_Familia);
             this.Controls.Add(this.lbl_Usuario);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Permisos_Usuarios";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Tag = "Permisos_Usuarios";

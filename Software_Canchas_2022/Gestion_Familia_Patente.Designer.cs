@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Gestion_Familia_Patente));
             this.lbl_Familias = new System.Windows.Forms.Label();
             this.lbl_Patentes = new System.Windows.Forms.Label();
             this.lbl_AgregarFamiliaFamilia = new System.Windows.Forms.Label();
@@ -173,7 +174,7 @@
             this.btn_AgregarFamilia.UseVisualStyleBackColor = true;
             this.btn_AgregarFamilia.Click += new System.EventHandler(this.btn_AgregarFamilia_Click);
             // 
-            // Gestion_Permisos
+            // Gestion_Familia_Patente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -191,7 +192,8 @@
             this.Controls.Add(this.lbl_AgregarFamiliaFamilia);
             this.Controls.Add(this.lbl_Patentes);
             this.Controls.Add(this.lbl_Familias);
-            this.Name = "Gestion_Permisos";
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "Gestion_Familia_Patente";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Tag = "gestion_Permisos";
             this.Text = "Gestion_Permisos";

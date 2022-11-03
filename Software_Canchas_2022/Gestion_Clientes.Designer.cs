@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Gestion_Clientes));
             this.lbl_Nombre = new System.Windows.Forms.Label();
             this.lbl_Apellido = new System.Windows.Forms.Label();
             this.lbl_Telefono = new System.Windows.Forms.Label();
@@ -162,6 +163,7 @@
             this.Controls.Add(this.lbl_Telefono);
             this.Controls.Add(this.lbl_Apellido);
             this.Controls.Add(this.lbl_Nombre);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Gestion_Clientes";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Tag = "Gestion_Cliente";

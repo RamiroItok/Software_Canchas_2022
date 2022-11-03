@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Usuarios_Bloqueados));
             this.dataGridUsuarios = new System.Windows.Forms.DataGridView();
             this.btn_DesbloquearUsuario = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridUsuarios)).BeginInit();
@@ -59,6 +60,7 @@
             this.ClientSize = new System.Drawing.Size(502, 471);
             this.Controls.Add(this.btn_DesbloquearUsuario);
             this.Controls.Add(this.dataGridUsuarios);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Usuarios_Bloqueados";
             this.Tag = "Usuarios_Bloqueados";
             this.Text = "Usuarios_Bloqueados";

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Restore));
             this.lbl_Origen = new System.Windows.Forms.Label();
             this.txt_explorador = new System.Windows.Forms.TextBox();
             this.btn_explorador = new System.Windows.Forms.Button();
@@ -95,6 +96,7 @@
             this.Controls.Add(this.btn_explorador);
             this.Controls.Add(this.txt_explorador);
             this.Controls.Add(this.lbl_Origen);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Restore";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Restore";

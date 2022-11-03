@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GestionFamilia));
             this.lbl_NombreFamilia = new System.Windows.Forms.Label();
             this.txt_Familia = new System.Windows.Forms.TextBox();
             this.btn_Alta = new System.Windows.Forms.Button();
@@ -94,6 +95,7 @@
             this.Controls.Add(this.btn_Alta);
             this.Controls.Add(this.txt_Familia);
             this.Controls.Add(this.lbl_NombreFamilia);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "GestionFamilia";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GestionFamilia";

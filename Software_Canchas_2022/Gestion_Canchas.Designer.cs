@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Gestion_Canchas));
             this.cmbTipo = new System.Windows.Forms.ComboBox();
             this.cmbMaterial = new System.Windows.Forms.ComboBox();
             this.lblTipo = new System.Windows.Forms.Label();
@@ -188,6 +189,7 @@
             this.Controls.Add(this.lblTipo);
             this.Controls.Add(this.cmbMaterial);
             this.Controls.Add(this.cmbTipo);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Gestion_Canchas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Tag = "Gestion_Canchas";

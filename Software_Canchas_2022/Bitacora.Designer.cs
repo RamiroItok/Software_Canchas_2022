@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Bitacora));
             this.lbl_FechaDesde = new System.Windows.Forms.Label();
             this.chk_Fecha = new System.Windows.Forms.CheckBox();
             this.dtp_FechaDesde1 = new System.Windows.Forms.DateTimePicker();
@@ -259,6 +260,7 @@
             this.Controls.Add(this.dtp_FechaDesde1);
             this.Controls.Add(this.chk_Fecha);
             this.Controls.Add(this.lbl_FechaDesde);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Bitacora";
             this.Text = "Bitacora";
             this.Load += new System.EventHandler(this.Bitacora_Load);

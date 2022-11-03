@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Cambiar_Contraseña));
             this.lbl_Usuario = new System.Windows.Forms.Label();
             this.lbl_ContraseñaActual = new System.Windows.Forms.Label();
             this.lbl_NuevaContraseña = new System.Windows.Forms.Label();
@@ -150,6 +151,7 @@
             this.Controls.Add(this.lbl_NuevaContraseña);
             this.Controls.Add(this.lbl_ContraseñaActual);
             this.Controls.Add(this.lbl_Usuario);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Cambiar_Contraseña";
             this.Text = "Cambiar_Contraseña";
             this.Load += new System.EventHandler(this.Cambiar_Contraseña_Load);

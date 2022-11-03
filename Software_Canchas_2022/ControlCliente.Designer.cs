@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ControlCliente));
             this.dataGridControl = new System.Windows.Forms.DataGridView();
             this.btn_Salir = new System.Windows.Forms.Button();
             this.btn_Restaurar = new System.Windows.Forms.Button();
@@ -72,6 +73,7 @@
             this.Controls.Add(this.btn_Restaurar);
             this.Controls.Add(this.btn_Salir);
             this.Controls.Add(this.dataGridControl);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ControlCliente";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Tag = "Control_Cliente";

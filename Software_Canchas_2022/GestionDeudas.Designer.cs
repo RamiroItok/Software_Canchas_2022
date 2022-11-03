@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GestionDeudas));
             this.dataGridDeudas = new System.Windows.Forms.DataGridView();
             this.cmb_Cliente = new System.Windows.Forms.ComboBox();
             this.lbl_Cliente = new System.Windows.Forms.Label();
@@ -121,6 +122,7 @@
             this.lbl_IdReserva.Size = new System.Drawing.Size(0, 18);
             this.lbl_IdReserva.TabIndex = 7;
             this.lbl_IdReserva.Tag = "";
+            this.lbl_IdReserva.Visible = false;
             // 
             // GestionDeudas
             // 
@@ -135,6 +137,7 @@
             this.Controls.Add(this.lbl_Cliente);
             this.Controls.Add(this.cmb_Cliente);
             this.Controls.Add(this.dataGridDeudas);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "GestionDeudas";
             this.Tag = "Gestion_Deudas";
             this.Text = "GestionDeudas";
