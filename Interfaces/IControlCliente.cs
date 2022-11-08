@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ namespace Interfaces
         int BajaControlCliente(BE.Cliente cliente);
         int RestaurarCliente(BE.Cliente cliente);
         List<BE.ControlCliente> ObtenerControlCliente();
+        DataTable ObtenerControlClientePorCliente(int cliente);
         int ObtenerControlClientePorId(int id);
     }
 }

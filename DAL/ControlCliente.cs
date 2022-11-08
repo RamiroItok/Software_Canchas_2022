@@ -109,5 +109,19 @@ namespace DAL
             }
         }
 
+        public DataTable ObtenerControlClientePorCliente(int cliente)
+        {
+            try
+            {
+                string consulta = $@"SELECT * FROM ControlCliente WHERE ClienteId = '{cliente}'";
+                DataTable dt = GenerarConsulta(consulta);
+                return dt;
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error en la base de datos.");
+            }
+        }
+
     }
 }

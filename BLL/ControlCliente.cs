@@ -2,6 +2,7 @@
 using Servicios;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -143,6 +144,19 @@ namespace BLL
                 int resultado = _controlClienteDAL.ObtenerControlClientePorId(id);
                 return resultado;
 
+            }
+            catch
+            {
+                throw new Exception(TraducirMensaje("msg_ErrorListar"));
+            }
+        }
+
+        public DataTable ObtenerControlClientePorCliente(int cliente)
+        {
+            try
+            {
+                DataTable bit = _controlClienteDAL.ObtenerControlClientePorCliente(cliente);
+                return bit;
             }
             catch
             {

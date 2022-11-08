@@ -279,7 +279,7 @@ namespace Software_Canchas_2022
 
         private void controlDeCambiosDeReservaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ControlCliente controlCliente = new ControlCliente(_iControlCliente, _iTraductor);
+            ControlCliente controlCliente = new ControlCliente(_iControlCliente, _iTraductor, _iCliente);
             controlCliente.MdiParent = this;
             controlCliente.StartPosition = FormStartPosition.CenterScreen;
             controlCliente.Show();

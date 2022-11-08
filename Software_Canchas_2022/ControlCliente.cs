@@ -19,11 +19,13 @@ namespace Software_Canchas_2022
     {
         private readonly IControlCliente _iControlCliente;
         private readonly ITraductor _iTraductor;
-        public ControlCliente(IControlCliente controlCliente, ITraductor traductor)
+        private readonly ICliente _iCliente;
+        public ControlCliente(IControlCliente controlCliente, ITraductor traductor, ICliente cliente)
         {
             InitializeComponent();
             _iControlCliente = controlCliente;
             _iTraductor = traductor;
+            _iCliente = cliente;
         }
 
         private void btn_Salir_Click(object sender, EventArgs e)
@@ -42,6 +44,7 @@ namespace Software_Canchas_2022
 
         private void ControlCliente_Load(object sender, EventArgs e)
         {
+            CargarClientes();
             CargarControl();
         }
 
@@ -50,6 +53,7 @@ namespace Software_Canchas_2022
             try
             {
                 if (dataGridControl.CurrentRow == null) throw new Exception(TraducirMensaje("msg_ClienteNoSeleccionado"));
+                if(dataGridControl.CurrentRow.Cells[7].Value.ToString().Contains("alta")) throw new Exception(TraducirMensaje("msg_RestauracionProhibida"));
 
                 Cliente cliente = new Cliente()
                 {
@@ -69,6 +73,19 @@ namespace Software_Canchas_2022
             }
         }
 
+        private void CargarClientes()
+        {
+            cmb_Clientes.DataSource = _iCliente.ObtenerNombreClientes();
+            cmb_Clientes.DisplayMember = "Nombre";
+            cmb_Clientes.ValueMember = "Id";
+            cmb_Clientes.SelectedItem = null;
+        }
+
+        private void Limpiar()
+        {
+            cmb_Clientes.SelectedIndex = -1;
+        }
+
         public void UpdateLanguage(IIdioma idioma)
         {
             Traducir(idioma);
@@ -82,6 +99,21 @@ namespace Software_Canchas_2022
         private string TraducirMensaje(string msgTag)
         {
             return Traductor.TraducirMensaje(_iTraductor, msgTag);
+        }
+
+        private void btn_Filtrar_Click(object sender, EventArgs e)
+        {
+            dataGridControl.DataSource = _iControlCliente.ObtenerControlClientePorCliente((int)cmb_Clientes.SelectedValue);
+            dataGridControl.ClearSelection();
+            dataGridControl.TabStop = false;
+            dataGridControl.ReadOnly = true;
+            dataGridControl.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+        }
+
+        private void btn_Cancelar_Click(object sender, EventArgs e)
+        {
+            Limpiar();
+            CargarControl();
         }
     }
 }
