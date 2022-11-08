@@ -328,22 +328,8 @@ namespace BLL
                 if (Sesion.GetInstance() != null) Sesion.RemoveInstance();
                 if (string.IsNullOrWhiteSpace(usuario) || string.IsNullOrWhiteSpace(contraseña)) throw new Exception("Se deben completar los campos");
 
-                string nombreUsuario = "";
-                string contraseñaUsuario = "";
-
-                DirectoryInfo directorioInfo = new DirectoryInfo(ConfigurationManager.AppSettings["Usuario_Temporal"]);
-
-                    FileInfo usuarioTxt = directorioInfo.GetFiles().FirstOrDefault();
-
-                    using (StreamReader sr = new StreamReader($"{directorioInfo}/{usuarioTxt}"))
-                    {
-                        string str = sr.ReadLine();
-
-                        char spliter = ';';
-                        string[] user = str.Split(spliter);
-                        nombreUsuario = user[0];
-                        contraseñaUsuario = user[1];
-                    }
+                string nombreUsuario = ConfigurationManager.AppSettings["NombreUsuarioIntegridad"];
+                string contraseñaUsuario = ConfigurationManager.AppSettings["ContraseñaIntegridad"];
 
                 if (nombreUsuario == Encriptacion.Encriptar_AES(usuario) && contraseñaUsuario == Encriptacion.Encriptar_MD5(contraseña))
                 {
@@ -375,7 +361,7 @@ namespace BLL
             }
             catch (Exception)
             {
-                throw new Exception($"Hubo un error al querer loguear con el usuario temporal. Utilice las credenciales que se crearon en: {ConfigurationManager.AppSettings["Usuario_Temporal"]}");
+                throw new Exception("Hubo un error al querer loguear con el usuario administrador. Contáctese con un administrador del sistema");
             }
         }
     }
