@@ -127,7 +127,7 @@ namespace DAL
         {
             try
             {
-                string consulta = $@"SELECT TOP 1 * FROM Deudas WHERE Id_Cliente = '{idCliente}'";
+                string consulta = $@"SELECT TOP 1 * FROM Deudas d INNER JOIN Reserva r on d.Id_Reserva = r.Id WHERE d.Id_Cliente = '{idCliente}' and r.Fecha < GETDATE()";
                 DataTable dt = GenerarConsulta(consulta);
                 return dt;
             }
@@ -145,7 +145,7 @@ namespace DAL
                                     FORMAT(d.Fecha_Pago,'dd/MM/yyyy hh:mm:ss') AS FechaPago FROM Deudas d 
                                     INNER JOIN Reserva r ON d.Id_Cliente = r.Id_Cliente 
                                     INNER JOIN Cliente c ON r.Id_Cliente = c.Id
-                                    WHERE c.Nombre + ' ' + c.Apellido = '{cliente}'";
+                                    WHERE c.Nombre + ' ' + c.Apellido = '{cliente}' and r.Deuda > 0";
                 DataTable dt = GenerarConsulta(consulta);
                 return dt;
             }
