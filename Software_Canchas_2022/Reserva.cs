@@ -6,6 +6,7 @@ using Servicios.Observer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -36,13 +37,14 @@ namespace Software_Canchas_2022
 
         private void Reserva_Load(object sender, EventArgs e)
         {
+            ComenzarTimer();
             CargarClientes();
             CargarTipoCancha();
             Sesion.SuscribirObservador(this);
             UpdateLanguage(Sesion.GetInstance().Idioma);
             CargarReservas();
             LlenarCmbHora();
-            PintarFila();
+            //PintarFila();
         }
 
         private void btn_CancelarReserva_Click(object sender, EventArgs e)
@@ -68,23 +70,33 @@ namespace Software_Canchas_2022
                     Id_Cliente = (int)cmb_Cliente1.SelectedValue,
                     Fecha = dtp_Fecha1.Value,
                     Hora = cmb_Hora1.Text,
+                    Semana = chk_Semana.Checked,
                     Forma_Pago = cmb_FormaPago.Text,
                     Seña = float.Parse(txt_Seña.Text),
                     Total = float.Parse(txt_Total.Text),
-                    Deuda = float.Parse(txt_Deuda.Text),
+                    Pagar = float.Parse(txt_Deuda.Text),
                     Pagado = txt_Pagado.Text
                 };
 
                 int id = _iReserva.AltaReserva(reserva);
 
-                if(id == 0)
+                if (id == 0)
                 {
                     MessageBox.Show(TraducirMensaje("msg_ClienteTieneDeudas"));
                 }
                 else
                 {
-                    MessageBox.Show(TraducirMensaje("msg_ReservaAlta"));
+                    if(reserva.Semana == true)
+                    {
+                        MessageBox.Show(TraducirMensaje("msg_ReservaAltaSemana"));
+                    }
+                    else
+                    {
+                        MessageBox.Show(TraducirMensaje("msg_ReservaAlta"));
+                    }
                 }
+
+
                 CargarReservas();
                 Limpiar();
             }
@@ -123,10 +135,11 @@ namespace Software_Canchas_2022
                     Id_Cliente = int.Parse((cmb_Cliente1.SelectedValue).ToString()),
                     Fecha = dtp_Fecha1.Value,
                     Hora = cmb_Hora1.Text,
+                    Semana = chk_Semana.Checked,
                     Forma_Pago = cmb_FormaPago.Text,
                     Seña = float.Parse(txt_Seña.Text),
                     Total = float.Parse(txt_Total.Text),
-                    Deuda = float.Parse(txt_Deuda.Text),
+                    Pagar = float.Parse(txt_Deuda.Text),
                     Pagado = txt_Pagado.Text
                 };
 
@@ -151,10 +164,11 @@ namespace Software_Canchas_2022
             dtp_Fecha1.Text = dataGridReservas.CurrentRow.Cells["Fecha"].Value.ToString();
             cmb_Hora1.Items.Add(dataGridReservas.CurrentRow.Cells["Hora"].Value.ToString());
             cmb_Hora1.Text = dataGridReservas.CurrentRow.Cells["Hora"].Value.ToString();
+            chk_Semana.Checked = Convert.ToBoolean(dataGridReservas.CurrentRow.Cells["Semana"].Value.ToString());
             cmb_FormaPago.Text = dataGridReservas.CurrentRow.Cells["Forma_Pago"].Value.ToString();
             txt_Seña.Text = dataGridReservas.CurrentRow.Cells["Seña"].Value.ToString();
             txt_Total.Text = dataGridReservas.CurrentRow.Cells["Total"].Value.ToString();
-            txt_Deuda.Text = dataGridReservas.CurrentRow.Cells["Deuda"].Value.ToString();
+            txt_Deuda.Text = dataGridReservas.CurrentRow.Cells["Pagar"].Value.ToString();
             txt_Pagado.Text = dataGridReservas.CurrentRow.Cells["Pagado"].Value.ToString();
             rdb_Si.Checked = true;
         }
@@ -163,28 +177,45 @@ namespace Software_Canchas_2022
         {
             try
             {
-                cmb_FormaPago.SelectedIndexChanged -= cmb_FormaPago_SelectedIndexChanged;
-                if (lbl_IdReserva.Text == "") throw new Exception(TraducirMensaje("msg_ReservaNoSeleccionada"));
-
-                BE.Reserva reserva = new BE.Reserva()
+                if (chk_Semana.Checked)
                 {
-                    Id = int.Parse(dataGridReservas.CurrentRow.Cells[0].Value.ToString()),
-                    Id_Cancha = int.Parse(cmb_Cancha.Text),
-                    Id_Cliente = int.Parse((cmb_Cliente1.SelectedValue).ToString()),
-                    Fecha = dtp_Fecha1.Value,
-                    Hora = cmb_Hora1.Text,
-                    Forma_Pago = cmb_FormaPago.Text,
-                    Seña = float.Parse(txt_Seña.Text),
-                    Total = float.Parse(txt_Total.Text),
-                    Deuda = float.Parse(txt_Deuda.Text),
-                    Pagado = txt_Pagado.Text
-                };
-                _iReserva.BajaReserva(reserva);
+                    DialogResult dialogResult = MessageBox.Show("Está seguro que desea eliminar la reserva para todas las semanas?", "Error", MessageBoxButtons.YesNo);
+                }
+                else
+                {
+                    DialogResult dialogResult = MessageBox.Show("Está seguro que desea eliminar la reserva?", "Error", MessageBoxButtons.YesNo);
+                }
 
-                CargarReservas();
-                Limpiar();
-                MessageBox.Show(TraducirMensaje("msg_ReservaBaja"));
-                cmb_FormaPago.SelectedIndexChanged += cmb_FormaPago_SelectedIndexChanged;
+                if(DialogResult.Yes.ToString() == "Yes")
+                {
+                    cmb_FormaPago.SelectedIndexChanged -= cmb_FormaPago_SelectedIndexChanged;
+                    if (lbl_IdReserva.Text == "") throw new Exception(TraducirMensaje("msg_ReservaNoSeleccionada"));
+
+                    BE.Reserva reserva = new BE.Reserva()
+                    {
+                        Id = int.Parse(dataGridReservas.CurrentRow.Cells[0].Value.ToString()),
+                        Id_Cancha = int.Parse(cmb_Cancha.Text),
+                        Id_Cliente = int.Parse((cmb_Cliente1.SelectedValue).ToString()),
+                        Fecha = dtp_Fecha1.Value,
+                        Hora = cmb_Hora1.Text,
+                        Semana = chk_Semana.Checked,
+                        Forma_Pago = cmb_FormaPago.Text,
+                        Seña = float.Parse(txt_Seña.Text),
+                        Total = float.Parse(txt_Total.Text),
+                        Pagar = float.Parse(txt_Deuda.Text),
+                        Pagado = txt_Pagado.Text
+                    };
+                    _iReserva.BajaReserva(reserva);
+
+                    CargarReservas();
+                    Limpiar();
+                    MessageBox.Show(TraducirMensaje("msg_ReservaBaja"));
+                    cmb_FormaPago.SelectedIndexChanged += cmb_FormaPago_SelectedIndexChanged;
+                }
+                else
+                {
+                    MessageBox.Show("Se cancela la baja de la reserva");
+                }
             }
             catch (Exception ex)
             {
@@ -294,9 +325,15 @@ namespace Software_Canchas_2022
             dataGridReservas.ClearSelection();
             dataGridReservas.TabStop = false;
             dataGridReservas.ReadOnly = true;
-            PintarFila();
             dataGridReservas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            //PintarFila();
 
+        }
+
+        private void ComenzarTimer()
+        {
+            timerDeuda.Interval = int.Parse(ConfigurationManager.AppSettings["IntervaloTimerDeuda"]);
+            timerDeuda.Start();
         }
 
         private void CargarReservaFecha()
@@ -305,7 +342,7 @@ namespace Software_Canchas_2022
             dataGridReservas.ClearSelection();
             dataGridReservas.TabStop = false;
             dataGridReservas.ReadOnly = true;
-            PintarFila();
+            //PintarFila();
         }
 
         private void CargarReservaCliente()
@@ -314,7 +351,7 @@ namespace Software_Canchas_2022
             dataGridReservas.ClearSelection();
             dataGridReservas.TabStop = false;
             dataGridReservas.ReadOnly = true;
-            PintarFila();
+            //PintarFila();
         }
 
         private void CargarReservaFechaCliente()
@@ -323,7 +360,7 @@ namespace Software_Canchas_2022
             dataGridReservas.ClearSelection();
             dataGridReservas.TabStop = false;
             dataGridReservas.ReadOnly = true;
-            PintarFila();
+            //PintarFila();
         }
 
         private void CargarTipoCancha()
@@ -356,14 +393,21 @@ namespace Software_Canchas_2022
 
         private void PintarFila()
         {
-            int filas = dataGridReservas.Rows.Count;
-            for (int i = 0; i < filas; i++)
+            try
             {
-                if (dataGridReservas.Rows[i].Cells[10].Value?.ToString() == "0")
+                int filas = dataGridReservas.Rows.Count;
+                for (int i = 0; i <= filas; i++)
                 {
-                    dataGridReservas.Rows[i].DefaultCellStyle.BackColor = Color.Yellow;
-                    dataGridReservas.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
+                    if (dataGridReservas.Rows[i].Cells[11].Value.ToString() == "Pagado")
+                    {
+                        dataGridReservas.Rows[i].DefaultCellStyle.BackColor = Color.Yellow;
+                        dataGridReservas.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -372,6 +416,7 @@ namespace Software_Canchas_2022
             cmb_Cliente1.Enabled = false;
             dtp_Fecha1.Enabled = false;
             cmb_Hora1.Enabled = false;
+            chk_Semana.Enabled = false;
             cmb_FormaPago.Enabled = false;
             txt_Seña.Enabled = false;
             btn_Calcular.Enabled = false;
@@ -389,6 +434,7 @@ namespace Software_Canchas_2022
             cmb_Cliente1.Enabled = true;
             dtp_Fecha1.Enabled = true;
             cmb_Hora1.Enabled = true;
+            chk_Semana.Enabled = true;
             cmb_FormaPago.Enabled = true;
             txt_Seña.Enabled = true;
             btn_Calcular.Enabled = true;
@@ -417,6 +463,7 @@ namespace Software_Canchas_2022
             txt_Total.Clear();
             txt_Deuda.Clear();
             txt_Pagado.Clear();
+            chk_Semana.Checked = false;
             cmb_FormaPago.SelectedIndexChanged -= cmb_FormaPago_SelectedIndexChanged;
             Desbloquear();
         }
@@ -451,6 +498,22 @@ namespace Software_Canchas_2022
             }
         }
 
+        private void GenerarAltaDeuda()
+        {
+            DataTable reservas = _iReserva.ObtenerReservaVencida();
+            if(reservas.Rows.Count > 0)
+            {
+                foreach(DataRow fila in reservas.Rows)
+                {
+                    DataTable deuda = _iDeudas.ObtenerDeudaCliente(int.Parse(fila[2].ToString()));
+                    if(deuda.Rows.Count == 0)
+                    {
+                        _iDeudas.AltaDeuda(int.Parse(fila[0].ToString()), int.Parse(fila[2].ToString()), DateTime.Parse(fila[3].ToString()));
+                    }
+                }
+            }
+        }
+
         public void UpdateLanguage(IIdioma idioma)
         {
             Traducir(idioma);
@@ -466,5 +529,17 @@ namespace Software_Canchas_2022
             return Traductor.TraducirMensaje(_iTraductor, msgTag);
         }
         #endregion
+
+        private void timerDeuda_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+                GenerarAltaDeuda();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(TraducirMensaje("msg_ErrorTimerDeuda"));
+            }
+        }
     }
 }

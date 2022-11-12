@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Reserva));
             this.label1 = new System.Windows.Forms.Label();
             this.lbl_Cliente1 = new System.Windows.Forms.Label();
@@ -66,6 +67,8 @@
             this.lbl_IdReserva = new System.Windows.Forms.Label();
             this.txt_Pagado = new System.Windows.Forms.TextBox();
             this.lbl_Pagado = new System.Windows.Forms.Label();
+            this.chk_Semana = new System.Windows.Forms.CheckBox();
+            this.timerDeuda = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridReservas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -446,12 +449,28 @@
             this.lbl_Pagado.Tag = "lbl_Pagado";
             this.lbl_Pagado.Text = "Pagado";
             // 
+            // chk_Semana
+            // 
+            this.chk_Semana.AutoSize = true;
+            this.chk_Semana.Location = new System.Drawing.Point(12, 218);
+            this.chk_Semana.Name = "chk_Semana";
+            this.chk_Semana.Size = new System.Drawing.Size(84, 17);
+            this.chk_Semana.TabIndex = 34;
+            this.chk_Semana.Tag = "chk_Semana";
+            this.chk_Semana.Text = "Semalmente";
+            this.chk_Semana.UseVisualStyleBackColor = true;
+            // 
+            // timerDeuda
+            // 
+            this.timerDeuda.Tick += new System.EventHandler(this.timerDeuda_Tick);
+            // 
             // Reserva
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1205, 583);
+            this.Controls.Add(this.chk_Semana);
             this.Controls.Add(this.lbl_Pagado);
             this.Controls.Add(this.txt_Pagado);
             this.Controls.Add(this.lbl_IdReserva);
@@ -539,5 +558,7 @@
         private System.Windows.Forms.Label lbl_IdReserva;
         private System.Windows.Forms.TextBox txt_Pagado;
         private System.Windows.Forms.Label lbl_Pagado;
+        private System.Windows.Forms.CheckBox chk_Semana;
+        private System.Windows.Forms.Timer timerDeuda;
     }
 }

@@ -37,15 +37,38 @@ namespace BLL
                     int resultado = ValidarDeudaCliente(reserva);
                     if (resultado == 0)
                     {
-                        int id = _reservaDAL.AltaReserva(reserva);
-                        if (reserva.Deuda > 0)
+                        if(reserva.Semana == true)
                         {
-                            _deudas.AltaDeuda(id, reserva.Id_Cliente, DateTime.Now);
-                        }
+                            int id = _reservaDAL.AltaReserva(reserva);
 
-                        //GUARDAR EN BITACORA
-                        _bitacora.AltaBitacora("Se dió de alta la reserva " + id + ".", "MEDIA");
-                        return id;
+                            int i = 0;
+                            int contador = 0;
+                            for (contador = 0; contador <= 48; contador++)
+                            {
+                                i += 7;
+                                contador = contador + 1;
+                                reserva.Fecha = DateTime.Today.AddDays(i);
+                                reserva.Seña = 0;
+                                reserva.Pagar = reserva.Total;
+                                reserva.Pagado = "No pagado";
+
+                                _reservaDAL.AltaReserva(reserva);
+                            }
+                            
+
+                            //GUARDAR EN BITACORA
+                            _bitacora.AltaBitacora("Se dió de alta la reserva semanal para el cliente " + reserva.Id_Cliente + ".", "MEDIA");
+                            return id;
+                        }
+                        else
+                        {
+                            int id = _reservaDAL.AltaReserva(reserva);
+
+                            //GUARDAR EN BITACORA
+                            _bitacora.AltaBitacora("Se dió de alta la reserva " + id + ".", "MEDIA");
+                            return id;
+                        }
+                        
                     }
                     else
                     {
@@ -74,20 +97,39 @@ namespace BLL
                 int validarReservaHora = ValidarReservaClienteFechaHora(reserva);
                 if (validarReservaHora == 0)
                 {
-                    int id = _reservaDAL.ModificarReserva(reserva);
-
-                    if (reserva.Deuda > 0)
+                    if (reserva.Semana == true)
                     {
-                        _deudas.ModificarDeuda(reserva.Id_Cliente, DateTime.Now);
+                        int id = _reservaDAL.ModificarReserva(reserva);
+
+                        int i = 0;
+                        int contador = 0; 
+                        List<BE.Reserva> lista = _reservaDAL.ObtenerReservaSemanaCliente(reserva.Id_Cliente);
+                        for(contador = 0; contador < lista.Count; contador++)
+                        { 
+                            i = 7;
+                            reserva.Id = lista[contador].Id;
+                            reserva.Fecha = reserva.Fecha.AddDays(i);
+                            reserva.Seña = 0;
+                            reserva.Pagar = reserva.Total;
+                            reserva.Pagado = "No pagado";
+
+                            _reservaDAL.ModificarReserva(reserva);
+                        }
+
+
+                        //GUARDAR EN BITACORA
+                        _bitacora.AltaBitacora("Se dió de modificó la reserva semanal para el cliente " + reserva.Id_Cliente + ".", "MEDIA");
+                        return id;
                     }
                     else
                     {
-                        _deudas.BajaDeudaPorCliente(reserva.Id_Cliente);
-                    }
+                        int id = _reservaDAL.ModificarReserva(reserva);
 
-                    //GUARDAR EN BITACORA
-                    _bitacora.AltaBitacora("Se modificó la reserva " + id + ".", "MEDIA");
-                    return id;
+                        //GUARDAR EN BITACORA
+                        _bitacora.AltaBitacora("Se modificó la reserva " + id + ".", "MEDIA");
+                        return id;
+                    }
+                    
                 }
                 else
                 {
@@ -105,10 +147,26 @@ namespace BLL
             try
             {
                 int id = _reservaDAL.BajaReserva(reserva);
-                _deudas.BajaDeudaPorCliente(reserva.Id_Cliente);
+                if (reserva.Semana == true)
+                {
+                    int contador = 0;
+                    List<BE.Reserva> lista = _reservaDAL.ObtenerReservaSemanaClienteBaja(reserva.Id_Cliente);
+                    for (contador = 0; contador < lista.Count; contador++)
+                    {
+                        reserva.Id = lista[contador].Id;
 
-                //GUARDAR EN BITACORA
-                _bitacora.AltaBitacora("Se dió de baja la reserva " + id + ".", "MEDIA");
+                        _reservaDAL.BajaReserva(reserva);
+                    }
+                    //GUARDAR EN BITACORA
+                    _bitacora.AltaBitacora("Se dió de baja la reserva semanal para el cliente " + reserva.Id_Cliente + ".", "MEDIA");
+                }
+                else
+                {
+                    //GUARDAR EN BITACORA
+                    _bitacora.AltaBitacora("Se dió de baja la reserva " + id + ".", "MEDIA");
+                }
+
+                
                 return id;
             }
             catch (Exception ex)
@@ -206,6 +264,19 @@ namespace BLL
             }
         }
 
+        public DataTable ObtenerReservaVencida()
+        {
+            try
+            {
+                DataTable reserva = _reservaDAL.ObtenerReservaVencida();
+                return reserva;
+            }
+            catch
+            {
+                throw new Exception(TraducirMensaje("msg_ErrorListar"));
+            }
+        }
+
         public DataTable ObtenerReservaCliente()
         {
             try
@@ -286,7 +357,7 @@ namespace BLL
 
         private void ValidarCampos(BE.Reserva reserva)
         {
-            if (string.IsNullOrEmpty(reserva.Id.ToString()) || string.IsNullOrEmpty(reserva.Id_Cancha.ToString()) || string.IsNullOrEmpty(reserva.Id_Cliente.ToString()) || string.IsNullOrWhiteSpace(reserva.Fecha.ToString()) || string.IsNullOrWhiteSpace(reserva.Hora) || string.IsNullOrWhiteSpace(reserva.Forma_Pago) || string.IsNullOrEmpty(reserva.Seña.ToString()) || string.IsNullOrEmpty(reserva.Total.ToString()) || string.IsNullOrEmpty(reserva.Deuda.ToString()))
+            if (string.IsNullOrEmpty(reserva.Id.ToString()) || string.IsNullOrEmpty(reserva.Id_Cancha.ToString()) || string.IsNullOrEmpty(reserva.Id_Cliente.ToString()) || string.IsNullOrWhiteSpace(reserva.Fecha.ToString()) || string.IsNullOrWhiteSpace(reserva.Hora) || string.IsNullOrWhiteSpace(reserva.Semana.ToString()) || string.IsNullOrWhiteSpace(reserva.Forma_Pago) || string.IsNullOrEmpty(reserva.Seña.ToString()) || string.IsNullOrEmpty(reserva.Total.ToString()) || string.IsNullOrEmpty(reserva.Pagar.ToString()))
                 throw new Exception(TraducirMensaje("msg_CamposVacios"));
         }
 

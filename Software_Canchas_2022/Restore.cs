@@ -43,7 +43,7 @@ namespace Software_Canchas_2022
                 MessageBox.Show(_iBackup.Realizar_Restore(ruta));
                 this.Close();
                 MessageBox.Show("A continuación se cerrará el sistema para guardar los cambios.");
-                Application.Exit();
+                Application.Restart();
             }
             catch (Exception ex)
             {

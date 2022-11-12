@@ -25,11 +25,10 @@ namespace DAL
         private const string MODIFICAR_DEUDA = "UPDATE Deudas SET Fecha_Pago = @parFecha_Pago OUTPUT inserted.Id WHERE Id_Cliente = @parId_Cliente";
         private const string BAJA_DEUDA_CLIENTE = "DELETE FROM Deudas WHERE Id_Cliente = @parId_Cliente";
         private const string BAJA_DEUDA_RESERVA = "DELETE FROM Deudas WHERE Id_Reserva = @parId_Reserva";
-        private const string LISTAR_DEUDAS = @"SELECT d.Id, r.Id as Reserva, c.Nombre + ' ' + c.Apellido AS Cliente, FORMAT(r.Fecha, 'dd/MM/yyyy') AS FechaReserva, r.Hora AS HoraReserva, r.Seña, r.Total, 
-                                            r.Deuda, FORMAT(d.Fecha_Pago,'dd/MM/yyyy hh:mm:ss') AS FechaPago FROM Deudas d 
-                                            INNER JOIN Reserva r ON d.Id_Cliente = r.Id_Cliente
-                                            INNER JOIN Cliente c ON r.Id_Cliente = c.Id
-                                            WHERE r.Deuda > 0";
+        private const string LISTAR_DEUDAS = @"SELECT d.Id, r.Id as Reserva, c.Nombre + ' ' + c.Apellido AS Cliente, FORMAT(r.Fecha, 'dd/MM/yyyy') AS FechaReserva, r.Hora AS HoraReserva, 
+                                            FORMAT(d.Fecha_Pago, 'dd/MM/yyyy') AS FechaPago, r.Seña, r.Total, r.Pagar FROM Deudas d
+                                            INNER JOIN Reserva r on r.Id = d.Id_Reserva
+                                            INNER JOIN Cliente c on c.Id = d.Id_Cliente";
         #endregion
 
         public int AltaDeuda(BE.Deudas deuda)
@@ -141,11 +140,11 @@ namespace DAL
         {
             try
             {
-                string consulta = $@"SELECT d.Id, r.Id as Reserva, c.Nombre + ' ' + c.Apellido AS Cliente, FORMAT(r.Fecha, 'dd/MM/yyyy') AS FechaReserva, r.Hora AS HoraReserva, r.Seña, r.Total, r.Deuda, 
-                                    FORMAT(d.Fecha_Pago,'dd/MM/yyyy hh:mm:ss') AS FechaPago FROM Deudas d 
-                                    INNER JOIN Reserva r ON d.Id_Cliente = r.Id_Cliente 
-                                    INNER JOIN Cliente c ON r.Id_Cliente = c.Id
-                                    WHERE c.Nombre + ' ' + c.Apellido = '{cliente}' and r.Deuda > 0";
+                string consulta = $@"SELECT d.Id, r.Id as Reserva, c.Nombre + ' ' + c.Apellido AS Cliente, FORMAT(r.Fecha, 'dd/MM/yyyy') AS FechaReserva, r.Hora AS HoraReserva, 
+                                FORMAT(d.Fecha_Pago, 'dd/MM/yyyy') AS FechaPago, r.Seña, r.Total, r.Pagar FROM Deudas d
+                                INNER JOIN Reserva r on r.Id = d.Id_Reserva
+                                INNER JOIN Cliente c on c.Id = d.Id_Cliente
+                                WHERE c.Nombre + ' ' + c.Apellido = '{cliente}' and r.Pagar > 0";
                 DataTable dt = GenerarConsulta(consulta);
                 return dt;
             }

@@ -95,7 +95,7 @@ namespace Software_Canchas_2022
             {
                 int idReserva = int.Parse(dataGridDeudas.CurrentRow.Cells["Reserva"].Value.ToString());
                 float seña = float.Parse(dataGridDeudas.CurrentRow.Cells["Seña"].Value.ToString());
-                float deuda = float.Parse(dataGridDeudas.CurrentRow.Cells["Deuda"].Value.ToString());
+                float deuda = float.Parse(dataGridDeudas.CurrentRow.Cells["Pagar"].Value.ToString());
 
                 int id = _iReserva.PagarDeudaCliente(idReserva, seña, deuda);
 

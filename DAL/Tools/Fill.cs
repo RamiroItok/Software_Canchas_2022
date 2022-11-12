@@ -189,6 +189,9 @@ namespace DAL.Tools
                 if (dr.Table.Columns.Contains("Hora") && !Convert.IsDBNull(dr["Hora"]))
                     reserva.Hora = Convert.ToString(dr["Hora"]);
 
+                if (dr.Table.Columns.Contains("Semana") && !Convert.IsDBNull(dr["Semana"]))
+                    reserva.Semana = Convert.ToBoolean(dr["Semana"]);
+
                 if (dr.Table.Columns.Contains("Forma_Pago") && !Convert.IsDBNull(dr["Forma_Pago"]))
                     reserva.Forma_Pago = Convert.ToString(dr["Forma_Pago"]);
 
@@ -198,8 +201,8 @@ namespace DAL.Tools
                 if (dr.Table.Columns.Contains("Total") && !Convert.IsDBNull(dr["Total"]))
                     reserva.Total = float.Parse(Convert.ToString(dr["Total"]));
 
-                if (dr.Table.Columns.Contains("Deuda") && !Convert.IsDBNull(dr["Deuda"]))
-                    reserva.Deuda = float.Parse(Convert.ToString(dr["Deuda"]));
+                if (dr.Table.Columns.Contains("Pagar") && !Convert.IsDBNull(dr["Pagar"]))
+                    reserva.Pagar = float.Parse(Convert.ToString(dr["Pagar"]));
 
                 if (dr.Table.Columns.Contains("Pagado") && !Convert.IsDBNull(dr["Pagado"]))
                     reserva.Pagado = Convert.ToString(dr["Pagado"]);
