@@ -183,6 +183,77 @@ namespace DAL.Conexion
             Desconectar();
             return dt;
         }
+
+        public virtual bool VerificarExistenciaBaseDeDatos(string server, string nombreBase)
+        {
+            string query;
+            bool existeBD = false;
+
+            try
+            {
+                connection = new SqlConnection($"server={server};Trusted_Connection=yes");
+                query = string.Format("SELECT database_id FROM sys.databases WHERE Name = '{0}'", nombreBase);
+
+                using (connection)
+                {
+                    using (SqlCommand sqlCmd = new SqlCommand(query, connection))
+                    {
+                        connection.Open();
+
+                        object resultObj = sqlCmd.ExecuteScalar();
+
+                        int databaseID = 0;
+
+                        if (resultObj != null)
+                        {
+                            int.TryParse(resultObj.ToString(), out databaseID);
+                        }
+
+                        connection.Close();
+
+                        existeBD = (databaseID > 0);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                existeBD = false;
+            }
+
+            return existeBD;
+        }
+
+        public virtual void ExecuteNonQueryCreateDB(string server, IEnumerable<string> script)
+        {
+            try
+            {
+                connection = new SqlConnection($"server={server};Trusted_Connection=yes");
+
+                using (connection)
+                {
+                    connection.Open();
+                    foreach (var query in script)
+                    {
+                        using (SqlCommand sqlCmd = new SqlCommand(query, connection))
+                        {
+                            sqlCmd.ExecuteNonQuery();
+                        }
+                    }
+                }
+            }
+            catch (SqlException exc)
+            {
+                throw new Exception("Ocurrió un error en BD: " + exc.Message);
+            }
+            catch (Exception exc2)
+            {
+                throw new Exception("Ocurrió un Error: " + exc2.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
         #endregion
     }
 }

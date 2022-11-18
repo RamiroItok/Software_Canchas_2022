@@ -131,5 +131,19 @@ namespace Software_Canchas_2022
         {
             return Traductor.TraducirMensaje(_iTraductor, msgTag);
         }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                _iBackup.CrearBaseDeDatos();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                System.Environment.Exit(0);
+            }
+
+        }
     }
 }

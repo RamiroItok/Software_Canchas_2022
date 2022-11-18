@@ -2,6 +2,7 @@
 using Servicios;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -44,6 +45,21 @@ namespace BLL
                 _backupDAL.Realizar_Restore(ruta);
                 _iBitacora.AltaBitacora("Se realizó un restore.", "ALTA");
                 return TraducirMensaje("msg_RestoreRealizado");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public void CrearBaseDeDatos()
+        {
+            try
+            {
+                string server = ConfigurationManager.AppSettings["server"];
+                string nombreBase = ConfigurationManager.AppSettings["base"];
+
+                _backupDAL.CrearBaseDeDatos(server, nombreBase);
             }
             catch (Exception ex)
             {
