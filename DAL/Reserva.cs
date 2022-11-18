@@ -24,7 +24,7 @@ namespace DAL
         private const string BAJA_RESERVA = "DELETE FROM Reserva WHERE Id = @parId";
         private const string PAGAR_RESERVA = "UPDATE Reserva SET Seña = @parSeña, Pagar = @parPagar, Pagado = @parPagado OUTPUT inserted.Id WHERE Id = @parId";
         private const string OBTENER_RESERVA = "SELECT * FROM Reserva";
-        private const string OBTENER_RESERVA_VENCIDA = "SELECT * FROM Reserva WHERE Pagar > 0 AND CAST(Fecha as date) < CAST(GETDATE() as date) AND (CAST(Fecha as date) < CAST(GETDATE() as date) OR Hora < CONVERT(nvarchar(10), GETDATE(), 108)) ";
+        private const string OBTENER_RESERVA_VENCIDA = "SELECT * FROM Reserva WHERE Pagar > 0 AND CAST(Fecha as date) <= CAST(GETDATE() as date) AND (CAST(Fecha as date) < CAST(GETDATE() as date) OR Hora < CONVERT(nvarchar(10), GETDATE(), 108)) ";
         private const string OBTENER_RESERVA_CLIENTE = @"SELECT r.Id, r.Id_Cancha as Cancha, cancha.Tipo as TipoCancha, r.Id_Cliente, cliente.Nombre + ' ' + cliente.Apellido as Cliente, 
                                                         r.Fecha as Fecha, r.Hora, r.Semana,
 														(SELECT (CASE DATENAME(dw,r.Fecha)
