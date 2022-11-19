@@ -48,8 +48,7 @@ namespace BLL
                 usuario.DVH = 0;
 
                 int id = _UsuarioDAL.Alta_Usuario(usuario);
-                //GUARDAR EN BITACORA
-                _bitacora.AltaBitacora("Se dió de alta el usuario " + id + ".", "MEDIA");
+                _digitoVerificador.RecalcularDV();
                 return id;
             }
             catch (Exception ex)

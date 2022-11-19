@@ -42,7 +42,6 @@
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.txtApellido = new System.Windows.Forms.TextBox();
             this.txtNombre_Usuario = new System.Windows.Forms.TextBox();
-            this.txtPuesto = new System.Windows.Forms.TextBox();
             this.txtDni = new System.Windows.Forms.TextBox();
             this.txtTelefono = new System.Windows.Forms.TextBox();
             this.txtMail = new System.Windows.Forms.TextBox();
@@ -52,6 +51,7 @@
             this.cmbSexo = new System.Windows.Forms.ComboBox();
             this.cmbTipo = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.cmb_Puesto = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -165,13 +165,6 @@
             this.txtNombre_Usuario.Size = new System.Drawing.Size(245, 20);
             this.txtNombre_Usuario.TabIndex = 12;
             // 
-            // txtPuesto
-            // 
-            this.txtPuesto.Location = new System.Drawing.Point(116, 126);
-            this.txtPuesto.Name = "txtPuesto";
-            this.txtPuesto.Size = new System.Drawing.Size(245, 20);
-            this.txtPuesto.TabIndex = 15;
-            // 
             // txtDni
             // 
             this.txtDni.Location = new System.Drawing.Point(116, 177);
@@ -184,28 +177,29 @@
             this.txtTelefono.Location = new System.Drawing.Point(116, 224);
             this.txtTelefono.Name = "txtTelefono";
             this.txtTelefono.Size = new System.Drawing.Size(245, 20);
-            this.txtTelefono.TabIndex = 17;
+            this.txtTelefono.TabIndex = 18;
             // 
             // txtMail
             // 
             this.txtMail.Location = new System.Drawing.Point(447, 177);
             this.txtMail.Name = "txtMail";
             this.txtMail.Size = new System.Drawing.Size(245, 20);
-            this.txtMail.TabIndex = 20;
+            this.txtMail.TabIndex = 17;
             // 
             // txtContraseña
             // 
             this.txtContraseña.Location = new System.Drawing.Point(447, 75);
             this.txtContraseña.Name = "txtContraseña";
+            this.txtContraseña.PasswordChar = '*';
             this.txtContraseña.Size = new System.Drawing.Size(245, 20);
-            this.txtContraseña.TabIndex = 18;
+            this.txtContraseña.TabIndex = 13;
             // 
             // btnRegistrar
             // 
             this.btnRegistrar.Location = new System.Drawing.Point(148, 283);
             this.btnRegistrar.Name = "btnRegistrar";
             this.btnRegistrar.Size = new System.Drawing.Size(213, 34);
-            this.btnRegistrar.TabIndex = 22;
+            this.btnRegistrar.TabIndex = 20;
             this.btnRegistrar.Text = "Registrar";
             this.btnRegistrar.UseVisualStyleBackColor = true;
             this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
@@ -215,13 +209,14 @@
             this.btnCancelar.Location = new System.Drawing.Point(447, 283);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(218, 34);
-            this.btnCancelar.TabIndex = 23;
+            this.btnCancelar.TabIndex = 21;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // cmbSexo
             // 
+            this.cmbSexo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSexo.FormattingEnabled = true;
             this.cmbSexo.Items.AddRange(new object[] {
             "Masculino",
@@ -230,10 +225,11 @@
             this.cmbSexo.Location = new System.Drawing.Point(447, 125);
             this.cmbSexo.Name = "cmbSexo";
             this.cmbSexo.Size = new System.Drawing.Size(245, 21);
-            this.cmbSexo.TabIndex = 24;
+            this.cmbSexo.TabIndex = 15;
             // 
             // cmbTipo
             // 
+            this.cmbTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTipo.FormattingEnabled = true;
             this.cmbTipo.Items.AddRange(new object[] {
             "Celular",
@@ -241,7 +237,7 @@
             this.cmbTipo.Location = new System.Drawing.Point(447, 224);
             this.cmbTipo.Name = "cmbTipo";
             this.cmbTipo.Size = new System.Drawing.Size(245, 21);
-            this.cmbTipo.TabIndex = 25;
+            this.cmbTipo.TabIndex = 19;
             // 
             // label9
             // 
@@ -249,15 +245,28 @@
             this.label9.Location = new System.Drawing.Point(12, 350);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(195, 13);
-            this.label9.TabIndex = 26;
+            this.label9.TabIndex = 22;
             this.label9.Text = "Ya tengo una cuenta. INICIAR SESIÓN";
             this.label9.Click += new System.EventHandler(this.label9_Click);
+            // 
+            // cmb_Puesto
+            // 
+            this.cmb_Puesto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmb_Puesto.FormattingEnabled = true;
+            this.cmb_Puesto.Items.AddRange(new object[] {
+            "Administrador",
+            "Empleado"});
+            this.cmb_Puesto.Location = new System.Drawing.Point(116, 125);
+            this.cmb_Puesto.Name = "cmb_Puesto";
+            this.cmb_Puesto.Size = new System.Drawing.Size(245, 21);
+            this.cmb_Puesto.TabIndex = 14;
             // 
             // Registro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 372);
+            this.Controls.Add(this.cmb_Puesto);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.cmbTipo);
             this.Controls.Add(this.cmbSexo);
@@ -267,7 +276,6 @@
             this.Controls.Add(this.txtContraseña);
             this.Controls.Add(this.txtTelefono);
             this.Controls.Add(this.txtDni);
-            this.Controls.Add(this.txtPuesto);
             this.Controls.Add(this.txtNombre_Usuario);
             this.Controls.Add(this.txtApellido);
             this.Controls.Add(this.txtNombre);
@@ -306,7 +314,6 @@
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.TextBox txtApellido;
         private System.Windows.Forms.TextBox txtNombre_Usuario;
-        private System.Windows.Forms.TextBox txtPuesto;
         private System.Windows.Forms.TextBox txtDni;
         private System.Windows.Forms.TextBox txtTelefono;
         private System.Windows.Forms.TextBox txtMail;
@@ -316,5 +323,6 @@
         private System.Windows.Forms.ComboBox cmbSexo;
         private System.Windows.Forms.ComboBox cmbTipo;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ComboBox cmb_Puesto;
     }
 }

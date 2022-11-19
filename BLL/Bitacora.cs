@@ -26,13 +26,12 @@ namespace BLL
         {
             try
             {
-                BE.Bitacora bitacora = new BE.Bitacora()
-                {
-                    Nombre_Usuario = Sesion.GetInstance().Nombre_Usuario,
-                    Descripcion = descripcion,
-                    Fecha = DateTime.Now,
-                    Criticidad = criticidad,
-                };
+                BE.Bitacora bitacora = new BE.Bitacora();
+                bitacora.Nombre_Usuario = Sesion.GetInstance().Nombre_Usuario;
+                bitacora.Descripcion = descripcion;
+                bitacora.Fecha = DateTime.Now;
+                bitacora.Criticidad = criticidad;
+                
                 
                 ValidarCampo(bitacora);
                 _BitacoraDAL.AltaBitacora(bitacora);

@@ -59,7 +59,7 @@ namespace Software_Canchas_2022
                     Apellido = txtApellido.Text,
                     Nombre_Usuario = txtNombre_Usuario.Text,
                     Contraseña = txtContraseña.Text,
-                    Puesto = txtPuesto.Text,
+                    Puesto = cmb_Puesto.Text,
                     Dni = int.Parse(txtDni.Text),
                     Sexo = cmbSexo.Text,
                     Mail = txtMail.Text,
@@ -91,7 +91,7 @@ namespace Software_Canchas_2022
             txtMail.Clear();
             txtNombre.Clear();
             txtNombre_Usuario.Clear();
-            txtPuesto.Clear();
+            cmb_Puesto.SelectedIndex = -1;
             txtTelefono.Clear();
             cmbSexo.Text = "";
             cmbTipo.Text = "";
