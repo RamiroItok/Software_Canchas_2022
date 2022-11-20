@@ -87,6 +87,7 @@ namespace Software_Canchas_2022
             rolesToolStripMenuItem.Enabled = PermisoTool.TienePermiso(_usuarioDTO, BE.Composite.Permiso.Roles);
             seguridadUsuariosToolStripMenuItem.Enabled = PermisoTool.TienePermiso(_usuarioDTO, BE.Composite.Permiso.Seguridad_Usuarios);
             deudasToolStripMenuItem.Enabled = PermisoTool.TienePermiso(_usuarioDTO, BE.Composite.Permiso.Deudas_Pendientes);
+            helpToolStripMenuItem.Enabled = PermisoTool.TienePermiso(_usuarioDTO, BE.Composite.Permiso.Help);
         }
 
         public void UpdateLanguage(IIdioma idioma)
@@ -306,6 +307,11 @@ namespace Software_Canchas_2022
             gestionDeudas.MdiParent = this;
             gestionDeudas.StartPosition = FormStartPosition.CenterScreen;
             gestionDeudas.Show();
+        }
+
+        private void helpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Help.ShowHelp(this, "F:/Universidad/3er año/Diploma/Software/Manual/Manual de Ayuda.chm");
         }
     }
 }

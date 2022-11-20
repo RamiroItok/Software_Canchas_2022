@@ -26,6 +26,7 @@ namespace BE.Composite
         Gestion_Idioma,
         CargarEtiquetas,
         Control_Clientes,
-        Deudas_Pendientes
+        Deudas_Pendientes,
+        Help
     }
 }
