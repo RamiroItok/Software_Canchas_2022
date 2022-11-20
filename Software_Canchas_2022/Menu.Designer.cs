@@ -43,7 +43,6 @@
             this.altaIdiomaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.cargarEtiquetasToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.seguridadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.recalcularDigitosVerificadoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bitácoraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backUpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.restoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -182,7 +181,6 @@
             // seguridadToolStripMenuItem
             // 
             this.seguridadToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.recalcularDigitosVerificadoresToolStripMenuItem,
             this.bitácoraToolStripMenuItem,
             this.backUpToolStripMenuItem,
             this.restoreToolStripMenuItem,
@@ -193,13 +191,6 @@
             this.seguridadToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
             this.seguridadToolStripMenuItem.Tag = "menu_Seguridad";
             this.seguridadToolStripMenuItem.Text = "Seguridad";
-            // 
-            // recalcularDigitosVerificadoresToolStripMenuItem
-            // 
-            this.recalcularDigitosVerificadoresToolStripMenuItem.Name = "recalcularDigitosVerificadoresToolStripMenuItem";
-            this.recalcularDigitosVerificadoresToolStripMenuItem.Size = new System.Drawing.Size(239, 22);
-            this.recalcularDigitosVerificadoresToolStripMenuItem.Tag = "menu_Recalcular_DV";
-            this.recalcularDigitosVerificadoresToolStripMenuItem.Text = "Recalcular digitos verificadores";
             // 
             // bitácoraToolStripMenuItem
             // 
@@ -355,7 +346,6 @@
         private System.Windows.Forms.ToolStripMenuItem seguridadToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cerrarSesiónToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gestionIdiomaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem recalcularDigitosVerificadoresToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem bitácoraToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem backUpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem restoreToolStripMenuItem;

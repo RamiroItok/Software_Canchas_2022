@@ -53,7 +53,7 @@ namespace Software_Canchas_2022
             try
             {
                 if (dataGridControl.CurrentRow == null) throw new Exception(TraducirMensaje("msg_ClienteNoSeleccionado"));
-                if(dataGridControl.CurrentRow.Cells[7].Value.ToString().Contains("alta")) throw new Exception(TraducirMensaje("msg_RestauracionProhibida"));
+                //if(dataGridControl.CurrentRow.Cells[7].Value.ToString().Contains("alta")) throw new Exception(TraducirMensaje("msg_RestauracionProhibida"));
 
                 Cliente cliente = new Cliente()
                 {

@@ -33,12 +33,12 @@
             this.lbl_ContraseñaActual = new System.Windows.Forms.Label();
             this.lbl_NuevaContraseña = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.txt_Usuario = new System.Windows.Forms.TextBox();
             this.txt_ContraseñaActual = new System.Windows.Forms.TextBox();
             this.txt_NuevaContraseña = new System.Windows.Forms.TextBox();
             this.txt_ConfirmarContraseñaNueva = new System.Windows.Forms.TextBox();
             this.btn_Aceptar = new System.Windows.Forms.Button();
             this.btn_Cancelar = new System.Windows.Forms.Button();
+            this.lbl_usuario_nombre = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbl_Usuario
@@ -81,14 +81,6 @@
             this.label1.Tag = "lbl_Confirmar_NuevaContraseña";
             this.label1.Text = "Confirmar Nueva Contraseña";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // txt_Usuario
-            // 
-            this.txt_Usuario.Location = new System.Drawing.Point(78, 44);
-            this.txt_Usuario.Name = "txt_Usuario";
-            this.txt_Usuario.ReadOnly = true;
-            this.txt_Usuario.Size = new System.Drawing.Size(156, 20);
-            this.txt_Usuario.TabIndex = 4;
             // 
             // txt_ContraseñaActual
             // 
@@ -136,17 +128,25 @@
             this.btn_Cancelar.UseVisualStyleBackColor = true;
             this.btn_Cancelar.Click += new System.EventHandler(this.btn_Cancelar_Click);
             // 
+            // lbl_usuario_nombre
+            // 
+            this.lbl_usuario_nombre.AutoSize = true;
+            this.lbl_usuario_nombre.Location = new System.Drawing.Point(76, 51);
+            this.lbl_usuario_nombre.Name = "lbl_usuario_nombre";
+            this.lbl_usuario_nombre.Size = new System.Drawing.Size(0, 13);
+            this.lbl_usuario_nombre.TabIndex = 10;
+            // 
             // Cambiar_Contraseña
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(315, 346);
+            this.Controls.Add(this.lbl_usuario_nombre);
             this.Controls.Add(this.btn_Cancelar);
             this.Controls.Add(this.btn_Aceptar);
             this.Controls.Add(this.txt_ConfirmarContraseñaNueva);
             this.Controls.Add(this.txt_NuevaContraseña);
             this.Controls.Add(this.txt_ContraseñaActual);
-            this.Controls.Add(this.txt_Usuario);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lbl_NuevaContraseña);
             this.Controls.Add(this.lbl_ContraseñaActual);
@@ -166,11 +166,11 @@
         private System.Windows.Forms.Label lbl_ContraseñaActual;
         private System.Windows.Forms.Label lbl_NuevaContraseña;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txt_Usuario;
         private System.Windows.Forms.TextBox txt_ContraseñaActual;
         private System.Windows.Forms.TextBox txt_NuevaContraseña;
         private System.Windows.Forms.TextBox txt_ConfirmarContraseñaNueva;
         private System.Windows.Forms.Button btn_Aceptar;
         private System.Windows.Forms.Button btn_Cancelar;
+        private System.Windows.Forms.Label lbl_usuario_nombre;
     }
 }

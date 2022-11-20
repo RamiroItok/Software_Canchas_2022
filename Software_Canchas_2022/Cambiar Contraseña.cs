@@ -31,7 +31,7 @@ namespace Software_Canchas_2022
 
         private void Cambiar_Contraseña_Load(object sender, EventArgs e)
         {
-            txt_Usuario.Text = $"{_usuarioDTO.Id} - {_usuarioDTO.Nombre} {_usuarioDTO.Apellido}";
+            lbl_usuario_nombre.Text = $"{_usuarioDTO.Id} - {_usuarioDTO.Nombre} {_usuarioDTO.Apellido}";
             UpdateLanguage(Sesion.GetInstance().Idioma);
         }
 

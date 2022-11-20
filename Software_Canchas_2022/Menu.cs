@@ -81,7 +81,6 @@ namespace Software_Canchas_2022
             gestionCanchasToolStripMenuItem.Enabled = PermisoTool.TienePermiso(_usuarioDTO, BE.Composite.Permiso.Gestion_Canchas);
             gestionClientesToolStripMenuItem.Enabled = PermisoTool.TienePermiso(_usuarioDTO, BE.Composite.Permiso.Gestion_Clientes);
             gestionIdiomaToolStripMenuItem.Enabled = PermisoTool.TienePermiso(_usuarioDTO, BE.Composite.Permiso.Gestion_Idioma);
-            recalcularDigitosVerificadoresToolStripMenuItem.Enabled = PermisoTool.TienePermiso(_usuarioDTO, BE.Composite.Permiso.Recalcular_DV);
             bitácoraToolStripMenuItem.Enabled = PermisoTool.TienePermiso(_usuarioDTO, BE.Composite.Permiso.Bitacora);
             backUpToolStripMenuItem.Enabled = PermisoTool.TienePermiso(_usuarioDTO, BE.Composite.Permiso.Backup);
             restoreToolStripMenuItem.Enabled = PermisoTool.TienePermiso(_usuarioDTO, BE.Composite.Permiso.Restore);
