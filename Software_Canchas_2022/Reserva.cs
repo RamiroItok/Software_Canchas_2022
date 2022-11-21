@@ -224,7 +224,7 @@ namespace Software_Canchas_2022
                 else
                 {
                     DialogResult dialogResult = MessageBox.Show("Está seguro que desea eliminar la reserva?", "Error", MessageBoxButtons.YesNo);
-                    if (DialogResult.Yes.ToString() == "Yes")
+                    if (dialogResult.ToString() == "Yes")
                     {
 
                         BE.Reserva reserva = new BE.Reserva()

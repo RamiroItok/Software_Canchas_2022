@@ -12,6 +12,7 @@ namespace Interfaces
         int AltaReserva(BE.Reserva reserva);
         int ModificarReserva(BE.Reserva reserva);
         int BajaReserva(BE.Reserva reserva, bool semana);
+        int ModificarReservaPorPrecioCancha(int cancha, float precio);
         List<BE.Reserva> ObtenerReservas();
         DataTable ObtenerReservaCliente();
         DataTable ObtenerReservaVencida();
@@ -20,6 +21,7 @@ namespace Interfaces
         DataTable ObtenerReservaClienteCliente(string cliente);
         DataTable ObtenerReservaFechaCliente(string fecha, string cliente);
         List<string> ObtenerReservaHora(string fecha, string cancha);
+        List<BE.Reserva> ObtenerReservaCanchaFecha(int idCancha);
         int PagarDeudaCliente(int idReserva, float seña, float deuda);
 
     }

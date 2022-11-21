@@ -20,10 +20,12 @@ namespace Software_Canchas_2022
     {
         private readonly ICancha _iCancha;
         private readonly ITraductor _iTraductor;
-        public Gestion_Canchas(ICancha cancha, ITraductor traductor)
+        private readonly IReserva _iReserva;
+        public Gestion_Canchas(ICancha cancha, ITraductor traductor, IReserva reserva)
         {
             _iCancha = cancha;
             _iTraductor = traductor;
+            _iReserva = reserva;
             InitializeComponent();
         }
 
@@ -84,6 +86,8 @@ namespace Software_Canchas_2022
                     PrecioBase = float.Parse(txt_Precio.Text)
                 };
                 _iCancha.ModificarCancha(cancha);
+
+                _iReserva.ModificarReservaPorPrecioCancha(cancha.Id, cancha.PrecioBase);
 
                 CargarCanchas();
                 Limpiar();

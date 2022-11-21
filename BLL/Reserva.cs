@@ -218,6 +218,49 @@ namespace BLL
             return tot;
         }
 
+        public int ModificarReservaPorPrecioCancha(int cancha, float precio)
+        {
+            try
+            {
+                List<BE.Reserva> lista = _reservaDAL.ObtenerReservaCanchaFecha(cancha);
+                for(int i = 0; i < lista.Count; i++)
+                {
+                    int idCancha = cancha;
+                    int hora = int.Parse(lista[i].Hora.ToString().Substring(0,2));
+                    string formaPago = lista[i].Forma_Pago;
+                    float total = precio;
+                    float pagar = CalcularDeuda(lista[i].Seña, precio, formaPago);
+
+                    total = CalcularTotalTipoPago(hora, int.Parse(total.ToString()), formaPago);
+
+                    BE.Reserva reserva = new BE.Reserva()
+                    {
+                        Id = lista[i].Id,
+                        Id_Cancha = idCancha,
+                        Id_Cliente = lista[i].Id_Cliente,
+                        Fecha = lista[i].Fecha,
+                        Hora = hora.ToString() + ":00",
+                        Semana = lista[i].Semana,
+                        Forma_Pago = formaPago,
+                        Total = total,
+                        Pagar = pagar,
+                        Pagado = lista[i].Pagado
+                    };
+                    _reservaDAL.ModificarReserva(reserva);
+
+                }
+
+                //GUARDAR EN BITACORA
+                _bitacora.AltaBitacora("Se modificó el precio total para las reservas de la cancha " + cancha + ".", "MEDIA");
+
+                return 0;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
         public float CalcularTotalTipoPago(int hora, int total, string formaPago)
         {
             int tot = CalcularTotalHora(hora, total);
@@ -255,6 +298,19 @@ namespace BLL
             try
             {
                 List<BE.Reserva> reserva = _reservaDAL.ObtenerReservas();
+                return reserva;
+            }
+            catch
+            {
+                throw new Exception(TraducirMensaje("msg_ErrorListar"));
+            }
+        }
+
+        public List<BE.Reserva> ObtenerReservaCanchaFecha(int idCancha)
+        {
+            try
+            {
+                List<BE.Reserva> reserva = _reservaDAL.ObtenerReservaCanchaFecha(idCancha);
                 return reserva;
             }
             catch

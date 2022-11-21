@@ -191,7 +191,7 @@ namespace Software_Canchas_2022
         }
         private void gestionCanchasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Gestion_Canchas gestion_Canchas = new Gestion_Canchas(_iCancha, _iTraductor);
+            Gestion_Canchas gestion_Canchas = new Gestion_Canchas(_iCancha, _iTraductor, _iReserva);
             gestion_Canchas.MdiParent = this;
             gestion_Canchas.StartPosition = FormStartPosition.CenterScreen;
             gestion_Canchas.Show();

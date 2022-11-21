@@ -176,6 +176,26 @@ namespace DAL
             }
         }
 
+        public List<BE.Reserva> ObtenerReservaCanchaFecha(int idCancha)
+        {
+            try
+            {
+                SelectCommandText = $@"SELECT * FROM Reserva WHERE Id_Cancha = '{idCancha}' AND Fecha > GETDATE()";
+                DataSet ds = ExecuteNonReader();
+
+                List<BE.Reserva> reservas = new List<BE.Reserva>();
+
+                if (ds.Tables[0].Rows.Count > 0)
+                    reservas = _fill.FillListReserva(ds);
+
+                return reservas;
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error en la base de datos.");
+            }
+        }
+
         public List<BE.Reserva> ObtenerReservaSemanaCliente(int idCliente)
         {
             try
