@@ -142,12 +142,12 @@ namespace BLL
             }
         }
 
-        public int BajaReserva(BE.Reserva reserva)
+        public int BajaReserva(BE.Reserva reserva, bool semana)
         {
             try
             {
                 int id = _reservaDAL.BajaReserva(reserva);
-                if (reserva.Semana == true)
+                if (semana == true)
                 {
                     int contador = 0;
                     List<BE.Reserva> lista = _reservaDAL.ObtenerReservaSemanaClienteBaja(reserva.Id_Cliente);
@@ -166,7 +166,6 @@ namespace BLL
                     _bitacora.AltaBitacora("Se dió de baja la reserva " + id + ".", "MEDIA");
                 }
 
-                
                 return id;
             }
             catch (Exception ex)

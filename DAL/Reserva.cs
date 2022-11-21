@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class Reserva : Acceso, IReserva
+    public class Reserva : Acceso
     {
         private readonly Fill _fill;
 

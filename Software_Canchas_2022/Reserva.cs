@@ -177,45 +177,84 @@ namespace Software_Canchas_2022
         {
             try
             {
+                cmb_FormaPago.SelectedIndexChanged -= cmb_FormaPago_SelectedIndexChanged;
+                if (lbl_IdReserva.Text == "") throw new Exception(TraducirMensaje("msg_ReservaNoSeleccionada"));
+
                 if (chk_Semana.Checked)
                 {
                     DialogResult dialogResult = MessageBox.Show("Está seguro que desea eliminar la reserva para todas las semanas?", "Error", MessageBoxButtons.YesNo);
+                    if (dialogResult.ToString() == "Yes")
+                    {
+                        BE.Reserva reserva = new BE.Reserva()
+                        {
+                            Id = int.Parse(dataGridReservas.CurrentRow.Cells[0].Value.ToString()),
+                            Id_Cancha = int.Parse(cmb_Cancha.Text),
+                            Id_Cliente = int.Parse((cmb_Cliente1.SelectedValue).ToString()),
+                            Fecha = dtp_Fecha1.Value,
+                            Hora = cmb_Hora1.Text,
+                            Semana = chk_Semana.Checked,
+                            Forma_Pago = cmb_FormaPago.Text,
+                            Seña = float.Parse(txt_Seña.Text),
+                            Total = float.Parse(txt_Total.Text),
+                            Pagar = float.Parse(txt_Deuda.Text),
+                            Pagado = txt_Pagado.Text
+                        };
+                        _iReserva.BajaReserva(reserva, true);
+
+                    }
+                    else
+                    {
+                        BE.Reserva reserva = new BE.Reserva()
+                        {
+                            Id = int.Parse(dataGridReservas.CurrentRow.Cells[0].Value.ToString()),
+                            Id_Cancha = int.Parse(cmb_Cancha.Text),
+                            Id_Cliente = int.Parse((cmb_Cliente1.SelectedValue).ToString()),
+                            Fecha = dtp_Fecha1.Value,
+                            Hora = cmb_Hora1.Text,
+                            Semana = chk_Semana.Checked,
+                            Forma_Pago = cmb_FormaPago.Text,
+                            Seña = float.Parse(txt_Seña.Text),
+                            Total = float.Parse(txt_Total.Text),
+                            Pagar = float.Parse(txt_Deuda.Text),
+                            Pagado = txt_Pagado.Text
+                        };
+                        _iReserva.BajaReserva(reserva, false);
+                    }
                 }
                 else
                 {
                     DialogResult dialogResult = MessageBox.Show("Está seguro que desea eliminar la reserva?", "Error", MessageBoxButtons.YesNo);
-                }
-
-                if(DialogResult.Yes.ToString() == "Yes")
-                {
-                    cmb_FormaPago.SelectedIndexChanged -= cmb_FormaPago_SelectedIndexChanged;
-                    if (lbl_IdReserva.Text == "") throw new Exception(TraducirMensaje("msg_ReservaNoSeleccionada"));
-
-                    BE.Reserva reserva = new BE.Reserva()
+                    if (DialogResult.Yes.ToString() == "Yes")
                     {
-                        Id = int.Parse(dataGridReservas.CurrentRow.Cells[0].Value.ToString()),
-                        Id_Cancha = int.Parse(cmb_Cancha.Text),
-                        Id_Cliente = int.Parse((cmb_Cliente1.SelectedValue).ToString()),
-                        Fecha = dtp_Fecha1.Value,
-                        Hora = cmb_Hora1.Text,
-                        Semana = chk_Semana.Checked,
-                        Forma_Pago = cmb_FormaPago.Text,
-                        Seña = float.Parse(txt_Seña.Text),
-                        Total = float.Parse(txt_Total.Text),
-                        Pagar = float.Parse(txt_Deuda.Text),
-                        Pagado = txt_Pagado.Text
-                    };
-                    _iReserva.BajaReserva(reserva);
 
-                    CargarReservas();
-                    Limpiar();
-                    MessageBox.Show(TraducirMensaje("msg_ReservaBaja"));
-                    cmb_FormaPago.SelectedIndexChanged += cmb_FormaPago_SelectedIndexChanged;
+                        BE.Reserva reserva = new BE.Reserva()
+                        {
+                            Id = int.Parse(dataGridReservas.CurrentRow.Cells[0].Value.ToString()),
+                            Id_Cancha = int.Parse(cmb_Cancha.Text),
+                            Id_Cliente = int.Parse((cmb_Cliente1.SelectedValue).ToString()),
+                            Fecha = dtp_Fecha1.Value,
+                            Hora = cmb_Hora1.Text,
+                            Semana = chk_Semana.Checked,
+                            Forma_Pago = cmb_FormaPago.Text,
+                            Seña = float.Parse(txt_Seña.Text),
+                            Total = float.Parse(txt_Total.Text),
+                            Pagar = float.Parse(txt_Deuda.Text),
+                            Pagado = txt_Pagado.Text
+                        };
+                        _iReserva.BajaReserva(reserva, false);
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Se cancela la baja de la reserva");
+                    }
                 }
-                else
-                {
-                    MessageBox.Show("Se cancela la baja de la reserva");
-                }
+
+                CargarReservas();
+                Limpiar();
+                MessageBox.Show(TraducirMensaje("msg_ReservaBaja"));
+                cmb_FormaPago.SelectedIndexChanged += cmb_FormaPago_SelectedIndexChanged;
+
             }
             catch (Exception ex)
             {

@@ -11,7 +11,7 @@ namespace Interfaces
     {
         int AltaReserva(BE.Reserva reserva);
         int ModificarReserva(BE.Reserva reserva);
-        int BajaReserva(BE.Reserva reserva);
+        int BajaReserva(BE.Reserva reserva, bool semana);
         List<BE.Reserva> ObtenerReservas();
         DataTable ObtenerReservaCliente();
         DataTable ObtenerReservaVencida();
