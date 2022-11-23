@@ -125,6 +125,18 @@ namespace BLL
             }
         }
 
+        public string ObtenerTipoCanchaPorId(int id)
+        {
+            try
+            {
+                return _CanchaDAL.ObtenerTipoCanchaPorId(id);
+            }
+            catch
+            {
+                throw new Exception(TraducirMensaje("msg_ErrorListar"));
+            }
+        }
+
         private void ValidarCampo(BE.Cancha cancha)
         { 
             if (string.IsNullOrEmpty(cancha.Id.ToString()) || string.IsNullOrWhiteSpace(cancha.Tipo) || string.IsNullOrWhiteSpace(cancha.Material) || string.IsNullOrEmpty(cancha.PrecioBase.ToString()))

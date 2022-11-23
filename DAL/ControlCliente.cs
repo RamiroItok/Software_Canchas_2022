@@ -113,7 +113,7 @@ namespace DAL
         {
             try
             {
-                string consulta = $@"SELECT * FROM ControlCliente WHERE ClienteId = '{cliente}'";
+                string consulta = $@"SELECT * FROM ControlCliente WHERE ClienteId = '{cliente}' ORDER BY Id DESC";
                 DataTable dt = GenerarConsulta(consulta);
                 return dt;
             }

@@ -557,5 +557,43 @@ namespace DAL.Tools
             return (from DataRow dr in ds.Tables[0].Rows select (new Fill()).FillObjectControlCliente(dr)).ToList();
         }
         #endregion
+        
+        #region Cancha mas reservada
+        public BE.DTOs.ReporteCanchaMasReservadaDTO FillObjectCanchaMasReservada(DataRow dr)
+        {
+            Cancha _canchaDAL = new Cancha();
+
+            BE.DTOs.ReporteCanchaMasReservadaDTO cancha = new BE.DTOs.ReporteCanchaMasReservadaDTO();
+
+            try
+            {
+                if (dr.Table.Columns.Contains("Id_Cancha") && !Convert.IsDBNull(dr["Id_Cancha"]))
+                    cancha.Id_Cancha = Convert.ToInt32(dr["Id_Cancha"]);
+
+                if (dr.Table.Columns.Contains("Id_Cancha") && !Convert.IsDBNull(dr["Id_Cancha"]))
+                    cancha.TipoCancha = _canchaDAL.ObtenerTipoCanchaPorId(Convert.ToInt32(dr["Id_Cancha"])).ToString();
+
+                if (dr.Table.Columns.Contains("Cantidad") && !Convert.IsDBNull(dr["Cantidad"]))
+                    cancha.Cantidad = Convert.ToInt32(dr["Cantidad"]);
+
+                if (dr.Table.Columns.Contains("Fecha") && !Convert.IsDBNull(dr["Fecha"]))
+                    cancha.Fecha = Convert.ToDateTime(dr["Fecha"]);
+
+                if (dr.Table.Columns.Contains("Hora") && !Convert.IsDBNull(dr["Hora"]))
+                    cancha.Hora = Convert.ToString(dr["Hora"]);                
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error en el método FillObject, " + ex.Message);
+            }
+
+            return cancha;
+        }
+
+        public List<BE.DTOs.ReporteCanchaMasReservadaDTO> FillListCanchaMasReservada(DataSet ds)
+        {
+            return (from DataRow dr in ds.Tables[0].Rows select (new Fill()).FillObjectCanchaMasReservada(dr)).ToList();
+        }
+        #endregion
     }
 }

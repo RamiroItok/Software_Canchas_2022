@@ -29,8 +29,9 @@ namespace Software_Canchas_2022
         private readonly IBackUp _iBackup;
         private readonly IControlCliente _iControlCliente;
         private readonly IDeudas _iDeudas;
+        private readonly IReporte _iReporte;
 
-        public Registro(IPermiso permiso, ITraductor traductor, IBitacora bitacora, ICancha cancha, ICliente cliente, IDigito_Verificador dv, IEncriptar encriptar, IUsuario usuario, IReserva reserva, IBackUp backup, IControlCliente controlCliente)
+        public Registro(IPermiso permiso, ITraductor traductor, IBitacora bitacora, ICancha cancha, ICliente cliente, IDigito_Verificador dv, IEncriptar encriptar, IUsuario usuario, IReserva reserva, IBackUp backup, IControlCliente controlCliente, IReporte reporte)
         {
             InitializeComponent();
             _iPermiso = permiso;
@@ -44,6 +45,7 @@ namespace Software_Canchas_2022
             _iReserva = reserva;
             _iBackup = backup;
             _iControlCliente = controlCliente;
+            _iReporte = reporte;
         }
 
         private void btnRegistrar_Click(object sender, EventArgs e)
@@ -101,13 +103,13 @@ namespace Software_Canchas_2022
         {
             this.Hide();
 
-            Login formLogin = new Login(_iPermiso, _iTraductor, _iCancha, _iCliente, _iUsuario, _iReserva, _iBitacora, _iBackup, _iControlCliente, _iDeudas);
+            Login formLogin = new Login(_iPermiso, _iTraductor, _iCancha, _iCliente, _iUsuario, _iReserva, _iBitacora, _iBackup, _iControlCliente, _iDeudas, _iReporte);
             formLogin.Show();
         }
 
         private void Registro_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Login formLogin = new Login(_iPermiso, _iTraductor, _iCancha, _iCliente, _iUsuario, _iReserva, _iBitacora, _iBackup, _iControlCliente, _iDeudas);
+            Login formLogin = new Login(_iPermiso, _iTraductor, _iCancha, _iCliente, _iUsuario, _iReserva, _iBitacora, _iBackup, _iControlCliente, _iDeudas, _iReporte);
             formLogin.Show();
         }
     }

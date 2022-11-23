@@ -50,6 +50,7 @@
     <Compile Include="IDeudas.cs" />
     <Compile Include="IDigito Verificador.cs" />
     <Compile Include="IEncriptar.cs" />
+    <Compile Include="IReporte.cs" />
     <Compile Include="IReserva.cs" />
     <Compile Include="Observer\ITraductor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

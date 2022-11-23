@@ -17,5 +17,6 @@ namespace Interfaces
         DataTable ObtenerIdCanchas(string tipo);
         float ObtenerPrecio(string id);
         int ObtenerCanchaPorId(int id);
+        string ObtenerTipoCanchaPorId(int id);
     }
 }

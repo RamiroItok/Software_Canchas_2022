@@ -31,13 +31,14 @@ namespace Software_Canchas_2022
         private readonly IBackUp _iBackup;
         private readonly IControlCliente _iControlCliente;
         private readonly IDeudas _iDeudas;
+        private readonly IReporte _iReporte;
 
         private UsuarioDTO _usuarioDTO;
         private readonly IList<IIdioma> _idiomas;
 
         private bool mdiChildActivo = false;
 
-        public Menu(IPermiso permiso, ITraductor traductor, ICancha cancha, ICliente cliente, IUsuario usuario, IReserva reserva, IBitacora bitacora, IBackUp backup, IControlCliente controlCliente, IDeudas deudas)
+        public Menu(IPermiso permiso, ITraductor traductor, ICancha cancha, ICliente cliente, IUsuario usuario, IReserva reserva, IBitacora bitacora, IBackUp backup, IControlCliente controlCliente, IDeudas deudas, IReporte reporte)
         {
             InitializeComponent();
 
@@ -51,6 +52,7 @@ namespace Software_Canchas_2022
             _iBackup = backup;
             _iControlCliente = controlCliente;
             _iDeudas = deudas;
+            _iReporte = reporte;
 
             _usuarioDTO = Sesion.GetInstance();
             _idiomas = new List<IIdioma>();
@@ -161,7 +163,7 @@ namespace Software_Canchas_2022
 
         private void Abrir_FormLLogin()
         {
-            Login login = new Login(_iPermiso, _iTraductor, _iCancha, _iCliente, _iUsuario, _iReserva, _iBitacora, _iBackup, _iControlCliente, _iDeudas);
+            Login login = new Login(_iPermiso, _iTraductor, _iCancha, _iCliente, _iUsuario, _iReserva, _iBitacora, _iBackup, _iControlCliente, _iDeudas, _iReporte);
             login.Show();
         }
 
@@ -311,7 +313,15 @@ namespace Software_Canchas_2022
 
         private void helpToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Help.ShowHelp(this, "F:/Universidad/3er año/Diploma/Software/Manual/Manual de Ayuda.chm");
+            Help.ShowHelp(this, "F:/Universidad/3er año/Diploma/Software/Software_Canchas_2022/Manual/Manual de Ayuda.chm");
+        }
+
+        private void informesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Informes informes = new Informes(_iReporte, _iTraductor);
+            informes.MdiParent = this;
+            informes.StartPosition = FormStartPosition.CenterScreen;
+            informes.Show();
         }
     }
 }
