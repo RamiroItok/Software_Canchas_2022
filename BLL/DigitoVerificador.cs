@@ -1,6 +1,8 @@
 ﻿using Interfaces;
+using Servicios;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,5 +45,22 @@ namespace BLL
             }
         }
 
+        public DataTable ObtenerTabla(string tabla)
+        {
+            try
+            {
+                DataTable dt = _digitoVerificadorDAL.ObtenerTabla(tabla);
+                return dt;
+            }
+            catch
+            {
+                throw new Exception(TraducirMensaje("msg_ErrorListar"));
+            }
+        }
+
+        private string TraducirMensaje(string msgTag)
+        {
+            return Traductor.TraducirMensaje(_IdiomaDAL, msgTag);
+        }
     }
 }

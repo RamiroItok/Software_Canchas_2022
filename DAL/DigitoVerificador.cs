@@ -65,7 +65,7 @@ namespace DAL
                     }
                     else
                     {
-                        mensaje = $@"Se realizaron modificaciones de datos, de manera externa, en la tabla {tabla}";
+                        mensaje = tabla;
                         return mensaje;
                     }
 
@@ -160,6 +160,18 @@ namespace DAL
             }
         }
 
-
+        public DataTable ObtenerTabla(string tabla)
+        {
+            try
+            {
+                string consulta = $"SELECT * FROM {tabla}";                
+                DataTable dt = GenerarConsulta(consulta);
+                return dt;
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error en la base de datos.");
+            }
+        }
     }
 }

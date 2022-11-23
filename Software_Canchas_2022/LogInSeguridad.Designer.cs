@@ -35,6 +35,7 @@
             this.txt_Contraseña = new System.Windows.Forms.TextBox();
             this.btn_Aceptar = new System.Windows.Forms.Button();
             this.btn_Cancelar = new System.Windows.Forms.Button();
+            this.lbl_Tabla = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbl_Nombre_Usuario
@@ -94,11 +95,21 @@
             this.btn_Cancelar.UseVisualStyleBackColor = true;
             this.btn_Cancelar.Click += new System.EventHandler(this.btn_Cancelar_Click);
             // 
+            // lbl_Tabla
+            // 
+            this.lbl_Tabla.AutoSize = true;
+            this.lbl_Tabla.Location = new System.Drawing.Point(1, 0);
+            this.lbl_Tabla.Name = "lbl_Tabla";
+            this.lbl_Tabla.Size = new System.Drawing.Size(0, 13);
+            this.lbl_Tabla.TabIndex = 6;
+            this.lbl_Tabla.Visible = false;
+            // 
             // LogInSeguridad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(290, 225);
+            this.Controls.Add(this.lbl_Tabla);
             this.Controls.Add(this.btn_Cancelar);
             this.Controls.Add(this.btn_Aceptar);
             this.Controls.Add(this.txt_Contraseña);
@@ -122,5 +133,6 @@
         private System.Windows.Forms.TextBox txt_Contraseña;
         private System.Windows.Forms.Button btn_Aceptar;
         private System.Windows.Forms.Button btn_Cancelar;
+        private System.Windows.Forms.Label lbl_Tabla;
     }
 }

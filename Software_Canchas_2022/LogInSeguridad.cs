@@ -19,7 +19,7 @@ namespace Software_Canchas_2022
         private readonly IBackUp _iBackup;
         private readonly IDigito_Verificador _iVerificador;
         private readonly IBitacora _iBitacora;
-        public LogInSeguridad(IUsuario usuario, ITraductor traductor, IBackUp backup, IDigito_Verificador digito_Verificador, IBitacora bitacora)
+        public LogInSeguridad(IUsuario usuario, ITraductor traductor, IBackUp backup, IDigito_Verificador digito_Verificador, IBitacora bitacora, string tabla)
         {
             InitializeComponent();
             _iUsuario = usuario;
@@ -27,6 +27,7 @@ namespace Software_Canchas_2022
             _iBackup = backup;
             _iVerificador = digito_Verificador;
             _iBitacora = bitacora;
+            lbl_Tabla.Text = tabla;
          }
 
         private void btn_Aceptar_Click(object sender, EventArgs e)
@@ -34,7 +35,7 @@ namespace Software_Canchas_2022
             try
             {
                 _iUsuario.LoguearUsuarioTemporal(txt_Nombre_Usuario.Text, txt_Contraseña.Text);
-                ErrorIntegridad errorIntegridad = new ErrorIntegridad(_iTraductor, _iBackup, _iVerificador, _iBitacora);
+                ErrorIntegridad errorIntegridad = new ErrorIntegridad(_iTraductor, _iBackup, _iVerificador, _iBitacora, lbl_Tabla.Text);
                 this.Close();
                 errorIntegridad.Show();
             }

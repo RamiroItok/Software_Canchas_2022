@@ -19,13 +19,14 @@ namespace Software_Canchas_2022
         private readonly IDigito_Verificador _iDigito_Verificador;
         private readonly IBitacora _iBitacora;
 
-        public ErrorIntegridad(ITraductor traductor, IBackUp backup, IDigito_Verificador digito_Verificador, IBitacora bitacora)
+        public ErrorIntegridad(ITraductor traductor, IBackUp backup, IDigito_Verificador digito_Verificador, IBitacora bitacora, string tabla)
         {
+            InitializeComponent();
             _iTraductor = traductor;
             _iBackup = backup;
             _iDigito_Verificador = digito_Verificador;
             _iBitacora = bitacora;
-            InitializeComponent();
+            lbl_Tabla1.Text = tabla;
         }
 
         private void btn_Restore_Click(object sender, EventArgs e)
@@ -52,6 +53,22 @@ namespace Software_Canchas_2022
                     MessageBox.Show(ex.Message);
                 }
             }
+        }
+
+        private void ErrorIntegridad_Load(object sender, EventArgs e)
+        {
+            label1.Text = "La base de datos está corrupta.\nSe modificó la tabla " + lbl_Tabla1.Text + " de manera externa. \n¿Qué acción desea realizar?";
+            CargarTabla();
+        }
+
+        private void CargarTabla()
+        {
+            dataGridTabla.DataSource = _iDigito_Verificador.ObtenerTabla(lbl_Tabla1.Text);
+            dataGridTabla.Columns["DVH"].Visible = false;
+            dataGridTabla.ClearSelection();
+            dataGridTabla.TabStop = false;
+            dataGridTabla.ReadOnly = true;
+            dataGridTabla.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
     }
 }

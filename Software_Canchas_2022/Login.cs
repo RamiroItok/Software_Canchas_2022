@@ -48,15 +48,7 @@ namespace Software_Canchas_2022
             _iReporte = reporte;
 
             _IDigitoVerifivador = new BLL.DigitoVerificador();
-            if(VerificarIntegridad() == false)
-            {
-                this.WindowState = FormWindowState.Minimized;
-                btnIngresar.Enabled = false;
-                txtUser.Enabled = false;
-                txtPass.Enabled = false;
-                LogInSeguridad logInSeguridad = new LogInSeguridad(_iUsuario, _iTraductor, _iBackup, _IDigitoVerifivador, _iBitacora);
-                logInSeguridad.Show();
-            }
+            VerificarIntegridad();
         }
 
         private void btnIngresar_Click(object sender, EventArgs e)
@@ -97,25 +89,25 @@ namespace Software_Canchas_2022
             Application.Exit();
         }
 
-        private bool VerificarIntegridad()
+        private void VerificarIntegridad()
         {
             try
             {
                 string mensaje = _IDigitoVerifivador.VerificarDV();
                 if (mensaje != "true")
                 {
-                    MessageBox.Show(mensaje,"Error");
-                    return false;
-                }
-                else
-                {
-                    return true;
+                    MessageBox.Show("Se realizaron modificaciones de datos, de manera externa, en la tabla " + mensaje, "Error");
+                    this.WindowState = FormWindowState.Minimized;
+                    btnIngresar.Enabled = false;
+                    txtUser.Enabled = false;
+                    txtPass.Enabled = false;
+                    LogInSeguridad logInSeguridad = new LogInSeguridad(_iUsuario, _iTraductor, _iBackup, _IDigitoVerifivador, _iBitacora, mensaje);
+                    logInSeguridad.Show();
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                return false;
             }
         }
 
@@ -127,11 +119,6 @@ namespace Software_Canchas_2022
         private void Traducir(IIdioma idioma)
         {
             Traductor.Traducir(_iTraductor, idioma, this.Controls);
-        }
-
-        private string TraducirMensaje(string msgTag)
-        {
-            return Traductor.TraducirMensaje(_iTraductor, msgTag);
         }
 
         private void Login_Load(object sender, EventArgs e)
