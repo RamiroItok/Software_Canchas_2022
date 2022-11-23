@@ -1,8 +1,12 @@
-﻿using Interfaces;
+﻿using BE.DTOs;
+using Interfaces;
+using Newtonsoft.Json;
 using Servicios;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,7 +43,7 @@ namespace BLL
                     {
                         if(reserva.Semana == true)
                         {
-                            int id = _reservaDAL.AltaReserva(reserva);
+                            reserva.Id = _reservaDAL.AltaReserva(reserva);
 
                             int i = 0;
                             int contador = 0;
@@ -52,21 +56,22 @@ namespace BLL
                                 reserva.Pagar = reserva.Total;
                                 reserva.Pagado = "No pagado";
 
-                                _reservaDAL.AltaReserva(reserva);
+                                reserva.Id = _reservaDAL.AltaReserva(reserva);
+                                SerializarReserva(reserva);
                             }
                             
-
                             //GUARDAR EN BITACORA
                             _bitacora.AltaBitacora("Se dió de alta la reserva semanal para el cliente " + reserva.Id_Cliente + ".", "MEDIA");
-                            return id;
+                            return reserva.Id;
                         }
                         else
                         {
-                            int id = _reservaDAL.AltaReserva(reserva);
+                            reserva.Id = _reservaDAL.AltaReserva(reserva);
 
                             //GUARDAR EN BITACORA
-                            _bitacora.AltaBitacora("Se dió de alta la reserva " + id + ".", "MEDIA");
-                            return id;
+                            _bitacora.AltaBitacora("Se dió de alta la reserva " + reserva.Id + ".", "MEDIA");
+                            SerializarReserva(reserva);
+                            return reserva.Id;
                         }
                         
                     }
@@ -464,6 +469,43 @@ namespace BLL
             catch
             {
                 throw new Exception(TraducirMensaje("msg_ErrorReservaClienteHora"));
+            }
+        }
+
+        public void SerializarReserva(BE.Reserva reserva)
+        {
+            try
+            {
+                DAL.Cancha canchaDAL = new DAL.Cancha();
+                DAL.Cliente clienteDAL = new DAL.Cliente();
+
+                string tipoCancha = canchaDAL.ObtenerTipoCanchaPorId(reserva.Id_Cancha);
+                List<BE.Cliente> clienteLista = clienteDAL.ObtenerClientePorId(reserva.Id_Cliente);
+                string nombreCliente = clienteLista[0].Nombre;
+                string apellidoCliente = clienteLista[0].Apellido;
+
+                SerializacionReserva serializacionReserva = SerializacionReserva.FillObject(reserva, tipoCancha, nombreCliente, apellidoCliente);
+
+                string ruta = ConfigurationManager.AppSettings["RutaReservas"];
+
+                string directorio = $"{ruta}Reserva_{reserva.Id}";
+
+                if (!Directory.Exists(directorio))
+                {
+                    Directory.CreateDirectory(directorio);
+                }
+
+                StreamWriter fichero;
+                fichero = File.CreateText($"{directorio}\\Reserva_{reserva.Id}.json");
+
+                string reservaSerializada = JsonConvert.SerializeObject(serializacionReserva, Formatting.Indented);
+
+                fichero.WriteLine($"{reservaSerializada}");
+                fichero.Close();
+            }
+            catch (Exception)
+            {
+                throw new Exception("Hubo un error al querer serializar la reserva.");
             }
         }
 

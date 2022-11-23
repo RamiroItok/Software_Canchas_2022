@@ -14,7 +14,7 @@ namespace Interfaces
         int BajaCliente(BE.Cliente Cliente);
         List<BE.Cliente> ObtenerClientes();
         DataTable ObtenerNombreClientes();
-        int ObtenerClientePorId(int id);
+        List<BE.Cliente> ObtenerClientePorId(int id);
 
     }
 }

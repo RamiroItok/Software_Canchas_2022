@@ -102,7 +102,7 @@ namespace BLL
             }
         }
 
-        public int ObtenerClientePorId(int id)
+        public List<BE.Cliente> ObtenerClientePorId(int id)
         {
             try
             {

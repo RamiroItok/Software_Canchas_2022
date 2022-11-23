@@ -120,16 +120,19 @@ namespace DAL
             }
         }
 
-        public int ObtenerClientePorId(int id)
+        public List<BE.Cliente> ObtenerClientePorId(int id)
         {
             try
             {
                 SelectCommandText = String.Format(OBTENER_CLIENTE_POR_ID, id);
-
                 DataSet ds = ExecuteNonReader();
-                BE.Cliente cliente = ds.Tables[0].Rows.Count <= 0 ? null : _fill.FillObjectCliente(ds.Tables[0].Rows[0]);
 
-                return cliente.Id;
+                List<BE.Cliente> cliente = new List<BE.Cliente>();
+
+                if (ds.Tables[0].Rows.Count > 0)
+                    cliente = _fill.FillListCliente(ds);
+
+                return cliente;
             }
             catch (Exception)
             {

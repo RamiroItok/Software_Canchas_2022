@@ -51,6 +51,7 @@
     <Compile Include="ControlCliente.cs" />
     <Compile Include="Deudas.cs" />
     <Compile Include="DTOs\ReporteCanchaMasReservadaDTO.cs" />
+    <Compile Include="DTOs\SerializacionReserva.cs" />
     <Compile Include="DTOs\TraduccionesDTO.cs" />
     <Compile Include="DTOs\UsuarioDTO.cs" />
     <Compile Include="DigitoVerificador.cs" />
