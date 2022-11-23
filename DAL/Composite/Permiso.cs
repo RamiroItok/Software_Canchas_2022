@@ -110,6 +110,26 @@ namespace DAL.Composite
             }
         }
 
+        public void PrimerRegistroGuardarPermiso(int idUsuario, int idPatente)
+        {
+            try
+            {
+
+                ExecuteCommandText = GUARDAR_PERMISO_USUARIO;
+                ExecuteParameters.Parameters.Clear();
+
+                ExecuteParameters.Parameters.AddWithValue("@parUsuarioId", idUsuario);
+                ExecuteParameters.Parameters.AddWithValue("@parPatenteId", idPatente);
+                ExecuteParameters.Parameters.AddWithValue("@parDVH", 0);
+                ExecuteNonQuery();
+            }
+
+            catch (Exception)
+            {
+                throw new Exception("Error en la base de datos.");
+            }
+        }
+
         public IList<Familia> ObtenerFamilias()
         {
             try

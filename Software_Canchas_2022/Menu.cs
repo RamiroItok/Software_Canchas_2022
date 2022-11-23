@@ -90,6 +90,7 @@ namespace Software_Canchas_2022
             seguridadUsuariosToolStripMenuItem.Enabled = PermisoTool.TienePermiso(_usuarioDTO, BE.Composite.Permiso.Seguridad_Usuarios);
             deudasToolStripMenuItem.Enabled = PermisoTool.TienePermiso(_usuarioDTO, BE.Composite.Permiso.Deudas_Pendientes);
             helpToolStripMenuItem.Enabled = PermisoTool.TienePermiso(_usuarioDTO, BE.Composite.Permiso.Help);
+            informesToolStripMenuItem.Enabled = PermisoTool.TienePermiso(_usuarioDTO, BE.Composite.Permiso.Informes);
         }
 
         public void UpdateLanguage(IIdioma idioma)

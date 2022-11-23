@@ -20,6 +20,7 @@ namespace Interfaces.Composite
         void GetComponenteUsuario(UsuarioDTO usuario);
         void GetComponenteFamilia(Familia familia);
         void GuardarPermiso(UsuarioDTO usuario);
+        void PrimerRegistroGuardarPermiso(int idUsuario, int idPatente);
         IList<Familia> GetFamiliasValidacion(int familiaId);
         Componente ObtenerFamiliaArbol(int familiaId, Componente componenteOriginal, Componente componenteAgregar);
         Componente GetUsuarioArbol(int usuarioId, Componente componenteOriginal, Componente componenteAgregar);

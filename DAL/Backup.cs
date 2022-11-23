@@ -47,11 +47,12 @@ namespace DAL
             }
         }
 
-        public void CrearBaseDeDatos(string server, string nombreBase)
+        public bool CrearBaseDeDatos(string server, string nombreBase)
         {
             try
             {
-                bool existeBD = VerificarExistenciaBaseDeDatos(server, nombreBase);
+                bool existeBD = true;
+                existeBD = VerificarExistenciaBaseDeDatos(server, nombreBase);
 
                 if (existeBD == false)
                 {
@@ -59,6 +60,7 @@ namespace DAL
                     IEnumerable<string> query = FormatearQueryScript(script);
                     ExecuteNonQueryCreateDB(server, query);
                 }
+                return existeBD;
             }
             catch (Exception ex)
             {

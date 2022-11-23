@@ -52,14 +52,15 @@ namespace BLL
             }
         }
 
-        public void CrearBaseDeDatos()
+        public bool CrearBaseDeDatos()
         {
             try
             {
                 string server = ConfigurationManager.AppSettings["server"];
                 string nombreBase = ConfigurationManager.AppSettings["base"];
 
-                _backupDAL.CrearBaseDeDatos(server, nombreBase);
+                bool resultado = _backupDAL.CrearBaseDeDatos(server, nombreBase);
+                return resultado;
             }
             catch (Exception ex)
             {

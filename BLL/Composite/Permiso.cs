@@ -66,6 +66,19 @@ namespace BLL.Composite
             }
         }
 
+        public void PrimerRegistroGuardarPermiso(int idUsuario, int idPatente)
+        {
+            try
+            {
+                _permisoDAL.PrimerRegistroGuardarPermiso(idUsuario, idPatente);
+                _digitoVerificador.RecalcularDV();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public IList<Componente> TraerFamiliaPatentes(int familiaId)
         {
             try

@@ -138,7 +138,14 @@ namespace Software_Canchas_2022
         {
             try
             {
-                _iBackup.CrearBaseDeDatos();
+                bool existeBD = _iBackup.CrearBaseDeDatos();
+                if (existeBD == false)
+                {
+                    this.Hide();
+
+                    Registro formRegistro = new Registro(_iPermiso, _iTraductor, _iBitacora, _iCancha, _iCliente, _IDigitoVerifivador, _iEncriptar, _iUsuario, _iReserva, _iBackup, _iControlCliente, _iReporte);
+                    formRegistro.Show();
+                }
             }
             catch (Exception ex)
             {

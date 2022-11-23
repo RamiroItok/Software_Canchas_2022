@@ -55,21 +55,42 @@ namespace Software_Canchas_2022
                 if (_iUsuario.ObtenerUsuarioDTODesencriptado().Where(x => x.Nombre_Usuario == txtNombre_Usuario.Text.ToLower()).Any())
                     throw new Exception("Ese nombre de usuario está siendo utilizado");
 
-                Usuario usuario = new Usuario()
+                if (_iUsuario.ObtenerUsuarioDTODesencriptado().Count == 0)
                 {
-                    Nombre = txtNombre.Text,
-                    Apellido = txtApellido.Text,
-                    Nombre_Usuario = txtNombre_Usuario.Text,
-                    Contraseña = txtContraseña.Text,
-                    Puesto = cmb_Puesto.Text,
-                    Dni = int.Parse(txtDni.Text),
-                    Sexo = cmbSexo.Text,
-                    Mail = txtMail.Text,
-                    Telefono = int.Parse(txtTelefono.Text),
-                    Tipo = cmbTipo.Text,
-                };
+                    Usuario usuario = new Usuario()
+                    {
+                        Nombre = txtNombre.Text,
+                        Apellido = txtApellido.Text,
+                        Nombre_Usuario = txtNombre_Usuario.Text,
+                        Contraseña = txtContraseña.Text,
+                        Puesto = cmb_Puesto.Text,
+                        Dni = int.Parse(txtDni.Text),
+                        Sexo = cmbSexo.Text,
+                        Mail = txtMail.Text,
+                        Telefono = int.Parse(txtTelefono.Text),
+                        Tipo = cmbTipo.Text,
+                    };
+                    int idUsuario = _iUsuario.AltaUsuario(usuario);
 
-                _iUsuario.AltaUsuario(usuario);
+                    _iPermiso.PrimerRegistroGuardarPermiso(idUsuario, 1);
+                }
+                else
+                {
+                    Usuario usuario = new Usuario()
+                    {
+                        Nombre = txtNombre.Text,
+                        Apellido = txtApellido.Text,
+                        Nombre_Usuario = txtNombre_Usuario.Text,
+                        Contraseña = txtContraseña.Text,
+                        Puesto = cmb_Puesto.Text,
+                        Dni = int.Parse(txtDni.Text),
+                        Sexo = cmbSexo.Text,
+                        Mail = txtMail.Text,
+                        Telefono = int.Parse(txtTelefono.Text),
+                        Tipo = cmbTipo.Text,
+                    };
+                    _iUsuario.AltaUsuario(usuario);
+                }
 
                 MessageBox.Show("El usuario se dió de alta correctamente");
                 Limpiar();
@@ -111,6 +132,15 @@ namespace Software_Canchas_2022
         {
             Login formLogin = new Login(_iPermiso, _iTraductor, _iCancha, _iCliente, _iUsuario, _iReserva, _iBitacora, _iBackup, _iControlCliente, _iDeudas, _iReporte);
             formLogin.Show();
+        }
+
+        private void Registro_Load(object sender, EventArgs e)
+        {
+            if(_iUsuario.ObtenerUsuarioDTODesencriptado().Count == 0)
+            {
+                cmb_Puesto.Text = "Administrador";
+                cmb_Puesto.Enabled = false;
+            }
         }
     }
 }

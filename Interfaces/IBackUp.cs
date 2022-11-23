@@ -10,6 +10,6 @@ namespace Interfaces
     {
         string Realizar_Backup(string ruta, string nombre);
         string Realizar_Restore(string ruta);
-        void CrearBaseDeDatos();
+        bool CrearBaseDeDatos();
     }
 }

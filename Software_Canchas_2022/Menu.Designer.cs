@@ -69,8 +69,8 @@
             this.informesToolStripMenuItem,
             this.idiomaToolStripMenuItem,
             this.seguridadToolStripMenuItem,
-            this.cerrarSesiónToolStripMenuItem,
-            this.helpToolStripMenuItem});
+            this.helpToolStripMenuItem,
+            this.cerrarSesiónToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1241, 24);
