@@ -159,8 +159,10 @@ namespace BLL
                     for (contador = 0; contador < lista.Count; contador++)
                     {
                         reserva.Id = lista[contador].Id;
-
-                        _reservaDAL.BajaReserva(reserva);
+                        if(lista[contador].Semana != false)
+                        {
+                            _reservaDAL.BajaReserva(reserva);
+                        }
                     }
                     //GUARDAR EN BITACORA
                     _bitacora.AltaBitacora("Se dió de baja la reserva semanal para el cliente " + reserva.Id_Cliente + ".", "MEDIA");
