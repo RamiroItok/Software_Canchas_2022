@@ -14,6 +14,7 @@ using Servicios.Observer;
 using BE.DTOs;
 using BE.Observer;
 using Servicios;
+using System.Configuration;
 
 namespace Software_Canchas_2022
 {
@@ -314,7 +315,14 @@ namespace Software_Canchas_2022
 
         private void helpToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Help.ShowHelp(this, "F:/Universidad/3er año/Diploma/Software/Software_Canchas_2022/Manual/Manual de Ayuda.chm");
+            try
+            {
+                Help.ShowHelp(this, ConfigurationManager.AppSettings["RutaAyuda"]);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("No se puede abrir la ayuda.");
+            }
         }
 
         private void informesToolStripMenuItem_Click(object sender, EventArgs e)

@@ -29,7 +29,7 @@
     <TargetCulture>es-AR</TargetCulture>
     <ProductName>Software Canchas</ProductName>
     <PublisherName>Software Canchas</PublisherName>
-    <ApplicationRevision>33</ApplicationRevision>
+    <ApplicationRevision>34</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
