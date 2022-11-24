@@ -93,6 +93,7 @@ namespace Software_Canchas_2022
         {
             try
             {
+                _iBackup.CrearBaseDeDatos();
                 string mensaje = _IDigitoVerifivador.VerificarDV();
                 if (mensaje != "true")
                 {
