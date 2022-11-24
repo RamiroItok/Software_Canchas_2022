@@ -104,7 +104,7 @@ namespace BLL
                 {
                     if (reserva.Semana == true)
                     {
-                        int id = _reservaDAL.ModificarReserva(reserva);
+                        reserva.Id = _reservaDAL.ModificarReserva(reserva);
 
                         int i = 0;
                         int contador = 0; 
@@ -118,21 +118,23 @@ namespace BLL
                             reserva.Pagar = reserva.Total;
                             reserva.Pagado = "No pagado";
 
-                            _reservaDAL.ModificarReserva(reserva);
+                            reserva.Id = _reservaDAL.ModificarReserva(reserva);
                         }
 
 
                         //GUARDAR EN BITACORA
                         _bitacora.AltaBitacora("Se dió de modificó la reserva semanal para el cliente " + reserva.Id_Cliente + ".", "MEDIA");
-                        return id;
+                        SerializarReserva(reserva);
+                        return reserva.Id;
                     }
                     else
                     {
-                        int id = _reservaDAL.ModificarReserva(reserva);
+                        reserva.Id = _reservaDAL.ModificarReserva(reserva);
 
                         //GUARDAR EN BITACORA
-                        _bitacora.AltaBitacora("Se modificó la reserva " + id + ".", "MEDIA");
-                        return id;
+                        _bitacora.AltaBitacora("Se modificó la reserva " + reserva.Id + ".", "MEDIA");
+                        SerializarReserva(reserva);
+                        return reserva.Id;
                     }
                     
                 }
