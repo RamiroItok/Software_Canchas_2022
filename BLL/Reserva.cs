@@ -236,9 +236,10 @@ namespace BLL
                     int hora = int.Parse(lista[i].Hora.ToString().Substring(0,2));
                     string formaPago = lista[i].Forma_Pago;
                     float total = precio;
-                    float pagar = CalcularDeuda(lista[i].Seña, precio, formaPago);
-
                     total = CalcularTotalTipoPago(hora, int.Parse(total.ToString()), formaPago);
+                    float pagar = CalcularDeuda(lista[i].Seña, total, formaPago);
+
+                    
 
                     BE.Reserva reserva = new BE.Reserva()
                     {
